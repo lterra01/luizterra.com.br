@@ -676,3 +676,17 @@ h3 {
     transform: none;
   }
 }
+
+
+/* ── Open to Opportunities tag ─────────────────────────────────────── */
+.open-to-opps {
+  font-size: 0.9rem;
+  color: #00c8c8;
+  border-left: 2px solid #00c8c8;
+  padding: 0.5rem 1rem;
+  margin: 0 auto 2rem;
+  max-width: 520px;
+  text-align: left;
+  line-height: 1.65;
+  opacity: 0.88;
+}
