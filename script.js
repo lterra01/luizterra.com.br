@@ -5,6 +5,40 @@ const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
 const emailLink = document.querySelector("#email-link");
 const emailText = document.querySelector("#email-text");
+const languageButtons = document.querySelectorAll(".language-switcher button");
+
+const insightArticles = [
+  {
+    slug: "ai-powered-amd-outbound-operations",
+    category: "AI & Contact Center",
+    title: "Why AI-powered AMD is becoming strategic for outbound operations",
+  },
+  {
+    slug: "future-of-sbcs-cloud-contact-centers",
+    category: "Telecom Infrastructure",
+    title: "The future of SBCs in cloud contact centers",
+  },
+  {
+    slug: "bpos-evaluate-telecom-infrastructure-partners",
+    category: "BPO Technology",
+    title: "How BPOs should evaluate telecom infrastructure partners",
+  },
+  {
+    slug: "latam-bridge-us-cx-global-delivery",
+    category: "Market Entry",
+    title: "LATAM as a bridge between US CX demand and global delivery",
+  },
+  {
+    slug: "european-ccaas-local-telecom-partners",
+    category: "CCaaS Expansion",
+    title: "What European CCaaS vendors need from local telecom partners",
+  },
+  {
+    slug: "ai-contact-centers-roi",
+    category: "AI ROI",
+    title: "AI in Contact Centers: where the hype ends and ROI starts",
+  },
+];
 
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver(
@@ -52,3 +86,16 @@ if (emailLink && emailText) {
   emailLink.href = `mailto:${address}`;
   emailText.textContent = address;
 }
+
+languageButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (button.disabled) return;
+
+    languageButtons.forEach((item) => {
+      item.classList.toggle("is-active", item === button);
+      item.setAttribute("aria-pressed", String(item === button));
+    });
+  });
+});
+
+window.luizTerraInsights = insightArticles;

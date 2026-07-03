@@ -1,6 +1,8 @@
-# Luiz Terra Personal Website
+# Luiz Terra Executive Website
 
 Site estático profissional para Luiz Terra, construído em HTML5, CSS e JavaScript vanilla para publicação no GitHub Pages.
+
+O posicionamento atual apresenta Luiz como executivo internacional de Telecom, CX, BPO e AI, com foco em parcerias estratégicas, conversas de mercado, speaking opportunities, networking executivo e expansão internacional.
 
 ## Arquivos
 
@@ -9,6 +11,16 @@ Site estático profissional para Luiz Terra, construído em HTML5, CSS e JavaScr
 - `script.js`
 - `CNAME`
 - `README.md`
+- `sitemap.xml`
+- `public/favicon.svg`
+- `public/og-image.svg`
+- `public/luiz-terra-executive-bio.pdf`
+
+## Pendências Editoriais
+
+- Substituir `public/luiz-terra-executive-bio.pdf` pelo PDF final desenhado da bio executiva.
+- Substituir `public/og-image.svg` por uma imagem social em PNG/JPG caso alguma rede social não renderize SVG em previews.
+- Quando houver artigos completos, criar páginas em `/insights/` usando os slugs preparados em `script.js`.
 
 ## Deploy Manual no GitHub Pages
 
