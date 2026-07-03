@@ -1,69 +1,31 @@
 # Luiz Terra Executive Website
 
-Site estático profissional para Luiz Terra, construído em HTML5, CSS e JavaScript vanilla para publicação no GitHub Pages.
+Static executive website for Luiz Terra, published with GitHub Pages.
 
-O posicionamento atual apresenta Luiz como executivo internacional de Telecom, CX, BPO e AI, com foco em parcerias estratégicas, conversas de mercado, speaking opportunities, networking executivo e expansão internacional.
+## Current Positioning
 
-## Arquivos
+International Sales Executive in Telecom, CX, BPO and AI, focused on strategic partnerships, market-entry conversations, speaking opportunities and executive networking across LATAM, North America, Europe and Africa.
 
-- `index.html`
-- `styles.css`
-- `script.js`
-- `CNAME`
-- `README.md`
-- `sitemap.xml`
-- `public/favicon.svg`
-- `public/og-image.svg`
+## Routes
+
+- `/` - English home and x-default
+- `/en/` - English version
+- `/pt/` - Portuguese version
+- `/es/` - Spanish version
+- `/insights/`, `/pt/insights/`, `/es/insights/`
+- Localized article pages under each insights route
+
+## Assets
+
 - `public/luiz-terra-executive-bio.pdf`
+- `public/og-image.png`
+- `public/favicon.svg`
 
-## Pendências Editoriais
+## Editorial Note
 
-- Substituir `public/luiz-terra-executive-bio.pdf` pelo PDF final desenhado da bio executiva.
-- Substituir `public/og-image.svg` por uma imagem social em PNG/JPG caso alguma rede social não renderize SVG em previews.
-- Quando houver artigos completos, criar páginas em `/insights/` usando os slugs preparados em `script.js`.
+The repository does not currently include the 12 previously prepared LinkedIn posts. The site uses the six approved insight topics already present in the website content and provides localized article routes for them. When the 12 posts are available, add them to the article data in `tools/build_static_site.py` and regenerate the static pages.
 
-## Deploy Manual no GitHub Pages
+## Manual Checks
 
-Se o token do GitHub não estiver disponível no ambiente, use:
-
-```bash
-cd luizterra.com.br
-git init
-git add .
-git commit -m "Launch Luiz Terra personal website"
-git branch -M main
-git remote add origin https://github.com/lterra01/luizterra.com.br.git
-git push -u origin main
-```
-
-Depois, no GitHub:
-
-1. Criar o repositório público `luizterra.com.br` no usuário `lterra01`.
-2. Em Settings -> Pages, selecionar Source: `main` branch, `/ (root)`.
-3. Confirmar o arquivo `CNAME` com `www.luizterra.com.br`.
-4. URL do GitHub Pages: `https://lterra01.github.io/luizterra.com.br`.
-
-## Relatório de DNS
-
-Configure estes registros no painel DNS do registrador do domínio, como registro.br ou equivalente:
-
-| Tipo  | Host/Nome | Valor / Aponta para      | TTL  |
-|-------|-----------|--------------------------|------|
-| A     | @         | 185.199.108.153          | 3600 |
-| A     | @         | 185.199.109.153          | 3600 |
-| A     | @         | 185.199.110.153          | 3600 |
-| A     | @         | 185.199.111.153          | 3600 |
-| CNAME | www       | lterra01.github.io       | 3600 |
-
-A propagação de DNS normalmente leva cerca de 24 a 48 horas. Para verificar, execute `dig www.luizterra.com.br` ou `nslookup www.luizterra.com.br`. Depois que a propagação estiver concluída e o domínio personalizado aparecer como válido no GitHub Pages, ative "Enforce HTTPS" nas configurações de Pages. O certificado Let's Encrypt é provisionado automaticamente e sem custo pelo GitHub Pages.
-
-## Checklist Pós-Lançamento
-
-[ ] DNS verified via `dig www.luizterra.com.br`
-[ ] Custom domain confirmed in GitHub Pages settings
-[ ] "Enforce HTTPS" toggled ON in GitHub Pages
-[ ] Site loads correctly at https://www.luizterra.com.br
-[ ] Mobile test at 375px width
-[ ] All links tested: email, LinkedIn, cal.read.ai
-[ ] Meta description and og:tags reviewed
-[ ] Google Search Console: submit sitemap (sitemap.xml optional but recommended - can be a single-page sitemap)
+- Validate social preview with LinkedIn Post Inspector and WhatsApp after cache propagation.
+- Add an executive photo at `public/images/luiz-terra-executive.jpg` if a final approved headshot is provided.

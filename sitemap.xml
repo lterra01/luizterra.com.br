@@ -7,33 +7,147 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.luizterra.com.br/#impact</loc>
+    <loc>https://www.luizterra.com.br/en/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.luizterra.com.br/#expertise</loc>
+    <loc>https://www.luizterra.com.br/pt/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.luizterra.com.br/#insights</loc>
+    <loc>https://www.luizterra.com.br/es/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.luizterra.com.br/#speaking</loc>
+    <loc>https://www.luizterra.com.br/insights/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.luizterra.com.br/#contact</loc>
+    <loc>https://www.luizterra.com.br/insights/ai-powered-amd-outbound-operations/</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/insights/future-of-sbcs-cloud-contact-centers/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/insights/bpos-evaluate-telecom-infrastructure-partners/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/insights/latam-bridge-us-cx-global-delivery/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/insights/european-ccaas-local-telecom-partners/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/insights/ai-contact-centers-roi/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/pt/insights/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/pt/insights/ai-powered-amd-outbound-operations/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/pt/insights/future-of-sbcs-cloud-contact-centers/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/pt/insights/bpos-evaluate-telecom-infrastructure-partners/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/pt/insights/latam-bridge-us-cx-global-delivery/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/pt/insights/european-ccaas-local-telecom-partners/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/pt/insights/ai-contact-centers-roi/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/es/insights/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/es/insights/ai-powered-amd-outbound-operations/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/es/insights/future-of-sbcs-cloud-contact-centers/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/es/insights/bpos-evaluate-telecom-infrastructure-partners/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/es/insights/latam-bridge-us-cx-global-delivery/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/es/insights/european-ccaas-local-telecom-partners/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/es/insights/ai-contact-centers-roi/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
