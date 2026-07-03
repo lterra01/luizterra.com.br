@@ -256,6 +256,27 @@ h3 {
   padding: 24px 0 24px 24px;
 }
 
+.hero-profile {
+  border-left: 0;
+  padding: 0;
+}
+
+.hero-profile img {
+  display: block;
+  width: min(100%, 340px);
+  aspect-ratio: 1;
+  margin-left: auto;
+  border: 1px solid rgba(0, 200, 200, 0.42);
+  object-fit: cover;
+  box-shadow: 0 28px 70px var(--shadow);
+}
+
+.hero-profile div {
+  margin-top: 22px;
+  border-left: 2px solid var(--accent);
+  padding-left: 22px;
+}
+
 .hero-panel span,
 .role,
 .account-grid span,
@@ -752,6 +773,10 @@ h3 {
 
   .hero-panel {
     max-width: 520px;
+  }
+
+  .hero-profile img {
+    margin-left: 0;
   }
 
   .focus-grid,

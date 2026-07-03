@@ -15,9 +15,11 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, Tabl
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
+IMAGES = PUBLIC / "images"
 BASE_URL = "https://www.luizterra.com.br"
 EMAIL = "contact@luizterra.com.br"
 LINKEDIN = "https://linkedin.com/in/lterra"
+PHOTO = IMAGES / "luiz-terra-executive.jpg"
 
 
 META = {
@@ -610,10 +612,13 @@ def render_home(lang: str) -> str:
               <a class="button tertiary" href="/public/luiz-terra-executive-bio.pdf" download>{esc(c["bio_cta"])}</a>
             </div>
           </div>
-          <aside class="hero-panel" aria-label="Current role">
-            <span>{esc(c["current_label"])}</span>
-            <strong>Head of International Sales at Khomp</strong>
-            <p>{esc(c["current_text"])}</p>
+          <aside class="hero-panel hero-profile" aria-label="Current role">
+            <img src="/public/images/luiz-terra-executive.jpg" alt="Luiz Terra, International Sales Executive in Telecom, CX, BPO and AI" width="520" height="520" />
+            <div>
+              <span>{esc(c["current_label"])}</span>
+              <strong>Head of International Sales at Khomp</strong>
+              <p>{esc(c["current_text"])}</p>
+            </div>
           </aside>
         </div>
         <div class="ticker" aria-label="Key sectors and markets">
@@ -858,15 +863,26 @@ def build_og_image() -> None:
     muted = "#AAB6C4"
     divider = "#1E2530"
     draw.rectangle((72, 92, 1128, 538), outline=divider, width=2)
-    draw.rectangle((92, 112, 250, 270), outline=teal, width=5)
-    draw.text((171, 178), "LT", fill=teal, font=load_font(58, True), anchor="mm")
-    draw.text((300, 128), "LUIZ TERRA", fill=teal, font=load_font(34, True))
+    if PHOTO.exists():
+        photo = Image.open(PHOTO).convert("RGB")
+        side = min(photo.size)
+        left = (photo.width - side) // 2
+        top = max(0, (photo.height - side) // 3)
+        photo = photo.crop((left, top, left + side, top + side)).resize((250, 250))
+        image.paste(photo, (92, 132))
+        draw.rectangle((92, 132, 342, 382), outline=teal, width=4)
+        text_x = 390
+    else:
+        draw.rectangle((92, 112, 250, 270), outline=teal, width=5)
+        draw.text((171, 178), "LT", fill=teal, font=load_font(58, True), anchor="mm")
+        text_x = 300
+    draw.text((text_x, 128), "LUIZ TERRA", fill=teal, font=load_font(34, True))
     title_font = load_font(58, True)
     y = 206
     for line in wrap_text(draw, "International Sales Executive in Telecom, CX, BPO & AI", title_font, 760):
-        draw.text((300, y), line, fill=text, font=title_font)
+        draw.text((text_x, y), line, fill=text, font=title_font)
         y += 66
-    draw.text((300, 394), "Strategic Partnerships · Market Entry · Telecom Infrastructure", fill=muted, font=load_font(26))
+    draw.text((text_x, 394), "Strategic Partnerships · Market Entry · Telecom Infrastructure", fill=muted, font=load_font(26))
     draw.text((92, 486), "LATAM · North America · Europe · Africa", fill=teal, font=load_font(24, True))
     image.save(PUBLIC / "og-image.png")
 
