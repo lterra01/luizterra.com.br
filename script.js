@@ -6,6 +6,8 @@ const navLinks = document.querySelector(".nav-links");
 const emailLink = document.querySelector("#email-link");
 const emailText = document.querySelector("#email-text");
 const languageButtons = document.querySelectorAll(".language-switcher button");
+const protectedShortcutKeys = ["c", "s", "p", "u"];
+const protectedInspectorKeys = ["i", "j", "c"];
 
 const insightArticles = [
   {
@@ -86,6 +88,44 @@ if (emailLink && emailText) {
   emailLink.href = `mailto:${address}`;
   emailText.textContent = address;
 }
+
+const isEditableTarget = (target) =>
+  target instanceof HTMLElement &&
+  Boolean(target.closest("input, textarea, select, [contenteditable='true']"));
+
+document.addEventListener("contextmenu", (event) => {
+  event.preventDefault();
+});
+
+document.addEventListener("copy", (event) => {
+  if (!isEditableTarget(event.target)) {
+    event.preventDefault();
+  }
+});
+
+document.addEventListener("cut", (event) => {
+  if (!isEditableTarget(event.target)) {
+    event.preventDefault();
+  }
+});
+
+document.addEventListener("dragstart", (event) => {
+  if (event.target instanceof HTMLElement && event.target.closest("img")) {
+    event.preventDefault();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  const key = event.key.toLowerCase();
+  const hasModifier = event.ctrlKey || event.metaKey;
+  const blocksDocumentAction = hasModifier && protectedShortcutKeys.includes(key);
+  const blocksInspectorAction =
+    event.key === "F12" || (hasModifier && event.shiftKey && protectedInspectorKeys.includes(key));
+
+  if (!isEditableTarget(event.target) && (blocksDocumentAction || blocksInspectorAction)) {
+    event.preventDefault();
+  }
+});
 
 languageButtons.forEach((button) => {
   button.addEventListener("click", () => {

@@ -17,6 +17,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 body {
@@ -32,6 +34,11 @@ body {
 
 body.nav-open {
   overflow: hidden;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
 }
 
 a {
@@ -696,6 +703,12 @@ h3 {
 .section-reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media print {
+  body {
+    display: none;
+  }
 }
 
 @keyframes ticker {

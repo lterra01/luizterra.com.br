@@ -406,17 +406,17 @@ CAREER = [
 
 
 ECOSYSTEM = [
-    ("BroadVoice", "North America"),
     ("MEO/Altice", "Europe"),
     ("Concentrix", "Global"),
     ("Teleperformance", "Global"),
-    ("NXO France", "Europe"),
     ("Enghouse", "Global"),
     ("TIGO", "LATAM"),
     ("Genesys", "Global"),
     ("Five9", "North America"),
-    ("Atento Guatemala", "LATAM"),
-    ("Intelcia Morocco", "Africa / Europe"),
+    ("Atento", "LATAM"),
+    ("Vocalcom", "Global"),
+    ("InConcert CX", "Global"),
+    ("Collab", "Global"),
 ]
 
 
@@ -613,7 +613,7 @@ def render_home(lang: str) -> str:
             </div>
           </div>
           <aside class="hero-panel hero-profile" aria-label="Current role">
-            <img src="/public/images/luiz-terra-executive.jpg" alt="Luiz Terra, International Sales Executive in Telecom, CX, BPO and AI" width="520" height="520" />
+            <img src="/public/images/luiz-terra-executive.jpg" alt="Luiz Terra, International Sales Executive in Telecom, CX, BPO and AI" width="520" height="520" draggable="false" />
             <div>
               <span>{esc(c["current_label"])}</span>
               <strong>Head of International Sales at Khomp</strong>
