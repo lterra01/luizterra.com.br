@@ -27,7 +27,7 @@ META = {
         "lang": "en",
         "path": "",
         "title": "Luiz Terra | International Sales Executive in Telecom, CX, BPO & AI",
-        "description": "Luiz Terra is an international sales executive with 26+ years of experience in Telecom, CX, BPO, Contact Center, CCaaS, SBC and AI-powered communication solutions across LATAM, North America, Europe and Africa.",
+        "description": "Luiz Terra is an international sales executive with 28+ years of experience in Telecom, CX, BPO, Contact Center, CCaaS, SBC and AI-powered communication solutions across LATAM, North America, Europe and Africa.",
         "og_title": "Luiz Terra | Telecom, CX, BPO & AI Executive",
         "og_description": "International sales executive helping technology companies, telecom providers and contact center ecosystems expand through strategic partnerships and market-entry execution.",
     },
@@ -35,7 +35,7 @@ META = {
         "lang": "pt-BR",
         "path": "pt/",
         "title": "Luiz Terra | Executivo Internacional de Vendas em Telecom, CX, BPO e IA",
-        "description": "Luiz Terra e um executivo internacional de vendas com 26+ anos de experiencia em Telecom, CX, BPO, Contact Center, CCaaS, SBC e solucoes de comunicacao com IA na LATAM, America do Norte, Europa e Africa.",
+        "description": "Luiz Terra e um executivo internacional de vendas com 28+ anos de experiencia em Telecom, CX, BPO, Contact Center, CCaaS, SBC e solucoes de comunicacao com IA na LATAM, America do Norte, Europa e Africa.",
         "og_title": "Luiz Terra | Executivo em Telecom, CX, BPO e IA",
         "og_description": "Executivo internacional de vendas que ajuda empresas de tecnologia, provedores de telecomunicacoes e ecossistemas de contact center a expandirem por meio de parcerias estrategicas e entrada em novos mercados.",
     },
@@ -43,7 +43,7 @@ META = {
         "lang": "es",
         "path": "es/",
         "title": "Luiz Terra | Ejecutivo Internacional de Ventas en Telecom, CX, BPO e IA",
-        "description": "Luiz Terra es un ejecutivo internacional de ventas con 26+ anos de experiencia en Telecom, CX, BPO, Contact Center, CCaaS, SBC y soluciones de comunicacion con IA en LATAM, Norteamerica, Europa y Africa.",
+        "description": "Luiz Terra es un ejecutivo internacional de ventas con 28+ anos de experiencia en Telecom, CX, BPO, Contact Center, CCaaS, SBC y soluciones de comunicacion con IA en LATAM, Norteamerica, Europa y Africa.",
         "og_title": "Luiz Terra | Ejecutivo en Telecom, CX, BPO e IA",
         "og_description": "Ejecutivo internacional de ventas que ayuda a empresas de tecnologia, proveedores de telecomunicaciones y ecosistemas de contact center a expandirse mediante alianzas estrategicas y entrada a nuevos mercados.",
     },
@@ -56,7 +56,7 @@ COPY = {
         "hero_eyebrow": "Sao Paulo · LATAM · North America · Europe · Africa",
         "headline": "International Sales Executive in Telecom, CX, BPO & AI",
         "subheadline": "I help technology companies, telecom providers and contact center ecosystems expand internationally through strategic partnerships, enterprise sales and market-entry execution.",
-        "support": "With 26+ years across LATAM, North America, Europe and Africa, my work connects telecom infrastructure, Contact Center as a Service (CCaaS), Session Border Controller (SBC), AI-powered Answering Machine Detection (AMD) and Business Process Outsourcing (BPO) operations into practical growth strategies.",
+        "support": "With 28+ years across LATAM, North America, Europe and Africa, my work connects telecom infrastructure, Contact Center as a Service (CCaaS), Session Border Controller (SBC), AI-powered Answering Machine Detection (AMD) and Business Process Outsourcing (BPO) operations into practical growth strategies.",
         "primary_cta": "Start a Strategic Conversation",
         "secondary_cta": "Connect on LinkedIn",
         "bio_cta": "Download Executive Bio",
@@ -65,7 +65,7 @@ COPY = {
         "profile_label": "Executive Profile",
         "profile_title": "International growth at the intersection of telecom infrastructure, CX and AI.",
         "profile": [
-            "Luiz Fernando Coelho Terra built his career from an early sales role at CelPlan Technologies into international commercial leadership across Telecom, IT, Customer Experience and contact center technology ecosystems.",
+            "Luiz Terra built his career from an early sales role at CelPlan Technologies into international commercial leadership across Telecom, IT, Customer Experience and contact center technology ecosystems.",
             "His work spans telecom operators, BPOs, Contact Center as a Service vendors, cloud communication platforms, integrators and regional partners. That perspective helps connect enterprise sales, market-entry execution and partner-led growth in markets with different buying behaviors.",
             "Today Luiz leads international sales at Khomp, with focus on SBC, VoIP/SIP, AI-powered AMD, omnichannel platforms and the international positioning of Brazilian telecom and AI technology.",
         ],
@@ -95,7 +95,7 @@ COPY = {
         "hero_eyebrow": "Sao Paulo · LATAM · America do Norte · Europa · Africa",
         "headline": "Executivo Internacional de Vendas em Telecom, CX, BPO e IA",
         "subheadline": "Ajudo empresas de tecnologia, provedores de telecomunicacoes e ecossistemas de contact center a expandirem internacionalmente por meio de parcerias estrategicas, vendas corporativas e execucao de entrada em novos mercados.",
-        "support": "Com 26+ anos na LATAM, America do Norte, Europa e Africa, meu trabalho conecta infraestrutura de telecom, Contact Center as a Service (CCaaS), Session Border Controller (SBC), AI-powered Answering Machine Detection (AMD) e operacoes de Business Process Outsourcing (BPO) em estrategias praticas de crescimento.",
+        "support": "Com 28+ anos na LATAM, America do Norte, Europa e Africa, meu trabalho conecta infraestrutura de telecom, Contact Center as a Service (CCaaS), Session Border Controller (SBC), AI-powered Answering Machine Detection (AMD) e operacoes de Business Process Outsourcing (BPO) em estrategias praticas de crescimento.",
         "primary_cta": "Iniciar Conversa Estrategica",
         "secondary_cta": "Conectar no LinkedIn",
         "bio_cta": "Baixar Bio Executiva",
@@ -104,7 +104,7 @@ COPY = {
         "profile_label": "Perfil Executivo",
         "profile_title": "Crescimento internacional na intersecao entre infraestrutura telecom, CX e IA.",
         "profile": [
-            "Luiz Fernando Coelho Terra construiu sua carreira desde uma funcao inicial em vendas na CelPlan Technologies ate lideranca comercial internacional em Telecom, IT, Customer Experience e ecossistemas de tecnologia para contact center.",
+            "Luiz Terra construiu sua carreira desde uma funcao inicial em vendas na CelPlan Technologies ate lideranca comercial internacional em Telecom, IT, Customer Experience e ecossistemas de tecnologia para contact center.",
             "Sua experiencia passa por operadoras de telecom, BPOs, fornecedores de Contact Center as a Service, plataformas de comunicacao em nuvem, integradores e parceiros regionais.",
             "Hoje Luiz lidera vendas internacionais na Khomp, com foco em SBC, VoIP/SIP, AI-powered AMD, plataformas omnichannel e posicionamento internacional de tecnologia brasileira em telecom e IA.",
         ],
@@ -134,7 +134,7 @@ COPY = {
         "hero_eyebrow": "Sao Paulo · LATAM · Norteamerica · Europa · Africa",
         "headline": "Ejecutivo Internacional de Ventas en Telecom, CX, BPO e IA",
         "subheadline": "Ayudo a empresas de tecnologia, proveedores de telecomunicaciones y ecosistemas de contact center a expandirse internacionalmente mediante alianzas estrategicas, ventas corporativas y ejecucion de entrada a nuevos mercados.",
-        "support": "Con 26+ anos en LATAM, Norteamerica, Europa y Africa, mi trabajo conecta infraestructura telecom, Contact Center as a Service (CCaaS), Session Border Controller (SBC), AI-powered Answering Machine Detection (AMD) y operaciones de Business Process Outsourcing (BPO) en estrategias practicas de crecimiento.",
+        "support": "Con 28+ anos en LATAM, Norteamerica, Europa y Africa, mi trabajo conecta infraestructura telecom, Contact Center as a Service (CCaaS), Session Border Controller (SBC), AI-powered Answering Machine Detection (AMD) y operaciones de Business Process Outsourcing (BPO) en estrategias practicas de crecimiento.",
         "primary_cta": "Iniciar Conversacion Estrategica",
         "secondary_cta": "Conectar en LinkedIn",
         "bio_cta": "Descargar Bio Ejecutiva",
@@ -143,7 +143,7 @@ COPY = {
         "profile_label": "Perfil Ejecutivo",
         "profile_title": "Crecimiento internacional en la interseccion de infraestructura telecom, CX e IA.",
         "profile": [
-            "Luiz Fernando Coelho Terra construyo su carrera desde una funcion inicial de ventas en CelPlan Technologies hasta liderazgo comercial internacional en Telecom, IT, Customer Experience y ecosistemas tecnologicos de contact center.",
+            "Luiz Terra construyo su carrera desde una funcion inicial de ventas en CelPlan Technologies hasta liderazgo comercial internacional en Telecom, IT, Customer Experience y ecosistemas tecnologicos de contact center.",
             "Su trabajo abarca operadores telecom, BPOs, proveedores de Contact Center as a Service, plataformas de comunicacion en la nube, integradores y socios regionales.",
             "Hoy Luiz lidera ventas internacionales en Khomp, con foco en SBC, VoIP/SIP, AI-powered AMD, plataformas omnichannel y posicionamiento internacional de tecnologia brasilena en telecom e IA.",
         ],
@@ -635,7 +635,7 @@ def render_home(lang: str) -> str:
 {profile}
           </div>
           <div class="stats" aria-label="Career statistics">
-            <article><strong>26+</strong><span>{esc(c["stats"][0])}</span></article>
+            <article><strong>28+</strong><span>{esc(c["stats"][0])}</span></article>
             <article><strong>4</strong><span>{esc(c["stats"][1])}</span></article>
             <article><strong>USD 2M+</strong><span>{esc(c["stats"][2])}</span></article>
           </div>
@@ -912,7 +912,7 @@ def build_pdf() -> None:
         Spacer(1, 0.09 * inch),
         Paragraph("Executive Summary", styles["section"]),
         Paragraph(
-            "Luiz Terra is an international sales executive with 26+ years of experience across Telecom, IT, Customer Experience, Contact Center, BPO and AI-powered communication solutions. He helps technology companies, telecom providers and contact center ecosystems expand internationally through strategic partnerships, enterprise sales and market-entry execution.",
+            "Luiz Terra is an international sales executive with 28+ years of experience across Telecom, IT, Customer Experience, Contact Center, BPO and AI-powered communication solutions. He helps technology companies, telecom providers and contact center ecosystems expand internationally through strategic partnerships, enterprise sales and market-entry execution.",
             styles["body"],
         ),
     ]
@@ -926,7 +926,7 @@ def build_pdf() -> None:
         "Market Entry across LATAM, North America, Europe and Africa",
     ]
     impact = [
-        "26+ years of executive and commercial experience",
+        "28+ years of executive and commercial experience",
         "Business exposure across LATAM, North America, Europe and Africa",
         "Experience with telecom operators, BPOs, CCaaS vendors, contact center platforms and technology partners",
         "Participation in complex international telecom and customer-care technology projects",
