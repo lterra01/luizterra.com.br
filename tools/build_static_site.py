@@ -978,6 +978,7 @@ def head(
     <meta name="description" content="{esc(desc)}" />
     <meta name="author" content="Luiz Terra" />
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="msvalidate.01" content="D32D665088441B4D7E0274D9B3AEC1A1" />
     <link rel="canonical" href="{canonical(lang, path)}" />
 {hreflang(path)}
     <meta property="og:title" content="{esc(title)}" />
