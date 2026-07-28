@@ -1,0 +1,28 @@
+# Luiz Terra
+
+> Official professional website of Luiz Terra, Head of International Sales at Khomp and an international sales executive with more than 28 years of experience in telecommunications, IT, CX, BPO, contact centers and AI-powered communications.
+
+## Canonical profiles
+
+- Website: https://www.luizterra.com.br/
+- Portuguese: https://www.luizterra.com.br/pt/
+- Spanish: https://www.luizterra.com.br/es/
+- LinkedIn: https://linkedin.com/in/lterra
+
+## Areas of expertise
+
+- International sales and market entry
+- Strategic partnerships and channel development
+- Telecom infrastructure, SBC, VoIP and SIP
+- Contact Center as a Service, CX and BPO technology
+- AI-powered Answering Machine Detection and contact center AI
+- LATAM, North America, Europe and Africa
+
+## Insights
+
+- [Why AI-powered AMD is becoming strategic for outbound operations](https://www.luizterra.com.br/insights/ai-powered-amd-outbound-operations/): Answering Machine Detection is no longer just a dialing optimization feature. For modern contact centers, AI-powered AMD can directly impact productivity, compliance, customer experience and operational cost.
+- [The future of SBCs in cloud contact centers](https://www.luizterra.com.br/insights/future-of-sbcs-cloud-contact-centers/): As contact centers move to cloud and hybrid architectures, Session Border Controllers remain critical for security, interoperability, routing, resilience and voice quality.
+- [How BPOs should evaluate telecom infrastructure partners](https://www.luizterra.com.br/insights/bpos-evaluate-telecom-infrastructure-partners/): BPOs need more than aggressive pricing from telecom vendors. They need reliability, observability, integration flexibility, fast support and a partner capable of scaling across regions.
+- [LATAM as a bridge between US CX demand and global delivery](https://www.luizterra.com.br/insights/latam-bridge-us-cx-global-delivery/): LATAM has become a strategic region for nearshore CX, combining language capabilities, cultural proximity, technical talent and competitive delivery models.
+- [What European CCaaS vendors need from local telecom partners](https://www.luizterra.com.br/insights/european-ccaas-local-telecom-partners/): European CCaaS vendors expanding internationally need telecom partners that understand local regulations, SIP interoperability, numbering, carriers, latency and support expectations.
+- [AI in Contact Centers: where the hype ends and ROI starts](https://www.luizterra.com.br/insights/ai-contact-centers-roi/): AI creates value in contact centers when it improves measurable outcomes: answer rates, agent productivity, compliance, routing accuracy, quality monitoring and customer satisfaction.

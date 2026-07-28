@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import html
+import json
 import textwrap
 from pathlib import Path
 
@@ -20,30 +21,35 @@ BASE_URL = "https://www.luizterra.com.br"
 EMAIL = "contact@luizterra.com.br"
 LINKEDIN = "https://linkedin.com/in/lterra"
 PHOTO = IMAGES / "luiz-terra-executive.jpg"
+DATE_PUBLISHED = "2026-07-03"
+DATE_MODIFIED = "2026-07-27"
 
 
 META = {
     "en": {
         "lang": "en",
+        "locale": "en_US",
         "path": "",
-        "title": "Luiz Terra | International Sales Executive in Telecom, CX, BPO & AI",
-        "description": "Luiz Terra is an international sales executive with 28+ years of experience in Telecom, CX, BPO, Contact Center, CCaaS, SBC and AI-powered communication solutions across LATAM, North America, Europe and Africa.",
+        "title": "Luiz Terra | International Telecom, CX & AI Sales Executive",
+        "description": "Luiz Terra is an international sales executive with 28+ years in Telecom, CX, BPO, CCaaS, SBC and AI across LATAM, North America, Europe and Africa.",
         "og_title": "Luiz Terra | Telecom, CX, BPO & AI Executive",
         "og_description": "International sales executive helping technology companies, telecom providers and contact center ecosystems expand through strategic partnerships and market-entry execution.",
     },
     "pt": {
         "lang": "pt-BR",
+        "locale": "pt_BR",
         "path": "pt/",
-        "title": "Luiz Terra | Executivo Internacional de Vendas em Telecom, CX, BPO e IA",
-        "description": "Luiz Terra e um executivo internacional de vendas com 28+ anos de experiencia em Telecom, CX, BPO, Contact Center, CCaaS, SBC e solucoes de comunicacao com IA na LATAM, America do Norte, Europa e Africa.",
+        "title": "Luiz Terra | Executivo de Vendas em Telecom, CX, BPO e IA",
+        "description": "Luiz Terra é executivo internacional de vendas com mais de 28 anos em Telecom, CX, BPO, CCaaS, SBC e IA na América Latina, América do Norte, Europa e África.",
         "og_title": "Luiz Terra | Executivo em Telecom, CX, BPO e IA",
-        "og_description": "Executivo internacional de vendas que ajuda empresas de tecnologia, provedores de telecomunicacoes e ecossistemas de contact center a expandirem por meio de parcerias estrategicas e entrada em novos mercados.",
+        "og_description": "Executivo internacional de vendas que conecta tecnologia, telecomunicações e contact centers por meio de parcerias estratégicas e entrada em novos mercados.",
     },
     "es": {
         "lang": "es",
+        "locale": "es_ES",
         "path": "es/",
-        "title": "Luiz Terra | Ejecutivo Internacional de Ventas en Telecom, CX, BPO e IA",
-        "description": "Luiz Terra es un ejecutivo internacional de ventas con 28+ anos de experiencia en Telecom, CX, BPO, Contact Center, CCaaS, SBC y soluciones de comunicacion con IA en LATAM, Norteamerica, Europa y Africa.",
+        "title": "Luiz Terra | Ejecutivo de Ventas en Telecom, CX, BPO e IA",
+        "description": "Luiz Terra es ejecutivo internacional de ventas con más de 28 años en Telecom, CX, BPO, CCaaS, SBC e IA en Latinoamérica, Norteamérica, Europa y África.",
         "og_title": "Luiz Terra | Ejecutivo en Telecom, CX, BPO e IA",
         "og_description": "Ejecutivo internacional de ventas que ayuda a empresas de tecnologia, proveedores de telecomunicaciones y ecosistemas de contact center a expandirse mediante alianzas estrategicas y entrada a nuevos mercados.",
     },
@@ -92,28 +98,28 @@ COPY = {
     },
     "pt": {
         "nav": ["Impacto", "Expertise", "Insights", "Palestras", "Contato"],
-        "hero_eyebrow": "Sao Paulo · LATAM · America do Norte · Europa · Africa",
+        "hero_eyebrow": "São Paulo · América Latina · América do Norte · Europa · África",
         "headline": "Executivo Internacional de Vendas em Telecom, CX, BPO e IA",
-        "subheadline": "Ajudo empresas de tecnologia, provedores de telecomunicacoes e ecossistemas de contact center a expandirem internacionalmente por meio de parcerias estrategicas, vendas corporativas e execucao de entrada em novos mercados.",
-        "support": "Com 28+ anos na LATAM, America do Norte, Europa e Africa, meu trabalho conecta infraestrutura de telecom, Contact Center as a Service (CCaaS), Session Border Controller (SBC), AI-powered Answering Machine Detection (AMD) e operacoes de Business Process Outsourcing (BPO) em estrategias praticas de crescimento.",
-        "primary_cta": "Iniciar Conversa Estrategica",
+        "subheadline": "Ajudo empresas de tecnologia, provedores de telecomunicações e ecossistemas de contact center a expandirem internacionalmente por meio de parcerias estratégicas, vendas corporativas e execução de entrada em novos mercados.",
+        "support": "Com mais de 28 anos de experiência na América Latina, América do Norte, Europa e África, meu trabalho conecta infraestrutura de telecom, Contact Center as a Service (CCaaS), Session Border Controller (SBC), AI-powered Answering Machine Detection (AMD) e operações de Business Process Outsourcing (BPO) em estratégias práticas de crescimento.",
+        "primary_cta": "Iniciar Conversa Estratégica",
         "secondary_cta": "Conectar no LinkedIn",
         "bio_cta": "Baixar Bio Executiva",
         "current_label": "Current Role",
-        "current_text": "Aberto a parcerias estrategicas, conversas sobre entrada em novos mercados, oportunidades como palestrante e networking executivo em Telecom, Customer Experience (CX), BPO e IA.",
+        "current_text": "Aberto a parcerias estratégicas, conversas sobre entrada em novos mercados, oportunidades como palestrante e networking executivo em Telecom, Customer Experience (CX), BPO e IA.",
         "profile_label": "Perfil Executivo",
-        "profile_title": "Crescimento internacional na intersecao entre infraestrutura telecom, CX e IA.",
+        "profile_title": "Crescimento internacional na interseção entre infraestrutura de telecom, CX e IA.",
         "profile": [
-            "Luiz Terra construiu sua carreira desde uma funcao inicial em vendas na CelPlan Technologies ate lideranca comercial internacional em Telecom, IT, Customer Experience e ecossistemas de tecnologia para contact center.",
-            "Sua experiencia passa por operadoras de telecom, BPOs, fornecedores de Contact Center as a Service, plataformas de comunicacao em nuvem, integradores e parceiros regionais.",
+            "Luiz Terra construiu sua carreira desde uma função inicial em vendas na CelPlan Technologies até a liderança comercial internacional em Telecom, TI, Customer Experience e ecossistemas de tecnologia para contact center.",
+            "Sua experiência passa por operadoras de telecom, BPOs, fornecedores de Contact Center as a Service, plataformas de comunicação em nuvem, integradores e parceiros regionais.",
             "Hoje Luiz lidera vendas internacionais na Khomp, com foco em SBC, VoIP/SIP, AI-powered AMD, plataformas omnichannel e posicionamento internacional de tecnologia brasileira em telecom e IA.",
         ],
-        "stats": ["Anos em Telecom, IT e CX", "Regioes Internacionais", "Projeto Telecom de Alto Valor"],
+        "stats": ["Anos em Telecom, TI e CX", "Regiões Internacionais", "Projeto Telecom de Alto Valor"],
         "impact_label": "Impacto Executivo Selecionado",
-        "impact_title": "Impacto comercial construido por expansao, parcerias e vendas de infraestrutura.",
-        "career_title": "Linha do tempo reversa de lideranca comercial internacional.",
+        "impact_title": "Impacto comercial construído por expansão, parcerias e vendas de infraestrutura.",
+        "career_title": "Linha do tempo reversa de liderança comercial internacional.",
         "expertise_title": "Profundidade comercial em infraestrutura carrier-grade, CCaaS, BPO e IA.",
-        "insights_title": "Topicos de autoridade em telecom, CX, BPO e IA para conversas de crescimento.",
+        "insights_title": "Análises sobre telecom, CX, BPO e IA para decisões de crescimento.",
         "read_more": "Ler artigo",
         "speaking_label": "Palestras e Presenca na Industria",
         "speaking_title": "Conversas de mercado em telecom, CX, BPO, CCaaS e GTM internacional.",
@@ -202,12 +208,12 @@ ARTICLES = [
         "category": {"en": "AI & Contact Center", "pt": "IA & Contact Center", "es": "IA & Contact Center"},
         "title": {
             "en": "Why AI-powered AMD is becoming strategic for outbound operations",
-            "pt": "Por que AI-powered AMD se tornou estrategico para operacoes outbound",
+            "pt": "Por que AI-powered AMD se tornou estratégico para operações outbound",
             "es": "Por que AI-powered AMD se volvio estrategico para operaciones outbound",
         },
         "summary": {
             "en": "Answering Machine Detection is no longer just a dialing optimization feature. For modern contact centers, AI-powered AMD can directly impact productivity, compliance, customer experience and operational cost.",
-            "pt": "Answering Machine Detection deixou de ser apenas uma funcao de otimizacao de discagem. Para contact centers modernos, AI-powered AMD pode impactar produtividade, compliance, experiencia do cliente e custo operacional.",
+            "pt": "Answering Machine Detection deixou de ser apenas uma função de otimização de discagem. Para contact centers modernos, AI-powered AMD pode impactar produtividade, compliance, experiência do cliente e custo operacional.",
             "es": "Answering Machine Detection dejo de ser solo una funcion de optimizacion de discado. Para contact centers modernos, AI-powered AMD puede impactar productividad, compliance, experiencia del cliente y costo operativo.",
         },
         "body": {
@@ -239,7 +245,7 @@ ARTICLES = [
         },
         "summary": {
             "en": "As contact centers move to cloud and hybrid architectures, Session Border Controllers remain critical for security, interoperability, routing, resilience and voice quality.",
-            "pt": "Com contact centers migrando para arquiteturas cloud e hibridas, Session Border Controllers continuam criticos para seguranca, interoperabilidade, roteamento, resiliencia e qualidade de voz.",
+            "pt": "Com contact centers migrando para arquiteturas cloud e híbridas, Session Border Controllers continuam críticos para segurança, interoperabilidade, roteamento, resiliência e qualidade de voz.",
             "es": "A medida que los contact centers migran a arquitecturas cloud e hibridas, los Session Border Controllers siguen siendo criticos para seguridad, interoperabilidad, ruteo, resiliencia y calidad de voz.",
         },
         "body": {
@@ -271,7 +277,7 @@ ARTICLES = [
         },
         "summary": {
             "en": "BPOs need more than aggressive pricing from telecom vendors. They need reliability, observability, integration flexibility, fast support and a partner capable of scaling across regions.",
-            "pt": "BPOs precisam de mais do que preco agressivo em telecom. Precisam de confiabilidade, observabilidade, flexibilidade de integracao, suporte rapido e capacidade de escalar entre regioes.",
+            "pt": "BPOs precisam de mais do que preço agressivo em telecom. Precisam de confiabilidade, observabilidade, flexibilidade de integração, suporte rápido e capacidade de escalar entre regiões.",
             "es": "Los BPOs necesitan mas que precios agresivos en telecom. Necesitan confiabilidad, observabilidad, flexibilidad de integracion, soporte rapido y capacidad de escalar entre regiones.",
         },
         "body": {
@@ -298,12 +304,12 @@ ARTICLES = [
         "category": {"en": "Market Entry", "pt": "Entrada em Mercado", "es": "Entrada a Mercado"},
         "title": {
             "en": "LATAM as a bridge between US CX demand and global delivery",
-            "pt": "LATAM como ponte entre demanda de CX dos EUA e entrega global",
+            "pt": "América Latina como ponte entre a demanda de CX dos EUA e a entrega global",
             "es": "LATAM como puente entre demanda de CX en EE.UU. y entrega global",
         },
         "summary": {
             "en": "LATAM has become a strategic region for nearshore CX, combining language capabilities, cultural proximity, technical talent and competitive delivery models.",
-            "pt": "A LATAM se tornou regiao estrategica para nearshore CX, combinando capacidades linguisticas, proximidade cultural, talento tecnico e modelos competitivos de entrega.",
+            "pt": "A América Latina se tornou região estratégica para nearshore CX, combinando capacidades linguísticas, proximidade cultural, talento técnico e modelos competitivos de entrega.",
             "es": "LATAM se volvio una region estrategica para nearshore CX, combinando capacidades linguisticas, proximidad cultural, talento tecnico y modelos competitivos de entrega.",
         },
         "body": {
@@ -327,15 +333,15 @@ ARTICLES = [
     },
     {
         "slug": "european-ccaas-local-telecom-partners",
-        "category": {"en": "CCaaS Expansion", "pt": "Expansao CCaaS", "es": "Expansion CCaaS"},
+        "category": {"en": "CCaaS Expansion", "pt": "Expansão CCaaS", "es": "Expansión CCaaS"},
         "title": {
             "en": "What European CCaaS vendors need from local telecom partners",
-            "pt": "O que vendors europeus de CCaaS precisam de parceiros telecom locais",
+            "pt": "O que fornecedores europeus de CCaaS precisam de parceiros locais de telecom",
             "es": "Que necesitan los vendors europeos de CCaaS de partners telecom locales",
         },
         "summary": {
             "en": "European CCaaS vendors expanding internationally need telecom partners that understand local regulations, SIP interoperability, numbering, carriers, latency and support expectations.",
-            "pt": "Vendors europeus de CCaaS em expansao internacional precisam de parceiros telecom que entendam regulacao local, interoperabilidade SIP, numeracao, carriers, latencia e suporte.",
+            "pt": "Fornecedores europeus de CCaaS em expansão internacional precisam de parceiros de telecom que entendam regulação local, interoperabilidade SIP, numeração, operadoras, latência e suporte.",
             "es": "Vendors europeos de CCaaS en expansion internacional necesitan partners telecom que entiendan regulacion local, interoperabilidad SIP, numeracion, carriers, latencia y soporte.",
         },
         "body": {
@@ -362,12 +368,12 @@ ARTICLES = [
         "category": {"en": "AI ROI", "pt": "ROI em IA", "es": "ROI en IA"},
         "title": {
             "en": "AI in Contact Centers: where the hype ends and ROI starts",
-            "pt": "IA em Contact Centers: onde o hype termina e o ROI comeca",
+            "pt": "IA em Contact Centers: onde o hype termina e o ROI começa",
             "es": "IA en Contact Centers: donde termina el hype y empieza el ROI",
         },
         "summary": {
             "en": "AI creates value in contact centers when it improves measurable outcomes: answer rates, agent productivity, compliance, routing accuracy, quality monitoring and customer satisfaction.",
-            "pt": "IA cria valor em contact centers quando melhora resultados mensuraveis: taxas de atendimento, produtividade de agentes, compliance, roteamento, qualidade e satisfacao do cliente.",
+            "pt": "IA cria valor em contact centers quando melhora resultados mensuráveis: taxas de atendimento, produtividade de agentes, compliance, roteamento, qualidade e satisfação do cliente.",
             "es": "La IA crea valor en contact centers cuando mejora resultados medibles: tasas de respuesta, productividad, compliance, ruteo, calidad y satisfaccion del cliente.",
         },
         "body": {
@@ -390,6 +396,490 @@ ARTICLES = [
         "tags": ["AI", "ROI", "Contact Center", "CX"],
     },
 ]
+
+
+HOME_FAQ = {
+    "en": [
+        (
+            "Who is Luiz Terra?",
+            "Luiz Terra is Head of International Sales at Khomp and an international commercial executive with more than 28 years of experience across telecommunications, IT, customer experience, contact centers, BPO and AI-powered communications.",
+        ),
+        (
+            "What are Luiz Terra's main areas of expertise?",
+            "His expertise includes international sales, strategic partnerships, market entry, telecom infrastructure, SBC, VoIP and SIP, CCaaS, BPO technology ecosystems, customer experience and AI-powered Answering Machine Detection.",
+        ),
+        (
+            "In which markets has Luiz Terra worked?",
+            "His professional experience covers LATAM, North America, Europe and Africa, connecting global technology vendors with operators, BPOs, contact centers, integrators and regional partners.",
+        ),
+        (
+            "What strategic conversations is Luiz Terra available for?",
+            "Luiz is open to conversations about international expansion, channel development, telecom and CX partnerships, AI in contact centers, market entry and speaking opportunities.",
+        ),
+    ],
+    "pt": [
+        (
+            "Quem é Luiz Terra?",
+            "Luiz Terra é Head of International Sales na Khomp e executivo comercial internacional com mais de 28 anos de experiência em telecomunicações, TI, experiência do cliente, contact centers, BPO e comunicações apoiadas por IA.",
+        ),
+        (
+            "Quais são as principais áreas de experiência de Luiz Terra?",
+            "Sua experiência inclui vendas internacionais, parcerias estratégicas, entrada em novos mercados, infraestrutura de telecom, SBC, VoIP e SIP, CCaaS, ecossistemas de tecnologia para BPO, CX e Answering Machine Detection com IA.",
+        ),
+        (
+            "Em quais mercados Luiz Terra já atuou?",
+            "Sua experiência profissional abrange América Latina, América do Norte, Europa e África, conectando fornecedores globais de tecnologia a operadoras, BPOs, contact centers, integradores e parceiros regionais.",
+        ),
+        (
+            "Para quais conversas estratégicas Luiz Terra está disponível?",
+            "Luiz está aberto a conversas sobre expansão internacional, desenvolvimento de canais, parcerias em telecom e CX, IA em contact centers, entrada em mercados e oportunidades como palestrante.",
+        ),
+    ],
+    "es": [
+        (
+            "¿Quién es Luiz Terra?",
+            "Luiz Terra es Head of International Sales en Khomp y ejecutivo comercial internacional con más de 28 años de experiencia en telecomunicaciones, TI, experiencia del cliente, contact centers, BPO y comunicaciones apoyadas por IA.",
+        ),
+        (
+            "¿Cuáles son las principales áreas de experiencia de Luiz Terra?",
+            "Su experiencia incluye ventas internacionales, alianzas estratégicas, entrada a nuevos mercados, infraestructura telecom, SBC, VoIP y SIP, CCaaS, tecnología para BPO, CX y Answering Machine Detection con IA.",
+        ),
+        (
+            "¿En qué mercados ha trabajado Luiz Terra?",
+            "Su experiencia profesional cubre Latinoamérica, Norteamérica, Europa y África, conectando proveedores globales de tecnología con operadores, BPOs, contact centers, integradores y socios regionales.",
+        ),
+        (
+            "¿Para qué conversaciones estratégicas está disponible Luiz Terra?",
+            "Luiz está abierto a conversaciones sobre expansión internacional, desarrollo de canales, alianzas en telecom y CX, IA en contact centers, entrada a mercados y oportunidades como speaker.",
+        ),
+    ],
+}
+
+
+ARTICLE_LABELS = {
+    "en": {
+        "why": "Why this topic matters",
+        "checklist": "Executive evaluation checklist",
+        "next": "A practical path forward",
+        "faq": "Frequently asked questions",
+        "related": "Related insights",
+        "published": "Published",
+        "updated": "Updated",
+        "reading": "6 min read",
+    },
+    "pt": {
+        "why": "Por que este tema importa",
+        "checklist": "Checklist de avaliação executiva",
+        "next": "Um caminho prático",
+        "faq": "Perguntas frequentes",
+        "related": "Insights relacionados",
+        "published": "Publicado",
+        "updated": "Atualizado",
+        "reading": "6 min de leitura",
+    },
+    "es": {
+        "why": "Por qué este tema importa",
+        "checklist": "Checklist de evaluación ejecutiva",
+        "next": "Un camino práctico",
+        "faq": "Preguntas frecuentes",
+        "related": "Insights relacionados",
+        "published": "Publicado",
+        "updated": "Actualizado",
+        "reading": "6 min de lectura",
+    },
+}
+
+
+INSIGHTS_META = {
+    "en": {
+        "title": "Telecom, CX, BPO & AI Insights | Luiz Terra",
+        "description": "Practical executive insights by Luiz Terra on telecom infrastructure, SBC, CCaaS, BPO, customer experience, international market entry and AI in contact centers.",
+    },
+    "pt": {
+        "title": "Insights de Telecom, CX, BPO e IA | Luiz Terra",
+        "description": "Análises práticas de Luiz Terra sobre infraestrutura de telecom, SBC, CCaaS, BPO, experiência do cliente, expansão internacional e IA em contact centers.",
+    },
+    "es": {
+        "title": "Insights de Telecom, CX, BPO e IA | Luiz Terra",
+        "description": "Análisis prácticos de Luiz Terra sobre infraestructura telecom, SBC, CCaaS, BPO, experiencia del cliente, expansión internacional e IA en contact centers.",
+    },
+}
+
+
+ARTICLE_ENHANCEMENTS = {
+    "ai-powered-amd-outbound-operations": {
+        "en": {
+            "checklist": [
+                "Detection accuracy for the operation's real call mix, languages and voicemail patterns",
+                "Impact on agent occupancy, pacing decisions and abandoned-call risk",
+                "Visibility into classifications, confidence levels and false positives",
+                "Integration with dialers, CCaaS platforms, SIP infrastructure and routing rules",
+                "Compliance controls, test methodology and a measurable operational baseline",
+            ],
+            "closing": "A useful implementation starts with a controlled sample of real traffic, a shared baseline and clear ownership across operations, telecom and compliance. The goal is not to deploy another isolated AI feature. It is to improve the flow between dialing, classification, routing and agent availability while preserving visibility into every decision.",
+            "faq": [
+                (
+                    "What is AI-powered Answering Machine Detection?",
+                    "It is the use of machine-learning techniques and contextual audio analysis to distinguish live answers from voicemail or automated responses during outbound calls. The result is used by dialing and routing systems to decide what should reach an agent.",
+                ),
+                (
+                    "How should a contact center measure AMD value?",
+                    "Measure it against a baseline that includes classification accuracy, false positives, agent occupancy, connect rate, abandoned calls and compliance outcomes. Accuracy alone is not enough if the operational flow does not improve.",
+                ),
+            ],
+        },
+        "pt": {
+            "checklist": [
+                "Acurácia para o mix real de chamadas, idiomas e padrões de caixa postal da operação",
+                "Impacto na ocupação dos agentes, no pacing e no risco de chamadas abandonadas",
+                "Visibilidade sobre classificações, níveis de confiança e falsos positivos",
+                "Integração com discadores, plataformas CCaaS, infraestrutura SIP e regras de roteamento",
+                "Controles de compliance, metodologia de teste e linha de base operacional mensurável",
+            ],
+            "closing": "Uma implementação útil começa com uma amostra controlada de tráfego real, uma linha de base compartilhada e responsabilidades claras entre operação, telecom e compliance. O objetivo não é implantar mais um recurso isolado de IA, mas melhorar o fluxo entre discagem, classificação, roteamento e disponibilidade dos agentes, mantendo visibilidade sobre cada decisão.",
+            "faq": [
+                (
+                    "O que é Answering Machine Detection com IA?",
+                    "É o uso de aprendizado de máquina e análise contextual de áudio para diferenciar atendimentos humanos de caixas postais ou respostas automatizadas em chamadas outbound. O resultado orienta discadores e sistemas de roteamento.",
+                ),
+                (
+                    "Como um contact center deve medir o valor do AMD?",
+                    "A medição deve comparar uma linha de base com acurácia, falsos positivos, ocupação de agentes, taxa de conexão, chamadas abandonadas e resultados de compliance. Acurácia isolada não garante melhoria operacional.",
+                ),
+            ],
+        },
+        "es": {
+            "checklist": [
+                "Precisión para la mezcla real de llamadas, idiomas y patrones de buzón de la operación",
+                "Impacto en ocupación de agentes, pacing y riesgo de llamadas abandonadas",
+                "Visibilidad de clasificaciones, niveles de confianza y falsos positivos",
+                "Integración con marcadores, plataformas CCaaS, infraestructura SIP y reglas de ruteo",
+                "Controles de compliance, metodología de prueba y línea base operacional medible",
+            ],
+            "closing": "Una implementación útil empieza con una muestra controlada de tráfico real, una línea base compartida y responsabilidades claras entre operaciones, telecom y compliance. El objetivo es mejorar el flujo entre marcado, clasificación, ruteo y disponibilidad de agentes, manteniendo visibilidad sobre cada decisión.",
+            "faq": [
+                (
+                    "¿Qué es Answering Machine Detection con IA?",
+                    "Es el uso de aprendizaje automático y análisis contextual de audio para diferenciar respuestas humanas de buzones o respuestas automatizadas en llamadas outbound. El resultado orienta a los marcadores y sistemas de ruteo.",
+                ),
+                (
+                    "¿Cómo debe medir un contact center el valor de AMD?",
+                    "Debe comparar una línea base con precisión, falsos positivos, ocupación de agentes, tasa de conexión, llamadas abandonadas y resultados de compliance. La precisión aislada no garantiza una mejora operacional.",
+                ),
+            ],
+        },
+    },
+    "future-of-sbcs-cloud-contact-centers": {
+        "en": {
+            "checklist": [
+                "SIP interoperability across the CCaaS platform, carriers and enterprise environment",
+                "Security policy, topology hiding, encryption and protection against voice-specific threats",
+                "Routing control, number normalization and support for multi-region operations",
+                "High availability, failover behavior and observability of call quality",
+                "Operational support with clear escalation paths across vendors and carriers",
+            ],
+            "closing": "The strongest SBC strategy treats the voice edge as part of the customer experience architecture. Platform, carrier and security teams should validate the same call flows, failure scenarios and operating responsibilities before scale. This reduces the gap between a successful technical test and a resilient production service.",
+            "faq": [
+                (
+                    "Why does a cloud contact center still need an SBC?",
+                    "Cloud delivery does not remove the need to secure, normalize, route and observe voice traffic between platforms, carriers and enterprise networks. An SBC provides policy and control at those boundaries.",
+                ),
+                (
+                    "What should be tested before an SBC goes into production?",
+                    "Test normal and failure call flows, SIP interoperability, codec behavior, encryption, number formatting, failover, emergency routing where applicable, monitoring and support escalation.",
+                ),
+            ],
+        },
+        "pt": {
+            "checklist": [
+                "Interoperabilidade SIP entre plataforma CCaaS, operadoras e ambiente corporativo",
+                "Políticas de segurança, ocultação de topologia, criptografia e proteção da voz",
+                "Controle de roteamento, normalização de numeração e operação multirregional",
+                "Alta disponibilidade, comportamento de failover e observabilidade da qualidade",
+                "Suporte operacional com escalonamento claro entre fornecedores e operadoras",
+            ],
+            "closing": "A estratégia mais consistente trata o SBC e a borda de voz como parte da arquitetura de experiência do cliente. Times de plataforma, operadoras e segurança devem validar os mesmos fluxos, cenários de falha e responsabilidades antes da escala. Isso reduz a distância entre um teste técnico bem-sucedido e um serviço resiliente em produção.",
+            "faq": [
+                (
+                    "Por que um contact center em nuvem ainda precisa de SBC?",
+                    "A nuvem não elimina a necessidade de proteger, normalizar, rotear e observar o tráfego de voz entre plataformas, operadoras e redes corporativas. O SBC aplica políticas e controle nessas fronteiras.",
+                ),
+                (
+                    "O que deve ser testado antes de colocar um SBC em produção?",
+                    "Devem ser testados fluxos normais e de falha, interoperabilidade SIP, codecs, criptografia, formatação de números, failover, roteamento de emergência quando aplicável, monitoramento e escalonamento de suporte.",
+                ),
+            ],
+        },
+        "es": {
+            "checklist": [
+                "Interoperabilidad SIP entre plataforma CCaaS, operadores y entorno empresarial",
+                "Políticas de seguridad, ocultación de topología, cifrado y protección de la voz",
+                "Control de ruteo, normalización de numeración y operación multirregional",
+                "Alta disponibilidad, comportamiento de failover y observabilidad de calidad",
+                "Soporte operacional con escalamiento claro entre proveedores y operadores",
+            ],
+            "closing": "La estrategia más consistente trata al SBC y al borde de voz como parte de la arquitectura de experiencia del cliente. Los equipos de plataforma, operadores y seguridad deben validar los mismos flujos, escenarios de falla y responsabilidades antes de escalar.",
+            "faq": [
+                (
+                    "¿Por qué un contact center en la nube todavía necesita un SBC?",
+                    "La nube no elimina la necesidad de proteger, normalizar, rutear y observar el tráfico de voz entre plataformas, operadores y redes empresariales. El SBC aplica políticas y control en esas fronteras.",
+                ),
+                (
+                    "¿Qué debe probarse antes de llevar un SBC a producción?",
+                    "Deben probarse flujos normales y de falla, interoperabilidad SIP, codecs, cifrado, formato de números, failover, ruteo de emergencia cuando corresponda, monitoreo y escalamiento de soporte.",
+                ),
+            ],
+        },
+    },
+    "bpos-evaluate-telecom-infrastructure-partners": {
+        "en": {
+            "checklist": [
+                "Service availability, redundancy and recovery objectives matched to client SLAs",
+                "Real-time monitoring of routes, carriers, quality indicators and incidents",
+                "SIP and SBC expertise across the BPO's CCaaS and dialer environment",
+                "Regional carrier coverage, numbering capabilities and regulatory readiness",
+                "Commercial transparency, escalation governance and capacity to support growth",
+            ],
+            "closing": "A disciplined selection process combines architecture review, operational evidence and commercial governance. The partner should demonstrate how incidents are detected, owned and resolved, not only present a coverage map. A pilot with representative traffic helps expose the quality of integration and support before a broader commitment.",
+            "faq": [
+                (
+                    "Which telecom criteria matter most for a BPO?",
+                    "Availability, voice quality, routing flexibility, monitoring, fast incident response, SIP expertise, regional coverage and alignment with client SLAs are central criteria.",
+                ),
+                (
+                    "Why is the lowest telecom price not always the best choice?",
+                    "Telecom is a production dependency for a BPO. Savings can disappear quickly when outages, poor quality or slow support affect agent productivity, contractual service levels and client retention.",
+                ),
+            ],
+        },
+        "pt": {
+            "checklist": [
+                "Disponibilidade, redundância e objetivos de recuperação alinhados aos SLAs dos clientes",
+                "Monitoramento em tempo real de rotas, operadoras, indicadores de qualidade e incidentes",
+                "Experiência em SIP e SBC no ambiente de CCaaS e discadores do BPO",
+                "Cobertura regional, recursos de numeração e prontidão regulatória",
+                "Transparência comercial, governança de escalonamento e capacidade de apoiar crescimento",
+            ],
+            "closing": "Um processo disciplinado combina revisão de arquitetura, evidências operacionais e governança comercial. O parceiro deve demonstrar como incidentes são detectados, assumidos e resolvidos, e não apenas apresentar um mapa de cobertura. Um piloto com tráfego representativo ajuda a revelar a qualidade da integração e do suporte antes de um compromisso maior.",
+            "faq": [
+                (
+                    "Quais critérios de telecom são mais importantes para um BPO?",
+                    "Disponibilidade, qualidade de voz, flexibilidade de roteamento, monitoramento, resposta rápida a incidentes, conhecimento SIP, cobertura regional e alinhamento aos SLAs dos clientes são critérios centrais.",
+                ),
+                (
+                    "Por que o menor preço de telecom nem sempre é a melhor escolha?",
+                    "Telecom é uma dependência de produção para o BPO. Uma economia inicial pode desaparecer quando indisponibilidade, baixa qualidade ou suporte lento afetam produtividade, níveis de serviço e retenção de clientes.",
+                ),
+            ],
+        },
+        "es": {
+            "checklist": [
+                "Disponibilidad, redundancia y objetivos de recuperación alineados con los SLA",
+                "Monitoreo en tiempo real de rutas, operadores, calidad e incidentes",
+                "Experiencia SIP y SBC en el entorno CCaaS y de marcadores del BPO",
+                "Cobertura regional, numeración y preparación regulatoria",
+                "Transparencia comercial, gobierno de escalamiento y capacidad de crecimiento",
+            ],
+            "closing": "Un proceso disciplinado combina revisión de arquitectura, evidencia operacional y gobierno comercial. El partner debe demostrar cómo detecta, asume y resuelve incidentes. Un piloto con tráfico representativo ayuda a validar integración y soporte antes de un compromiso mayor.",
+            "faq": [
+                (
+                    "¿Qué criterios telecom son más importantes para un BPO?",
+                    "Disponibilidad, calidad de voz, flexibilidad de ruteo, monitoreo, respuesta rápida a incidentes, conocimiento SIP, cobertura regional y alineación con los SLA son criterios centrales.",
+                ),
+                (
+                    "¿Por qué el menor precio telecom no siempre es la mejor elección?",
+                    "Telecom es una dependencia de producción para el BPO. El ahorro puede desaparecer cuando fallas, mala calidad o soporte lento afectan productividad, niveles de servicio y retención de clientes.",
+                ),
+            ],
+        },
+    },
+    "latam-bridge-us-cx-global-delivery": {
+        "en": {
+            "checklist": [
+                "Country selection based on language, talent, regulation and operating model",
+                "Telecom quality, carrier diversity and connectivity to the target CCaaS stack",
+                "Cultural and time-zone alignment with the customer journeys being served",
+                "Local partners for hiring, compliance, facilities and technical operations",
+                "A phased market-entry plan with clear service, quality and financial measures",
+            ],
+            "closing": "LATAM should be evaluated as a portfolio of markets, not as a single operating environment. A practical entry plan selects the right country for the service profile, validates telecom and talent assumptions, and expands after quality and governance are proven. Regional scale comes from repeatable operating discipline rather than from geography alone.",
+            "faq": [
+                (
+                    "Why is LATAM relevant for US customer experience operations?",
+                    "The region combines time-zone proximity, multilingual talent, cultural familiarity and established BPO and telecom ecosystems, which can support nearshore customer service and sales models.",
+                ),
+                (
+                    "Is one LATAM market suitable for every CX operation?",
+                    "No. Language, talent availability, costs, regulation, telecom maturity and customer needs vary by country. Selection should follow the specific service and risk profile.",
+                ),
+            ],
+        },
+        "pt": {
+            "checklist": [
+                "Seleção do país com base em idioma, talentos, regulação e modelo operacional",
+                "Qualidade de telecom, diversidade de operadoras e conexão com o stack de CCaaS",
+                "Alinhamento cultural e de fuso horário com as jornadas atendidas",
+                "Parceiros locais para contratação, compliance, instalações e operação técnica",
+                "Plano de entrada em fases com métricas claras de serviço, qualidade e resultado financeiro",
+            ],
+            "closing": "A América Latina deve ser avaliada como um portfólio de mercados, e não como um único ambiente operacional. Um plano prático escolhe o país adequado ao perfil do serviço, valida premissas de telecom e talentos e amplia após comprovar qualidade e governança. A escala regional nasce de disciplina operacional repetível.",
+            "faq": [
+                (
+                    "Por que a América Latina é relevante para operações de CX dos EUA?",
+                    "A região combina proximidade de fuso horário, talentos multilíngues, familiaridade cultural e ecossistemas maduros de BPO e telecom, favorecendo modelos nearshore de atendimento e vendas.",
+                ),
+                (
+                    "Um único mercado latino-americano serve para qualquer operação de CX?",
+                    "Não. Idiomas, disponibilidade de talentos, custos, regulação, maturidade de telecom e necessidades dos clientes variam por país. A escolha deve seguir o perfil específico do serviço e do risco.",
+                ),
+            ],
+        },
+        "es": {
+            "checklist": [
+                "Selección del país según idioma, talento, regulación y modelo operacional",
+                "Calidad telecom, diversidad de operadores y conexión con el stack CCaaS",
+                "Alineación cultural y horaria con los journeys atendidos",
+                "Socios locales para contratación, compliance, instalaciones y operación técnica",
+                "Plan de entrada por fases con métricas claras de servicio, calidad y finanzas",
+            ],
+            "closing": "Latinoamérica debe evaluarse como un portafolio de mercados y no como un único entorno operacional. Un plan práctico elige el país adecuado, valida telecom y talento y amplía después de comprobar calidad y gobierno.",
+            "faq": [
+                (
+                    "¿Por qué Latinoamérica es relevante para operaciones de CX de EE.UU.?",
+                    "La región combina proximidad horaria, talento multilingüe, afinidad cultural y ecosistemas establecidos de BPO y telecom, apoyando modelos nearshore de servicio y ventas.",
+                ),
+                (
+                    "¿Un solo mercado latinoamericano sirve para cualquier operación de CX?",
+                    "No. Idiomas, talento, costos, regulación, madurez telecom y necesidades del cliente varían por país. La selección debe seguir el perfil de servicio y riesgo.",
+                ),
+            ],
+        },
+    },
+    "european-ccaas-local-telecom-partners": {
+        "en": {
+            "checklist": [
+                "Local numbering, portability and regulatory requirements in each target country",
+                "Carrier relationships and tested SIP interoperability with the CCaaS platform",
+                "Latency, media routing, resilience and voice-quality monitoring",
+                "Local-language technical support and clear cross-vendor escalation",
+                "A channel model that aligns commercial ownership, enablement and customer success",
+            ],
+            "closing": "Market entry works best when the platform vendor and telecom partner design the offer together. Technical readiness, support responsibilities and channel economics should be explicit before customer acquisition accelerates. This gives enterprise buyers a coherent service instead of a platform contract surrounded by unresolved local dependencies.",
+            "faq": [
+                (
+                    "Why do CCaaS vendors need local telecom partners?",
+                    "Local partners help navigate numbering, carrier access, SIP interoperability, regulation, latency, support expectations and the operational details that vary by country.",
+                ),
+                (
+                    "What makes a strong CCaaS and telecom partnership?",
+                    "A strong partnership combines tested integration, shared support processes, transparent commercial ownership, local market knowledge and a joint plan for customer success.",
+                ),
+            ],
+        },
+        "pt": {
+            "checklist": [
+                "Numeração local, portabilidade e requisitos regulatórios em cada país-alvo",
+                "Relacionamento com operadoras e interoperabilidade SIP testada com a plataforma CCaaS",
+                "Latência, roteamento de mídia, resiliência e monitoramento da qualidade de voz",
+                "Suporte técnico no idioma local e escalonamento claro entre fornecedores",
+                "Modelo de canal que alinhe responsabilidade comercial, capacitação e sucesso do cliente",
+            ],
+            "closing": "A entrada em mercado funciona melhor quando o fornecedor da plataforma e o parceiro de telecom desenham a oferta em conjunto. Prontidão técnica, responsabilidades de suporte e economia do canal devem estar claras antes de acelerar a aquisição. Assim, o cliente corporativo recebe um serviço coerente, sem dependências locais indefinidas.",
+            "faq": [
+                (
+                    "Por que fornecedores de CCaaS precisam de parceiros locais de telecom?",
+                    "Parceiros locais ajudam com numeração, acesso a operadoras, interoperabilidade SIP, regulação, latência, expectativas de suporte e detalhes operacionais que variam em cada país.",
+                ),
+                (
+                    "O que caracteriza uma parceria forte entre CCaaS e telecom?",
+                    "Uma parceria forte combina integração testada, processos compartilhados de suporte, responsabilidade comercial transparente, conhecimento do mercado local e plano conjunto para o sucesso do cliente.",
+                ),
+            ],
+        },
+        "es": {
+            "checklist": [
+                "Numeración local, portabilidad y requisitos regulatorios de cada país",
+                "Relaciones con operadores e interoperabilidad SIP probada con la plataforma",
+                "Latencia, ruteo de medios, resiliencia y monitoreo de calidad",
+                "Soporte técnico en idioma local y escalamiento claro entre proveedores",
+                "Modelo de canal que alinee propiedad comercial, capacitación y customer success",
+            ],
+            "closing": "La entrada a mercado funciona mejor cuando el proveedor de plataforma y el partner telecom diseñan la oferta juntos. La preparación técnica, las responsabilidades de soporte y la economía del canal deben estar claras antes de acelerar la adquisición.",
+            "faq": [
+                (
+                    "¿Por qué los proveedores CCaaS necesitan partners telecom locales?",
+                    "Los partners locales ayudan con numeración, operadores, interoperabilidad SIP, regulación, latencia, soporte y detalles operacionales que varían por país.",
+                ),
+                (
+                    "¿Qué caracteriza una alianza sólida entre CCaaS y telecom?",
+                    "Combina integración probada, procesos compartidos de soporte, propiedad comercial transparente, conocimiento local y un plan conjunto de customer success.",
+                ),
+            ],
+        },
+    },
+    "ai-contact-centers-roi": {
+        "en": {
+            "checklist": [
+                "A clearly defined business problem and an operational baseline before implementation",
+                "Metrics tied to revenue, cost, quality, compliance or customer outcomes",
+                "Integration with telecom, CCaaS, CRM, workforce and quality workflows",
+                "Human oversight, observability and ownership for exceptions and model drift",
+                "A phased rollout that validates value before expanding scope",
+            ],
+            "closing": "A credible AI roadmap begins with one operational problem, one accountable owner and a small set of measurable outcomes. Teams should validate data quality and workflow integration before scaling. When governance and measurement are built into the implementation, AI becomes part of operating discipline rather than a disconnected demonstration.",
+            "faq": [
+                (
+                    "Which metrics show AI ROI in a contact center?",
+                    "The right metrics depend on the use case, but common examples include containment, answer and conversion rates, average handling time, agent occupancy, quality scores, compliance, repeat contacts, customer satisfaction and cost per interaction.",
+                ),
+                (
+                    "Why do contact center AI pilots fail to scale?",
+                    "Common causes include vague goals, weak data, poor integration, no operational owner, limited observability and a pilot that is disconnected from the real telecom and customer-service workflow.",
+                ),
+            ],
+        },
+        "pt": {
+            "checklist": [
+                "Problema de negócio claramente definido e linha de base antes da implementação",
+                "Métricas ligadas a receita, custo, qualidade, compliance ou resultado para o cliente",
+                "Integração com telecom, CCaaS, CRM, workforce e fluxos de qualidade",
+                "Supervisão humana, observabilidade e responsáveis por exceções e mudanças do modelo",
+                "Implantação em fases que comprove valor antes de ampliar o escopo",
+            ],
+            "closing": "Um roteiro confiável de IA começa com um problema operacional, um responsável e poucos resultados mensuráveis. Os times devem validar qualidade dos dados e integração aos fluxos antes da escala. Quando governança e medição fazem parte da implementação, a IA se torna disciplina operacional, não apenas demonstração.",
+            "faq": [
+                (
+                    "Quais métricas demonstram ROI de IA em um contact center?",
+                    "As métricas dependem do caso de uso, mas podem incluir contenção, taxas de atendimento e conversão, tempo médio, ocupação de agentes, qualidade, compliance, contatos repetidos, satisfação e custo por interação.",
+                ),
+                (
+                    "Por que pilotos de IA em contact centers não conseguem escalar?",
+                    "Causas frequentes incluem objetivos vagos, dados fracos, integração insuficiente, ausência de responsável operacional, pouca observabilidade e um piloto desconectado do fluxo real de telecom e atendimento.",
+                ),
+            ],
+        },
+        "es": {
+            "checklist": [
+                "Problema de negocio definido y línea base antes de implementar",
+                "Métricas vinculadas a ingresos, costo, calidad, compliance o cliente",
+                "Integración con telecom, CCaaS, CRM, workforce y calidad",
+                "Supervisión humana, observabilidad y responsables de excepciones",
+                "Despliegue por fases que valide valor antes de ampliar el alcance",
+            ],
+            "closing": "Una hoja de ruta confiable empieza con un problema operacional, un responsable y pocos resultados medibles. Los equipos deben validar datos e integración antes de escalar. Con gobierno y medición, la IA se convierte en disciplina operacional.",
+            "faq": [
+                (
+                    "¿Qué métricas muestran ROI de IA en un contact center?",
+                    "Depende del caso, pero pueden incluir contención, tasas de respuesta y conversión, tiempo medio, ocupación, calidad, compliance, contactos repetidos, satisfacción y costo por interacción.",
+                ),
+                (
+                    "¿Por qué los pilotos de IA no logran escalar?",
+                    "Causas frecuentes son objetivos vagos, datos débiles, mala integración, falta de responsable operacional, poca observabilidad y desconexión del flujo real de telecom y servicio.",
+                ),
+            ],
+        },
+    },
+}
 
 
 CAREER = [
@@ -452,61 +942,226 @@ def hreflang(path: str = "") -> str:
         f'    <link rel="alternate" hreflang="en" href="{BASE_URL}{lang_url("en", path)}" />',
         f'    <link rel="alternate" hreflang="pt-BR" href="{BASE_URL}{lang_url("pt", path)}" />',
         f'    <link rel="alternate" hreflang="es" href="{BASE_URL}{lang_url("es", path)}" />',
-        f'    <link rel="alternate" hreflang="x-default" href="{BASE_URL}/" />',
+        f'    <link rel="alternate" hreflang="x-default" href="{BASE_URL}{lang_url("en", path)}" />',
     ]
     return "\n".join(links)
 
 
-def head(lang: str, page_title: str | None = None, description: str | None = None, path: str = "") -> str:
+def head(
+    lang: str,
+    page_title: str | None = None,
+    description: str | None = None,
+    path: str = "",
+    page_type: str = "profile",
+    article: dict | None = None,
+) -> str:
     meta = META[lang]
     title = page_title or meta["title"]
     desc = description or meta["description"]
+    og_type = "article" if page_type == "article" else "website"
+    preload = (
+        '    <link rel="preload" href="/public/images/luiz-terra-executive-520.webp" as="image" type="image/webp" imagesrcset="/public/images/luiz-terra-executive-320.webp 320w, /public/images/luiz-terra-executive-520.webp 520w" imagesizes="(max-width: 768px) 100vw, 340px" fetchpriority="high" />\n'
+        if page_type == "profile"
+        else ""
+    )
+    article_meta = ""
+    if article:
+        article_meta = f"""
+    <meta property="article:published_time" content="{DATE_PUBLISHED}" />
+    <meta property="article:modified_time" content="{DATE_MODIFIED}" />
+    <meta property="article:author" content="{LINKEDIN}" />
+    <meta property="article:section" content="{esc(article["category"][lang])}" />"""
     return f"""  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{esc(title)}</title>
     <meta name="description" content="{esc(desc)}" />
+    <meta name="author" content="Luiz Terra" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
     <link rel="canonical" href="{canonical(lang, path)}" />
 {hreflang(path)}
-    <meta property="og:title" content="{esc(meta["og_title"])}" />
-    <meta property="og:description" content="{esc(meta["og_description"])}" />
+    <meta property="og:title" content="{esc(title)}" />
+    <meta property="og:description" content="{esc(desc)}" />
     <meta property="og:url" content="{canonical(lang, path)}" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="{og_type}" />
+    <meta property="og:site_name" content="Luiz Terra" />
+    <meta property="og:locale" content="{meta["locale"]}" />
     <meta property="og:image" content="{BASE_URL}/public/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Luiz Terra, International Sales Executive in Telecom, CX, BPO and AI" />
+{article_meta}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="{esc(meta["og_title"])}" />
-    <meta name="twitter:description" content="{esc(meta["og_description"])}" />
+    <meta name="twitter:title" content="{esc(title)}" />
+    <meta name="twitter:description" content="{esc(desc)}" />
     <meta name="twitter:image" content="{BASE_URL}/public/og-image.png" />
     <link rel="icon" href="/public/favicon.svg" type="image/svg+xml" />
-{gtag()}
+    <link rel="alternate" type="application/rss+xml" title="Luiz Terra Insights" href="{BASE_URL}/feed.xml" />
+{preload}{gtag()}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/styles.css" />
-    <script type="application/ld+json">{schema_json()}</script>
+    <script type="application/ld+json">{schema_json(lang, path, page_type, article)}</script>
   </head>"""
 
 
-def schema_json() -> str:
-    return """{
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Luiz Terra",
-      "jobTitle": "Head of International Sales",
-      "worksFor": {"@type": "Organization", "name": "Khomp"},
-      "address": {"@type": "PostalAddress", "addressLocality": "Sao Paulo", "addressCountry": "Brazil"},
-      "email": "mailto:contact@luizterra.com.br",
-      "url": "https://www.luizterra.com.br",
-      "sameAs": ["https://linkedin.com/in/lterra"],
-      "knowsAbout": ["Telecom", "Contact Center", "BPO", "Customer Experience", "CCaaS", "SBC", "VoIP", "SIP", "AI-powered AMD", "International Sales", "Strategic Partnerships", "Market Entry"]
-    }"""
+def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> str:
+    url = canonical(lang, path)
+    person = {
+        "@type": "Person",
+        "@id": f"{BASE_URL}/#luiz-terra",
+        "name": "Luiz Terra",
+        "description": META[lang]["description"],
+        "image": {
+            "@type": "ImageObject",
+            "url": f"{BASE_URL}/public/images/luiz-terra-executive.jpg",
+            "width": 900,
+            "height": 900,
+        },
+        "jobTitle": "Head of International Sales",
+        "worksFor": {"@type": "Organization", "name": "Khomp"},
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "São Paulo",
+            "addressCountry": "BR",
+        },
+        "url": BASE_URL,
+        "sameAs": [LINKEDIN],
+        "knowsLanguage": ["Portuguese", "English", "Spanish"],
+        "knowsAbout": [
+            "Telecommunications",
+            "International Sales",
+            "Contact Center",
+            "Customer Experience",
+            "Business Process Outsourcing",
+            "Contact Center as a Service",
+            "Session Border Controller",
+            "VoIP",
+            "SIP",
+            "AI-powered Answering Machine Detection",
+            "Strategic Partnerships",
+            "International Market Entry",
+        ],
+    }
+    website = {
+        "@type": "WebSite",
+        "@id": f"{BASE_URL}/#website",
+        "url": f"{BASE_URL}/",
+        "name": "Luiz Terra",
+        "inLanguage": ["en", "pt-BR", "es"],
+        "publisher": {"@id": f"{BASE_URL}/#luiz-terra"},
+    }
+    graph: list[dict] = [website, person]
+
+    if page_type == "article" and article:
+        graph.extend(
+            [
+                {
+                    "@type": "BlogPosting",
+                    "@id": f"{url}#article",
+                    "mainEntityOfPage": {"@type": "WebPage", "@id": url},
+                    "headline": article["title"][lang],
+                    "description": article["summary"][lang],
+                    "image": f"{BASE_URL}/public/og-image.png",
+                    "datePublished": DATE_PUBLISHED,
+                    "dateModified": DATE_MODIFIED,
+                    "inLanguage": META[lang]["lang"],
+                    "author": {"@id": f"{BASE_URL}/#luiz-terra"},
+                    "publisher": {"@id": f"{BASE_URL}/#luiz-terra"},
+                    "articleSection": article["category"][lang],
+                    "keywords": article["tags"],
+                },
+                {
+                    "@type": "BreadcrumbList",
+                    "@id": f"{url}#breadcrumb",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Luiz Terra",
+                            "item": canonical(lang),
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "Insights",
+                            "item": canonical(lang, "insights/"),
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 3,
+                            "name": article["title"][lang],
+                            "item": url,
+                        },
+                    ],
+                },
+            ]
+        )
+        faq_items = ARTICLE_ENHANCEMENTS[article["slug"]][lang]["faq"]
+        graph.append(
+            {
+                "@type": "FAQPage",
+                "@id": f"{url}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": question,
+                        "acceptedAnswer": {"@type": "Answer", "text": answer},
+                    }
+                    for question, answer in faq_items
+                ],
+            }
+        )
+    elif page_type == "collection":
+        graph.append(
+            {
+                "@type": "CollectionPage",
+                "@id": f"{url}#collection",
+                "url": url,
+                "name": INSIGHTS_META[lang]["title"],
+                "description": INSIGHTS_META[lang]["description"],
+                "inLanguage": META[lang]["lang"],
+                "author": {"@id": f"{BASE_URL}/#luiz-terra"},
+                "isPartOf": {"@id": f"{BASE_URL}/#website"},
+            }
+        )
+    else:
+        graph.extend(
+            [
+                {
+                    "@type": "ProfilePage",
+                    "@id": f"{url}#profile",
+                    "url": url,
+                    "name": META[lang]["title"],
+                    "description": META[lang]["description"],
+                    "dateCreated": DATE_PUBLISHED,
+                    "dateModified": DATE_MODIFIED,
+                    "inLanguage": META[lang]["lang"],
+                    "mainEntity": {"@id": f"{BASE_URL}/#luiz-terra"},
+                    "isPartOf": {"@id": f"{BASE_URL}/#website"},
+                },
+                {
+                    "@type": "FAQPage",
+                    "@id": f"{url}#faq",
+                    "mainEntity": [
+                        {
+                            "@type": "Question",
+                            "name": question,
+                            "acceptedAnswer": {"@type": "Answer", "text": answer},
+                        }
+                        for question, answer in HOME_FAQ[lang]
+                    ],
+                },
+            ]
+        )
+
+    return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=6)
 
 
 def nav(lang: str, current_path: str = "") -> str:
     c = COPY[lang]
+    menu_label = {"en": "Open navigation menu", "pt": "Abrir menu de navegação", "es": "Abrir menú de navegación"}[lang]
     home = lang_url(lang)
     section = lambda anchor: f"#{anchor}" if current_path == "" else f"{home}#{anchor}"
     nav_items = [
@@ -522,8 +1177,8 @@ def nav(lang: str, current_path: str = "") -> str:
         for code, label in [("en", "EN"), ("pt", "PT"), ("es", "ES")]
     )
     return f"""    <nav class="site-nav" aria-label="Main navigation">
-      <a class="brand" href="{lang_url(lang)}" aria-label="Luiz Terra home">LT</a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <a class="brand" href="{lang_url(lang)}" aria-label="LT - Luiz Terra home">LT</a>
+      <button class="nav-toggle" type="button" aria-label="{esc(menu_label)}" aria-expanded="false" aria-controls="nav-links">
         <span></span>
         <span></span>
       </button>
@@ -593,13 +1248,20 @@ def render_home(lang: str) -> str:
         "Topics: AI in contact centers, SBC strategy, cloud telecom, BPO technology partnerships and international GTM",
     ]
     presence_cards = "\n".join(f"            <article>{esc(item)}</article>" for item in presence)
+    home_faq = "\n".join(
+        f"""            <details>
+              <summary>{esc(question)}</summary>
+              <p>{esc(answer)}</p>
+            </details>"""
+        for question, answer in HOME_FAQ[lang]
+    )
     return f"""<!DOCTYPE html>
 <html lang="{META[lang]["lang"]}">
 {head(lang)}
   <body>
 {nav(lang)}
     <main id="top">
-      <section class="hero section-reveal" aria-labelledby="hero-title">
+      <section class="hero" aria-labelledby="hero-title">
         <div class="hero-grid">
           <div class="hero-copy">
             <p class="eyebrow">{esc(c["hero_eyebrow"])}</p>
@@ -613,7 +1275,10 @@ def render_home(lang: str) -> str:
             </div>
           </div>
           <aside class="hero-panel hero-profile" aria-label="Current role">
-            <img src="/public/images/luiz-terra-executive.jpg" alt="Luiz Terra, International Sales Executive in Telecom, CX, BPO and AI" width="520" height="520" draggable="false" />
+            <picture>
+              <source type="image/webp" srcset="/public/images/luiz-terra-executive-320.webp 320w, /public/images/luiz-terra-executive-520.webp 520w" sizes="(max-width: 768px) 100vw, 340px" />
+              <img src="/public/images/luiz-terra-executive.jpg" alt="Luiz Terra, International Sales Executive in Telecom, CX, BPO and AI" width="520" height="520" fetchpriority="high" decoding="async" draggable="false" />
+            </picture>
             <div>
               <span>{esc(c["current_label"])}</span>
               <strong>Head of International Sales at Khomp</strong>
@@ -703,6 +1368,15 @@ def render_home(lang: str) -> str:
           <p class="reference-note">{esc(c["ecosystem_disclaimer"])}</p>
         </div>
       </section>
+      <section class="content-section section-reveal" id="faq" aria-labelledby="faq-title">
+        <div class="section-label">FAQ</div>
+        <div class="section-body">
+          <h2 id="faq-title">{esc(ARTICLE_LABELS[lang]["faq"])}</h2>
+          <div class="faq-list">
+{home_faq}
+          </div>
+        </div>
+      </section>
       <section class="contact-section section-reveal" id="contact" aria-labelledby="contact-title">
         <div class="contact-card">
           <p class="eyebrow">{esc(c["contact_label"])}</p>
@@ -736,7 +1410,7 @@ def render_insights_index(lang: str) -> str:
     )
     return f"""<!DOCTYPE html>
 <html lang="{META[lang]["lang"]}">
-{head(lang, f"Insights | {META[lang]['title']}", META[lang]["description"], "insights/")}
+{head(lang, INSIGHTS_META[lang]["title"], INSIGHTS_META[lang]["description"], "insights/", "collection")}
   <body>
 {nav(lang, "insights/")}
     <main class="subpage-main">
@@ -759,26 +1433,74 @@ def render_insights_index(lang: str) -> str:
 
 def render_article(lang: str, article: dict) -> str:
     c = COPY[lang]
+    labels = ARTICLE_LABELS[lang]
+    enhancement = ARTICLE_ENHANCEMENTS[article["slug"]][lang]
     body = "\n".join(f"          <p>{esc(p)}</p>" for p in article["body"][lang])
     tags = "".join(f"<span>{esc(tag)}</span>" for tag in article["tags"])
     title = article["title"][lang]
     desc = article["summary"][lang]
+    checklist = "\n".join(f"            <li>{esc(item)}</li>" for item in enhancement["checklist"])
+    faq = "\n".join(
+        f"""          <details>
+            <summary>{esc(question)}</summary>
+            <p>{esc(answer)}</p>
+          </details>"""
+        for question, answer in enhancement["faq"]
+    )
+    related_articles = [item for item in ARTICLES if item["slug"] != article["slug"]][:3]
+    related = "\n".join(
+        f"""          <article>
+            <span>{esc(item["category"][lang])}</span>
+            <h3><a href="{lang_url(lang, f'insights/{item["slug"]}/')}">{esc(item["title"][lang])}</a></h3>
+          </article>"""
+        for item in related_articles
+    )
     return f"""<!DOCTYPE html>
 <html lang="{META[lang]["lang"]}">
-{head(lang, f"{title} | Luiz Terra", desc, f"insights/{article['slug']}/")}
+{head(lang, f"{title} | Luiz Terra", desc, f"insights/{article['slug']}/", "article", article)}
   <body>
 {nav(lang, f"insights/{article['slug']}/")}
     <main class="subpage-main article-main">
       <article class="article-page section-reveal is-visible">
-        <a class="article-back" href="{lang_url(lang, 'insights/')}">{esc(c["article_back"])}</a>
+        <nav class="article-breadcrumb" aria-label="Breadcrumb">
+          <a href="{lang_url(lang)}">Luiz Terra</a>
+          <span aria-hidden="true">/</span>
+          <a href="{lang_url(lang, 'insights/')}">Insights</a>
+        </nav>
         <p class="eyebrow">{esc(article["category"][lang])}</p>
         <h1 class="subpage-title">{esc(title)}</h1>
         <p class="article-summary">{esc(desc)}</p>
+        <div class="article-meta">
+          <span>Luiz Terra</span>
+          <span>{esc(labels["published"])} <time datetime="{DATE_PUBLISHED}">03/07/2026</time></span>
+          <span>{esc(labels["updated"])} <time datetime="{DATE_MODIFIED}">27/07/2026</time></span>
+          <span>{esc(labels["reading"])}</span>
+        </div>
         <div class="chips article-tags">{tags}</div>
         <div class="article-content">
+          <h2>{esc(labels["why"])}</h2>
 {body}
+          <h2>{esc(labels["checklist"])}</h2>
+          <ul class="article-checklist">
+{checklist}
+          </ul>
+          <h2>{esc(labels["next"])}</h2>
+          <p>{esc(enhancement["closing"])}</p>
+          <h2>{esc(labels["faq"])}</h2>
+          <div class="faq-list article-faq">
+{faq}
+          </div>
         </div>
-        <a class="button secondary" href="mailto:{EMAIL}?subject={esc(title).replace(' ', '%20')}">{esc(c["share"])}</a>
+        <section class="related-insights" aria-labelledby="related-title">
+          <h2 id="related-title">{esc(labels["related"])}</h2>
+          <div class="related-grid">
+{related}
+          </div>
+        </section>
+        <div class="article-actions">
+          <a class="article-back" href="{lang_url(lang, 'insights/')}">{esc(c["article_back"])}</a>
+          <a class="button secondary" href="mailto:{EMAIL}?subject={esc(title).replace(' ', '%20')}">{esc(c["share"])}</a>
+        </div>
       </article>
     </main>
 {footer(lang)}
@@ -805,25 +1527,107 @@ def build_pages() -> None:
 
 
 def build_sitemap() -> None:
-    paths = ["/", "/en/", "/pt/", "/es/"]
+    pages: list[tuple[str, str]] = [("en", ""), ("pt", ""), ("es", "")]
     for lang in ("en", "pt", "es"):
-        paths.append(lang_url(lang, "insights/"))
+        pages.append((lang, "insights/"))
         for article in ARTICLES:
-            paths.append(lang_url(lang, f"insights/{article['slug']}/"))
-    unique = []
-    for path in paths:
-        if path not in unique:
-            unique.append(path)
-    urls = "\n".join(
-        f"""  <url>
-    <loc>{BASE_URL}{path}</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>{"1.0" if path == "/" else "0.8"}</priority>
+            pages.append((lang, f"insights/{article['slug']}/"))
+
+    def sitemap_url(lang: str, path: str) -> str:
+        alternates = "\n".join(
+            f'    <xhtml:link rel="alternate" hreflang="{code}" href="{BASE_URL}{lang_url(target, path)}" />'
+            for code, target in [("en", "en"), ("pt-BR", "pt"), ("es", "es")]
+        )
+        x_default = f'    <xhtml:link rel="alternate" hreflang="x-default" href="{BASE_URL}{lang_url("en", path)}" />'
+        priority = "1.0" if path == "" and lang == "en" else "0.8"
+        image = (
+            f"""
+    <image:image>
+      <image:loc>{BASE_URL}/public/images/luiz-terra-executive.jpg</image:loc>
+      <image:title>Luiz Terra, International Sales Executive</image:title>
+    </image:image>"""
+            if path == ""
+            else ""
+        )
+        return f"""  <url>
+    <loc>{canonical(lang, path)}</loc>
+    <lastmod>{DATE_MODIFIED}</lastmod>
+{alternates}
+{x_default}
+    <priority>{priority}</priority>{image}
   </url>"""
-        for path in unique
+
+    urls = "\n".join(sitemap_url(lang, path) for lang, path in pages)
+    write(
+        ROOT / "sitemap.xml",
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
+        '        xmlns:xhtml="http://www.w3.org/1999/xhtml"\n'
+        '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
+        f"{urls}\n"
+        "</urlset>\n",
     )
-    write(ROOT / "sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>\n')
+
+
+def build_discovery_files() -> None:
+    items = "\n".join(
+        f"""    <item>
+      <title>{esc(article["title"]["en"])}</title>
+      <link>{canonical("en", f'insights/{article["slug"]}/')}</link>
+      <guid isPermaLink="true">{canonical("en", f'insights/{article["slug"]}/')}</guid>
+      <description>{esc(article["summary"]["en"])}</description>
+      <pubDate>Fri, 03 Jul 2026 12:00:00 -0300</pubDate>
+      <category>{esc(article["category"]["en"])}</category>
+    </item>"""
+        for article in ARTICLES
+    )
+    write(
+        ROOT / "feed.xml",
+        f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luiz Terra Insights</title>
+    <link>{BASE_URL}/insights/</link>
+    <description>Practical perspectives on international sales, telecom, CX, BPO, CCaaS, SBC and AI-powered contact center operations.</description>
+    <language>en</language>
+    <lastBuildDate>Mon, 27 Jul 2026 12:00:00 -0300</lastBuildDate>
+{items}
+  </channel>
+</rss>
+""",
+    )
+    article_links = "\n".join(
+        f"- [{article['title']['en']}]({canonical('en', f'insights/{article['slug']}/')}): {article['summary']['en']}"
+        for article in ARTICLES
+    )
+    write(
+        ROOT / "llms.txt",
+        f"""# Luiz Terra
+
+> Official professional website of Luiz Terra, Head of International Sales at Khomp and an international sales executive with more than 28 years of experience in telecommunications, IT, CX, BPO, contact centers and AI-powered communications.
+
+## Canonical profiles
+
+- Website: {BASE_URL}/
+- Portuguese: {BASE_URL}/pt/
+- Spanish: {BASE_URL}/es/
+- LinkedIn: {LINKEDIN}
+
+## Areas of expertise
+
+- International sales and market entry
+- Strategic partnerships and channel development
+- Telecom infrastructure, SBC, VoIP and SIP
+- Contact Center as a Service, CX and BPO technology
+- AI-powered Answering Machine Detection and contact center AI
+- LATAM, North America, Europe and Africa
+
+## Insights
+
+{article_links}
+""",
+    )
+    write(ROOT / "a7e3c91d5b604f2e8c739d10ab42e6f5.txt", "a7e3c91d5b604f2e8c739d10ab42e6f5\n")
 
 
 def load_font(size: int, bold: bool = False):
@@ -885,6 +1689,16 @@ def build_og_image() -> None:
     draw.text((text_x, 394), "Strategic Partnerships · Market Entry · Telecom Infrastructure", fill=muted, font=load_font(26))
     draw.text((92, 486), "LATAM · North America · Europe · Africa", fill=teal, font=load_font(24, True))
     image.save(PUBLIC / "og-image.png")
+
+
+def build_web_images() -> None:
+    if not PHOTO.exists():
+        return
+    with Image.open(PHOTO) as source:
+        image = source.convert("RGB")
+        for size in (320, 520):
+            resized = image.resize((size, size), Image.Resampling.LANCZOS)
+            resized.save(IMAGES / f"luiz-terra-executive-{size}.webp", "WEBP", quality=84, method=6)
 
 
 def build_pdf() -> None:
@@ -968,7 +1782,13 @@ def build_pdf() -> None:
             Paragraph("www.luizterra.com.br | contact@luizterra.com.br", styles["small"]),
         ]
     )
-    doc.build(story)
+    def set_pdf_metadata(canvas, _doc) -> None:
+        canvas.setTitle("Luiz Terra | International Telecom, CX & AI Sales Executive")
+        canvas.setAuthor("Luiz Terra")
+        canvas.setSubject("Executive biography covering international sales, telecom, CX, BPO, CCaaS, SBC and AI.")
+        canvas.setKeywords("Luiz Terra, international sales, telecom, CX, BPO, CCaaS, SBC, AI")
+
+    doc.build(story, onFirstPage=set_pdf_metadata, onLaterPages=set_pdf_metadata)
 
 
 def build_readme() -> None:
@@ -997,6 +1817,15 @@ International Sales Executive in Telecom, CX, BPO and AI, focused on strategic p
 - `public/og-image.png`
 - `public/favicon.svg`
 
+## Search Discovery
+
+- Canonical and hreflang metadata for English, Brazilian Portuguese and Spanish
+- ProfilePage, Person, BlogPosting, BreadcrumbList and FAQPage structured data
+- `sitemap.xml` with canonical localized URLs and image discovery
+- `feed.xml` for article discovery
+- `llms.txt` for AI search and answer-engine context
+- IndexNow key file for search-engine notifications
+
 ## Editorial Note
 
 The repository does not currently include the 12 previously prepared LinkedIn posts. The site uses the six approved insight topics already present in the website content and provides localized article routes for them. When the 12 posts are available, add them to the article data in `tools/build_static_site.py` and regenerate the static pages.
@@ -1010,8 +1839,10 @@ The repository does not currently include the 12 previously prepared LinkedIn po
 
 
 def main() -> None:
+    build_web_images()
     build_pages()
     build_sitemap()
+    build_discovery_files()
     build_og_image()
     build_pdf()
     build_readme()

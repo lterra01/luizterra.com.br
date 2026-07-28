@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Luiz Terra Insights</title>
+    <link>https://www.luizterra.com.br/insights/</link>
+    <description>Practical perspectives on international sales, telecom, CX, BPO, CCaaS, SBC and AI-powered contact center operations.</description>
+    <language>en</language>
+    <lastBuildDate>Mon, 27 Jul 2026 12:00:00 -0300</lastBuildDate>
+    <item>
+      <title>Why AI-powered AMD is becoming strategic for outbound operations</title>
+      <link>https://www.luizterra.com.br/insights/ai-powered-amd-outbound-operations/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/ai-powered-amd-outbound-operations/</guid>
+      <description>Answering Machine Detection is no longer just a dialing optimization feature. For modern contact centers, AI-powered AMD can directly impact productivity, compliance, customer experience and operational cost.</description>
+      <pubDate>Fri, 03 Jul 2026 12:00:00 -0300</pubDate>
+      <category>AI &amp; Contact Center</category>
+    </item>
+    <item>
+      <title>The future of SBCs in cloud contact centers</title>
+      <link>https://www.luizterra.com.br/insights/future-of-sbcs-cloud-contact-centers/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/future-of-sbcs-cloud-contact-centers/</guid>
+      <description>As contact centers move to cloud and hybrid architectures, Session Border Controllers remain critical for security, interoperability, routing, resilience and voice quality.</description>
+      <pubDate>Fri, 03 Jul 2026 12:00:00 -0300</pubDate>
+      <category>Telecom Infrastructure</category>
+    </item>
+    <item>
+      <title>How BPOs should evaluate telecom infrastructure partners</title>
+      <link>https://www.luizterra.com.br/insights/bpos-evaluate-telecom-infrastructure-partners/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/bpos-evaluate-telecom-infrastructure-partners/</guid>
+      <description>BPOs need more than aggressive pricing from telecom vendors. They need reliability, observability, integration flexibility, fast support and a partner capable of scaling across regions.</description>
+      <pubDate>Fri, 03 Jul 2026 12:00:00 -0300</pubDate>
+      <category>BPO Technology</category>
+    </item>
+    <item>
+      <title>LATAM as a bridge between US CX demand and global delivery</title>
+      <link>https://www.luizterra.com.br/insights/latam-bridge-us-cx-global-delivery/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/latam-bridge-us-cx-global-delivery/</guid>
+      <description>LATAM has become a strategic region for nearshore CX, combining language capabilities, cultural proximity, technical talent and competitive delivery models.</description>
+      <pubDate>Fri, 03 Jul 2026 12:00:00 -0300</pubDate>
+      <category>Market Entry</category>
+    </item>
+    <item>
+      <title>What European CCaaS vendors need from local telecom partners</title>
+      <link>https://www.luizterra.com.br/insights/european-ccaas-local-telecom-partners/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/european-ccaas-local-telecom-partners/</guid>
+      <description>European CCaaS vendors expanding internationally need telecom partners that understand local regulations, SIP interoperability, numbering, carriers, latency and support expectations.</description>
+      <pubDate>Fri, 03 Jul 2026 12:00:00 -0300</pubDate>
+      <category>CCaaS Expansion</category>
+    </item>
+    <item>
+      <title>AI in Contact Centers: where the hype ends and ROI starts</title>
+      <link>https://www.luizterra.com.br/insights/ai-contact-centers-roi/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/ai-contact-centers-roi/</guid>
+      <description>AI creates value in contact centers when it improves measurable outcomes: answer rates, agent productivity, compliance, routing accuracy, quality monitoring and customer satisfaction.</description>
+      <pubDate>Fri, 03 Jul 2026 12:00:00 -0300</pubDate>
+      <category>AI ROI</category>
+    </item>
+  </channel>
+</rss>

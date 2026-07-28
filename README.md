@@ -21,6 +21,15 @@ International Sales Executive in Telecom, CX, BPO and AI, focused on strategic p
 - `public/og-image.png`
 - `public/favicon.svg`
 
+## Search Discovery
+
+- Canonical and hreflang metadata for English, Brazilian Portuguese and Spanish
+- ProfilePage, Person, BlogPosting, BreadcrumbList and FAQPage structured data
+- `sitemap.xml` with canonical localized URLs and image discovery
+- `feed.xml` for article discovery
+- `llms.txt` for AI search and answer-engine context
+- IndexNow key file for search-engine notifications
+
 ## Editorial Note
 
 The repository does not currently include the 12 previously prepared LinkedIn posts. The site uses the six approved insight topics already present in the website content and provides localized article routes for them. When the 12 posts are available, add them to the article data in `tools/build_static_site.py` and regenerate the static pages.

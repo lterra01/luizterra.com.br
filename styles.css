@@ -192,6 +192,7 @@ h3 {
 h1 {
   max-width: 960px;
   margin-top: 18px;
+  font-family: "Segoe UI", Arial, sans-serif;
   font-size: clamp(3rem, 6vw, 6.35rem);
 }
 
@@ -694,6 +695,198 @@ h3 {
   border-bottom: 1px solid rgba(0, 200, 200, 0.44);
 }
 
+.faq-list {
+  display: grid;
+  max-width: 880px;
+  margin-top: 38px;
+  border-top: 1px solid var(--divider);
+}
+
+.faq-list details {
+  border-bottom: 1px solid var(--divider);
+  padding: 0;
+}
+
+.faq-list summary {
+  position: relative;
+  padding: 22px 44px 22px 0;
+  color: var(--text);
+  font-family: "Space Grotesk", Arial, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  position: absolute;
+  top: 21px;
+  right: 4px;
+  color: var(--accent);
+  content: "+";
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.3rem;
+}
+
+.faq-list details[open] summary::after {
+  content: "−";
+}
+
+.faq-list details p {
+  max-width: 780px;
+  margin: -4px 0 22px;
+  color: #bfccd7;
+}
+
+.subpage-main {
+  min-height: 80vh;
+  padding-top: 96px;
+}
+
+.article-main {
+  padding: 142px 24px 96px;
+}
+
+.article-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.article-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 42px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.article-breadcrumb a {
+  border-bottom: 1px solid rgba(0, 200, 200, 0.44);
+  color: var(--text);
+}
+
+.subpage-title {
+  max-width: 980px;
+  margin-top: 14px;
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
+}
+
+.article-summary {
+  max-width: 800px;
+  margin: 28px 0 0;
+  color: #c7d1db;
+  font-size: clamp(1.08rem, 2vw, 1.28rem);
+  line-height: 1.65;
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  margin-top: 26px;
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.77rem;
+}
+
+.article-tags {
+  margin-top: 28px;
+}
+
+.article-content {
+  max-width: 780px;
+  margin-top: 52px;
+  color: #c7d1db;
+  font-size: 1.04rem;
+  line-height: 1.78;
+}
+
+.article-content h2,
+.related-insights h2 {
+  margin: 58px 0 20px;
+  color: var(--text);
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+}
+
+.article-content p {
+  margin: 0 0 20px;
+}
+
+.article-checklist {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.article-checklist li {
+  position: relative;
+  border-left: 2px solid var(--accent);
+  padding: 12px 16px;
+  color: #d6dee7;
+  background: rgba(20, 25, 34, 0.54);
+}
+
+.article-faq {
+  margin-top: 0;
+}
+
+.related-insights {
+  margin-top: 70px;
+  border-top: 1px solid var(--divider);
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.related-grid article {
+  min-width: 0;
+  border: 1px solid var(--divider);
+  padding: 20px;
+  background: rgba(20, 25, 34, 0.54);
+}
+
+.related-grid span {
+  color: var(--accent);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.related-grid h3 {
+  margin-top: 12px;
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+.related-grid a:hover {
+  color: var(--accent);
+}
+
+.article-actions {
+  display: flex;
+  margin-top: 42px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.article-back {
+  border-bottom: 1px solid rgba(0, 200, 200, 0.44);
+  color: var(--accent);
+  font-weight: 700;
+}
+
 .section-reveal {
   opacity: 0;
   transform: translateY(22px);
@@ -801,6 +994,10 @@ h3 {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+
   .impact-grid article,
   .impact-grid article:nth-child(4),
   .impact-grid article:nth-child(5) {
@@ -839,6 +1036,15 @@ h3 {
 
   .site-footer {
     display: block;
+  }
+
+  .article-main {
+    padding-top: 124px;
+  }
+
+  .article-actions {
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .footer-links {
