@@ -273,6 +273,16 @@ h3 {
   padding: 24px 0 24px 24px;
 }
 
+.hero-role {
+  max-width: 760px;
+  margin: 14px 0 0;
+  color: var(--accent);
+  font-family: "Space Grotesk", Arial, sans-serif;
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
 .hero-profile {
   border-left: 0;
   padding: 0;
@@ -479,6 +489,7 @@ h3 {
 .focus-grid,
 .impact-grid,
 .insight-grid,
+.topic-grid,
 .presence-grid,
 .account-grid,
 .contact-options {
@@ -495,6 +506,7 @@ h3 {
 .focus-grid article,
 .impact-grid article,
 .insight-grid article,
+.topic-grid article,
 .presence-grid article {
   padding: 24px;
   transition: transform 180ms ease, border-color 180ms ease;
@@ -503,6 +515,7 @@ h3 {
 .focus-grid article:hover,
 .impact-grid article:hover,
 .insight-grid article:hover,
+.topic-grid article:hover,
 .presence-grid article:hover,
 .account-grid article:hover,
 .contact-options a:hover {
@@ -537,7 +550,8 @@ h3 {
 }
 
 .impact-grid span,
-.insight-grid span {
+.insight-grid > article > span,
+.topic-grid > article > span {
   display: inline-block;
   margin-bottom: 18px;
   color: var(--accent);
@@ -549,6 +563,7 @@ h3 {
 
 .impact-grid p,
 .insight-grid p,
+.topic-grid p,
 .section-intro,
 .contact-lead {
   color: #bfccd7;
@@ -704,6 +719,87 @@ h3 {
   border-bottom: 1px solid rgba(0, 200, 200, 0.44);
 }
 
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 42px;
+}
+
+.topic-grid article {
+  display: flex;
+  min-height: 280px;
+  flex-direction: column;
+  border: 1px solid var(--divider);
+  padding: 24px;
+  background: rgba(20, 25, 34, 0.78);
+  box-shadow: 0 22px 58px var(--shadow);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.topic-grid a,
+.section-link a,
+.topic-link a {
+  width: fit-content;
+  border-bottom: 1px solid rgba(0, 200, 200, 0.5);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.topic-grid a {
+  margin-top: auto;
+}
+
+.section-link {
+  margin: 28px 0 0;
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: auto 0 20px;
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+}
+
+.card-meta span {
+  margin: 0;
+  color: var(--muted);
+  font-size: inherit;
+  text-transform: none;
+}
+
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 34px;
+}
+
+.category-filters button {
+  min-height: 42px;
+  border: 1px solid var(--divider);
+  padding: 9px 14px;
+  color: var(--text);
+  background: rgba(20, 25, 34, 0.78);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.category-filters button[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: #071112;
+  background: var(--accent);
+}
+
+.insight-grid article[hidden] {
+  display: none;
+}
+
 .faq-list {
   display: grid;
   max-width: 880px;
@@ -803,6 +899,11 @@ h3 {
   font-size: 0.77rem;
 }
 
+.article-meta a {
+  border-bottom: 1px solid rgba(0, 200, 200, 0.44);
+  color: var(--text);
+}
+
 .article-tags {
   margin-top: 28px;
 }
@@ -824,6 +925,17 @@ h3 {
 
 .article-content p {
   margin: 0 0 20px;
+}
+
+.topic-link {
+  margin-bottom: 34px;
+  border-left: 2px solid var(--accent);
+  padding: 12px 16px;
+  background: rgba(0, 200, 200, 0.05);
+}
+
+.article-cta {
+  margin-top: 32px !important;
 }
 
 .article-checklist {
@@ -888,6 +1000,56 @@ h3 {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+}
+
+.share-actions,
+.bio-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button.button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.topic-main {
+  padding-top: 132px;
+}
+
+.topic-hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px 24px 78px;
+}
+
+.pillar-perspective {
+  max-width: 860px;
+  margin: 22px 0 0;
+  color: #c7d1db;
+  font-size: 1.18rem;
+  line-height: 1.75;
+}
+
+.bio-position {
+  margin: 18px 0 0;
+  color: var(--accent);
+  font-family: "Space Grotesk", Arial, sans-serif;
+  font-size: clamp(1.2rem, 2.4vw, 1.8rem);
+  font-weight: 700;
+}
+
+.bio-actions {
+  margin-top: 30px;
+}
+
+.bio-content section + section {
+  margin-top: 52px;
+}
+
+.bio-content section h2 {
+  margin-top: 0;
 }
 
 .article-back {
@@ -997,6 +1159,7 @@ h3 {
   .focus-grid,
   .impact-grid,
   .insight-grid,
+  .topic-grid,
   .presence-grid,
   .account-grid,
   .contact-options {
@@ -1024,6 +1187,7 @@ h3 {
   .focus-grid,
   .impact-grid,
   .insight-grid,
+  .topic-grid,
   .presence-grid,
   .account-grid,
   .contact-options {

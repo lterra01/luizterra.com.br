@@ -3,6 +3,7 @@ from __future__ import annotations
 import html
 import json
 import textwrap
+from datetime import datetime
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -13,6 +14,9 @@ from reportlab.lib.units import inch
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
+from article_library import ARTICLE_UPDATES, NEW_ARTICLES
+from content_hub import CLUSTER_GUIDANCE, EXECUTIVE_BIO, TOPICS, TOPIC_BY_SLUG, UI
+
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -22,7 +26,7 @@ EMAIL = "contact@luizterra.com.br"
 LINKEDIN = "https://linkedin.com/in/lterra"
 PHOTO = IMAGES / "luiz-terra-executive.jpg"
 DATE_PUBLISHED = "2026-07-03"
-DATE_MODIFIED = "2026-07-27"
+DATE_MODIFIED = "2026-08-05"
 
 
 META = {
@@ -30,8 +34,8 @@ META = {
         "lang": "en",
         "locale": "en_US",
         "path": "",
-        "title": "Luiz Terra | International Telecom, CX & AI Sales Executive",
-        "description": "Luiz Terra is an international sales executive with 28+ years in Telecom, CX, BPO, CCaaS, SBC and AI across LATAM, North America, Europe and Africa.",
+        "title": "Luiz Terra | International Sales Executive in Telecom, CX, BPO & AI",
+        "description": "Luiz Terra is an international sales executive focused on Telecom, CX, BPO, Contact Center, CCaaS and AI-powered communications, with extensive experience developing international markets, strategic partnerships and enterprise business across LATAM, North America, Europe and Africa.",
         "og_title": "Luiz Terra | Telecom, CX, BPO & AI Executive",
         "og_description": "International sales executive helping technology companies, telecom providers and contact center ecosystems expand through strategic partnerships and market-entry execution.",
     },
@@ -65,7 +69,7 @@ COPY = {
         "support": "With 28+ years across LATAM, North America, Europe and Africa, my work connects telecom infrastructure, Contact Center as a Service (CCaaS), Session Border Controller (SBC), AI-powered Answering Machine Detection (AMD) and Business Process Outsourcing (BPO) operations into practical growth strategies.",
         "primary_cta": "Start a Strategic Conversation",
         "secondary_cta": "Connect on LinkedIn",
-        "bio_cta": "Download Executive Bio",
+        "bio_cta": "View Executive Bio",
         "current_label": "Current Role",
         "current_text": "Open to strategic partnerships, market-entry conversations, speaking opportunities and executive networking across Telecom, Customer Experience (CX), BPO and AI.",
         "profile_label": "Executive Profile",
@@ -104,7 +108,7 @@ COPY = {
         "support": "Com mais de 28 anos de experiência na América Latina, América do Norte, Europa e África, meu trabalho conecta infraestrutura de telecom, Contact Center as a Service (CCaaS), Session Border Controller (SBC), AI-powered Answering Machine Detection (AMD) e operações de Business Process Outsourcing (BPO) em estratégias práticas de crescimento.",
         "primary_cta": "Iniciar Conversa Estratégica",
         "secondary_cta": "Conectar no LinkedIn",
-        "bio_cta": "Baixar Bio Executiva",
+        "bio_cta": "Ver Biografia Executiva",
         "current_label": "Current Role",
         "current_text": "Aberto a parcerias estratégicas, conversas sobre entrada em novos mercados, oportunidades como palestrante e networking executivo em Telecom, Customer Experience (CX), BPO e IA.",
         "profile_label": "Perfil Executivo",
@@ -143,7 +147,7 @@ COPY = {
         "support": "Con 28+ anos en LATAM, Norteamerica, Europa y Africa, mi trabajo conecta infraestructura telecom, Contact Center as a Service (CCaaS), Session Border Controller (SBC), AI-powered Answering Machine Detection (AMD) y operaciones de Business Process Outsourcing (BPO) en estrategias practicas de crecimiento.",
         "primary_cta": "Iniciar Conversacion Estrategica",
         "secondary_cta": "Conectar en LinkedIn",
-        "bio_cta": "Descargar Bio Ejecutiva",
+        "bio_cta": "Ver Biografía Ejecutiva",
         "current_label": "Current Role",
         "current_text": "Abierto a alianzas estrategicas, conversaciones sobre entrada a nuevos mercados, oportunidades como speaker y networking ejecutivo en Telecom, Customer Experience (CX), BPO e IA.",
         "profile_label": "Perfil Ejecutivo",
@@ -882,6 +886,31 @@ ARTICLE_ENHANCEMENTS = {
 }
 
 
+def apply_editorial_payload(target: dict, payload: dict) -> None:
+    for key, value in payload.items():
+        if key not in {"checklist", "closing", "faq"}:
+            target[key] = value
+    ARTICLE_ENHANCEMENTS[target["slug"]] = {
+        lang: {
+            "checklist": payload["checklist"][lang],
+            "closing": payload["closing"][lang],
+            "faq": payload["faq"][lang],
+        }
+        for lang in ("en", "pt", "es")
+    }
+
+
+for existing_article in ARTICLES:
+    payload = ARTICLE_UPDATES.get(existing_article["slug"])
+    if payload:
+        apply_editorial_payload(existing_article, payload)
+
+for payload in NEW_ARTICLES:
+    new_article: dict = {}
+    apply_editorial_payload(new_article, payload)
+    ARTICLES.append(new_article)
+
+
 CAREER = [
     ("Current", "Khomp", "Head of International Sales", "Leading global expansion with focus on SBC, AI-powered AMD, Genesys AppFoundry and international channel development."),
     ("North America", "Vocalcom", "VP Sales LATAM", "Drove LATAM sales for cloud technology solutions from a North America context."),
@@ -925,6 +954,21 @@ def canonical(lang: str, path: str = "") -> str:
     return f"{BASE_URL}{lang_url(lang, path)}"
 
 
+def display_date(lang: str, iso_date: str) -> str:
+    value = datetime.strptime(iso_date, "%Y-%m-%d")
+    if lang == "en":
+        return value.strftime("%b %d, %Y").replace(" 0", " ")
+    return value.strftime("%d/%m/%Y")
+
+
+def article_path(lang: str, article: dict) -> str:
+    return lang_url(lang, f"insights/{article['slug']}/")
+
+
+def topic_path(lang: str, topic_slug: str) -> str:
+    return lang_url(lang, f"topics/{topic_slug}/")
+
+
 def gtag() -> str:
     return """    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-68E95X4DZT"></script>
@@ -965,12 +1009,13 @@ def head(
         else ""
     )
     article_meta = ""
-    if article:
+    if page_type == "article" and article:
         article_meta = f"""
     <meta property="article:published_time" content="{DATE_PUBLISHED}" />
     <meta property="article:modified_time" content="{DATE_MODIFIED}" />
     <meta property="article:author" content="{LINKEDIN}" />
     <meta property="article:section" content="{esc(article["category"][lang])}" />"""
+    og_image = f"{BASE_URL}/public/og/{article['slug']}.png" if page_type == "article" and article else f"{BASE_URL}/public/og-image.png"
     return f"""  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -987,7 +1032,7 @@ def head(
     <meta property="og:type" content="{og_type}" />
     <meta property="og:site_name" content="Luiz Terra" />
     <meta property="og:locale" content="{meta["locale"]}" />
-    <meta property="og:image" content="{BASE_URL}/public/og-image.png" />
+    <meta property="og:image" content="{og_image}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Luiz Terra, International Sales Executive in Telecom, CX, BPO and AI" />
@@ -995,7 +1040,7 @@ def head(
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{esc(title)}" />
     <meta name="twitter:description" content="{esc(desc)}" />
-    <meta name="twitter:image" content="{BASE_URL}/public/og-image.png" />
+    <meta name="twitter:image" content="{og_image}" />
     <link rel="icon" href="/public/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title="Luiz Terra Insights" href="{BASE_URL}/feed.xml" />
 {preload}{gtag()}
@@ -1023,27 +1068,39 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
         },
         "jobTitle": "Head of International Sales",
         "worksFor": {"@type": "Organization", "name": "Khomp"},
+        "email": f"mailto:{EMAIL}",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "São Paulo",
-            "addressCountry": "BR",
+            "addressCountry": "Brazil",
         },
         "url": BASE_URL,
         "sameAs": [LINKEDIN],
         "knowsLanguage": ["Portuguese", "English", "Spanish"],
         "knowsAbout": [
+            "Telecom",
             "Telecommunications",
-            "International Sales",
-            "Contact Center",
             "Customer Experience",
+            "Contact Center",
+            "BPO",
             "Business Process Outsourcing",
+            "CCaaS",
             "Contact Center as a Service",
             "Session Border Controller",
-            "VoIP",
+            "SBC",
             "SIP",
+            "VoIP",
+            "Cloud Communications",
+            "Artificial Intelligence",
+            "Answering Machine Detection",
             "AI-powered Answering Machine Detection",
+            "Enterprise Sales",
             "Strategic Partnerships",
+            "Go-to-Market",
+            "Market Entry",
             "International Market Entry",
+            "LATAM",
+            "Nearshore CX",
         ],
     }
     website = {
@@ -1065,9 +1122,9 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
                     "mainEntityOfPage": {"@type": "WebPage", "@id": url},
                     "headline": article["title"][lang],
                     "description": article["summary"][lang],
-                    "image": f"{BASE_URL}/public/og-image.png",
-                    "datePublished": DATE_PUBLISHED,
-                    "dateModified": DATE_MODIFIED,
+                    "image": f"{BASE_URL}/public/og/{article['slug']}.png",
+                    "datePublished": article.get("published", DATE_PUBLISHED),
+                    "dateModified": article.get("modified", DATE_MODIFIED),
                     "inLanguage": META[lang]["lang"],
                     "author": {"@id": f"{BASE_URL}/#luiz-terra"},
                     "publisher": {"@id": f"{BASE_URL}/#luiz-terra"},
@@ -1128,6 +1185,54 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
                 "isPartOf": {"@id": f"{BASE_URL}/#website"},
             }
         )
+    elif page_type == "topic" and article:
+        graph.extend(
+            [
+                {
+                    "@type": "CollectionPage",
+                    "@id": f"{url}#topic",
+                    "url": url,
+                    "name": article["title"][lang],
+                    "description": article["description"][lang],
+                    "inLanguage": META[lang]["lang"],
+                    "author": {"@id": f"{BASE_URL}/#luiz-terra"},
+                    "isPartOf": {"@id": f"{BASE_URL}/#website"},
+                },
+                {
+                    "@type": "BreadcrumbList",
+                    "@id": f"{url}#breadcrumb",
+                    "itemListElement": [
+                        {"@type": "ListItem", "position": 1, "name": "Luiz Terra", "item": canonical(lang)},
+                        {"@type": "ListItem", "position": 2, "name": article["title"][lang], "item": url},
+                    ],
+                },
+            ]
+        )
+    elif page_type == "bio":
+        graph.extend(
+            [
+                {
+                    "@type": "ProfilePage",
+                    "@id": f"{url}#profile",
+                    "url": url,
+                    "name": EXECUTIVE_BIO["title"][lang],
+                    "description": EXECUTIVE_BIO["description"][lang],
+                    "dateCreated": DATE_PUBLISHED,
+                    "dateModified": DATE_MODIFIED,
+                    "inLanguage": META[lang]["lang"],
+                    "mainEntity": {"@id": f"{BASE_URL}/#luiz-terra"},
+                    "isPartOf": {"@id": f"{BASE_URL}/#website"},
+                },
+                {
+                    "@type": "BreadcrumbList",
+                    "@id": f"{url}#breadcrumb",
+                    "itemListElement": [
+                        {"@type": "ListItem", "position": 1, "name": "Luiz Terra", "item": canonical(lang)},
+                        {"@type": "ListItem", "position": 2, "name": UI[lang]["bio"], "item": url},
+                    ],
+                },
+            ]
+        )
     else:
         graph.extend(
             [
@@ -1170,6 +1275,7 @@ def nav(lang: str, current_path: str = "") -> str:
         (section("impact"), c["nav"][0]),
         (section("expertise"), c["nav"][1]),
         (lang_url(lang, "insights/"), c["nav"][2]),
+        (lang_url(lang, "executive-bio/"), UI[lang]["bio"]),
         (section("speaking"), c["nav"][3]),
         (section("contact"), c["nav"][4]),
     ]
@@ -1210,6 +1316,7 @@ def footer(lang: str) -> str:
 
 def render_home(lang: str) -> str:
     c = COPY[lang]
+    featured_articles = [article for article in ARTICLES if article.get("featured")][:6]
     impact_cards = "\n".join(
         f"""            <article>
               <span>{idx:02d}</span>
@@ -1231,13 +1338,23 @@ def render_home(lang: str) -> str:
         for time, company, role, text in CAREER
     )
     insights = "\n".join(
-        f"""            <article data-article-slug="{article["slug"]}">
+        f"""            <article data-article-slug="{article["slug"]}" data-category="{esc(article["category"][lang])}">
               <span>{esc(article["category"][lang])}</span>
               <h3>{esc(article["title"][lang])}</h3>
               <p>{esc(article["summary"][lang])}</p>
-              <a href="{lang_url(lang, f'insights/{article["slug"]}/')}">{esc(c["read_more"])}</a>
+              <div class="card-meta"><time datetime="{article.get('published', DATE_PUBLISHED)}">{display_date(lang, article.get('published', DATE_PUBLISHED))}</time><span>{esc(article.get('reading', ARTICLE_LABELS[lang]['reading'])[lang] if isinstance(article.get('reading'), dict) else ARTICLE_LABELS[lang]['reading'])}</span></div>
+              <a href="{article_path(lang, article)}">{esc(UI[lang]["read_article"])}</a>
             </article>"""
-        for article in ARTICLES
+        for article in featured_articles
+    )
+    topic_cards = "\n".join(
+        f"""            <article>
+              <span>{idx:02d}</span>
+              <h3>{esc(topic["title"][lang])}</h3>
+              <p>{esc(topic["description"][lang])}</p>
+              <a href="{topic_path(lang, topic['slug'])}">{esc(UI[lang]["explore_topic"])}</a>
+            </article>"""
+        for idx, topic in enumerate(TOPICS, 1)
     )
     ecosystem = "\n".join(
         f'            <article><strong>{esc(name)}</strong><span>{esc(region)}</span></article>'
@@ -1267,13 +1384,14 @@ def render_home(lang: str) -> str:
         <div class="hero-grid">
           <div class="hero-copy">
             <p class="eyebrow">{esc(c["hero_eyebrow"])}</p>
-            <h1 id="hero-title">{esc(c["headline"])}</h1>
+            <h1 id="hero-title">Luiz Terra</h1>
+            <p class="hero-role">{esc(c["headline"])}</p>
             <p class="hero-subline">{esc(c["subheadline"])}</p>
             <p class="hero-support">{esc(c["support"])}</p>
             <div class="hero-actions" aria-label="Primary actions">
               <a class="button primary" href="mailto:{EMAIL}?subject=Strategic%20conversation">{esc(c["primary_cta"])}</a>
               <a class="button secondary" href="{LINKEDIN}" target="_blank" rel="noopener">{esc(c["secondary_cta"])}</a>
-              <a class="button tertiary" href="/public/luiz-terra-executive-bio.pdf" download>{esc(c["bio_cta"])}</a>
+              <a class="button tertiary" href="{lang_url(lang, 'executive-bio/')}">{esc(c["bio_cta"])}</a>
             </div>
           </div>
           <aside class="hero-panel hero-profile" aria-label="Current role">
@@ -1347,6 +1465,16 @@ def render_home(lang: str) -> str:
           <div class="insight-grid" id="insight-grid">
 {insights}
           </div>
+          <p class="section-link"><a href="{lang_url(lang, 'insights/')}">{esc(UI[lang]["insights_heading"])} →</a></p>
+        </div>
+      </section>
+      <section class="content-section section-reveal" id="topics" aria-labelledby="topics-title">
+        <div class="section-label">{esc(UI[lang]["topics"])}</div>
+        <div class="section-body">
+          <h2 id="topics-title">{esc(UI[lang]["topics"])}</h2>
+          <div class="topic-grid">
+{topic_cards}
+          </div>
         </div>
       </section>
       <section class="content-section section-reveal" id="speaking" aria-labelledby="speaking-title">
@@ -1401,14 +1529,27 @@ def render_home(lang: str) -> str:
 
 def render_insights_index(lang: str) -> str:
     c = COPY[lang]
+    filter_by_cluster = {
+        "sbc-contact-centers": "telecom",
+        "ai-contact-centers": "ai",
+        "bpo-telecom-infrastructure": "cx-bpo",
+        "latam-nearshore-cx": "latam",
+        "ccaas-latam": "international-growth",
+        "international-market-entry": "international-growth",
+    }
     cards = "\n".join(
-        f"""          <article data-article-slug="{article["slug"]}">
+        f"""          <article data-article-slug="{article["slug"]}" data-category="{filter_by_cluster.get(article.get('cluster'), 'all')}">
             <span>{esc(article["category"][lang])}</span>
             <h3>{esc(article["title"][lang])}</h3>
             <p>{esc(article["summary"][lang])}</p>
-            <a href="{lang_url(lang, f'insights/{article["slug"]}/')}">{esc(c["read_more"])}</a>
+            <div class="card-meta"><time datetime="{article.get('published', DATE_PUBLISHED)}">{display_date(lang, article.get('published', DATE_PUBLISHED))}</time><span>{esc(article.get('reading', {}).get(lang, ARTICLE_LABELS[lang]['reading']))}</span></div>
+            <a href="{article_path(lang, article)}">{esc(UI[lang]["read_article"])}</a>
           </article>"""
         for article in ARTICLES
+    )
+    filters = "\n".join(
+        f'<button type="button" data-filter="{key}" aria-pressed="false">{esc(label)}</button>'
+        for key, label in zip(["telecom", "ai", "cx-bpo", "latam", "international-growth"], UI[lang]["filters"])
     )
     return f"""<!DOCTYPE html>
 <html lang="{META[lang]["lang"]}">
@@ -1419,7 +1560,12 @@ def render_insights_index(lang: str) -> str:
       <section class="content-section section-reveal is-visible" id="insights" aria-labelledby="insights-title">
         <div class="section-label">Insights</div>
         <div class="section-body">
-          <h1 class="subpage-title" id="insights-title">{esc(c["insights_title"])}</h1>
+          <h1 class="subpage-title" id="insights-title">{esc(UI[lang]["insights_heading"])}</h1>
+          <p class="article-summary">{esc(UI[lang]["insights_support"])}</p>
+          <div class="category-filters" aria-label="Insight categories">
+            <button type="button" data-filter="all" aria-pressed="true">{esc(UI[lang]["all"])}</button>
+{filters}
+          </div>
           <div class="insight-grid">
 {cards}
           </div>
@@ -1433,11 +1579,100 @@ def render_insights_index(lang: str) -> str:
 """
 
 
+def render_topic(lang: str, topic: dict) -> str:
+    articles = [item for slug in topic["articles"] for item in ARTICLES if item["slug"] == slug]
+    cards = "\n".join(
+        f"""          <article>
+            <span>{esc(item["category"][lang])}</span>
+            <h3>{esc(item["title"][lang])}</h3>
+            <p>{esc(item["summary"][lang])}</p>
+            <div class="card-meta"><time datetime="{item.get('published', DATE_PUBLISHED)}">{display_date(lang, item.get('published', DATE_PUBLISHED))}</time><span>{esc(item.get('reading', {}).get(lang, ARTICLE_LABELS[lang]['reading']))}</span></div>
+            <a href="{article_path(lang, item)}">{esc(UI[lang]["read_article"])}</a>
+          </article>"""
+        for item in articles
+    )
+    themes = "".join(f"<span>{esc(theme)}</span>" for theme in topic["themes"])
+    path = f"topics/{topic['slug']}/"
+    return f"""<!DOCTYPE html>
+<html lang="{META[lang]["lang"]}">
+{head(lang, f'{topic["title"][lang]} | Luiz Terra', topic["description"][lang], path, "topic", topic)}
+  <body>
+{nav(lang, path)}
+    <main class="subpage-main topic-main">
+      <section class="topic-hero section-reveal is-visible">
+        <nav class="article-breadcrumb" aria-label="Breadcrumb"><a href="{lang_url(lang)}">Luiz Terra</a><span aria-hidden="true">/</span><span>{esc(UI[lang]["topics"])}</span></nav>
+        <p class="eyebrow">{esc(UI[lang]["topics"])}</p>
+        <h1 class="subpage-title">{esc(topic["title"][lang])}</h1>
+        <p class="article-summary">{esc(topic["description"][lang])}</p>
+      </section>
+      <section class="content-section section-reveal is-visible">
+        <div class="section-label">{esc(UI[lang]["executive_view"])}</div>
+        <div class="section-body">
+          <p class="pillar-perspective">{esc(topic["perspective"][lang])}</p>
+          <h2>{esc(UI[lang]["topic_themes"])}</h2>
+          <div class="chips">{themes}</div>
+        </div>
+      </section>
+      <section class="content-section section-reveal is-visible">
+        <div class="section-label">{esc(UI[lang]["topic_articles"])}</div>
+        <div class="section-body">
+          <h2>{esc(UI[lang]["topic_articles"])}</h2>
+          <div class="insight-grid">{cards}</div>
+        </div>
+      </section>
+    </main>
+{footer(lang)}
+    <script src="/script.js"></script>
+  </body>
+</html>
+"""
+
+
+def render_executive_bio(lang: str) -> str:
+    sections = "\n".join(
+        f"""        <section>
+          <h2>{esc(heading)}</h2>
+          {''.join(f'<p>{esc(paragraph)}</p>' for paragraph in paragraphs)}
+        </section>"""
+        for heading, paragraphs in EXECUTIVE_BIO["sections"][lang]
+    )
+    return f"""<!DOCTYPE html>
+<html lang="{META[lang]["lang"]}">
+{head(lang, EXECUTIVE_BIO["title"][lang], EXECUTIVE_BIO["description"][lang], "executive-bio/", "bio")}
+  <body>
+{nav(lang, "executive-bio/")}
+    <main class="subpage-main article-main">
+      <article class="article-page executive-bio-page section-reveal is-visible">
+        <nav class="article-breadcrumb" aria-label="Breadcrumb"><a href="{lang_url(lang)}">Luiz Terra</a><span aria-hidden="true">/</span><span>{esc(UI[lang]["bio"])}</span></nav>
+        <p class="eyebrow">{esc(UI[lang]["bio"])}</p>
+        <h1 class="subpage-title">Luiz Terra</h1>
+        <p class="bio-position">{esc(EXECUTIVE_BIO["position"][lang])}</p>
+        <div class="bio-actions">
+          <a class="button primary" href="mailto:{EMAIL}?subject=Strategic%20conversation">{esc(UI[lang]["strategic_conversation"])}</a>
+          <a class="button tertiary" href="/public/luiz-terra-executive-bio.pdf" download>{esc(UI[lang]["download_bio"])}</a>
+        </div>
+        <div class="article-content bio-content">{sections}</div>
+        <section class="related-insights"><h2>{esc(UI[lang]["insights_heading"])}</h2><p><a class="article-back" href="{lang_url(lang, 'insights/')}">{esc(UI[lang]["insights_support"])}</a></p></section>
+      </article>
+    </main>
+{footer(lang)}
+    <script src="/script.js"></script>
+  </body>
+</html>
+"""
+
+
 def render_article(lang: str, article: dict) -> str:
     c = COPY[lang]
     labels = ARTICLE_LABELS[lang]
     enhancement = ARTICLE_ENHANCEMENTS[article["slug"]][lang]
-    body = "\n".join(f"          <p>{esc(p)}</p>" for p in article["body"][lang])
+    if article.get("sections"):
+        body = "\n".join(
+            f"          <h2>{esc(heading)}</h2>\n" + "\n".join(f"          <p>{esc(paragraph)}</p>" for paragraph in paragraphs)
+            for heading, paragraphs in article["sections"][lang]
+        )
+    else:
+        body = "\n".join(f"          <p>{esc(p)}</p>" for p in article["body"][lang])
     tags = "".join(f"<span>{esc(tag)}</span>" for tag in article["tags"])
     title = article["title"][lang]
     desc = article["summary"][lang]
@@ -1449,7 +1684,19 @@ def render_article(lang: str, article: dict) -> str:
           </details>"""
         for question, answer in enhancement["faq"]
     )
-    related_articles = [item for item in ARTICLES if item["slug"] != article["slug"]][:3]
+    related_slugs = article.get("related", [])
+    related_articles = [item for slug in related_slugs for item in ARTICLES if item["slug"] == slug][:4]
+    if not related_articles:
+        related_articles = [item for item in ARTICLES if item["slug"] != article["slug"]][:3]
+    topic = TOPIC_BY_SLUG.get(article.get("cluster"))
+    cluster_context = ""
+    if topic:
+        guidance = CLUSTER_GUIDANCE.get(article.get("cluster"), {}).get(lang, [])
+        cluster_context = (
+            f'<h2>{esc(labels["why"])}</h2>'
+            f'<p>{esc(topic["perspective"][lang])}</p>'
+            + "".join(f"<p>{esc(paragraph)}</p>" for paragraph in guidance)
+        )
     related = "\n".join(
         f"""          <article>
             <span>{esc(item["category"][lang])}</span>
@@ -1459,7 +1706,7 @@ def render_article(lang: str, article: dict) -> str:
     )
     return f"""<!DOCTYPE html>
 <html lang="{META[lang]["lang"]}">
-{head(lang, f"{title} | Luiz Terra", desc, f"insights/{article['slug']}/", "article", article)}
+{head(lang, article.get("seo_title", {}).get(lang, f"{title} | Luiz Terra"), desc, f"insights/{article['slug']}/", "article", article)}
   <body>
 {nav(lang, f"insights/{article['slug']}/")}
     <main class="subpage-main article-main">
@@ -1473,14 +1720,15 @@ def render_article(lang: str, article: dict) -> str:
         <h1 class="subpage-title">{esc(title)}</h1>
         <p class="article-summary">{esc(desc)}</p>
         <div class="article-meta">
-          <span>Luiz Terra</span>
-          <span>{esc(labels["published"])} <time datetime="{DATE_PUBLISHED}">03/07/2026</time></span>
-          <span>{esc(labels["updated"])} <time datetime="{DATE_MODIFIED}">27/07/2026</time></span>
-          <span>{esc(labels["reading"])}</span>
+          <span>{esc(UI[lang]["written_by"])} <a href="{lang_url(lang, 'executive-bio/')}">Luiz Terra</a></span>
+          <span>{esc(labels["published"])} <time datetime="{article.get('published', DATE_PUBLISHED)}">{display_date(lang, article.get('published', DATE_PUBLISHED))}</time></span>
+          <span>{esc(labels["updated"])} <time datetime="{article.get('modified', DATE_MODIFIED)}">{display_date(lang, article.get('modified', DATE_MODIFIED))}</time></span>
+          <span>{esc(article.get('reading', {}).get(lang, labels["reading"]))}</span>
         </div>
         <div class="chips article-tags">{tags}</div>
         <div class="article-content">
-          <h2>{esc(labels["why"])}</h2>
+          {f'<p class="topic-link"><a href="{topic_path(lang, topic["slug"])}">{esc(UI[lang]["explore_topic"])}: {esc(topic["title"][lang])}</a></p>' if topic else ''}
+          {cluster_context}
 {body}
           <h2>{esc(labels["checklist"])}</h2>
           <ul class="article-checklist">
@@ -1488,6 +1736,7 @@ def render_article(lang: str, article: dict) -> str:
           </ul>
           <h2>{esc(labels["next"])}</h2>
           <p>{esc(enhancement["closing"])}</p>
+          <p class="article-cta"><a class="button primary" href="mailto:{EMAIL}?subject=Strategic%20conversation">{esc(UI[lang]["strategic_conversation"])}</a></p>
           <h2>{esc(labels["faq"])}</h2>
           <div class="faq-list article-faq">
 {faq}
@@ -1501,7 +1750,10 @@ def render_article(lang: str, article: dict) -> str:
         </section>
         <div class="article-actions">
           <a class="article-back" href="{lang_url(lang, 'insights/')}">{esc(c["article_back"])}</a>
-          <a class="button secondary" href="mailto:{EMAIL}?subject={esc(title).replace(' ', '%20')}">{esc(c["share"])}</a>
+          <div class="share-actions" aria-label="{esc(c['share'])}">
+            <a class="button secondary share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url={canonical(lang, f'insights/{article['slug']}/')}" target="_blank" rel="noopener">in&nbsp; {esc(UI[lang]["share_linkedin"])}</a>
+            <button class="button tertiary copy-link" type="button" data-copy-url="{canonical(lang, f'insights/{article['slug']}/')}" data-copy-label="{esc(UI[lang]['copied'])}">↗&nbsp; {esc(UI[lang]["copy_link"])}</button>
+          </div>
         </div>
       </article>
     </main>
@@ -1523,17 +1775,23 @@ def build_pages() -> None:
     write(ROOT / "pt" / "index.html", render_home("pt"))
     write(ROOT / "es" / "index.html", render_home("es"))
     for lang in ("en", "pt", "es"):
+        write(ROOT / META[lang]["path"] / "executive-bio" / "index.html", render_executive_bio(lang))
         write(ROOT / META[lang]["path"] / "insights" / "index.html", render_insights_index(lang))
         for article in ARTICLES:
             write(ROOT / META[lang]["path"] / "insights" / article["slug"] / "index.html", render_article(lang, article))
+        for topic in TOPICS:
+            write(ROOT / META[lang]["path"] / "topics" / topic["slug"] / "index.html", render_topic(lang, topic))
 
 
 def build_sitemap() -> None:
     pages: list[tuple[str, str]] = [("en", ""), ("pt", ""), ("es", "")]
     for lang in ("en", "pt", "es"):
+        pages.append((lang, "executive-bio/"))
         pages.append((lang, "insights/"))
         for article in ARTICLES:
             pages.append((lang, f"insights/{article['slug']}/"))
+        for topic in TOPICS:
+            pages.append((lang, f"topics/{topic['slug']}/"))
 
     def sitemap_url(lang: str, path: str) -> str:
         alternates = "\n".join(
@@ -1572,13 +1830,16 @@ def build_sitemap() -> None:
 
 
 def build_discovery_files() -> None:
+    def rss_date(iso_date: str) -> str:
+        return datetime.strptime(iso_date, "%Y-%m-%d").strftime("%a, %d %b %Y 12:00:00 -0300")
+
     items = "\n".join(
         f"""    <item>
       <title>{esc(article["title"]["en"])}</title>
       <link>{canonical("en", f'insights/{article["slug"]}/')}</link>
       <guid isPermaLink="true">{canonical("en", f'insights/{article["slug"]}/')}</guid>
       <description>{esc(article["summary"]["en"])}</description>
-      <pubDate>Fri, 03 Jul 2026 12:00:00 -0300</pubDate>
+      <pubDate>{rss_date(article.get("published", DATE_PUBLISHED))}</pubDate>
       <category>{esc(article["category"]["en"])}</category>
     </item>"""
         for article in ARTICLES
@@ -1592,7 +1853,7 @@ def build_discovery_files() -> None:
     <link>{BASE_URL}/insights/</link>
     <description>Practical perspectives on international sales, telecom, CX, BPO, CCaaS, SBC and AI-powered contact center operations.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 27 Jul 2026 12:00:00 -0300</lastBuildDate>
+    <lastBuildDate>{rss_date(DATE_MODIFIED)}</lastBuildDate>
 {items}
   </channel>
 </rss>
@@ -1601,6 +1862,10 @@ def build_discovery_files() -> None:
     article_links = "\n".join(
         f"- [{article['title']['en']}]({canonical('en', f'insights/{article['slug']}/')}): {article['summary']['en']}"
         for article in ARTICLES
+    )
+    topic_links = "\n".join(
+        f"- [{topic['title']['en']}]({canonical('en', f'topics/{topic['slug']}/')}): {topic['description']['en']}"
+        for topic in TOPICS
     )
     write(
         ROOT / "llms.txt",
@@ -1614,6 +1879,7 @@ def build_discovery_files() -> None:
 - Portuguese: {BASE_URL}/pt/
 - Spanish: {BASE_URL}/es/
 - LinkedIn: {LINKEDIN}
+- Executive Bio: {BASE_URL}/executive-bio/
 
 ## Areas of expertise
 
@@ -1627,6 +1893,10 @@ def build_discovery_files() -> None:
 ## Insights
 
 {article_links}
+
+## Topic pages
+
+{topic_links}
 """,
     )
     write(ROOT / "a7e3c91d5b604f2e8c739d10ab42e6f5.txt", "a7e3c91d5b604f2e8c739d10ab42e6f5\n")
@@ -1693,6 +1963,26 @@ def build_og_image() -> None:
     image.save(PUBLIC / "og-image.png")
 
 
+def build_article_og_images() -> None:
+    output = PUBLIC / "og"
+    output.mkdir(parents=True, exist_ok=True)
+    for article in ARTICLES:
+        image = Image.new("RGB", (1200, 630), "#0F1117")
+        draw = ImageDraw.Draw(image)
+        draw.rectangle((60, 60, 1140, 570), outline="#1E3440", width=2)
+        draw.rectangle((60, 60, 74, 570), fill="#00C8C8")
+        draw.text((112, 106), article["category"]["en"].upper(), fill="#00C8C8", font=load_font(24, True))
+        title_font = load_font(50, True)
+        y = 168
+        for line in wrap_text(draw, article["title"]["en"], title_font, 930)[:5]:
+            draw.text((112, y), line, fill="#E8EDF2", font=title_font)
+            y += 60
+        draw.line((112, 488, 1088, 488), fill="#26323E", width=2)
+        draw.text((112, 514), "LUIZ TERRA", fill="#E8EDF2", font=load_font(24, True))
+        draw.text((1088, 514), "TELECOM · CX · BPO · AI", fill="#AAB6C4", font=load_font(20), anchor="ra")
+        image.save(output / f"{article['slug']}.png", optimize=True)
+
+
 def build_web_images() -> None:
     if not PHOTO.exists():
         return
@@ -1724,7 +2014,7 @@ def build_pdf() -> None:
     story = [
         Paragraph("Luiz Terra", styles["title"]),
         Paragraph("International Sales Executive in Telecom, CX, BPO & AI", styles["subtitle"]),
-        Paragraph("<b>Location:</b> Sao Paulo, Brazil &nbsp;&nbsp;|&nbsp;&nbsp; <b>Contact:</b> contact@luizterra.com.br", styles["small"]),
+        Paragraph(f'<b>Location:</b> Sao Paulo, Brazil &nbsp;&nbsp;|&nbsp;&nbsp; <b>Contact:</b> <link href="mailto:{EMAIL}" color="#007C7C">{EMAIL}</link>', styles["small"]),
         Spacer(1, 0.09 * inch),
         Paragraph("Executive Summary", styles["section"]),
         Paragraph(
@@ -1781,11 +2071,11 @@ def build_pdf() -> None:
                 styles["body"],
             ),
             Spacer(1, 0.12 * inch),
-            Paragraph("www.luizterra.com.br | contact@luizterra.com.br", styles["small"]),
+            Paragraph(f'<link href="{BASE_URL}" color="#007C7C">www.luizterra.com.br</link> | <link href="mailto:{EMAIL}" color="#007C7C">{EMAIL}</link>', styles["small"]),
         ]
     )
     def set_pdf_metadata(canvas, _doc) -> None:
-        canvas.setTitle("Luiz Terra | International Telecom, CX & AI Sales Executive")
+        canvas.setTitle("Luiz Terra | International Sales Executive in Telecom, CX, BPO & AI")
         canvas.setAuthor("Luiz Terra")
         canvas.setSubject("Executive biography covering international sales, telecom, CX, BPO, CCaaS, SBC and AI.")
         canvas.setKeywords("Luiz Terra, international sales, telecom, CX, BPO, CCaaS, SBC, AI")
@@ -1812,11 +2102,14 @@ International Sales Executive in Telecom, CX, BPO and AI, focused on strategic p
 - `/es/` - Spanish version
 - `/insights/`, `/pt/insights/`, `/es/insights/`
 - Localized article pages under each insights route
+- `/executive-bio/`, `/pt/executive-bio/`, `/es/executive-bio/`
+- Six localized topic clusters under `/topics/`, `/pt/topics/` and `/es/topics/`
 
 ## Assets
 
 - `public/luiz-terra-executive-bio.pdf`
 - `public/og-image.png`
+- Article-specific social images under `public/og/`
 - `public/favicon.svg`
 
 ## Search Discovery
@@ -1830,12 +2123,12 @@ International Sales Executive in Telecom, CX, BPO and AI, focused on strategic p
 
 ## Editorial Note
 
-The repository does not currently include the 12 previously prepared LinkedIn posts. The site uses the six approved insight topics already present in the website content and provides localized article routes for them. When the 12 posts are available, add them to the article data in `tools/build_static_site.py` and regenerate the static pages.
+The repository still does not include the source text for the 12 previously prepared LinkedIn posts. The six existing Insights were preserved and expanded in place, and seven new long-form articles were added for the requested search topics without creating near-duplicate pages. If the original LinkedIn source becomes available, it should be reviewed editorially before import.
 
 ## Manual Checks
 
 - Validate social preview with LinkedIn Post Inspector and WhatsApp after cache propagation.
-- Add an executive photo at `public/images/luiz-terra-executive.jpg` if a final approved headshot is provided.
+- Validate structured data after deployment with Google Rich Results Test.
 """,
     )
 
@@ -1846,6 +2139,7 @@ def main() -> None:
     build_sitemap()
     build_discovery_files()
     build_og_image()
+    build_article_og_images()
     build_pdf()
     build_readme()
 

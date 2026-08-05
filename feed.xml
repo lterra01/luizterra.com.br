@@ -5,54 +5,110 @@
     <link>https://www.luizterra.com.br/insights/</link>
     <description>Practical perspectives on international sales, telecom, CX, BPO, CCaaS, SBC and AI-powered contact center operations.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 27 Jul 2026 12:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2026 12:00:00 -0300</lastBuildDate>
     <item>
-      <title>Why AI-powered AMD is becoming strategic for outbound operations</title>
+      <title>AI-Powered Answering Machine Detection: From Dialing Feature to Performance Lever</title>
       <link>https://www.luizterra.com.br/insights/ai-powered-amd-outbound-operations/</link>
       <guid isPermaLink="true">https://www.luizterra.com.br/insights/ai-powered-amd-outbound-operations/</guid>
-      <description>Answering Machine Detection is no longer just a dialing optimization feature. For modern contact centers, AI-powered AMD can directly impact productivity, compliance, customer experience and operational cost.</description>
+      <description>How AI-powered AMD affects contact rate, agent productivity and outbound performance, and how to manage false positives, false negatives and operational risk.</description>
       <pubDate>Fri, 03 Jul 2026 12:00:00 -0300</pubDate>
-      <category>AI &amp; Contact Center</category>
+      <category>AI &amp; Automation</category>
     </item>
     <item>
-      <title>The future of SBCs in cloud contact centers</title>
+      <title>SBC for Contact Centers: Why It Still Matters in the Cloud Era</title>
       <link>https://www.luizterra.com.br/insights/future-of-sbcs-cloud-contact-centers/</link>
       <guid isPermaLink="true">https://www.luizterra.com.br/insights/future-of-sbcs-cloud-contact-centers/</guid>
-      <description>As contact centers move to cloud and hybrid architectures, Session Border Controllers remain critical for security, interoperability, routing, resilience and voice quality.</description>
+      <description>Learn why SBCs remain critical for SIP interoperability, security, voice quality, carrier connectivity and resilience in modern cloud contact centers.</description>
       <pubDate>Fri, 03 Jul 2026 12:00:00 -0300</pubDate>
-      <category>Telecom Infrastructure</category>
+      <category>Telecom</category>
     </item>
     <item>
-      <title>How BPOs should evaluate telecom infrastructure partners</title>
+      <title>What BPOs Should Expect from a Telecom Infrastructure Partner</title>
       <link>https://www.luizterra.com.br/insights/bpos-evaluate-telecom-infrastructure-partners/</link>
       <guid isPermaLink="true">https://www.luizterra.com.br/insights/bpos-evaluate-telecom-infrastructure-partners/</guid>
-      <description>BPOs need more than aggressive pricing from telecom vendors. They need reliability, observability, integration flexibility, fast support and a partner capable of scaling across regions.</description>
+      <description>A practical framework for evaluating uptime, SLA, voice quality, carrier diversity, observability, support, interoperability and security beyond price.</description>
       <pubDate>Fri, 03 Jul 2026 12:00:00 -0300</pubDate>
-      <category>BPO Technology</category>
+      <category>CX &amp; BPO</category>
     </item>
     <item>
-      <title>LATAM as a bridge between US CX demand and global delivery</title>
+      <title>LATAM Nearshore CX: Why the Region Is Becoming Strategic</title>
       <link>https://www.luizterra.com.br/insights/latam-bridge-us-cx-global-delivery/</link>
       <guid isPermaLink="true">https://www.luizterra.com.br/insights/latam-bridge-us-cx-global-delivery/</guid>
-      <description>LATAM has become a strategic region for nearshore CX, combining language capabilities, cultural proximity, technical talent and competitive delivery models.</description>
+      <description>Why time zones, multilingual talent, cultural proximity, technology and geographic diversity make LATAM strategic for global CX delivery.</description>
       <pubDate>Fri, 03 Jul 2026 12:00:00 -0300</pubDate>
-      <category>Market Entry</category>
+      <category>LATAM</category>
     </item>
     <item>
-      <title>What European CCaaS vendors need from local telecom partners</title>
+      <title>What European CCaaS Vendors Need from Local Telecom Partners</title>
       <link>https://www.luizterra.com.br/insights/european-ccaas-local-telecom-partners/</link>
       <guid isPermaLink="true">https://www.luizterra.com.br/insights/european-ccaas-local-telecom-partners/</guid>
-      <description>European CCaaS vendors expanding internationally need telecom partners that understand local regulations, SIP interoperability, numbering, carriers, latency and support expectations.</description>
+      <description>How local telecom partners support PSTN readiness, interoperability, market knowledge, implementation and customer success during international CCaaS expansion.</description>
       <pubDate>Fri, 03 Jul 2026 12:00:00 -0300</pubDate>
-      <category>CCaaS Expansion</category>
+      <category>International Growth</category>
     </item>
     <item>
-      <title>AI in Contact Centers: where the hype ends and ROI starts</title>
+      <title>AI in Contact Centers: How to Find Real ROI Beyond the Hype</title>
       <link>https://www.luizterra.com.br/insights/ai-contact-centers-roi/</link>
       <guid isPermaLink="true">https://www.luizterra.com.br/insights/ai-contact-centers-roi/</guid>
-      <description>AI creates value in contact centers when it improves measurable outcomes: answer rates, agent productivity, compliance, routing accuracy, quality monitoring and customer satisfaction.</description>
+      <description>A practical executive framework for measuring AI ROI across automation, AMD, agent productivity, analytics and contact center operations.</description>
       <pubDate>Fri, 03 Jul 2026 12:00:00 -0300</pubDate>
-      <category>AI ROI</category>
+      <category>AI &amp; Automation</category>
+    </item>
+    <item>
+      <title>SBC as a Service: What BPOs and CCaaS Providers Should Evaluate</title>
+      <link>https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/</guid>
+      <description>An executive evaluation of cloud SBC licensing, scale, redundancy, multi-carrier support, observability, SLA, security and operational simplicity.</description>
+      <pubDate>Wed, 05 Aug 2026 12:00:00 -0300</pubDate>
+      <category>Telecom</category>
+    </item>
+    <item>
+      <title>How to Measure ROI in Call Center Automation</title>
+      <link>https://www.luizterra.com.br/insights/call-center-automation-roi/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/call-center-automation-roi/</guid>
+      <description>An executive measurement framework for cost per interaction, productivity, conversion, AHT, automation, containment, quality and customer satisfaction.</description>
+      <pubDate>Wed, 05 Aug 2026 12:00:00 -0300</pubDate>
+      <category>AI &amp; Automation</category>
+    </item>
+    <item>
+      <title>Brazil Customer Service Outsourcing: What Global Companies Should Know</title>
+      <link>https://www.luizterra.com.br/insights/brazil-customer-service-outsourcing/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/brazil-customer-service-outsourcing/</guid>
+      <description>An executive overview of Brazil&#x27;s Portuguese-language CX market, telecom infrastructure, technology ecosystem, contact center maturity and operating considerations.</description>
+      <pubDate>Wed, 05 Aug 2026 12:00:00 -0300</pubDate>
+      <category>CX &amp; BPO</category>
+    </item>
+    <item>
+      <title>How CCaaS Vendors Should Approach Market Entry in LATAM</title>
+      <link>https://www.luizterra.com.br/insights/ccaas-market-entry-latam/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/ccaas-market-entry-latam/</guid>
+      <description>A market-entry framework for CCaaS vendors covering localization, carriers, PSTN, partnerships, BPO ecosystems, integrations, support and channel strategy.</description>
+      <pubDate>Wed, 05 Aug 2026 12:00:00 -0300</pubDate>
+      <category>International Growth</category>
+    </item>
+    <item>
+      <title>SIP, Voice Quality and Resilience in Global Contact Center Operations</title>
+      <link>https://www.luizterra.com.br/insights/sip-voice-quality-resilience-global-contact-centers/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/sip-voice-quality-resilience-global-contact-centers/</guid>
+      <description>An executive guide to latency, jitter, packet loss, routing, carrier redundancy, monitoring and troubleshooting in multi-region contact center voice.</description>
+      <pubDate>Wed, 05 Aug 2026 12:00:00 -0300</pubDate>
+      <category>Telecom</category>
+    </item>
+    <item>
+      <title>Nearshore CX in LATAM: Cost Is Only Part of the Equation</title>
+      <link>https://www.luizterra.com.br/insights/nearshore-cx-latam-cost-equation/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/nearshore-cx-latam-cost-equation/</guid>
+      <description>Why talent, culture, language, proximity, infrastructure, management, technology and resilience should shape LATAM nearshore decisions.</description>
+      <pubDate>Wed, 05 Aug 2026 12:00:00 -0300</pubDate>
+      <category>LATAM</category>
+    </item>
+    <item>
+      <title>Why Strategic Partnerships Matter More Than Traditional Reseller Agreements</title>
+      <link>https://www.luizterra.com.br/insights/strategic-partnerships-vs-reseller-agreements/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/strategic-partnerships-vs-reseller-agreements/</guid>
+      <description>How co-selling, technical enablement, market knowledge, customer success, recurring revenue and GTM alignment create stronger telecom and CX partnerships.</description>
+      <pubDate>Wed, 05 Aug 2026 12:00:00 -0300</pubDate>
+      <category>International Growth</category>
     </item>
   </channel>
 </rss>

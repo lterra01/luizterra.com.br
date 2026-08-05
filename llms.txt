@@ -8,6 +8,7 @@
 - Portuguese: https://www.luizterra.com.br/pt/
 - Spanish: https://www.luizterra.com.br/es/
 - LinkedIn: https://linkedin.com/in/lterra
+- Executive Bio: https://www.luizterra.com.br/executive-bio/
 
 ## Areas of expertise
 
@@ -20,9 +21,25 @@
 
 ## Insights
 
-- [Why AI-powered AMD is becoming strategic for outbound operations](https://www.luizterra.com.br/insights/ai-powered-amd-outbound-operations/): Answering Machine Detection is no longer just a dialing optimization feature. For modern contact centers, AI-powered AMD can directly impact productivity, compliance, customer experience and operational cost.
-- [The future of SBCs in cloud contact centers](https://www.luizterra.com.br/insights/future-of-sbcs-cloud-contact-centers/): As contact centers move to cloud and hybrid architectures, Session Border Controllers remain critical for security, interoperability, routing, resilience and voice quality.
-- [How BPOs should evaluate telecom infrastructure partners](https://www.luizterra.com.br/insights/bpos-evaluate-telecom-infrastructure-partners/): BPOs need more than aggressive pricing from telecom vendors. They need reliability, observability, integration flexibility, fast support and a partner capable of scaling across regions.
-- [LATAM as a bridge between US CX demand and global delivery](https://www.luizterra.com.br/insights/latam-bridge-us-cx-global-delivery/): LATAM has become a strategic region for nearshore CX, combining language capabilities, cultural proximity, technical talent and competitive delivery models.
-- [What European CCaaS vendors need from local telecom partners](https://www.luizterra.com.br/insights/european-ccaas-local-telecom-partners/): European CCaaS vendors expanding internationally need telecom partners that understand local regulations, SIP interoperability, numbering, carriers, latency and support expectations.
-- [AI in Contact Centers: where the hype ends and ROI starts](https://www.luizterra.com.br/insights/ai-contact-centers-roi/): AI creates value in contact centers when it improves measurable outcomes: answer rates, agent productivity, compliance, routing accuracy, quality monitoring and customer satisfaction.
+- [AI-Powered Answering Machine Detection: From Dialing Feature to Performance Lever](https://www.luizterra.com.br/insights/ai-powered-amd-outbound-operations/): How AI-powered AMD affects contact rate, agent productivity and outbound performance, and how to manage false positives, false negatives and operational risk.
+- [SBC for Contact Centers: Why It Still Matters in the Cloud Era](https://www.luizterra.com.br/insights/future-of-sbcs-cloud-contact-centers/): Learn why SBCs remain critical for SIP interoperability, security, voice quality, carrier connectivity and resilience in modern cloud contact centers.
+- [What BPOs Should Expect from a Telecom Infrastructure Partner](https://www.luizterra.com.br/insights/bpos-evaluate-telecom-infrastructure-partners/): A practical framework for evaluating uptime, SLA, voice quality, carrier diversity, observability, support, interoperability and security beyond price.
+- [LATAM Nearshore CX: Why the Region Is Becoming Strategic](https://www.luizterra.com.br/insights/latam-bridge-us-cx-global-delivery/): Why time zones, multilingual talent, cultural proximity, technology and geographic diversity make LATAM strategic for global CX delivery.
+- [What European CCaaS Vendors Need from Local Telecom Partners](https://www.luizterra.com.br/insights/european-ccaas-local-telecom-partners/): How local telecom partners support PSTN readiness, interoperability, market knowledge, implementation and customer success during international CCaaS expansion.
+- [AI in Contact Centers: How to Find Real ROI Beyond the Hype](https://www.luizterra.com.br/insights/ai-contact-centers-roi/): A practical executive framework for measuring AI ROI across automation, AMD, agent productivity, analytics and contact center operations.
+- [SBC as a Service: What BPOs and CCaaS Providers Should Evaluate](https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/): An executive evaluation of cloud SBC licensing, scale, redundancy, multi-carrier support, observability, SLA, security and operational simplicity.
+- [How to Measure ROI in Call Center Automation](https://www.luizterra.com.br/insights/call-center-automation-roi/): An executive measurement framework for cost per interaction, productivity, conversion, AHT, automation, containment, quality and customer satisfaction.
+- [Brazil Customer Service Outsourcing: What Global Companies Should Know](https://www.luizterra.com.br/insights/brazil-customer-service-outsourcing/): An executive overview of Brazil's Portuguese-language CX market, telecom infrastructure, technology ecosystem, contact center maturity and operating considerations.
+- [How CCaaS Vendors Should Approach Market Entry in LATAM](https://www.luizterra.com.br/insights/ccaas-market-entry-latam/): A market-entry framework for CCaaS vendors covering localization, carriers, PSTN, partnerships, BPO ecosystems, integrations, support and channel strategy.
+- [SIP, Voice Quality and Resilience in Global Contact Center Operations](https://www.luizterra.com.br/insights/sip-voice-quality-resilience-global-contact-centers/): An executive guide to latency, jitter, packet loss, routing, carrier redundancy, monitoring and troubleshooting in multi-region contact center voice.
+- [Nearshore CX in LATAM: Cost Is Only Part of the Equation](https://www.luizterra.com.br/insights/nearshore-cx-latam-cost-equation/): Why talent, culture, language, proximity, infrastructure, management, technology and resilience should shape LATAM nearshore decisions.
+- [Why Strategic Partnerships Matter More Than Traditional Reseller Agreements](https://www.luizterra.com.br/insights/strategic-partnerships-vs-reseller-agreements/): How co-selling, technical enablement, market knowledge, customer success, recurring revenue and GTM alignment create stronger telecom and CX partnerships.
+
+## Topic pages
+
+- [SBC for Contact Centers](https://www.luizterra.com.br/topics/sbc-contact-centers/): Executive guidance on Session Border Controllers, SIP interoperability, security, carrier connectivity and resilience for cloud and hybrid contact centers.
+- [AI in Contact Centers](https://www.luizterra.com.br/topics/ai-contact-centers/): Practical frameworks for AI ROI, automation, Answering Machine Detection, analytics and operational performance in contact centers.
+- [LATAM Nearshore CX](https://www.luizterra.com.br/topics/latam-nearshore-cx/): Executive perspectives on LATAM nearshore delivery, language, cultural proximity, technology, resilience and customer experience.
+- [BPO Telecom Infrastructure](https://www.luizterra.com.br/topics/bpo-telecom-infrastructure/): How BPOs can evaluate uptime, voice quality, carrier diversity, observability, support, security and scalable telecom architecture.
+- [CCaaS in LATAM](https://www.luizterra.com.br/topics/ccaas-latam/): Market-entry considerations for CCaaS vendors across localization, carriers, PSTN, partnerships, integrations, support and channel strategy in LATAM.
+- [International Market Entry](https://www.luizterra.com.br/topics/international-market-entry/): Executive guidance on market entry, strategic partnerships, channel development, localization and international go-to-market execution.

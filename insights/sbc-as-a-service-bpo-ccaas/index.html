@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SBC as a Service: What BPOs and CCaaS Providers Should Evaluate | Luiz Terra</title>
+    <meta name="description" content="An executive evaluation of cloud SBC licensing, scale, redundancy, multi-carrier support, observability, SLA, security and operational simplicity." />
+    <meta name="author" content="Luiz Terra" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="msvalidate.01" content="D32D665088441B4D7E0274D9B3AEC1A1" />
+    <link rel="canonical" href="https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/" />
+    <link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/" />
+    <link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/sbc-as-a-service-bpo-ccaas/" />
+    <link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/sbc-as-a-service-bpo-ccaas/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/" />
+    <meta property="og:title" content="SBC as a Service: What BPOs and CCaaS Providers Should Evaluate | Luiz Terra" />
+    <meta property="og:description" content="An executive evaluation of cloud SBC licensing, scale, redundancy, multi-carrier support, observability, SLA, security and operational simplicity." />
+    <meta property="og:url" content="https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Luiz Terra" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://www.luizterra.com.br/public/og/sbc-as-a-service-bpo-ccaas.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Luiz Terra, International Sales Executive in Telecom, CX, BPO and AI" />
+
+    <meta property="article:published_time" content="2026-07-03" />
+    <meta property="article:modified_time" content="2026-08-05" />
+    <meta property="article:author" content="https://linkedin.com/in/lterra" />
+    <meta property="article:section" content="Telecom" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SBC as a Service: What BPOs and CCaaS Providers Should Evaluate | Luiz Terra" />
+    <meta name="twitter:description" content="An executive evaluation of cloud SBC licensing, scale, redundancy, multi-carrier support, observability, SLA, security and operational simplicity." />
+    <meta name="twitter:image" content="https://www.luizterra.com.br/public/og/sbc-as-a-service-bpo-ccaas.png" />
+    <link rel="icon" href="/public/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="Luiz Terra Insights" href="https://www.luizterra.com.br/feed.xml" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-68E95X4DZT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-68E95X4DZT');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" /></noscript>
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@graph": [
+            {
+                  "@type": "WebSite",
+                  "@id": "https://www.luizterra.com.br/#website",
+                  "url": "https://www.luizterra.com.br/",
+                  "name": "Luiz Terra",
+                  "inLanguage": [
+                        "en",
+                        "pt-BR",
+                        "es"
+                  ],
+                  "publisher": {
+                        "@id": "https://www.luizterra.com.br/#luiz-terra"
+                  }
+            },
+            {
+                  "@type": "Person",
+                  "@id": "https://www.luizterra.com.br/#luiz-terra",
+                  "name": "Luiz Terra",
+                  "description": "Luiz Terra is an international sales executive focused on Telecom, CX, BPO, Contact Center, CCaaS and AI-powered communications, with extensive experience developing international markets, strategic partnerships and enterprise business across LATAM, North America, Europe and Africa.",
+                  "image": {
+                        "@type": "ImageObject",
+                        "url": "https://www.luizterra.com.br/public/images/luiz-terra-executive.jpg",
+                        "width": 900,
+                        "height": 900
+                  },
+                  "jobTitle": "Head of International Sales",
+                  "worksFor": {
+                        "@type": "Organization",
+                        "name": "Khomp"
+                  },
+                  "email": "mailto:contact@luizterra.com.br",
+                  "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "São Paulo",
+                        "addressCountry": "Brazil"
+                  },
+                  "url": "https://www.luizterra.com.br",
+                  "sameAs": [
+                        "https://linkedin.com/in/lterra"
+                  ],
+                  "knowsLanguage": [
+                        "Portuguese",
+                        "English",
+                        "Spanish"
+                  ],
+                  "knowsAbout": [
+                        "Telecom",
+                        "Telecommunications",
+                        "Customer Experience",
+                        "Contact Center",
+                        "BPO",
+                        "Business Process Outsourcing",
+                        "CCaaS",
+                        "Contact Center as a Service",
+                        "Session Border Controller",
+                        "SBC",
+                        "SIP",
+                        "VoIP",
+                        "Cloud Communications",
+                        "Artificial Intelligence",
+                        "Answering Machine Detection",
+                        "AI-powered Answering Machine Detection",
+                        "Enterprise Sales",
+                        "Strategic Partnerships",
+                        "Go-to-Market",
+                        "Market Entry",
+                        "International Market Entry",
+                        "LATAM",
+                        "Nearshore CX"
+                  ]
+            },
+            {
+                  "@type": "BlogPosting",
+                  "@id": "https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/#article",
+                  "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": "https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/"
+                  },
+                  "headline": "SBC as a Service: What BPOs and CCaaS Providers Should Evaluate",
+                  "description": "An executive evaluation of cloud SBC licensing, scale, redundancy, multi-carrier support, observability, SLA, security and operational simplicity.",
+                  "image": "https://www.luizterra.com.br/public/og/sbc-as-a-service-bpo-ccaas.png",
+                  "datePublished": "2026-08-05",
+                  "dateModified": "2026-08-05",
+                  "inLanguage": "en",
+                  "author": {
+                        "@id": "https://www.luizterra.com.br/#luiz-terra"
+                  },
+                  "publisher": {
+                        "@id": "https://www.luizterra.com.br/#luiz-terra"
+                  },
+                  "articleSection": "Telecom",
+                  "keywords": [
+                        "sbc as a service",
+                        "cloud SBC",
+                        "BPO telecom",
+                        "CCaaS SBC",
+                        "managed SBC"
+                  ]
+            },
+            {
+                  "@type": "BreadcrumbList",
+                  "@id": "https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/#breadcrumb",
+                  "itemListElement": [
+                        {
+                              "@type": "ListItem",
+                              "position": 1,
+                              "name": "Luiz Terra",
+                              "item": "https://www.luizterra.com.br/"
+                        },
+                        {
+                              "@type": "ListItem",
+                              "position": 2,
+                              "name": "Insights",
+                              "item": "https://www.luizterra.com.br/insights/"
+                        },
+                        {
+                              "@type": "ListItem",
+                              "position": 3,
+                              "name": "SBC as a Service: What BPOs and CCaaS Providers Should Evaluate",
+                              "item": "https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/"
+                        }
+                  ]
+            },
+            {
+                  "@type": "FAQPage",
+                  "@id": "https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/#faq",
+                  "mainEntity": [
+                        {
+                              "@type": "Question",
+                              "name": "Is SBC as a Service suitable for multi-country operations?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "It can be, if regional coverage, carriers, numbering, data handling and support are validated country by country."
+                              }
+                        },
+                        {
+                              "@type": "Question",
+                              "name": "Does managed mean no internal expertise is needed?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "No. The customer still needs architecture, policy and vendor-governance ownership."
+                              }
+                        }
+                  ]
+            }
+      ]
+}</script>
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="brand" href="/" aria-label="LT - Luiz Terra home">LT</a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="/#impact">Impact</a>
+        <a href="/#expertise">Expertise</a>
+        <a href="/insights/">Insights</a>
+        <a href="/executive-bio/">Executive Bio</a>
+        <a href="/#speaking">Speaking</a>
+        <a href="/#contact">Contact</a>
+        <div class="language-switcher" aria-label="Language versions">
+          <a href="/insights/sbc-as-a-service-bpo-ccaas/" class="is-active" aria-current="page">EN</a>
+          <a href="/pt/insights/sbc-as-a-service-bpo-ccaas/" class="" aria-current="false">PT</a>
+          <a href="/es/insights/sbc-as-a-service-bpo-ccaas/" class="" aria-current="false">ES</a>
+        </div>
+        <a class="nav-cta" href="mailto:contact@luizterra.com.br?subject=Strategic%20conversation">Start a Strategic Conversation</a>
+      </div>
+    </nav>
+    <main class="subpage-main article-main">
+      <article class="article-page section-reveal is-visible">
+        <nav class="article-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Luiz Terra</a>
+          <span aria-hidden="true">/</span>
+          <a href="/insights/">Insights</a>
+        </nav>
+        <p class="eyebrow">Telecom</p>
+        <h1 class="subpage-title">SBC as a Service: What BPOs and CCaaS Providers Should Evaluate</h1>
+        <p class="article-summary">An executive evaluation of cloud SBC licensing, scale, redundancy, multi-carrier support, observability, SLA, security and operational simplicity.</p>
+        <div class="article-meta">
+          <span>Written by <a href="/executive-bio/">Luiz Terra</a></span>
+          <span>Published <time datetime="2026-08-05">Aug 5, 2026</time></span>
+          <span>Updated <time datetime="2026-08-05">Aug 5, 2026</time></span>
+          <span>8 min read</span>
+        </div>
+        <div class="chips article-tags"><span>sbc as a service</span><span>cloud SBC</span><span>BPO telecom</span><span>CCaaS SBC</span><span>managed SBC</span></div>
+        <div class="article-content">
+          <p class="topic-link"><a href="/topics/sbc-contact-centers/">Explore topic: SBC for Contact Centers</a></p>
+          <h2>Why this topic matters</h2><p>An SBC is not simply a security appliance at the edge. In contact center environments it is a control point for signaling, media, routing, interoperability, policy and operational visibility. Cloud adoption changes where this control is delivered, but it does not remove the underlying requirement.</p><p>Leadership should review the complete voice service, not an isolated component. That means bringing contact center operations, telecom engineering, security, network, carriers and platform providers into the same decision. The group should agree on critical call flows, expected traffic, recovery objectives, evidence ownership and the commercial consequences of degraded service before comparing architectures.</p><p>Validation should include normal traffic, peak conditions and controlled failure. Teams need to observe signaling, media, routing and customer impact while a carrier, region or service component is unavailable. A design is ready when responsibilities are understood, failover is repeatable and operations can explain what happened without depending on a single vendor&#x27;s interpretation.</p>
+          <h2>Service model before product comparison</h2>
+          <p>SBC as a Service can reduce infrastructure ownership, but buyers must define who manages policy, routing, certificates, upgrades, capacity and incidents. A managed label is useful only when responsibilities and boundaries are explicit.</p>
+          <h2>Scale and redundancy must be demonstrated</h2>
+          <p>Review concurrent sessions, burst behavior, regional availability, failover, carrier diversity and recovery objectives. Ask how capacity is added, how tenant isolation works and what happens when a region, carrier or management layer fails.</p>
+          <h2>Observability and SLA must align</h2>
+          <p>A service should expose signaling, media and routing evidence with retention appropriate for operations. The SLA should distinguish platform availability from end-to-end call success and define escalation, communication and service-credit mechanisms.</p>
+          <h2>CapEx versus OpEx is not the whole decision</h2>
+          <p>Subscription can simplify procurement and geographic expansion, while owned infrastructure may offer control in specific environments. Compare total operating effort, integration, expertise, support coverage, change velocity and exit options alongside the financial model.</p>
+          <h2>Executive evaluation checklist</h2>
+          <ul class="article-checklist">
+            <li>Clear responsibility matrix</li>
+            <li>Tested regional and carrier failover</li>
+            <li>Transparent capacity and licensing</li>
+            <li>Actionable signaling and media data</li>
+            <li>Migration and exit plan</li>
+          </ul>
+          <h2>A practical path forward</h2>
+          <p>Run a technical and operating proof using representative call flows, not only a management demonstration. Validate change procedures, evidence access, failover and joint incident handling. The best service reduces complexity while keeping control and accountability visible.</p>
+          <p class="article-cta"><a class="button primary" href="mailto:contact@luizterra.com.br?subject=Strategic%20conversation">Start a Strategic Conversation</a></p>
+          <h2>Frequently asked questions</h2>
+          <div class="faq-list article-faq">
+          <details>
+            <summary>Is SBC as a Service suitable for multi-country operations?</summary>
+            <p>It can be, if regional coverage, carriers, numbering, data handling and support are validated country by country.</p>
+          </details>
+          <details>
+            <summary>Does managed mean no internal expertise is needed?</summary>
+            <p>No. The customer still needs architecture, policy and vendor-governance ownership.</p>
+          </details>
+          </div>
+        </div>
+        <section class="related-insights" aria-labelledby="related-title">
+          <h2 id="related-title">Related insights</h2>
+          <div class="related-grid">
+          <article>
+            <span>Telecom</span>
+            <h3><a href="/insights/future-of-sbcs-cloud-contact-centers/">SBC for Contact Centers: Why It Still Matters in the Cloud Era</a></h3>
+          </article>
+          <article>
+            <span>CX &amp; BPO</span>
+            <h3><a href="/insights/bpos-evaluate-telecom-infrastructure-partners/">What BPOs Should Expect from a Telecom Infrastructure Partner</a></h3>
+          </article>
+          <article>
+            <span>Telecom</span>
+            <h3><a href="/insights/sip-voice-quality-resilience-global-contact-centers/">SIP, Voice Quality and Resilience in Global Contact Center Operations</a></h3>
+          </article>
+          </div>
+        </section>
+        <div class="article-actions">
+          <a class="article-back" href="/insights/">Back to insights</a>
+          <div class="share-actions" aria-label="Share this article">
+            <a class="button secondary share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/" target="_blank" rel="noopener">in&nbsp; Share on LinkedIn</a>
+            <button class="button tertiary copy-link" type="button" data-copy-url="https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/" data-copy-label="Link copied">↗&nbsp; Copy Link</button>
+          </div>
+        </div>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <div>
+        <p>© 2026 Luiz Terra. All rights reserved.</p>
+        <small>Telecom | CX | BPO | AI | International Sales · Sao Paulo, Brazil</small>
+      </div>
+      <div class="footer-links" aria-label="Footer links">
+        <a href="mailto:contact@luizterra.com.br">contact@luizterra.com.br</a>
+        <a href="https://linkedin.com/in/lterra" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </footer>
+    <script src="/script.js"></script>
+  </body>
+</html>

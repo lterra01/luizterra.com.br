@@ -6,41 +6,16 @@ const navLinks = document.querySelector(".nav-links");
 const emailLink = document.querySelector("#email-link");
 const emailText = document.querySelector("#email-text");
 const languageButtons = document.querySelectorAll(".language-switcher button");
+const categoryFilters = document.querySelectorAll(".category-filters button");
+const copyLinkButtons = document.querySelectorAll(".copy-link");
 const protectedShortcutKeys = ["c", "s", "p", "u"];
 const protectedInspectorKeys = ["i", "j", "c"];
 
-const insightArticles = [
-  {
-    slug: "ai-powered-amd-outbound-operations",
-    category: "AI & Contact Center",
-    title: "Why AI-powered AMD is becoming strategic for outbound operations",
-  },
-  {
-    slug: "future-of-sbcs-cloud-contact-centers",
-    category: "Telecom Infrastructure",
-    title: "The future of SBCs in cloud contact centers",
-  },
-  {
-    slug: "bpos-evaluate-telecom-infrastructure-partners",
-    category: "BPO Technology",
-    title: "How BPOs should evaluate telecom infrastructure partners",
-  },
-  {
-    slug: "latam-bridge-us-cx-global-delivery",
-    category: "Market Entry",
-    title: "LATAM as a bridge between US CX demand and global delivery",
-  },
-  {
-    slug: "european-ccaas-local-telecom-partners",
-    category: "CCaaS Expansion",
-    title: "What European CCaaS vendors need from local telecom partners",
-  },
-  {
-    slug: "ai-contact-centers-roi",
-    category: "AI ROI",
-    title: "AI in Contact Centers: where the hype ends and ROI starts",
-  },
-];
+const insightArticles = Array.from(document.querySelectorAll("[data-article-slug]")).map((item) => ({
+  slug: item.dataset.articleSlug,
+  category: item.dataset.category,
+  title: item.querySelector("h3")?.textContent?.trim() || "",
+}));
 
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver(
@@ -135,6 +110,31 @@ languageButtons.forEach((button) => {
       item.classList.toggle("is-active", item === button);
       item.setAttribute("aria-pressed", String(item === button));
     });
+  });
+});
+
+categoryFilters.forEach((button) => {
+  button.addEventListener("click", () => {
+    const selected = button.dataset.filter;
+    categoryFilters.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+    document.querySelectorAll(".insight-grid [data-category]").forEach((article) => {
+      article.hidden = selected !== "all" && article.dataset.category !== selected;
+    });
+  });
+});
+
+copyLinkButtons.forEach((button) => {
+  button.addEventListener("click", async () => {
+    const original = button.textContent;
+    try {
+      await navigator.clipboard.writeText(button.dataset.copyUrl || window.location.href);
+      button.textContent = button.dataset.copyLabel || original;
+      window.setTimeout(() => {
+        button.textContent = original;
+      }, 1800);
+    } catch {
+      button.textContent = button.dataset.copyUrl || window.location.href;
+    }
   });
 });
 

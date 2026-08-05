@@ -14,11 +14,14 @@ International Sales Executive in Telecom, CX, BPO and AI, focused on strategic p
 - `/es/` - Spanish version
 - `/insights/`, `/pt/insights/`, `/es/insights/`
 - Localized article pages under each insights route
+- `/executive-bio/`, `/pt/executive-bio/`, `/es/executive-bio/`
+- Six localized topic clusters under `/topics/`, `/pt/topics/` and `/es/topics/`
 
 ## Assets
 
 - `public/luiz-terra-executive-bio.pdf`
 - `public/og-image.png`
+- Article-specific social images under `public/og/`
 - `public/favicon.svg`
 
 ## Search Discovery
@@ -32,9 +35,9 @@ International Sales Executive in Telecom, CX, BPO and AI, focused on strategic p
 
 ## Editorial Note
 
-The repository does not currently include the 12 previously prepared LinkedIn posts. The site uses the six approved insight topics already present in the website content and provides localized article routes for them. When the 12 posts are available, add them to the article data in `tools/build_static_site.py` and regenerate the static pages.
+The repository still does not include the source text for the 12 previously prepared LinkedIn posts. The six existing Insights were preserved and expanded in place, and seven new long-form articles were added for the requested search topics without creating near-duplicate pages. If the original LinkedIn source becomes available, it should be reviewed editorially before import.
 
 ## Manual Checks
 
 - Validate social preview with LinkedIn Post Inspector and WhatsApp after cache propagation.
-- Add an executive photo at `public/images/luiz-terra-executive.jpg` if a final approved headshot is provided.
+- Validate structured data after deployment with Google Rich Results Test.
