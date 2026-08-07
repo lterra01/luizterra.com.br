@@ -27,6 +27,8 @@ LINKEDIN = "https://linkedin.com/in/lterra"
 PHOTO = IMAGES / "luiz-terra-executive.jpg"
 DATE_PUBLISHED = "2026-07-03"
 DATE_MODIFIED = "2026-08-07"
+SCHEMA_DATE_CREATED = f"{DATE_PUBLISHED}T00:00:00-03:00"
+SCHEMA_DATE_MODIFIED = f"{DATE_MODIFIED}T00:00:00-03:00"
 
 
 META = {
@@ -1217,8 +1219,8 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
                     "url": url,
                     "name": EXECUTIVE_BIO["title"][lang],
                     "description": EXECUTIVE_BIO["description"][lang],
-                    "dateCreated": DATE_PUBLISHED,
-                    "dateModified": DATE_MODIFIED,
+                    "dateCreated": SCHEMA_DATE_CREATED,
+                    "dateModified": SCHEMA_DATE_MODIFIED,
                     "inLanguage": META[lang]["lang"],
                     "mainEntity": {"@id": f"{BASE_URL}/#luiz-terra"},
                     "isPartOf": {"@id": f"{BASE_URL}/#website"},
@@ -1242,8 +1244,8 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
                     "url": url,
                     "name": META[lang]["title"],
                     "description": META[lang]["description"],
-                    "dateCreated": DATE_PUBLISHED,
-                    "dateModified": DATE_MODIFIED,
+                    "dateCreated": SCHEMA_DATE_CREATED,
+                    "dateModified": SCHEMA_DATE_MODIFIED,
                     "inLanguage": META[lang]["lang"],
                     "mainEntity": {"@id": f"{BASE_URL}/#luiz-terra"},
                     "isPartOf": {"@id": f"{BASE_URL}/#website"},
