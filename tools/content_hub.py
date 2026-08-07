@@ -166,7 +166,7 @@ EXECUTIVE_BIO = {
 TOPICS = [
     {
         "slug": "sbc-contact-centers",
-        "title": {"en": "SBC for Contact Centers", "pt": "SBC para Contact Centers", "es": "SBC para Contact Centers"},
+        "title": {"en": "SBC for Contact Centers", "pt": "SBC para Contact Centers", "es": "SBC en Centros de Contacto"},
         "description": {
             "en": "Executive guidance on Session Border Controllers, SIP interoperability, security, carrier connectivity and resilience for cloud and hybrid contact centers.",
             "pt": "Visão executiva sobre Session Border Controllers, interoperabilidade SIP, segurança, conectividade com operadoras e resiliência em contact centers cloud e híbridos.",

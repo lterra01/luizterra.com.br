@@ -26,7 +26,7 @@ EMAIL = "contact@luizterra.com.br"
 LINKEDIN = "https://linkedin.com/in/lterra"
 PHOTO = IMAGES / "luiz-terra-executive.jpg"
 DATE_PUBLISHED = "2026-07-03"
-DATE_MODIFIED = "2026-08-05"
+DATE_MODIFIED = "2026-08-07"
 
 
 META = {
@@ -504,7 +504,7 @@ INSIGHTS_META = {
         "description": "Análises práticas de Luiz Terra sobre infraestrutura de telecom, SBC, CCaaS, BPO, experiência do cliente, expansão internacional e IA em contact centers.",
     },
     "es": {
-        "title": "Insights de Telecom, CX, BPO e IA | Luiz Terra",
+        "title": "Perspectivas sobre Telecom, CX, BPO e IA | Luiz Terra",
         "description": "Análisis prácticos de Luiz Terra sobre infraestructura telecom, SBC, CCaaS, BPO, experiencia del cliente, expansión internacional e IA en contact centers.",
     },
 }
