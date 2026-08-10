@@ -1032,6 +1032,50 @@ button.button {
   line-height: 1.75;
 }
 
+.topic-guidance {
+  max-width: 780px;
+}
+
+.topic-guidance p {
+  line-height: 1.75;
+}
+
+.topic-questions {
+  display: grid;
+  max-width: 820px;
+  margin: 18px 0 0;
+  padding-left: 22px;
+  gap: 12px;
+}
+
+.topic-questions li {
+  padding-left: 4px;
+  line-height: 1.55;
+}
+
+.topic-directory {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin: 24px 0 28px;
+  padding: 16px 0;
+  border-block: 1px solid var(--line);
+}
+
+.topic-directory strong {
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+}
+
+.topic-directory a {
+  color: var(--text);
+  border-bottom: 1px solid rgba(0, 200, 200, 0.44);
+  font-weight: 700;
+}
+
 .bio-position {
   margin: 18px 0 0;
   color: var(--accent);

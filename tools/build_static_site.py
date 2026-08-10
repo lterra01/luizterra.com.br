@@ -26,7 +26,7 @@ EMAIL = "contact@luizterra.com.br"
 LINKEDIN = "https://linkedin.com/in/lterra"
 PHOTO = IMAGES / "luiz-terra-executive.jpg"
 DATE_PUBLISHED = "2026-07-03"
-DATE_MODIFIED = "2026-08-07"
+DATE_MODIFIED = "2026-08-10"
 SCHEMA_DATE_CREATED = f"{DATE_PUBLISHED}T00:00:00-03:00"
 SCHEMA_DATE_MODIFIED = f"{DATE_MODIFIED}T00:00:00-03:00"
 
@@ -1199,6 +1199,18 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
                     "inLanguage": META[lang]["lang"],
                     "author": {"@id": f"{BASE_URL}/#luiz-terra"},
                     "isPartOf": {"@id": f"{BASE_URL}/#website"},
+                    "dateModified": SCHEMA_DATE_MODIFIED,
+                    "mainEntity": {
+                        "@type": "ItemList",
+                        "itemListElement": [
+                            {
+                                "@type": "ListItem",
+                                "position": position,
+                                "url": canonical(lang, f"insights/{slug}/"),
+                            }
+                            for position, slug in enumerate(article["articles"], 1)
+                        ],
+                    },
                 },
                 {
                     "@type": "BreadcrumbList",
@@ -1553,6 +1565,10 @@ def render_insights_index(lang: str) -> str:
         f'<button type="button" data-filter="{key}" aria-pressed="false">{esc(label)}</button>'
         for key, label in zip(["telecom", "ai", "cx-bpo", "latam", "international-growth"], UI[lang]["filters"])
     )
+    topic_links = "\n".join(
+        f'<a href="{topic_path(lang, topic["slug"])}">{esc(topic["title"][lang])}</a>'
+        for topic in TOPICS
+    )
     return f"""<!DOCTYPE html>
 <html lang="{META[lang]["lang"]}">
 {head(lang, INSIGHTS_META[lang]["title"], INSIGHTS_META[lang]["description"], "insights/", "collection")}
@@ -1564,6 +1580,10 @@ def render_insights_index(lang: str) -> str:
         <div class="section-body">
           <h1 class="subpage-title" id="insights-title">{esc(UI[lang]["insights_heading"])}</h1>
           <p class="article-summary">{esc(UI[lang]["insights_support"])}</p>
+          <nav class="topic-directory" aria-label="{esc(UI[lang]['topics'])}">
+            <strong>{esc(UI[lang]["topics"])}</strong>
+{topic_links}
+          </nav>
           <div class="category-filters" aria-label="Insight categories">
             <button type="button" data-filter="all" aria-pressed="true">{esc(UI[lang]["all"])}</button>
 {filters}
@@ -1594,6 +1614,14 @@ def render_topic(lang: str, topic: dict) -> str:
         for item in articles
     )
     themes = "".join(f"<span>{esc(theme)}</span>" for theme in topic["themes"])
+    guidance = "".join(
+        f"<p>{esc(paragraph)}</p>"
+        for paragraph in CLUSTER_GUIDANCE.get(topic["slug"], {}).get(lang, [])
+    )
+    questions = "".join(
+        f'<li>{esc(UI[lang]["question_template"].format(theme=theme))}</li>'
+        for theme in topic["themes"]
+    )
     path = f"topics/{topic['slug']}/"
     return f"""<!DOCTYPE html>
 <html lang="{META[lang]["lang"]}">
@@ -1613,6 +1641,11 @@ def render_topic(lang: str, topic: dict) -> str:
           <p class="pillar-perspective">{esc(topic["perspective"][lang])}</p>
           <h2>{esc(UI[lang]["topic_themes"])}</h2>
           <div class="chips">{themes}</div>
+          <h2>{esc(UI[lang]["decision_framework"])}</h2>
+          <div class="topic-guidance">{guidance}</div>
+          <h2>{esc(UI[lang]["questions_heading"])}</h2>
+          <p>{esc(UI[lang]["questions_intro"])}</p>
+          <ul class="topic-questions">{questions}</ul>
         </div>
       </section>
       <section class="content-section section-reveal is-visible">
