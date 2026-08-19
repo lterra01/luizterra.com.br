@@ -34,6 +34,9 @@
 - [SIP, Voice Quality and Resilience in Global Contact Center Operations](https://www.luizterra.com.br/insights/sip-voice-quality-resilience-global-contact-centers/): An executive guide to latency, jitter, packet loss, routing, carrier redundancy, monitoring and troubleshooting in multi-region contact center voice.
 - [Nearshore CX in LATAM: Cost Is Only Part of the Equation](https://www.luizterra.com.br/insights/nearshore-cx-latam-cost-equation/): Why talent, culture, language, proximity, infrastructure, management, technology and resilience should shape LATAM nearshore decisions.
 - [Why Strategic Partnerships Matter More Than Traditional Reseller Agreements](https://www.luizterra.com.br/insights/strategic-partnerships-vs-reseller-agreements/): How co-selling, technical enablement, market knowledge, customer success, recurring revenue and GTM alignment create stronger telecom and CX partnerships.
+- [AI Evaluation in Contact Centers: From Demo to Production](https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/): A practical framework for testing contact center AI across quality, latency, risk, languages, integrations and real operating consequences.
+- [Customer Effort Is an Architecture Problem in Contact Centers](https://www.luizterra.com.br/insights/customer-effort-architecture-contact-centers/): Why reducing customer effort requires connected data, workflows, permissions, knowledge and agent tools, not only better service scripts.
+- [Global CX Requires Local Operating Intelligence](https://www.luizterra.com.br/insights/global-cx-local-operating-intelligence/): How international CX leaders balance global governance with local language, regulation, telecom, partners and customer expectations.
 
 ## Topic pages
 

@@ -5,7 +5,7 @@
     <link>https://www.luizterra.com.br/insights/</link>
     <description>Practical perspectives on international sales, telecom, CX, BPO, CCaaS, SBC and AI-powered contact center operations.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Aug 2026 12:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Wed, 19 Aug 2026 12:00:00 -0300</lastBuildDate>
     <item>
       <title>AI-Powered Answering Machine Detection: From Dialing Feature to Performance Lever</title>
       <link>https://www.luizterra.com.br/insights/ai-powered-amd-outbound-operations/</link>
@@ -108,6 +108,30 @@
       <guid isPermaLink="true">https://www.luizterra.com.br/insights/strategic-partnerships-vs-reseller-agreements/</guid>
       <description>How co-selling, technical enablement, market knowledge, customer success, recurring revenue and GTM alignment create stronger telecom and CX partnerships.</description>
       <pubDate>Wed, 05 Aug 2026 12:00:00 -0300</pubDate>
+      <category>International Growth</category>
+    </item>
+    <item>
+      <title>AI Evaluation in Contact Centers: From Demo to Production</title>
+      <link>https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/</guid>
+      <description>A practical framework for testing contact center AI across quality, latency, risk, languages, integrations and real operating consequences.</description>
+      <pubDate>Wed, 19 Aug 2026 12:00:00 -0300</pubDate>
+      <category>AI &amp; Automation</category>
+    </item>
+    <item>
+      <title>Customer Effort Is an Architecture Problem in Contact Centers</title>
+      <link>https://www.luizterra.com.br/insights/customer-effort-architecture-contact-centers/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/customer-effort-architecture-contact-centers/</guid>
+      <description>Why reducing customer effort requires connected data, workflows, permissions, knowledge and agent tools, not only better service scripts.</description>
+      <pubDate>Wed, 19 Aug 2026 12:00:00 -0300</pubDate>
+      <category>CX &amp; BPO</category>
+    </item>
+    <item>
+      <title>Global CX Requires Local Operating Intelligence</title>
+      <link>https://www.luizterra.com.br/insights/global-cx-local-operating-intelligence/</link>
+      <guid isPermaLink="true">https://www.luizterra.com.br/insights/global-cx-local-operating-intelligence/</guid>
+      <description>How international CX leaders balance global governance with local language, regulation, telecom, partners and customer expectations.</description>
+      <pubDate>Wed, 19 Aug 2026 12:00:00 -0300</pubDate>
       <category>International Growth</category>
     </item>
   </channel>

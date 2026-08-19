@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Evaluation in Contact Centers: From Demo to Production | Luiz Terra</title>
+    <meta name="description" content="A practical framework for testing contact center AI across quality, latency, risk, languages, integrations and real operating consequences." />
+    <meta name="author" content="Luiz Terra" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="msvalidate.01" content="D32D665088441B4D7E0274D9B3AEC1A1" />
+    <link rel="canonical" href="https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/" />
+    <link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/" />
+    <link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/ai-evaluation-production-contact-centers/" />
+    <link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/ai-evaluation-production-contact-centers/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/" />
+    <meta property="og:title" content="AI Evaluation in Contact Centers: From Demo to Production | Luiz Terra" />
+    <meta property="og:description" content="A practical framework for testing contact center AI across quality, latency, risk, languages, integrations and real operating consequences." />
+    <meta property="og:url" content="https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Luiz Terra" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://www.luizterra.com.br/public/og/ai-evaluation-production-contact-centers.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Luiz Terra, International Sales Executive in Telecom, CX, BPO and AI" />
+
+    <meta property="article:published_time" content="2026-07-03" />
+    <meta property="article:modified_time" content="2026-08-19" />
+    <meta property="article:author" content="https://linkedin.com/in/lterra" />
+    <meta property="article:section" content="AI &amp; Automation" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI Evaluation in Contact Centers: From Demo to Production | Luiz Terra" />
+    <meta name="twitter:description" content="A practical framework for testing contact center AI across quality, latency, risk, languages, integrations and real operating consequences." />
+    <meta name="twitter:image" content="https://www.luizterra.com.br/public/og/ai-evaluation-production-contact-centers.png" />
+    <link rel="icon" href="/public/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="Luiz Terra Insights" href="https://www.luizterra.com.br/feed.xml" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-68E95X4DZT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-68E95X4DZT');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" /></noscript>
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@graph": [
+            {
+                  "@type": "WebSite",
+                  "@id": "https://www.luizterra.com.br/#website",
+                  "url": "https://www.luizterra.com.br/",
+                  "name": "Luiz Terra",
+                  "inLanguage": [
+                        "en",
+                        "pt-BR",
+                        "es"
+                  ],
+                  "publisher": {
+                        "@id": "https://www.luizterra.com.br/#luiz-terra"
+                  }
+            },
+            {
+                  "@type": "Person",
+                  "@id": "https://www.luizterra.com.br/#luiz-terra",
+                  "name": "Luiz Terra",
+                  "description": "Luiz Terra is an international sales executive focused on Telecom, CX, BPO, Contact Center, CCaaS and AI-powered communications, with extensive experience developing international markets, strategic partnerships and enterprise business across LATAM, North America, Europe and Africa.",
+                  "image": {
+                        "@type": "ImageObject",
+                        "url": "https://www.luizterra.com.br/public/images/luiz-terra-executive.jpg",
+                        "width": 900,
+                        "height": 900
+                  },
+                  "jobTitle": "Head of International Sales",
+                  "worksFor": {
+                        "@type": "Organization",
+                        "name": "Khomp"
+                  },
+                  "email": "mailto:contact@luizterra.com.br",
+                  "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "São Paulo",
+                        "addressCountry": "Brazil"
+                  },
+                  "url": "https://www.luizterra.com.br",
+                  "sameAs": [
+                        "https://linkedin.com/in/lterra"
+                  ],
+                  "knowsLanguage": [
+                        "Portuguese",
+                        "English",
+                        "Spanish"
+                  ],
+                  "knowsAbout": [
+                        "Telecom",
+                        "Telecommunications",
+                        "Customer Experience",
+                        "Contact Center",
+                        "BPO",
+                        "Business Process Outsourcing",
+                        "CCaaS",
+                        "Contact Center as a Service",
+                        "Session Border Controller",
+                        "SBC",
+                        "SIP",
+                        "VoIP",
+                        "Cloud Communications",
+                        "Artificial Intelligence",
+                        "Answering Machine Detection",
+                        "AI-powered Answering Machine Detection",
+                        "Enterprise Sales",
+                        "Strategic Partnerships",
+                        "Go-to-Market",
+                        "Market Entry",
+                        "International Market Entry",
+                        "LATAM",
+                        "Nearshore CX"
+                  ]
+            },
+            {
+                  "@type": "BlogPosting",
+                  "@id": "https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/#article",
+                  "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": "https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/"
+                  },
+                  "headline": "AI Evaluation in Contact Centers: From Demo to Production",
+                  "description": "A practical framework for testing contact center AI across quality, latency, risk, languages, integrations and real operating consequences.",
+                  "image": "https://www.luizterra.com.br/public/og/ai-evaluation-production-contact-centers.png",
+                  "datePublished": "2026-08-19",
+                  "dateModified": "2026-08-19",
+                  "inLanguage": "en",
+                  "author": {
+                        "@id": "https://www.luizterra.com.br/#luiz-terra"
+                  },
+                  "publisher": {
+                        "@id": "https://www.luizterra.com.br/#luiz-terra"
+                  },
+                  "articleSection": "AI & Automation",
+                  "keywords": [
+                        "AI evaluation",
+                        "contact center AI",
+                        "enterprise AI",
+                        "AI governance",
+                        "production readiness"
+                  ]
+            },
+            {
+                  "@type": "BreadcrumbList",
+                  "@id": "https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/#breadcrumb",
+                  "itemListElement": [
+                        {
+                              "@type": "ListItem",
+                              "position": 1,
+                              "name": "Luiz Terra",
+                              "item": "https://www.luizterra.com.br/"
+                        },
+                        {
+                              "@type": "ListItem",
+                              "position": 2,
+                              "name": "Insights",
+                              "item": "https://www.luizterra.com.br/insights/"
+                        },
+                        {
+                              "@type": "ListItem",
+                              "position": 3,
+                              "name": "AI Evaluation in Contact Centers: From Demo to Production",
+                              "item": "https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/"
+                        }
+                  ]
+            },
+            {
+                  "@type": "FAQPage",
+                  "@id": "https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/#faq",
+                  "mainEntity": [
+                        {
+                              "@type": "Question",
+                              "name": "Is a successful AI demo evidence of production readiness?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "No. Production readiness requires representative tests, operational integration, monitoring, human fallback and clear release criteria."
+                              }
+                        },
+                        {
+                              "@type": "Question",
+                              "name": "Should multilingual AI use one global score?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "No. A global score should be complemented by language, accent, market and journey-level results."
+                              }
+                        }
+                  ]
+            }
+      ]
+}</script>
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="brand" href="/" aria-label="LT - Luiz Terra home">LT</a>
+      <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="/#impact">Impact</a>
+        <a href="/#expertise">Expertise</a>
+        <a href="/insights/">Insights</a>
+        <a href="/executive-bio/">Executive Bio</a>
+        <a href="/#speaking">Speaking</a>
+        <a href="/#contact">Contact</a>
+        <div class="language-switcher" aria-label="Language versions">
+          <a href="/insights/ai-evaluation-production-contact-centers/" class="is-active" aria-current="page">EN</a>
+          <a href="/pt/insights/ai-evaluation-production-contact-centers/" class="" aria-current="false">PT</a>
+          <a href="/es/insights/ai-evaluation-production-contact-centers/" class="" aria-current="false">ES</a>
+        </div>
+        <a class="nav-cta" href="mailto:contact@luizterra.com.br?subject=Strategic%20conversation">Start a Strategic Conversation</a>
+      </div>
+    </nav>
+    <main class="subpage-main article-main">
+      <article class="article-page section-reveal is-visible">
+        <nav class="article-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Luiz Terra</a>
+          <span aria-hidden="true">/</span>
+          <a href="/insights/">Insights</a>
+        </nav>
+        <p class="eyebrow">AI &amp; Automation</p>
+        <h1 class="subpage-title">AI Evaluation in Contact Centers: From Demo to Production</h1>
+        <p class="article-summary">A practical framework for testing contact center AI across quality, latency, risk, languages, integrations and real operating consequences.</p>
+        <div class="article-meta">
+          <span>Written by <a href="/executive-bio/">Luiz Terra</a></span>
+          <span>Published <time datetime="2026-08-19">Aug 19, 2026</time></span>
+          <span>Updated <time datetime="2026-08-19">Aug 19, 2026</time></span>
+          <span>8 min read</span>
+        </div>
+        <div class="chips article-tags"><span>AI evaluation</span><span>contact center AI</span><span>enterprise AI</span><span>AI governance</span><span>production readiness</span></div>
+        <div class="article-content">
+          <p class="topic-link"><a href="/topics/ai-contact-centers/">Explore topic: AI in Contact Centers</a></p>
+          <h2>Why this topic matters</h2><p>AI creates value when it changes a measurable operating flow. The relevant question is not whether a model looks impressive, but whether it improves productivity, contact rates, quality, containment, customer outcomes or the speed of a management decision without creating unacceptable risk.</p><p>A useful AI decision connects four layers: the customer or agent journey, the operational decision being changed, the model or automation capability and the financial mechanism. If one layer is missing, the project may produce an impressive demonstration without a durable result. Operations, technology, finance, compliance and workforce leaders should share the same definition of success.</p><p>Validation should compare representative cohorts and include exception handling. Review who uses the output, how quickly it arrives, what happens when confidence is low and whether quality or customer outcomes deteriorate. Scale only after the operating team can sustain the new process and the benefits ledger shows how capacity, savings or revenue will actually be realized.</p>
+          <h2>A demo proves possibility, not reliability</h2>
+          <p>A controlled demonstration can show that a model produces an impressive answer. Production adds accents, noise, incomplete context, changing policies, system failures, latency, permissions and customer consequences. The evaluation must represent the environment in which the service will actually operate.</p>
+          <h2>Measure the complete service flow</h2>
+          <p>Model quality is only one dimension. Evaluate grounding, intent recognition, response timing, containment, escalation, repeat contact, agent effort and policy adherence together. A fluent answer that arrives late or gives the wrong next action is a service failure, even when the model sounds convincing.</p>
+          <h2>Build tests around risk and language</h2>
+          <p>Test sets should include normal journeys, edge cases, ambiguous requests, vulnerable situations, policy conflicts and adversarial prompts. Multilingual operations need separate evaluation by language, accent and market context. A global average can hide a serious failure in the market a company is trying to enter.</p>
+          <h2>Make release criteria explicit</h2>
+          <p>Before expanding an AI workflow, define quality thresholds, human review, fallback behavior, monitoring, ownership and rollback. Evaluation becomes an operating capability when every release can be compared with a baseline and every material failure has a visible path to correction.</p>
+          <h2>Executive evaluation checklist</h2>
+          <ul class="article-checklist">
+            <li>Representative test set by journey, language and risk</li>
+            <li>Baseline for quality, latency and operational outcomes</li>
+            <li>Human review and escalation thresholds</li>
+            <li>Monitoring for drift, policy changes and exceptions</li>
+            <li>Documented rollback and ownership</li>
+          </ul>
+          <h2>A practical path forward</h2>
+          <p>Treat evaluation as part of the operating model, not as a gate used only before launch. The organizations that learn from edge cases, language differences and real customer outcomes will scale AI with more confidence than those that measure only demo fluency.</p>
+          <p class="article-cta"><a class="button primary" href="mailto:contact@luizterra.com.br?subject=Strategic%20conversation">Start a Strategic Conversation</a></p>
+          <h2>Frequently asked questions</h2>
+          <div class="faq-list article-faq">
+          <details>
+            <summary>Is a successful AI demo evidence of production readiness?</summary>
+            <p>No. Production readiness requires representative tests, operational integration, monitoring, human fallback and clear release criteria.</p>
+          </details>
+          <details>
+            <summary>Should multilingual AI use one global score?</summary>
+            <p>No. A global score should be complemented by language, accent, market and journey-level results.</p>
+          </details>
+          </div>
+        </div>
+        <section class="related-insights" aria-labelledby="related-title">
+          <h2 id="related-title">Related insights</h2>
+          <div class="related-grid">
+          <article>
+            <span>AI &amp; Automation</span>
+            <h3><a href="/insights/ai-contact-centers-roi/">AI in Contact Centers: How to Find Real ROI Beyond the Hype</a></h3>
+          </article>
+          <article>
+            <span>AI &amp; Automation</span>
+            <h3><a href="/insights/call-center-automation-roi/">How to Measure ROI in Call Center Automation</a></h3>
+          </article>
+          <article>
+            <span>Telecom</span>
+            <h3><a href="/insights/future-of-sbcs-cloud-contact-centers/">SBC for Contact Centers: Why It Still Matters in the Cloud Era</a></h3>
+          </article>
+          </div>
+        </section>
+        <div class="article-actions">
+          <a class="article-back" href="/insights/">Back to insights</a>
+          <div class="share-actions" aria-label="Share this article">
+            <a class="button secondary share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/" target="_blank" rel="noopener">in&nbsp; Share on LinkedIn</a>
+            <button class="button tertiary copy-link" type="button" data-copy-url="https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/" data-copy-label="Link copied">↗&nbsp; Copy Link</button>
+          </div>
+        </div>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <div>
+        <p>© 2026 Luiz Terra. All rights reserved.</p>
+        <small>Telecom | CX | BPO | AI | International Sales · Sao Paulo, Brazil</small>
+      </div>
+      <div class="footer-links" aria-label="Footer links">
+        <a href="mailto:contact@luizterra.com.br">contact@luizterra.com.br</a>
+        <a href="https://linkedin.com/in/lterra" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </footer>
+    <script src="/script.js"></script>
+  </body>
+</html>

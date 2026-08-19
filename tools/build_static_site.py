@@ -26,7 +26,7 @@ EMAIL = "contact@luizterra.com.br"
 LINKEDIN = "https://linkedin.com/in/lterra"
 PHOTO = IMAGES / "luiz-terra-executive.jpg"
 DATE_PUBLISHED = "2026-07-03"
-DATE_MODIFIED = "2026-08-10"
+DATE_MODIFIED = "2026-08-19"
 SCHEMA_DATE_CREATED = f"{DATE_PUBLISHED}T00:00:00-03:00"
 SCHEMA_DATE_MODIFIED = f"{DATE_MODIFIED}T00:00:00-03:00"
 
