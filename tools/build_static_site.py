@@ -14,7 +14,7 @@ from reportlab.lib.units import inch
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
-from article_library import ARTICLE_UPDATES, NEW_ARTICLES
+from article_library import ARTICLE_LEADS, ARTICLE_UPDATES, NEW_ARTICLES, RELATED_OVERRIDES, SEO_OVERRIDES
 from content_hub import CLUSTER_GUIDANCE, EXECUTIVE_BIO, TOPICS, TOPIC_BY_SLUG, UI
 
 
@@ -906,10 +906,22 @@ for existing_article in ARTICLES:
     payload = ARTICLE_UPDATES.get(existing_article["slug"])
     if payload:
         apply_editorial_payload(existing_article, payload)
+    if existing_article["slug"] in SEO_OVERRIDES:
+        existing_article["seo_title"] = SEO_OVERRIDES[existing_article["slug"]]
+    if existing_article["slug"] in ARTICLE_LEADS:
+        existing_article["lead"] = ARTICLE_LEADS[existing_article["slug"]]
+    if existing_article["slug"] in RELATED_OVERRIDES:
+        existing_article["related"] = RELATED_OVERRIDES[existing_article["slug"]]
 
 for payload in NEW_ARTICLES:
     new_article: dict = {}
     apply_editorial_payload(new_article, payload)
+    if new_article["slug"] in SEO_OVERRIDES:
+        new_article["seo_title"] = SEO_OVERRIDES[new_article["slug"]]
+    if new_article["slug"] in ARTICLE_LEADS:
+        new_article["lead"] = ARTICLE_LEADS[new_article["slug"]]
+    if new_article["slug"] in RELATED_OVERRIDES:
+        new_article["related"] = RELATED_OVERRIDES[new_article["slug"]]
     ARTICLES.append(new_article)
 
 
@@ -1761,9 +1773,10 @@ def render_article(lang: str, article: dict) -> str:
           <span>{esc(article.get('reading', {}).get(lang, labels["reading"]))}</span>
         </div>
         <div class="chips article-tags">{tags}</div>
-        <div class="article-content">
+          <div class="article-content">
           {f'<p class="topic-link"><a href="{topic_path(lang, topic["slug"])}">{esc(UI[lang]["explore_topic"])}: {esc(topic["title"][lang])}</a></p>' if topic else ''}
-          {cluster_context}
+{f'          <p class="article-lead">{esc(article["lead"][lang])}</p>' if article.get("lead") else ''}
+{cluster_context}
 {body}
           <h2>{esc(labels["checklist"])}</h2>
           <ul class="article-checklist">

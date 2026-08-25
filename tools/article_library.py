@@ -198,6 +198,63 @@ ARTICLE_UPDATES.update({
 })
 
 
+# Search Console showed impressions without clicks on these routes. Keep the
+# snippet and opening answer aligned with the query intent while preserving the
+# longer editorial body below.
+SEO_OVERRIDES = {
+    "brazil-customer-service-outsourcing": {
+        "en": "Brazil Customer Service Outsourcing: CX, Telecom and BPO Guide | Luiz Terra",
+        "pt": "Terceirização de Atendimento no Brasil: Guia de CX, Telecom e BPO | Luiz Terra",
+        "es": "Outsourcing de Atención en Brasil: Guía de CX, Telecom y BPO | Luiz Terra",
+    },
+    "ai-contact-centers-roi": {
+        "en": "Contact Center AI ROI: Metrics, Baselines and Business Value | Luiz Terra",
+        "pt": "ROI de IA em Contact Centers: Métricas, Base e Valor de Negócio | Luiz Terra",
+        "es": "ROI de IA en Contact Centers: Métricas, Línea Base y Valor | Luiz Terra",
+    },
+    "latam-bridge-us-cx-global-delivery": {
+        "en": "LATAM Nearshore CX: Global Delivery, Talent and Resilience | Luiz Terra",
+        "pt": "CX Nearshore na LATAM: Entrega Global, Talento e Resiliência | Luiz Terra",
+        "es": "CX Nearshore en LATAM: Entrega Global, Talento y Resiliencia | Luiz Terra",
+    },
+    "ai-powered-amd-outbound-operations": {
+        "en": "AI Answering Machine Detection for Contact Centers: AMD Guide | Luiz Terra",
+        "pt": "AMD com IA em Contact Centers: Guia de Answering Machine Detection | Luiz Terra",
+        "es": "AMD con IA en Contact Centers: Guía de Answering Machine Detection | Luiz Terra",
+    },
+}
+
+ARTICLE_LEADS = {
+    "brazil-customer-service-outsourcing": {
+        "en": "Looking for customer service outsourcing in Brazil? Start by evaluating Portuguese-language CX, local telecom, provider governance and the transition model together. This guide explains the operational questions global companies should answer before selecting a BPO or delivery partner.",
+        "pt": "Procurando terceirização de atendimento no Brasil? Comece avaliando juntos CX em português, telecom local, governança do fornecedor e modelo de transição. Este guia organiza as perguntas operacionais antes da escolha de um BPO ou parceiro de entrega.",
+        "es": "¿Busca outsourcing de atención en Brasil? Empiece evaluando juntos el CX en portugués, las telecomunicaciones locales, la gobernanza del proveedor y la transición. Esta guía organiza las preguntas operativas antes de elegir un BPO o socio de entrega.",
+    },
+    "ai-contact-centers-roi": {
+        "en": "Contact center AI ROI is not proven by a demo or a single accuracy score. It is proven when a defined workflow improves a measurable business outcome after integration, adoption and operational stabilization. Use this framework to build the baseline and benefits case.",
+        "pt": "O ROI de IA em contact centers não é comprovado por uma demonstração ou uma única taxa de acurácia. Ele aparece quando um fluxo definido melhora um resultado mensurável após integração, adoção e estabilização operacional. Use este framework para construir a base e o business case.",
+        "es": "El ROI de IA en contact centers no se prueba con una demo ni con una sola métrica de precisión. Se demuestra cuando un flujo definido mejora un resultado medible después de integración, adopción y estabilización operativa. Use este marco para construir la línea base y el caso de negocio.",
+    },
+    "latam-bridge-us-cx-global-delivery": {
+        "en": "LATAM nearshore CX decisions should balance customer language, time-zone coverage, talent, telecom readiness and resilience, not hourly cost alone. This guide helps global teams compare locations and design a delivery footprint that can scale.",
+        "pt": "Decisões de CX nearshore na LATAM devem equilibrar idioma do cliente, cobertura de fusos, talento, prontidão de telecom e resiliência, não apenas custo por hora. Este guia ajuda equipes globais a comparar locais e desenhar uma operação escalável.",
+        "es": "Las decisiones de CX nearshore en LATAM deben equilibrar idioma, cobertura horaria, talento, preparación telecom y resiliencia, no solo costo por hora. Esta guía ayuda a equipos globales a comparar ubicaciones y diseñar una operación escalable.",
+    },
+    "ai-powered-amd-outbound-operations": {
+        "en": "AI-powered answering machine detection (AMD) can improve outbound contact-center productivity, but only when classification, latency, pacing, routing and campaign governance are measured as one operating system. This guide focuses on the decisions behind sustainable performance.",
+        "pt": "O answering machine detection (AMD) com IA pode melhorar a produtividade de operações ativas, mas apenas quando classificação, latência, pacing, roteamento e governança da campanha são medidos como um único sistema operacional. Este guia foca as decisões por trás de desempenho sustentável.",
+        "es": "El answering machine detection (AMD) con IA puede mejorar la productividad de operaciones salientes, pero solo cuando clasificación, latencia, pacing, enrutamiento y gobernanza se miden como un único sistema operativo. Esta guía se centra en las decisiones detrás del desempeño sostenible.",
+    },
+}
+
+RELATED_OVERRIDES = {
+    "brazil-customer-service-outsourcing": ["latam-bridge-us-cx-global-delivery", "nearshore-cx-latam-cost-equation", "ai-contact-centers-roi", "ccaas-market-entry-latam"],
+    "ai-contact-centers-roi": ["ai-evaluation-production-contact-centers", "customer-effort-architecture-contact-centers", "call-center-automation-roi", "ai-powered-amd-outbound-operations"],
+    "latam-bridge-us-cx-global-delivery": ["brazil-customer-service-outsourcing", "global-cx-local-operating-intelligence", "nearshore-cx-latam-cost-equation", "ccaas-market-entry-latam"],
+    "ai-powered-amd-outbound-operations": ["ai-contact-centers-roi", "ai-evaluation-production-contact-centers", "call-center-automation-roi", "sip-voice-quality-resilience-global-contact-centers"],
+}
+
+
 NEW_ARTICLES = [
     compact(
         slug="sbc-as-a-service-bpo-ccaas",
