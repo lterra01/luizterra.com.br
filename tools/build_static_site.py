@@ -992,6 +992,7 @@ def gtag() -> str:
       gtag('js', new Date());
 
       gtag('config', 'G-68E95X4DZT');
+      gtag('config', 'AW-18474840846');
     </script>"""
 
 
