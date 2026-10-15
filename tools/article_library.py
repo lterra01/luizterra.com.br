@@ -171,7 +171,7 @@ ARTICLE_UPDATES.update({
         checklist={"en": ["SLA linked to real service outcomes", "Route and media observability", "Carrier and regional diversity", "Named escalation and support ownership", "Security and interoperability testing"], "pt": ["SLA ligado a resultados reais", "Observabilidade de rota e mídia", "Diversidade de operadoras e regiões", "Responsáveis de suporte e escalonamento", "Testes de segurança e interoperabilidade"], "es": ["SLA ligado a resultados reales", "Observabilidad de rutas y medios", "Diversidad de operadores y regiones", "Responsables de soporte y escalamiento", "Pruebas de seguridad e interoperabilidad"]},
         closing={"en": "Score partners across commercial, technical and operating dimensions, then validate the score with a real call flow and incident scenario. The decision should reflect how quickly the combined team can protect service, explain a problem and support expansion. Price matters, but it should not be allowed to conceal operational fragility.", "pt": "Avalie parceiros nas dimensões comercial, técnica e operacional e valide com um fluxo real e um cenário de incidente. A decisão deve refletir a capacidade conjunta de proteger o serviço, explicar problemas e apoiar expansão. Preço importa, mas não deve esconder fragilidade operacional.", "es": "Evalúe socios en dimensiones comercial, técnica y operativa y valide con un flujo real y un escenario de incidente. La decisión debe reflejar la capacidad conjunta de proteger el servicio, explicar problemas y apoyar expansión. El precio importa, pero no debe ocultar fragilidad operativa."},
         faq={"en": [("Why is carrier diversity important?", "It creates routing and recovery options, but only if paths are genuinely independent and failover is tested."), ("What distinguishes strong support?", "Clear ownership, useful evidence, fast triage and coordination across all parties involved in the call flow.")], "pt": [("Por que diversidade de operadoras importa?", "Cria opções de rota e recuperação, desde que os caminhos sejam realmente independentes e o failover seja testado."), ("O que diferencia um bom suporte?", "Responsabilidade clara, evidência útil, triagem rápida e coordenação entre todos no fluxo.")], "es": [("¿Por qué importa la diversidad de operadores?", "Crea opciones de ruta y recuperación si los caminos son realmente independientes y el failover está probado."), ("¿Qué distingue un buen soporte?", "Responsabilidad clara, evidencia útil, triage rápido y coordinación entre todos los participantes.")]},
-        related=["sbc-as-a-service-bpo-ccaas", "sip-voice-quality-resilience-global-contact-centers", "brazil-customer-service-outsourcing"], published="2026-07-03", featured=True,
+        related=["sbc-as-a-service-bpo-ccaas", "sip-voice-quality-resilience-global-contact-centers", "brazil-customer-service-outsourcing"], published="2026-07-03", modified="2026-10-15", featured=True,
     ),
     "latam-bridge-us-cx-global-delivery": compact(
         slug="latam-bridge-us-cx-global-delivery",
@@ -202,6 +202,11 @@ ARTICLE_UPDATES.update({
 # snippet and opening answer aligned with the query intent while preserving the
 # longer editorial body below.
 SEO_OVERRIDES = {
+    "bpos-evaluate-telecom-infrastructure-partners": {
+        "en": "BPO Telecom Infrastructure & Partner Evaluation | Luiz Terra",
+        "pt": "Telecom para BPO: Infraestrutura e Parceiros | Luiz Terra",
+        "es": "Telecom para BPO: Infraestructura y Socios | Luiz Terra",
+    },
     "brazil-customer-service-outsourcing": {
         "en": "Brazil Customer Service Outsourcing: CX, Telecom and BPO Guide | Luiz Terra",
         "pt": "Terceirização de Atendimento no Brasil: Guia de CX, Telecom e BPO | Luiz Terra",
@@ -248,6 +253,7 @@ ARTICLE_LEADS = {
 }
 
 RELATED_OVERRIDES = {
+    "bpos-evaluate-telecom-infrastructure-partners": ["sip-voice-quality-resilience-global-contact-centers", "sbc-as-a-service-bpo-ccaas", "brazil-customer-service-outsourcing", "ai-contact-centers-roi"],
     "brazil-customer-service-outsourcing": ["latam-bridge-us-cx-global-delivery", "nearshore-cx-latam-cost-equation", "ai-contact-centers-roi", "ccaas-market-entry-latam"],
     "ai-contact-centers-roi": ["ai-evaluation-production-contact-centers", "customer-effort-architecture-contact-centers", "call-center-automation-roi", "ai-powered-amd-outbound-operations"],
     "latam-bridge-us-cx-global-delivery": ["brazil-customer-service-outsourcing", "global-cx-local-operating-intelligence", "nearshore-cx-latam-cost-equation", "ccaas-market-entry-latam"],

@@ -10,6 +10,7 @@ UI = {
         "all": "All",
         "filters": ["Telecom", "AI & Automation", "CX & BPO", "LATAM", "International Growth"],
         "read_article": "Read Article",
+        "view_all": "View all insights",
         "published": "Published",
         "written_by": "Written by",
         "share_linkedin": "Share on LinkedIn",
@@ -34,6 +35,7 @@ UI = {
         "all": "Todos",
         "filters": ["Telecom", "IA e Automação", "CX e BPO", "LATAM", "Crescimento Internacional"],
         "read_article": "Ler artigo",
+        "view_all": "Ver todos os insights",
         "published": "Publicado",
         "written_by": "Escrito por",
         "share_linkedin": "Compartilhar no LinkedIn",
@@ -58,6 +60,7 @@ UI = {
         "all": "Todos",
         "filters": ["Telecom", "IA y Automatización", "CX y BPO", "LATAM", "Crecimiento Internacional"],
         "read_article": "Leer artículo",
+        "view_all": "Ver todos los insights",
         "published": "Publicado",
         "written_by": "Escrito por",
         "share_linkedin": "Compartir en LinkedIn",
@@ -81,9 +84,9 @@ UI = {
 
 EXECUTIVE_BIO = {
     "title": {
-        "en": "Luiz Terra | Executive Bio",
-        "pt": "Luiz Terra | Biografia Executiva",
-        "es": "Luiz Terra | Biografía Ejecutiva",
+        "en": "Luiz Terra: Telecom, CX, BPO & AI Executive | Bio",
+        "pt": "Luiz Terra: Executivo em Telecom, CX, BPO e IA | Biografia",
+        "es": "Luiz Terra: Ejecutivo en Telecom, CX, BPO e IA | Biografía",
     },
     "description": {
         "en": "Executive biography of Luiz Terra, Head of International Sales at Khomp, with 28+ years across telecom, CX, BPO, contact centers and AI.",
@@ -194,7 +197,7 @@ TOPICS = [
     },
     {
         "slug": "ai-contact-centers",
-        "title": {"en": "AI in Contact Centers", "pt": "IA em Contact Centers", "es": "IA en Contact Centers"},
+        "title": {"en": "Contact Center AI: ROI, Automation & Governance", "pt": "IA para Contact Centers: ROI e Governança", "es": "IA para Contact Centers: ROI y Gobernanza"},
         "description": {
             "en": "Practical frameworks for AI ROI, automation, Answering Machine Detection, analytics and operational performance in contact centers.",
             "pt": "Frameworks práticos para ROI de IA, automação, Answering Machine Detection, analytics e desempenho operacional em contact centers.",

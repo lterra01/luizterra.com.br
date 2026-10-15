@@ -41,7 +41,7 @@
 ## Topic pages
 
 - [SBC for Contact Centers](https://www.luizterra.com.br/topics/sbc-contact-centers/): Executive guidance on Session Border Controllers, SIP interoperability, security, carrier connectivity and resilience for cloud and hybrid contact centers.
-- [AI in Contact Centers](https://www.luizterra.com.br/topics/ai-contact-centers/): Practical frameworks for AI ROI, automation, Answering Machine Detection, analytics and operational performance in contact centers.
+- [Contact Center AI: ROI, Automation & Governance](https://www.luizterra.com.br/topics/ai-contact-centers/): Practical frameworks for AI ROI, automation, Answering Machine Detection, analytics and operational performance in contact centers.
 - [LATAM Nearshore CX](https://www.luizterra.com.br/topics/latam-nearshore-cx/): Executive perspectives on LATAM nearshore delivery, language, cultural proximity, technology, resilience and customer experience.
 - [BPO Telecom Infrastructure](https://www.luizterra.com.br/topics/bpo-telecom-infrastructure/): How BPOs can evaluate uptime, voice quality, carrier diversity, observability, support, security and scalable telecom architecture.
 - [CCaaS in LATAM](https://www.luizterra.com.br/topics/ccaas-latam/): Market-entry considerations for CCaaS vendors across localization, carriers, PSTN, partnerships, integrations, support and channel strategy in LATAM.

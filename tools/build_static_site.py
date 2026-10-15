@@ -26,7 +26,7 @@ EMAIL = "contact@luizterra.com.br"
 LINKEDIN = "https://linkedin.com/in/lterra"
 PHOTO = IMAGES / "luiz-terra-executive.jpg"
 DATE_PUBLISHED = "2026-07-03"
-DATE_MODIFIED = "2026-08-25"
+DATE_MODIFIED = "2026-10-15"
 SCHEMA_DATE_CREATED = f"{DATE_PUBLISHED}T00:00:00-03:00"
 SCHEMA_DATE_MODIFIED = f"{DATE_MODIFIED}T00:00:00-03:00"
 
@@ -1343,7 +1343,15 @@ def footer(lang: str) -> str:
 
 def render_home(lang: str) -> str:
     c = COPY[lang]
-    featured_articles = [article for article in ARTICLES if article.get("featured")][:6]
+    featured_slugs = [
+        "ai-contact-centers-roi",
+        "bpos-evaluate-telecom-infrastructure-partners",
+        "brazil-customer-service-outsourcing",
+        "future-of-sbcs-cloud-contact-centers",
+        "latam-bridge-us-cx-global-delivery",
+        "strategic-partnerships-vs-reseller-agreements",
+    ]
+    featured_articles = [article for slug in featured_slugs for article in ARTICLES if article["slug"] == slug]
     impact_cards = "\n".join(
         f"""            <article>
               <span>{idx:02d}</span>
@@ -1684,6 +1692,22 @@ def render_executive_bio(lang: str) -> str:
         </section>"""
         for heading, paragraphs in EXECUTIVE_BIO["sections"][lang]
     )
+    priority_slugs = [
+        "ai-contact-centers-roi",
+        "bpos-evaluate-telecom-infrastructure-partners",
+        "brazil-customer-service-outsourcing",
+        "latam-bridge-us-cx-global-delivery",
+    ]
+    priority_articles = [article for slug in priority_slugs for article in ARTICLES if article["slug"] == slug]
+    related = "\n".join(
+        f"""            <article>
+              <span>{esc(item["category"][lang])}</span>
+              <h3>{esc(item["title"][lang])}</h3>
+              <p>{esc(item["summary"][lang])}</p>
+              <a href="{article_path(lang, item)}">{esc(UI[lang]["read_article"])}</a>
+            </article>"""
+        for item in priority_articles
+    )
     return f"""<!DOCTYPE html>
 <html lang="{META[lang]["lang"]}">
 {head(lang, EXECUTIVE_BIO["title"][lang], EXECUTIVE_BIO["description"][lang], "executive-bio/", "bio")}
@@ -1700,7 +1724,14 @@ def render_executive_bio(lang: str) -> str:
           <a class="button tertiary" href="/public/luiz-terra-executive-bio.pdf" download>{esc(UI[lang]["download_bio"])}</a>
         </div>
         <div class="article-content bio-content">{sections}</div>
-        <section class="related-insights"><h2>{esc(UI[lang]["insights_heading"])}</h2><p><a class="article-back" href="{lang_url(lang, 'insights/')}">{esc(UI[lang]["insights_support"])}</a></p></section>
+        <section class="related-insights" aria-labelledby="bio-insights-title">
+          <h2 id="bio-insights-title">{esc(UI[lang]["insights_heading"])}</h2>
+          <p>{esc(UI[lang]["insights_support"])}</p>
+          <div class="related-grid">
+{related}
+          </div>
+          <p><a class="article-back" href="{lang_url(lang, 'insights/')}">{esc(UI[lang]["view_all"])}</a></p>
+        </section>
       </article>
     </main>
 {footer(lang)}
