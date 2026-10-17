@@ -1026,8 +1026,8 @@ def head(
     article_meta = ""
     if page_type == "article" and article:
         article_meta = f"""
-    <meta property="article:published_time" content="{DATE_PUBLISHED}" />
-    <meta property="article:modified_time" content="{DATE_MODIFIED}" />
+    <meta property="article:published_time" content="{article.get('published', DATE_PUBLISHED)}" />
+    <meta property="article:modified_time" content="{article.get('modified', DATE_MODIFIED)}" />
     <meta property="article:author" content="{LINKEDIN}" />
     <meta property="article:section" content="{esc(article["category"][lang])}" />"""
     og_image = f"{BASE_URL}/public/og/{article['slug']}.png" if page_type == "article" and article else f"{BASE_URL}/public/og-image.png"
@@ -1145,6 +1145,7 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
                     "publisher": {"@id": f"{BASE_URL}/#luiz-terra"},
                     "articleSection": article["category"][lang],
                     "keywords": article["tags"],
+                    **({"isBasedOn": article["source_url"]} if article.get("source_url") else {}),
                 },
                 {
                     "@type": "BreadcrumbList",
@@ -1344,12 +1345,12 @@ def footer(lang: str) -> str:
 def render_home(lang: str) -> str:
     c = COPY[lang]
     featured_slugs = [
+        "new-cx-stack-telecom-contact-centers",
         "ai-contact-centers-roi",
         "bpos-evaluate-telecom-infrastructure-partners",
         "brazil-customer-service-outsourcing",
         "future-of-sbcs-cloud-contact-centers",
         "latam-bridge-us-cx-global-delivery",
-        "strategic-partnerships-vs-reseller-agreements",
     ]
     featured_articles = [article for slug in featured_slugs for article in ARTICLES if article["slug"] == slug]
     impact_cards = "\n".join(
@@ -1580,7 +1581,7 @@ def render_insights_index(lang: str) -> str:
             <div class="card-meta"><time datetime="{article.get('published', DATE_PUBLISHED)}">{display_date(lang, article.get('published', DATE_PUBLISHED))}</time><span>{esc(article.get('reading', {}).get(lang, ARTICLE_LABELS[lang]['reading']))}</span></div>
             <a href="{article_path(lang, article)}">{esc(UI[lang]["read_article"])}</a>
           </article>"""
-        for article in ARTICLES
+        for article in sorted(ARTICLES, key=lambda item: item.get("published", DATE_PUBLISHED), reverse=True)
     )
     filters = "\n".join(
         f'<button type="button" data-filter="{key}" aria-pressed="false">{esc(label)}</button>'
@@ -1805,6 +1806,7 @@ def render_article(lang: str, article: dict) -> str:
           <span>{esc(article.get('reading', {}).get(lang, labels["reading"]))}</span>
         </div>
         <div class="chips article-tags">{tags}</div>
+{f'        <p class="topic-link"><a href="{esc(article["source_url"])}" target="_blank" rel="noopener">{esc(UI[lang]["original_edition"])}</a></p>' if article.get("source_url") else ''}
           <div class="article-content">
           {f'<p class="topic-link"><a href="{topic_path(lang, topic["slug"])}">{esc(UI[lang]["explore_topic"])}: {esc(topic["title"][lang])}</a></p>' if topic else ''}
 {f'          <p class="article-lead">{esc(article["lead"][lang])}</p>' if article.get("lead") else ''}
@@ -1874,6 +1876,13 @@ def build_sitemap() -> None:
             pages.append((lang, f"topics/{topic['slug']}/"))
 
     def sitemap_url(lang: str, path: str) -> str:
+        updated = DATE_MODIFIED
+        if path.startswith("insights/") and path != "insights/":
+            slug = path.removeprefix("insights/").rstrip("/")
+            updated = next(item.get("modified", DATE_MODIFIED) for item in ARTICLES if item["slug"] == slug)
+        elif path == "insights/" or path.startswith("topics/") or path == "":
+            relevant = [item for item in ARTICLES if not path.startswith("topics/") or item.get("cluster") == path.removeprefix("topics/").rstrip("/")]
+            updated = max([DATE_MODIFIED] + [item.get("modified", DATE_MODIFIED) for item in relevant])
         alternates = "\n".join(
             f'    <xhtml:link rel="alternate" hreflang="{code}" href="{BASE_URL}{lang_url(target, path)}" />'
             for code, target in [("en", "en"), ("pt-BR", "pt"), ("es", "es")]
@@ -1891,7 +1900,7 @@ def build_sitemap() -> None:
         )
         return f"""  <url>
     <loc>{canonical(lang, path)}</loc>
-    <lastmod>{DATE_MODIFIED}</lastmod>
+    <lastmod>{updated}</lastmod>
 {alternates}
 {x_default}
     <priority>{priority}</priority>{image}
@@ -1933,7 +1942,7 @@ def build_discovery_files() -> None:
     <link>{BASE_URL}/insights/</link>
     <description>Practical perspectives on international sales, telecom, CX, BPO, CCaaS, SBC and AI-powered contact center operations.</description>
     <language>en</language>
-    <lastBuildDate>{rss_date(DATE_MODIFIED)}</lastBuildDate>
+    <lastBuildDate>{rss_date(max([DATE_MODIFIED] + [article.get("modified", DATE_MODIFIED) for article in ARTICLES]))}</lastBuildDate>
 {items}
   </channel>
 </rss>
@@ -2203,7 +2212,7 @@ International Sales Executive in Telecom, CX, BPO and AI, focused on strategic p
 
 ## Editorial Note
 
-The repository still does not include the source text for the 12 previously prepared LinkedIn posts. The six existing Insights were preserved and expanded in place, and seven new long-form articles were added for the requested search topics without creating near-duplicate pages. If the original LinkedIn source becomes available, it should be reviewed editorially before import.
+The initial authority collection was developed editorially for the requested search topics. New newsletter editions are synchronized only after public publication is confirmed on LinkedIn, with a visible original-edition link and editorial versions in English, Portuguese and Spanish. The 16 October 2026 edition, The New CX Stack, is the first confirmed newsletter edition incorporated through this flow. Earlier LinkedIn post texts are not assumed to be newsletter editions.
 
 ## Manual Checks
 

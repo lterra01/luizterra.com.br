@@ -4,7 +4,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.luizterra.com.br/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/" />
@@ -17,7 +17,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/" />
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/" />
@@ -52,7 +52,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/" />
@@ -61,7 +61,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/ai-powered-amd-outbound-operations/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/ai-powered-amd-outbound-operations/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/ai-powered-amd-outbound-operations/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/ai-powered-amd-outbound-operations/" />
@@ -70,7 +70,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/future-of-sbcs-cloud-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/future-of-sbcs-cloud-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/future-of-sbcs-cloud-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/future-of-sbcs-cloud-contact-centers/" />
@@ -88,7 +88,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/latam-bridge-us-cx-global-delivery/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/latam-bridge-us-cx-global-delivery/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/latam-bridge-us-cx-global-delivery/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/latam-bridge-us-cx-global-delivery/" />
@@ -97,7 +97,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/european-ccaas-local-telecom-partners/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/european-ccaas-local-telecom-partners/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/european-ccaas-local-telecom-partners/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/european-ccaas-local-telecom-partners/" />
@@ -106,7 +106,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/ai-contact-centers-roi/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/ai-contact-centers-roi/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/ai-contact-centers-roi/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/ai-contact-centers-roi/" />
@@ -114,8 +114,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.luizterra.com.br/insights/new-cx-stack-telecom-contact-centers/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/new-cx-stack-telecom-contact-centers/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/new-cx-stack-telecom-contact-centers/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/new-cx-stack-telecom-contact-centers/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/insights/new-cx-stack-telecom-contact-centers/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/sbc-as-a-service-bpo-ccaas/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/sbc-as-a-service-bpo-ccaas/" />
@@ -124,7 +133,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/call-center-automation-roi/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/call-center-automation-roi/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/call-center-automation-roi/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/call-center-automation-roi/" />
@@ -133,7 +142,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/brazil-customer-service-outsourcing/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/brazil-customer-service-outsourcing/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/brazil-customer-service-outsourcing/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/brazil-customer-service-outsourcing/" />
@@ -142,7 +151,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/ccaas-market-entry-latam/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/ccaas-market-entry-latam/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/ccaas-market-entry-latam/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/ccaas-market-entry-latam/" />
@@ -151,7 +160,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/sip-voice-quality-resilience-global-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/sip-voice-quality-resilience-global-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/sip-voice-quality-resilience-global-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/sip-voice-quality-resilience-global-contact-centers/" />
@@ -160,7 +169,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/nearshore-cx-latam-cost-equation/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/nearshore-cx-latam-cost-equation/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/nearshore-cx-latam-cost-equation/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/nearshore-cx-latam-cost-equation/" />
@@ -169,7 +178,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/strategic-partnerships-vs-reseller-agreements/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/strategic-partnerships-vs-reseller-agreements/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/strategic-partnerships-vs-reseller-agreements/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/strategic-partnerships-vs-reseller-agreements/" />
@@ -178,7 +187,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/ai-evaluation-production-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/ai-evaluation-production-contact-centers/" />
@@ -187,7 +196,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/customer-effort-architecture-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/customer-effort-architecture-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/customer-effort-architecture-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/customer-effort-architecture-contact-centers/" />
@@ -196,7 +205,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/global-cx-local-operating-intelligence/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/global-cx-local-operating-intelligence/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/global-cx-local-operating-intelligence/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/global-cx-local-operating-intelligence/" />
@@ -214,7 +223,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/topics/ai-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/topics/ai-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/topics/ai-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/topics/ai-contact-centers/" />
@@ -268,7 +277,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/" />
@@ -277,7 +286,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/ai-powered-amd-outbound-operations/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/ai-powered-amd-outbound-operations/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/ai-powered-amd-outbound-operations/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/ai-powered-amd-outbound-operations/" />
@@ -286,7 +295,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/future-of-sbcs-cloud-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/future-of-sbcs-cloud-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/future-of-sbcs-cloud-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/future-of-sbcs-cloud-contact-centers/" />
@@ -304,7 +313,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/latam-bridge-us-cx-global-delivery/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/latam-bridge-us-cx-global-delivery/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/latam-bridge-us-cx-global-delivery/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/latam-bridge-us-cx-global-delivery/" />
@@ -313,7 +322,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/european-ccaas-local-telecom-partners/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/european-ccaas-local-telecom-partners/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/european-ccaas-local-telecom-partners/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/european-ccaas-local-telecom-partners/" />
@@ -322,7 +331,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/ai-contact-centers-roi/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/ai-contact-centers-roi/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/ai-contact-centers-roi/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/ai-contact-centers-roi/" />
@@ -330,8 +339,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.luizterra.com.br/pt/insights/new-cx-stack-telecom-contact-centers/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/new-cx-stack-telecom-contact-centers/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/new-cx-stack-telecom-contact-centers/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/new-cx-stack-telecom-contact-centers/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/insights/new-cx-stack-telecom-contact-centers/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.luizterra.com.br/pt/insights/sbc-as-a-service-bpo-ccaas/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/sbc-as-a-service-bpo-ccaas/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/sbc-as-a-service-bpo-ccaas/" />
@@ -340,7 +358,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/call-center-automation-roi/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/call-center-automation-roi/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/call-center-automation-roi/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/call-center-automation-roi/" />
@@ -349,7 +367,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/brazil-customer-service-outsourcing/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/brazil-customer-service-outsourcing/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/brazil-customer-service-outsourcing/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/brazil-customer-service-outsourcing/" />
@@ -358,7 +376,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/ccaas-market-entry-latam/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/ccaas-market-entry-latam/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/ccaas-market-entry-latam/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/ccaas-market-entry-latam/" />
@@ -367,7 +385,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/sip-voice-quality-resilience-global-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/sip-voice-quality-resilience-global-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/sip-voice-quality-resilience-global-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/sip-voice-quality-resilience-global-contact-centers/" />
@@ -376,7 +394,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/nearshore-cx-latam-cost-equation/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/nearshore-cx-latam-cost-equation/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/nearshore-cx-latam-cost-equation/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/nearshore-cx-latam-cost-equation/" />
@@ -385,7 +403,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/strategic-partnerships-vs-reseller-agreements/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/strategic-partnerships-vs-reseller-agreements/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/strategic-partnerships-vs-reseller-agreements/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/strategic-partnerships-vs-reseller-agreements/" />
@@ -394,7 +412,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/ai-evaluation-production-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/ai-evaluation-production-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/ai-evaluation-production-contact-centers/" />
@@ -403,7 +421,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/customer-effort-architecture-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/customer-effort-architecture-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/customer-effort-architecture-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/customer-effort-architecture-contact-centers/" />
@@ -412,7 +430,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/global-cx-local-operating-intelligence/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/global-cx-local-operating-intelligence/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/global-cx-local-operating-intelligence/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/global-cx-local-operating-intelligence/" />
@@ -430,7 +448,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/topics/ai-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/topics/ai-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/topics/ai-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/topics/ai-contact-centers/" />
@@ -484,7 +502,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/" />
@@ -493,7 +511,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/ai-powered-amd-outbound-operations/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/ai-powered-amd-outbound-operations/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/ai-powered-amd-outbound-operations/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/ai-powered-amd-outbound-operations/" />
@@ -502,7 +520,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/future-of-sbcs-cloud-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/future-of-sbcs-cloud-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/future-of-sbcs-cloud-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/future-of-sbcs-cloud-contact-centers/" />
@@ -520,7 +538,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/latam-bridge-us-cx-global-delivery/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/latam-bridge-us-cx-global-delivery/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/latam-bridge-us-cx-global-delivery/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/latam-bridge-us-cx-global-delivery/" />
@@ -529,7 +547,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/european-ccaas-local-telecom-partners/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/european-ccaas-local-telecom-partners/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/european-ccaas-local-telecom-partners/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/european-ccaas-local-telecom-partners/" />
@@ -538,7 +556,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/ai-contact-centers-roi/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/ai-contact-centers-roi/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/ai-contact-centers-roi/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/ai-contact-centers-roi/" />
@@ -546,8 +564,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.luizterra.com.br/es/insights/new-cx-stack-telecom-contact-centers/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/new-cx-stack-telecom-contact-centers/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/new-cx-stack-telecom-contact-centers/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/new-cx-stack-telecom-contact-centers/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/insights/new-cx-stack-telecom-contact-centers/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.luizterra.com.br/es/insights/sbc-as-a-service-bpo-ccaas/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/sbc-as-a-service-bpo-ccaas/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/sbc-as-a-service-bpo-ccaas/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/sbc-as-a-service-bpo-ccaas/" />
@@ -556,7 +583,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/call-center-automation-roi/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/call-center-automation-roi/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/call-center-automation-roi/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/call-center-automation-roi/" />
@@ -565,7 +592,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/brazil-customer-service-outsourcing/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/brazil-customer-service-outsourcing/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/brazil-customer-service-outsourcing/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/brazil-customer-service-outsourcing/" />
@@ -574,7 +601,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/ccaas-market-entry-latam/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/ccaas-market-entry-latam/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/ccaas-market-entry-latam/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/ccaas-market-entry-latam/" />
@@ -583,7 +610,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/sip-voice-quality-resilience-global-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/sip-voice-quality-resilience-global-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/sip-voice-quality-resilience-global-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/sip-voice-quality-resilience-global-contact-centers/" />
@@ -592,7 +619,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/nearshore-cx-latam-cost-equation/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/nearshore-cx-latam-cost-equation/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/nearshore-cx-latam-cost-equation/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/nearshore-cx-latam-cost-equation/" />
@@ -601,7 +628,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/strategic-partnerships-vs-reseller-agreements/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-05</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/strategic-partnerships-vs-reseller-agreements/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/strategic-partnerships-vs-reseller-agreements/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/strategic-partnerships-vs-reseller-agreements/" />
@@ -610,7 +637,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/ai-evaluation-production-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/ai-evaluation-production-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/ai-evaluation-production-contact-centers/" />
@@ -619,7 +646,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/customer-effort-architecture-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/customer-effort-architecture-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/customer-effort-architecture-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/customer-effort-architecture-contact-centers/" />
@@ -628,7 +655,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/global-cx-local-operating-intelligence/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/global-cx-local-operating-intelligence/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/global-cx-local-operating-intelligence/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/global-cx-local-operating-intelligence/" />
@@ -646,7 +673,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/topics/ai-contact-centers/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/topics/ai-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/topics/ai-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/topics/ai-contact-centers/" />

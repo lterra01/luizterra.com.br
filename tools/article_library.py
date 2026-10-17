@@ -25,6 +25,7 @@ def article(
     modified="2026-08-05",
     reading=None,
     featured=False,
+    source_url=None,
 ):
     return {
         "slug": slug,
@@ -43,6 +44,7 @@ def article(
         "modified": modified,
         "reading": reading or {"en": "8 min read", "pt": "8 min de leitura", "es": "8 min de lectura"},
         "featured": featured,
+        "source_url": source_url,
     }
 
 
@@ -262,6 +264,140 @@ RELATED_OVERRIDES = {
 
 
 NEW_ARTICLES = [
+    article(
+        slug="new-cx-stack-telecom-contact-centers",
+        title={
+            "en": "The New CX Stack: Experience, Telecom and Contact Centers Converge",
+            "pt": "A nova arquitetura de CX: experiência, telecom e contact centers convergem",
+            "es": "La nueva arquitectura de CX: experiencia, telecom y contact centers convergen",
+        },
+        seo_title={
+            "en": "The New CX Stack: Telecom & Contact Centers | Luiz Terra",
+            "pt": "Arquitetura de CX: Telecom e Contact Centers | Luiz Terra",
+            "es": "Arquitectura CX: Telecom y Contact Centers | Luiz Terra",
+        },
+        summary={
+            "en": "How customer journeys, telecom, AI, identity and governance converge in a CX stack built for reliable global contact center operations.",
+            "pt": "Como jornadas, telecom, IA, identidade e governança convergem em uma arquitetura de CX para operações globais de contact center.",
+            "es": "Cómo jornadas, telecom, IA, identidad y gobernanza convergen en una arquitectura de CX para operaciones globales de contact center.",
+        },
+        category={"en": "Telecom", "pt": "Telecom", "es": "Telecom"},
+        cluster="ai-contact-centers",
+        tags=["customer experience", "telecom", "contact center architecture", "CX stack", "AI governance", "global CX"],
+        sections={
+            "en": [
+                ("The boundaries between operating domains are disappearing", [
+                    "For years, companies treated Customer Experience, Telecom and Contact Center as separate domains. CX defined journeys and service promises. Contact center teams managed people, workflows and applications. Telecom teams kept calls and connectivity working. That division was understandable when channels were simpler and automation was limited.",
+                    "It is no longer enough. Customers experience one company, while the technology, decisions and teams behind that experience now depend on each other in real time. A service promise needs an operating architecture capable of fulfilling it.",
+                ]),
+                ("Three forces are bringing these worlds together", [
+                    "First, customers move continuously between messaging, apps, web, voice and human assistance. They do not experience departments; they experience one company. The journey must carry the intent and the context of the conversation across those transitions.",
+                    "Second, AI is becoming an active participant in conversations. It can interpret intent, search knowledge, perform actions and decide when to escalate. Its performance depends not only on the model, but also on identity, data, integrations, latency, media quality and governance.",
+                    "Third, global operations increase variation. Languages, carriers, regulations, service expectations and channel preferences differ by market. A centralized platform can create scale, but only local operating intelligence creates relevance.",
+                ]),
+                ("Four connected layers of the new CX stack", [
+                    "I see the emerging CX stack in four connected layers. The value comes from how they work together around the customer's objective, rather than from treating each layer as a separate purchasing decision.",
+                    "Intent and identity: understanding who the customer is, what they need and what permission exists to use their data. This is the context that allows the next interaction or action to make sense.",
+                    "Interaction orchestration: coordinating digital channels, voice, AI and people around the customer's objective. A transition between channels or between automation and a person should support the same journey.",
+                    "Telecom execution: providing reliable media, routing, numbering, recording, availability and regional connectivity. These capabilities determine whether the real-time conversation can actually take place as intended.",
+                    "Intelligence and governance: measuring outcomes, quality, trust, compliance and continuous improvement. The stack needs evidence about what happened and a way to turn that evidence into an operating decision.",
+                ]),
+                ("One customer outcome across the architecture", [
+                    "This convergence changes the leadership agenda. Voice quality is a CX issue. Routing is a CX issue. Identity and consent are CX issues. Agent context, AI evaluation, carrier resilience and recording integrity are all part of the same customer outcome.",
+                    "In this model, the contact center becomes an operating nerve center. Telecom provides the real-time execution layer. CX defines what a successful outcome means. The leadership task is to connect these responsibilities across the complete journey.",
+                ]),
+                ("A common global core with adaptable local execution", [
+                    "The winning global architecture will be common at its core and adaptable at its edges. Companies need consistent principles for security, data, quality and brand, while preserving local carrier options, languages, regulations, partners and cultural expectations.",
+                    "The same platform does not make every market identical. Global consistency needs an explicit place for local operating intelligence, including the connectivity, language and service conditions in which the customer actually interacts.",
+                ]),
+                ("Measure the complete journey", [
+                    "The management conversation must evolve as well. Average handling time and channel volume are not enough. Leaders should measure repeat effort, successful resolution, promise fulfillment, trust, resilience and cost to serve across the complete journey.",
+                    "A useful review connects those outcomes with the interaction that produced them. It brings experience, technology and operational accountability into the same conversation, so that improving one component supports the result the customer needs.",
+                ]),
+            ],
+            "pt": [
+                ("As fronteiras entre os domínios operacionais estão desaparecendo", [
+                    "Durante anos, as empresas trataram Customer Experience, Telecom e Contact Center como domínios separados. CX definia jornadas e promessas de serviço. As equipes de contact center gerenciavam pessoas, fluxos de trabalho e aplicações. As equipes de telecom mantinham as chamadas e a conectividade funcionando. Essa divisão fazia sentido quando os canais eram mais simples e a automação era limitada.",
+                    "Isso já não é suficiente. O cliente percebe uma única empresa, enquanto a tecnologia, as decisões e as equipes que sustentam essa experiência dependem umas das outras em tempo real. A promessa de serviço precisa de uma arquitetura operacional capaz de cumpri-la.",
+                ]),
+                ("Três forças estão aproximando esses mundos", [
+                    "Primeiro, os clientes transitam continuamente entre mensagens, aplicativos, web, voz e assistência humana. Eles não vivenciam departamentos; vivenciam uma única empresa. A jornada precisa levar a intenção e o contexto da conversa ao longo dessas transições.",
+                    "Segundo, a IA está se tornando participante ativa das conversas. Ela pode interpretar intenções, buscar conhecimento, executar ações e decidir quando escalar. Seu desempenho depende não apenas do modelo, mas também de identidade, dados, integrações, latência, qualidade de mídia e governança.",
+                    "Terceiro, as operações globais aumentam a variação. Idiomas, operadoras, regulações, expectativas de serviço e preferências de canal mudam conforme o mercado. Uma plataforma centralizada pode criar escala, mas somente a inteligência operacional local cria relevância.",
+                ]),
+                ("Quatro camadas conectadas da nova arquitetura de CX", [
+                    "Vejo essa arquitetura emergente em quatro camadas conectadas. O valor está na forma como elas trabalham juntas em torno do objetivo do cliente, em vez de tratar cada camada como uma decisão de compra isolada.",
+                    "Intenção e identidade: compreender quem é o cliente, o que ele precisa e qual permissão existe para usar seus dados. Esse é o contexto que dá sentido à próxima interação ou ação.",
+                    "Orquestração de interações: coordenar canais digitais, voz, IA e pessoas em torno do objetivo do cliente. A transição entre canais ou entre automação e uma pessoa deve sustentar a mesma jornada.",
+                    "Execução de telecom: oferecer mídia, roteamento, numeração, gravação, disponibilidade e conectividade regional confiáveis. Essas capacidades determinam se a conversa em tempo real consegue acontecer como previsto.",
+                    "Inteligência e governança: medir resultados, qualidade, confiança, conformidade e melhoria contínua. A arquitetura precisa de evidências sobre o que aconteceu e de um caminho para transformar essas evidências em decisões operacionais.",
+                ]),
+                ("Um mesmo resultado para o cliente em toda a arquitetura", [
+                    "Essa convergência muda a agenda da liderança. Qualidade de voz é um tema de CX. Roteamento é um tema de CX. Identidade e consentimento são temas de CX. Contexto do agente, avaliação de IA, resiliência das operadoras e integridade das gravações fazem parte do mesmo resultado para o cliente.",
+                    "Nesse modelo, o contact center se torna um centro de coordenação operacional. Telecom oferece a camada de execução em tempo real. CX define o que significa um resultado bem-sucedido. O trabalho da liderança é conectar essas responsabilidades ao longo de toda a jornada.",
+                ]),
+                ("Um núcleo global comum com execução local adaptável", [
+                    "A arquitetura global vencedora terá um núcleo comum e extremidades adaptáveis. As empresas precisam de princípios consistentes para segurança, dados, qualidade e marca, preservando opções de operadoras locais, idiomas, regulações, parceiros e expectativas culturais.",
+                    "Usar a mesma plataforma não torna todos os mercados iguais. A consistência global precisa abrir espaço explícito para a inteligência operacional local, incluindo as condições de conectividade, idioma e serviço em que a interação realmente acontece.",
+                ]),
+                ("Meça a jornada completa", [
+                    "A conversa de gestão também precisa evoluir. Tempo médio de atendimento e volume por canal não são suficientes. A liderança deve medir esforço repetido, resolução efetiva, cumprimento de promessas, confiança, resiliência e custo de servir ao longo de toda a jornada.",
+                    "Uma avaliação útil conecta esses resultados à interação que os produziu. Ela coloca experiência, tecnologia e responsabilidade operacional na mesma conversa, para que a melhoria de um componente contribua para o resultado de que o cliente precisa.",
+                ]),
+            ],
+            "es": [
+                ("Las fronteras entre los dominios operacionales están desapareciendo", [
+                    "Durante años, las empresas trataron Customer Experience, Telecom y Contact Center como dominios separados. CX definía los recorridos y las promesas de servicio. Los equipos de contact center gestionaban personas, flujos de trabajo y aplicaciones. Los equipos de telecomunicaciones mantenían las llamadas y la conectividad en funcionamiento. Esa división era comprensible cuando los canales eran más simples y la automatización era limitada.",
+                    "Ya no es suficiente. El cliente percibe una sola empresa, mientras que la tecnología, las decisiones y los equipos que sostienen esa experiencia dependen unos de otros en tiempo real. La promesa de servicio necesita una arquitectura operacional capaz de cumplirla.",
+                ]),
+                ("Tres fuerzas están uniendo estos mundos", [
+                    "Primero, los clientes se mueven continuamente entre mensajería, aplicaciones, web, voz y asistencia humana. No experimentan departamentos; experimentan una sola empresa. La jornada necesita mantener la intención y el contexto de la conversación durante esas transiciones.",
+                    "Segundo, la IA se está convirtiendo en un participante activo de las conversaciones. Puede interpretar la intención, buscar conocimiento, ejecutar acciones y decidir cuándo escalar. Su desempeño no depende solamente del modelo, sino también de la identidad, los datos, las integraciones, la latencia, la calidad del audio y la gobernanza.",
+                    "Tercero, las operaciones globales aumentan la variación. Los idiomas, operadores, regulaciones, expectativas de servicio y preferencias de canal cambian según el mercado. Una plataforma centralizada puede generar escala, pero solamente la inteligencia operacional local crea relevancia.",
+                ]),
+                ("Cuatro capas conectadas de la nueva arquitectura de CX", [
+                    "Veo esta arquitectura emergente como cuatro capas conectadas. Su valor depende de cómo trabajan juntas alrededor del objetivo del cliente, en lugar de tratar cada capa como una decisión de compra aislada.",
+                    "Intención e identidad: comprender quién es el cliente, qué necesita y qué permiso existe para utilizar sus datos. Ese es el contexto que da sentido a la siguiente interacción o acción.",
+                    "Orquestación de interacciones: coordinar canales digitales, voz, IA y personas alrededor del objetivo del cliente. Una transición entre canales o entre automatización y una persona debe sostener la misma jornada.",
+                    "Ejecución de telecomunicaciones: ofrecer audio, enrutamiento, numeración, grabación, disponibilidad y conectividad regional confiables. Estas capacidades determinan si la conversación en tiempo real puede ocurrir como se esperaba.",
+                    "Inteligencia y gobernanza: medir resultados, calidad, confianza, cumplimiento y mejora continua. La arquitectura necesita evidencia de lo ocurrido y un camino para convertirla en decisiones operacionales.",
+                ]),
+                ("Un mismo resultado para el cliente en toda la arquitectura", [
+                    "Esta convergencia transforma la agenda de liderazgo. La calidad de voz es un tema de CX. El enrutamiento es un tema de CX. La identidad y el consentimiento son temas de CX. El contexto del agente, la evaluación de IA, la resiliencia de los operadores y la integridad de las grabaciones forman parte del mismo resultado para el cliente.",
+                    "En este modelo, el contact center se convierte en un centro de coordinación operacional. Telecom ofrece la capa de ejecución en tiempo real. CX define qué significa un resultado exitoso. La tarea del liderazgo es conectar esas responsabilidades a lo largo de toda la jornada.",
+                ]),
+                ("Un núcleo global común con ejecución local adaptable", [
+                    "La arquitectura global ganadora será común en su núcleo y adaptable en sus extremos. Las empresas necesitan principios consistentes de seguridad, datos, calidad y marca, preservando al mismo tiempo operadores locales, idiomas, regulaciones, socios y expectativas culturales.",
+                    "Una misma plataforma no convierte todos los mercados en entornos idénticos. La consistencia global necesita un espacio explícito para la inteligencia operacional local, incluidas las condiciones de conectividad, idioma y servicio en las que ocurre la interacción.",
+                ]),
+                ("Mida la jornada completa", [
+                    "La conversación de gestión también debe evolucionar. El tiempo promedio de atención y el volumen por canal no son suficientes. Los líderes deben medir el esfuerzo repetido, la resolución efectiva, el cumplimiento de promesas, la confianza, la resiliencia y el costo de servicio a lo largo de toda la jornada.",
+                    "Una evaluación útil conecta esos resultados con la interacción que los produjo. Reúne experiencia, tecnología y responsabilidad operacional en una misma conversación, para que mejorar un componente contribuya al resultado que el cliente necesita.",
+                ]),
+            ],
+        },
+        checklist={
+            "en": ["Carry customer intent, identity and context across channels", "Connect digital channels, voice, AI and human escalation", "Review media quality, routing, recording and carrier resilience", "Define global principles and local operating decisions", "Measure resolution, repeated effort, trust and cost to serve"],
+            "pt": ["Levar intenção, identidade e contexto do cliente entre canais", "Conectar canais digitais, voz, IA e escalonamento humano", "Revisar mídia, roteamento, gravação e resiliência das operadoras", "Definir princípios globais e decisões operacionais locais", "Medir resolução, esforço repetido, confiança e custo de servir"],
+            "es": ["Mantener intención, identidad y contexto entre canales", "Conectar canales digitales, voz, IA y escalamiento humano", "Revisar audio, enrutamiento, grabación y resiliencia de operadores", "Definir principios globales y decisiones operacionales locales", "Medir resolución, esfuerzo repetido, confianza y costo de servicio"],
+        },
+        closing={
+            "en": "The convergence of CX, Telecom and Contact Center is a leadership and operating-model decision. Connect the four layers around a customer journey, make the local conditions explicit and review the outcome as a shared responsibility. That is the purpose of CX, Telecom & Contact Center: to examine the business models, technologies, partnerships and operating decisions shaping this convergence worldwide.",
+            "pt": "A convergência entre CX, Telecom e Contact Center é uma decisão de liderança e modelo operacional. Conecte as quatro camadas em torno de uma jornada, deixe claras as condições locais e avalie o resultado como responsabilidade compartilhada. Esse é o propósito de CX, Telecom & Contact Center: analisar os modelos de negócio, tecnologias, parcerias e decisões operacionais que estão moldando essa convergência no mundo.",
+            "es": "La convergencia de CX, Telecom y Contact Center es una decisión de liderazgo y modelo operacional. Conecte las cuatro capas alrededor de una jornada, haga explícitas las condiciones locales y evalúe el resultado como responsabilidad compartida. Ese es el propósito de CX, Telecom & Contact Center: analizar los modelos de negocio, tecnologías, alianzas y decisiones operacionales que están dando forma a esta convergencia mundial.",
+        },
+        faq={
+            "en": [("What are the four layers of the new CX stack?", "Intent and identity, interaction orchestration, telecom execution, and intelligence and governance. They connect customer context, channels, real-time communications and evidence about outcomes."), ("Why is telecom part of customer experience?", "Media quality, routing, availability, recording and regional connectivity influence whether a conversation can happen reliably and whether the service promise can be fulfilled.")],
+            "pt": [("Quais são as quatro camadas da nova arquitetura de CX?", "Intenção e identidade, orquestração de interações, execução de telecom e inteligência e governança. Elas conectam contexto do cliente, canais, comunicação em tempo real e evidências sobre os resultados."), ("Por que telecom faz parte da experiência do cliente?", "Qualidade de mídia, roteamento, disponibilidade, gravação e conectividade regional influenciam a confiabilidade da conversa e o cumprimento da promessa de serviço.")],
+            "es": [("¿Cuáles son las cuatro capas de la nueva arquitectura de CX?", "Intención e identidad, orquestación de interacciones, ejecución de telecomunicaciones e inteligencia y gobernanza. Conectan contexto, canales, comunicación en tiempo real y evidencia sobre los resultados."), ("¿Por qué telecom forma parte de la experiencia del cliente?", "La calidad del audio, el enrutamiento, la disponibilidad, las grabaciones y la conectividad regional influyen en la confiabilidad de la conversación y el cumplimiento de la promesa de servicio.")],
+        },
+        related=["ai-evaluation-production-contact-centers", "global-cx-local-operating-intelligence", "customer-effort-architecture-contact-centers", "sip-voice-quality-resilience-global-contact-centers"],
+        published="2026-10-16",
+        modified="2026-10-17",
+        reading={"en": "5 min read", "pt": "5 min de leitura", "es": "5 min de lectura"},
+        featured=True,
+        source_url="https://www.linkedin.com/pulse/new-cx-stack-experience-telecom-contact-centers-converge-luiz-terra-rtdpe/",
+    ),
     compact(
         slug="sbc-as-a-service-bpo-ccaas",
         title={"en": "SBC as a Service: What BPOs and CCaaS Providers Should Evaluate", "pt": "SBC as a Service: o que BPOs e fornecedores CCaaS devem avaliar", "es": "SBC as a Service: qué deben evaluar BPOs y proveedores CCaaS"},

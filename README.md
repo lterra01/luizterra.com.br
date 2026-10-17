@@ -35,7 +35,7 @@ International Sales Executive in Telecom, CX, BPO and AI, focused on strategic p
 
 ## Editorial Note
 
-The repository still does not include the source text for the 12 previously prepared LinkedIn posts. The six existing Insights were preserved and expanded in place, and seven new long-form articles were added for the requested search topics without creating near-duplicate pages. If the original LinkedIn source becomes available, it should be reviewed editorially before import.
+The initial authority collection was developed editorially for the requested search topics. New newsletter editions are synchronized only after public publication is confirmed on LinkedIn, with a visible original-edition link and editorial versions in English, Portuguese and Spanish. The 16 October 2026 edition, The New CX Stack, is the first confirmed newsletter edition incorporated through this flow. Earlier LinkedIn post texts are not assumed to be newsletter editions.
 
 ## Manual Checks
 
