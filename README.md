@@ -37,6 +37,16 @@ International Sales Executive in Telecom, CX, BPO and AI, focused on strategic p
 
 The initial authority collection was developed editorially for the requested search topics. New newsletter editions are synchronized only after public publication is confirmed on LinkedIn, with a visible original-edition link and editorial versions in English, Portuguese and Spanish. Confirmed editions incorporated through this flow: The New CX Stack (16 October 2026) and Voice AI Needs Telecom Discipline (23 October 2026). Earlier LinkedIn post texts are not assumed to be newsletter editions.
 
+## eBook Storefront
+
+- Sales pages: `/ebooks/cx-na-operacao/`, `/pt/ebooks/cx-na-operacao/`, `/es/ebooks/cx-na-operacao/`.
+- The product is a Portuguese PDF. English and Spanish pages describe the same Portuguese edition.
+- Product facts and copy: `tools/ebook_content.py`; rebuild with `tools/build_static_site.py`.
+- The public site contains promotional images only. Do not add the paid PDF or editable manuscript to this repository.
+- Existing pages include a persistent announcement and a dismissible native dialog shown once per browser session. Blocked session storage disables the dialog, not the announcement.
+- `ebook_landing_click`, `ebook_checkout_click` and `ebook_introduction_view` are intent events, not purchase or revenue confirmations. They use the existing Google tag only.
+- The verified checkout is https://pay.hotmart.com/Q108197102H. Recheck Hotmart before changing price, refund period or delivery claims.
+
 ## Manual Checks
 
 - Validate social preview with LinkedIn Post Inspector and WhatsApp after cache propagation.

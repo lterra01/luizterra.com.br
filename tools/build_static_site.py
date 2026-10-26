@@ -16,6 +16,7 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, Tabl
 
 from article_library import ARTICLE_LEADS, ARTICLE_UPDATES, NEW_ARTICLES, RELATED_OVERRIDES, SEO_OVERRIDES
 from content_hub import CLUSTER_GUIDANCE, EXECUTIVE_BIO, TOPICS, TOPIC_BY_SLUG, UI
+from ebook_content import EBOOK, EBOOK_COPY
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -1031,6 +1032,13 @@ def head(
     <meta property="article:author" content="{LINKEDIN}" />
     <meta property="article:section" content="{esc(article["category"][lang])}" />"""
     og_image = f"{BASE_URL}/public/og/{article['slug']}.png" if page_type == "article" and article else f"{BASE_URL}/public/og-image.png"
+    og_width, og_height = 1200, 630
+    og_alt = "Luiz Terra, International Sales Executive in Telecom, CX, BPO and AI"
+    if page_type == "ebook":
+        og_image = f"{BASE_URL}{EBOOK['cover']}"
+        og_width = og_height = 1254
+        og_alt = "CX na Operação - 7 rotinas para organizar o atendimento - Luiz Terra"
+        preload = f'    <link rel="preload" href="{EBOOK["cover"]}" as="image" type="image/webp" fetchpriority="high" />\n'
     return f"""  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -1048,9 +1056,9 @@ def head(
     <meta property="og:site_name" content="Luiz Terra" />
     <meta property="og:locale" content="{meta["locale"]}" />
     <meta property="og:image" content="{og_image}" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Luiz Terra, International Sales Executive in Telecom, CX, BPO and AI" />
+    <meta property="og:image:width" content="{og_width}" />
+    <meta property="og:image:height" content="{og_height}" />
+    <meta property="og:image:alt" content="{esc(og_alt)}" />
 {article_meta}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{esc(title)}" />
@@ -1128,7 +1136,29 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
     }
     graph: list[dict] = [website, person]
 
-    if page_type == "article" and article:
+    if page_type == "ebook":
+        graph.extend([
+            {
+                "@type": "WebPage", "@id": f"{url}#webpage", "url": url,
+                "name": EBOOK_COPY[lang]["title"], "description": EBOOK_COPY[lang]["description"],
+                "inLanguage": META[lang]["lang"], "dateModified": EBOOK["modified"],
+                "mainEntity": {"@id": f"{BASE_URL}/{EBOOK['path']}#book"},
+            },
+            {
+                "@type": ["Book", "Product"], "@id": f"{BASE_URL}/{EBOOK['path']}#book",
+                "name": EBOOK["name"], "description": EBOOK_COPY[lang]["description"],
+                "author": {"@id": f"{BASE_URL}/#luiz-terra"}, "inLanguage": "pt-BR",
+                "bookFormat": "https://schema.org/EBook", "numberOfPages": 27,
+                "image": f"{BASE_URL}{EBOOK['cover']}", "url": url,
+                "offers": {"@type": "Offer", "url": EBOOK["checkout"], "price": EBOOK["price"],
+                           "priceCurrency": "BRL", "availability": "https://schema.org/InStock"},
+            },
+            {"@type": "FAQPage", "@id": f"{url}#faq", "mainEntity": [
+                {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+                for q, a in EBOOK_COPY[lang]["faq"]
+            ]},
+        ])
+    elif page_type == "article" and article:
         graph.extend(
             [
                 {
@@ -1328,7 +1358,30 @@ def nav(lang: str, current_path: str = "") -> str:
     </nav>"""
 
 
-def footer(lang: str) -> str:
+def ebook_promotion(lang: str) -> str:
+    c = EBOOK_COPY[lang]
+    path = lang_url(lang, EBOOK["path"])
+    return f"""
+    <aside class="ebook-announcement" aria-label="{esc(c['bar_label'])}">
+      <a href="{path}" data-ebook-placement="announcement">
+        <span class="ebook-announcement-copy"><small>{esc(c['bar_label'])}</small><strong>{esc(c['bar_text'])}</strong></span>
+        <span class="ebook-announcement-price">{EBOOK['price_label']}</span>
+        <span class="ebook-announcement-action">{esc(c['learn'])}<span aria-hidden="true"> &#8594;</span></span>
+      </a>
+    </aside>
+    <dialog class="ebook-modal" id="ebook-introduction" aria-labelledby="ebook-introduction-title" aria-describedby="ebook-introduction-description">
+      <button type="button" class="ebook-modal-close" data-ebook-close aria-label="{esc(c['close'])}" title="{esc(c['close'])}" autofocus>&times;</button>
+      <img src="{EBOOK['cover']}" width="1254" height="1254" loading="lazy" alt="{esc(EBOOK['name'])} - Luiz Terra" />
+      <p class="eyebrow">{esc(c['label'])}</p>
+      <h2 id="ebook-introduction-title">{esc(c['modal_title'])}</h2>
+      <p id="ebook-introduction-description">{esc(c['modal_text'])}</p>
+      <p class="ebook-modal-price">{EBOOK['price_label']} <small>{esc(c['single'])}</small></p>
+      <a class="button primary" href="{path}" data-ebook-placement="introduction">{esc(c['learn'])}</a>
+      <button class="ebook-continue" type="button" data-ebook-close>{esc(c['continue'])}</button>
+    </dialog>"""
+
+
+def footer(lang: str, promote: bool = True) -> str:
     c = COPY[lang]
     return f"""    <footer class="site-footer">
       <div>
@@ -1338,8 +1391,9 @@ def footer(lang: str) -> str:
       <div class="footer-links" aria-label="Footer links">
         <a href="mailto:{EMAIL}">{EMAIL}</a>
         <a href="{LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="{lang_url(lang, EBOOK['path'])}">eBook: CX na Operação</a>
       </div>
-    </footer>"""
+    </footer>{ebook_promotion(lang) if promote else ''}"""
 
 
 def render_home(lang: str) -> str:
@@ -1846,6 +1900,65 @@ def render_article(lang: str, article: dict) -> str:
 """
 
 
+def render_ebook(lang: str) -> str:
+    c = EBOOK_COPY[lang]
+    facts = "\n".join(f'<div><strong>{esc(value)}</strong><span>{esc(label)}</span></div>' for value, label in c["facts"])
+    routines = "\n".join(f'<li><span class="ebook-routine-number" aria-hidden="true">{i:02d}</span><div><h3>{esc(title)}</h3><p>{esc(text)}</p></div></li>' for i, (title, text) in enumerate(c["routines"], 1))
+    materials = "\n".join(f'<li><span aria-hidden="true">{i:02d}</span>{esc(title)}</li>' for i, title in enumerate(c["materials"], 1))
+    faq = "\n".join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in c["faq"])
+
+    def buy(placement: str) -> str:
+        return f'<a class="button ebook-buy" href="{EBOOK["checkout"]}" target="_blank" rel="noopener" data-ebook-checkout="{placement}">{esc(c["buy"])} <span aria-hidden="true">&#8599;</span></a>'
+
+    return f"""<!DOCTYPE html>
+<html lang="{META[lang]['lang']}">
+{head(lang, c['title'], c['description'], EBOOK['path'], 'ebook')}
+  <body class="ebook-landing">
+{nav(lang, EBOOK['path'])}
+    <main class="ebook-main">
+      <section class="ebook-hero" aria-labelledby="ebook-title">
+        <div class="ebook-hero-inner">
+          <div class="ebook-hero-copy">
+            <p class="eyebrow">{esc(c['label'])}</p>
+            <h1 id="ebook-title">CX na <span>Operação</span></h1>
+            <p class="ebook-subtitle">{esc(c['subtitle'])}</p>
+            <p class="ebook-intro">{esc(c['intro'])}</p>
+            <p class="ebook-price">{EBOOK['price_label']} <small>{esc(c['single'])}</small></p>
+            <div class="ebook-actions">{buy('hero')}<a class="ebook-contents-link" href="#ebook-contents">{esc(c['contents_link'])} <span aria-hidden="true">&#8595;</span></a></div>
+            <p class="ebook-purchase-note">{esc(c['purchase_note'])}</p>
+          </div>
+          <img class="ebook-cover" src="{EBOOK['cover']}" width="1254" height="1254" alt="Capa: CX na Operação, 7 rotinas para organizar o atendimento, Luiz Terra" fetchpriority="high" />
+        </div>
+      </section>
+      <section class="ebook-facts" aria-label="{esc(c['label'])}"><div>{facts}</div></section>
+      <section class="ebook-section ebook-paper section-reveal" aria-labelledby="ebook-audience-title">
+        <div class="ebook-section-inner ebook-audience">
+          <p class="eyebrow">{esc(c['audience_label'])}</p>
+          <div><h2 id="ebook-audience-title">{esc(c['audience_title'])}</h2><p>{esc(c['audience'])}</p><p class="ebook-note">{esc(c['audience_note'])}</p></div>
+        </div>
+      </section>
+      <section class="ebook-section ebook-paper section-reveal" id="ebook-contents" aria-labelledby="ebook-contents-title">
+        <div class="ebook-section-inner"><p class="eyebrow">{esc(c['outline_label'])}</p><h2 id="ebook-contents-title">{esc(c['outline_title'])}</h2><ol class="ebook-routines">{routines}</ol></div>
+      </section>
+      <section class="ebook-section ebook-materials section-reveal" aria-labelledby="ebook-materials-title">
+        <div class="ebook-section-inner"><p class="eyebrow">{esc(c['materials_label'])}</p><h2 id="ebook-materials-title">{esc(c['materials_title'])}</h2><ul class="ebook-worksheets">{materials}</ul><p class="ebook-materials-note">{esc(c['materials_note'])}</p></div>
+      </section>
+      <section class="ebook-section ebook-paper section-reveal" aria-labelledby="ebook-author-title">
+        <div class="ebook-section-inner ebook-author">
+          <img src="/public/images/luiz-terra-executive-320.webp" alt="Luiz Terra" width="320" height="320" loading="lazy" />
+          <div><p class="eyebrow">{esc(c['author_label'])}</p><h2 id="ebook-author-title">Luiz Terra</h2><p>{esc(c['author'])}</p><a href="{lang_url(lang, 'executive-bio/')}" class="ebook-text-link">{esc(c['bio'])} <span aria-hidden="true">&#8594;</span></a></div>
+        </div>
+      </section>
+      <section class="ebook-section ebook-paper section-reveal" aria-labelledby="ebook-faq-title"><div class="ebook-section-inner"><h2 id="ebook-faq-title">{esc(c['faq_title'])}</h2><div class="faq-list ebook-faq">{faq}</div></div></section>
+      <section class="ebook-section ebook-final section-reveal" aria-labelledby="ebook-final-title"><div class="ebook-section-inner"><p class="eyebrow">CX NA OPERAÇÃO</p><h2 id="ebook-final-title">{esc(c['final_title'])}</h2><p>{esc(c['final_text'])}</p><p class="ebook-price">{EBOOK['price_label']} <small>{esc(c['single'])}</small></p>{buy('final')}<p class="ebook-purchase-note">{esc(c['purchase_note'])}</p></div></section>
+    </main>
+{footer(lang, promote=False)}
+    <script src="/script.js"></script>
+  </body>
+</html>
+"""
+
+
 def write(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8", newline="\n")
@@ -1857,6 +1970,7 @@ def build_pages() -> None:
     write(ROOT / "pt" / "index.html", render_home("pt"))
     write(ROOT / "es" / "index.html", render_home("es"))
     for lang in ("en", "pt", "es"):
+        write(ROOT / META[lang]["path"] / EBOOK["path"] / "index.html", render_ebook(lang))
         write(ROOT / META[lang]["path"] / "executive-bio" / "index.html", render_executive_bio(lang))
         write(ROOT / META[lang]["path"] / "insights" / "index.html", render_insights_index(lang))
         for article in ARTICLES:
@@ -1868,6 +1982,7 @@ def build_pages() -> None:
 def build_sitemap() -> None:
     pages: list[tuple[str, str]] = [("en", ""), ("pt", ""), ("es", "")]
     for lang in ("en", "pt", "es"):
+        pages.append((lang, EBOOK["path"]))
         pages.append((lang, "executive-bio/"))
         pages.append((lang, "insights/"))
         for article in ARTICLES:
@@ -1877,7 +1992,9 @@ def build_sitemap() -> None:
 
     def sitemap_url(lang: str, path: str) -> str:
         updated = DATE_MODIFIED
-        if path.startswith("insights/") and path != "insights/":
+        if path == EBOOK["path"]:
+            updated = EBOOK["modified"]
+        elif path.startswith("insights/") and path != "insights/":
             slug = path.removeprefix("insights/").rstrip("/")
             updated = next(item.get("modified", DATE_MODIFIED) for item in ARTICLES if item["slug"] == slug)
         elif path == "insights/" or path.startswith("topics/") or path == "":
@@ -1982,6 +2099,10 @@ def build_discovery_files() -> None:
 ## Insights
 
 {article_links}
+
+## eBook
+
+- [CX na Operação]({BASE_URL}/{EBOOK['path']}): A Portuguese PDF eBook by Luiz Terra with seven customer service routines, 27 pages and four worksheets. Sold through Hotmart, not a free download.
 
 ## Topic pages
 
@@ -2213,6 +2334,16 @@ International Sales Executive in Telecom, CX, BPO and AI, focused on strategic p
 ## Editorial Note
 
 The initial authority collection was developed editorially for the requested search topics. New newsletter editions are synchronized only after public publication is confirmed on LinkedIn, with a visible original-edition link and editorial versions in English, Portuguese and Spanish. Confirmed editions incorporated through this flow: The New CX Stack (16 October 2026) and Voice AI Needs Telecom Discipline (23 October 2026). Earlier LinkedIn post texts are not assumed to be newsletter editions.
+
+## eBook Storefront
+
+- Sales pages: `/ebooks/cx-na-operacao/`, `/pt/ebooks/cx-na-operacao/`, `/es/ebooks/cx-na-operacao/`.
+- The product is a Portuguese PDF. English and Spanish pages describe the same Portuguese edition.
+- Product facts and copy: `tools/ebook_content.py`; rebuild with `tools/build_static_site.py`.
+- The public site contains promotional images only. Do not add the paid PDF or editable manuscript to this repository.
+- Existing pages include a persistent announcement and a dismissible native dialog shown once per browser session. Blocked session storage disables the dialog, not the announcement.
+- `ebook_landing_click`, `ebook_checkout_click` and `ebook_introduction_view` are intent events, not purchase or revenue confirmations. They use the existing Google tag only.
+- The verified checkout is https://pay.hotmart.com/Q108197102H. Recheck Hotmart before changing price, refund period or delivery claims.
 
 ## Manual Checks
 

@@ -40,6 +40,10 @@
 - [Customer Effort Is an Architecture Problem in Contact Centers](https://www.luizterra.com.br/insights/customer-effort-architecture-contact-centers/): Why reducing customer effort requires connected data, workflows, permissions, knowledge and agent tools, not only better service scripts.
 - [Global CX Requires Local Operating Intelligence](https://www.luizterra.com.br/insights/global-cx-local-operating-intelligence/): How international CX leaders balance global governance with local language, regulation, telecom, partners and customer expectations.
 
+## eBook
+
+- [CX na Operação](https://www.luizterra.com.br/ebooks/cx-na-operacao/): A Portuguese PDF eBook by Luiz Terra with seven customer service routines, 27 pages and four worksheets. Sold through Hotmart, not a free download.
+
 ## Topic pages
 
 - [SBC for Contact Centers](https://www.luizterra.com.br/topics/sbc-contact-centers/): Executive guidance on Session Border Controllers, SIP interoperability, security, carrier connectivity and resilience for cloud and hybrid contact centers.

@@ -139,3 +139,70 @@ copyLinkButtons.forEach((button) => {
 });
 
 window.luizTerraInsights = insightArticles;
+
+const ebookIntroduction = document.querySelector("#ebook-introduction");
+const ebookSessionKey = "luiz-terra-ebook-cx-v1-introduced";
+
+const recordEbookEvent = (eventName, placement) => {
+  if (typeof window.gtag === "function") {
+    window.gtag("event", eventName, {
+      item_id: "cx-na-operacao",
+      item_name: "CX na Operação",
+      placement,
+    });
+  }
+};
+
+document.querySelectorAll("[data-ebook-placement]").forEach((link) => {
+  link.addEventListener("click", () => {
+    recordEbookEvent("ebook_landing_click", link.dataset.ebookPlacement);
+  });
+});
+
+document.querySelectorAll("[data-ebook-checkout]").forEach((link) => {
+  link.addEventListener("click", () => {
+    recordEbookEvent("ebook_checkout_click", link.dataset.ebookCheckout);
+  });
+});
+
+if (typeof HTMLDialogElement !== "undefined" && ebookIntroduction instanceof HTMLDialogElement) {
+  const rememberIntroduction = () => {
+    try {
+      sessionStorage.setItem(ebookSessionKey, "1");
+    } catch {
+      // The announcement remains available when session storage is blocked.
+    }
+  };
+
+  ebookIntroduction.querySelectorAll("[data-ebook-close]").forEach((button) => {
+    button.addEventListener("click", () => ebookIntroduction.close());
+  });
+
+  ebookIntroduction.addEventListener("click", (event) => {
+    const bounds = ebookIntroduction.getBoundingClientRect();
+    if (event.target === ebookIntroduction &&
+        (event.clientX < bounds.left || event.clientX > bounds.right ||
+         event.clientY < bounds.top || event.clientY > bounds.bottom)) {
+      ebookIntroduction.close();
+    }
+  });
+  ebookIntroduction.addEventListener("close", rememberIntroduction);
+
+  let alreadyIntroduced = false;
+  try {
+    alreadyIntroduced = sessionStorage.getItem(ebookSessionKey) === "1";
+  } catch {
+    alreadyIntroduced = true;
+  }
+
+  if (!alreadyIntroduced && typeof ebookIntroduction.showModal === "function") {
+    window.setTimeout(() => {
+      if (document.visibilityState === "visible" && !document.querySelector("dialog[open]") &&
+          !document.body.classList.contains("nav-open") && !isEditableTarget(document.activeElement)) {
+        ebookIntroduction.showModal();
+        rememberIntroduction();
+        recordEbookEvent("ebook_introduction_view", "first_session_entry");
+      }
+    }, 1800);
+  }
+}
