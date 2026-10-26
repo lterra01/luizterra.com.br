@@ -45,6 +45,17 @@ Nao ha evento de escolha quando a pessoa simplesmente fecha a aba ou sai da pagi
 4. Fazer uma exibicao e uma escolha por vez; verificar nome, anuncio e metodo no DebugView da propriedade correta.
 5. Conferir os relatorios processados posteriormente. DebugView e recebimento em tempo real nao comprovam consolidacao historica nem engajamento de clientes reais.
 
+### Resultado Da Validacao Em 26/10/2026
+
+- Codigo publicado no commit `1d9c755`; workflow do GitHub Pages `40370150695` concluido com sucesso. JavaScript e pagina PT retornaram HTTP 200 com os novos eventos e atributos.
+- Nove testes JavaScript e tres testes Python aprovados.
+- Fluxo Web `15196204898` confirmado na interface com ID `G-68E95X4DZT`.
+- Tag Assistant e DebugView confirmaram `ebook_introduction_view`, `ebook_offer_continue` e `ebook_site_continue` na propriedade `544154510`.
+- Parametros recebidos conferidos no DebugView: `ebook_ad_id=cx_na_operacao_launch_v1`; `interaction_method=offer_button` e `interaction_method=continue_button` nas respectivas escolhas.
+- Os acessos de validacao usaram URLs com `qa=ebook-...-20261026` e depuracao restrita ao navegador de teste. Os numeros do DebugView incluem QA, nao representam alcance ou interesse comercial de visitantes. Para analise de desempenho, excluir trafego de teste e usar relatorios processados com filtros consistentes.
+- A navegacao para a landing page e a continuidade na pagina principal foram verificadas no dominio publico. Fechamentos alternativos e prevencao de duplicidade foram cobertos pelos testes locais.
+- Relatorios historicos processados e vendas nao foram validados nesta entrega.
+
 ## Referencias
 
 - https://developers.google.com/analytics/devguides/collection/ga4/events
