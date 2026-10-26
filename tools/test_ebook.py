@@ -46,6 +46,9 @@ class EbookTests(unittest.TestCase):
                 page = Page(text)
                 self.assertIn(("link", {"rel": "canonical", "href": BASE + "/" + route}), page.tags)
                 self.assertEqual(sum(tag == "h1" for tag, _ in page.tags), 1)
+                body = next(attrs for tag, attrs in page.tags if tag == "body")
+                self.assertEqual(body.get("data-ebook-id"), EBOOK["id"])
+                self.assertEqual(body.get("data-ebook-title"), EBOOK["name"])
                 self.assertNotIn('id="ebook-introduction"', text)
                 self.assertNotIn("noindex", text)
                 self.assertIn(EBOOK_COPY[lang]["buy"], text)
@@ -67,6 +70,9 @@ class EbookTests(unittest.TestCase):
                 if EBOOK["path"] not in path.as_posix():
                     self.assertEqual(text.count('id="ebook-introduction"'), 1)
                     self.assertIn('class="ebook-announcement"', text)
+                    modal = next(attrs for tag, attrs in page.tags if attrs.get("id") == "ebook-introduction")
+                    self.assertEqual(modal.get("data-ebook-id"), EBOOK["id"])
+                    self.assertEqual(modal.get("data-ebook-ad-id"), EBOOK["campaign_id"])
                 for tag, attrs in page.tags:
                     if tag not in ("a", "img", "script", "link"):
                         continue

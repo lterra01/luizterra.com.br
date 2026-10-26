@@ -1,6 +1,8 @@
 """Public sales copy for the verified Hotmart product, not the paid manuscript."""
 
 EBOOK = {
+    "id": "cx-na-operacao",
+    "campaign_id": "cx_na_operacao_launch_v1",
     "name": "CX na Operação",
     "path": "ebooks/cx-na-operacao/",
     "checkout": "https://pay.hotmart.com/Q108197102H",

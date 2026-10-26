@@ -1362,14 +1362,14 @@ def ebook_promotion(lang: str) -> str:
     c = EBOOK_COPY[lang]
     path = lang_url(lang, EBOOK["path"])
     return f"""
-    <aside class="ebook-announcement" aria-label="{esc(c['bar_label'])}">
+    <aside class="ebook-announcement" aria-label="{esc(c['bar_label'])}" data-ebook-id="{esc(EBOOK['id'])}" data-ebook-title="{esc(EBOOK['name'])}">
       <a href="{path}" data-ebook-placement="announcement">
         <span class="ebook-announcement-copy"><small>{esc(c['bar_label'])}</small><strong>{esc(c['bar_text'])}</strong></span>
         <span class="ebook-announcement-price">{EBOOK['price_label']}</span>
         <span class="ebook-announcement-action">{esc(c['learn'])}<span aria-hidden="true"> &#8594;</span></span>
       </a>
     </aside>
-    <dialog class="ebook-modal" id="ebook-introduction" aria-labelledby="ebook-introduction-title" aria-describedby="ebook-introduction-description">
+    <dialog class="ebook-modal" id="ebook-introduction" aria-labelledby="ebook-introduction-title" aria-describedby="ebook-introduction-description" data-ebook-id="{esc(EBOOK['id'])}" data-ebook-title="{esc(EBOOK['name'])}" data-ebook-ad-id="{esc(EBOOK['campaign_id'])}">
       <button type="button" class="ebook-modal-close" data-ebook-close="close_icon" aria-label="{esc(c['close'])}" title="{esc(c['close'])}" autofocus>&times;</button>
       <img src="{EBOOK['cover']}" width="1254" height="1254" loading="lazy" alt="{esc(EBOOK['name'])} - Luiz Terra" />
       <p class="eyebrow">{esc(c['label'])}</p>
@@ -1913,7 +1913,7 @@ def render_ebook(lang: str) -> str:
     return f"""<!DOCTYPE html>
 <html lang="{META[lang]['lang']}">
 {head(lang, c['title'], c['description'], EBOOK['path'], 'ebook')}
-  <body class="ebook-landing">
+  <body class="ebook-landing" data-ebook-id="{esc(EBOOK['id'])}" data-ebook-title="{esc(EBOOK['name'])}">
 {nav(lang, EBOOK['path'])}
     <main class="ebook-main">
       <section class="ebook-hero" aria-labelledby="ebook-title">
@@ -2342,7 +2342,7 @@ The initial authority collection was developed editorially for the requested sea
 - Product facts and copy: `tools/ebook_content.py`; rebuild with `tools/build_static_site.py`.
 - The public site contains promotional images only. Do not add the paid PDF or editable manuscript to this repository.
 - Existing pages include a persistent announcement and a dismissible native dialog shown once per browser session. Blocked session storage disables the dialog, not the announcement.
-- GA4 `G-68E95X4DZT` receives `ebook_introduction_view` (exposure), `ebook_offer_continue` (offer choice), `ebook_site_continue` (continue browsing), `ebook_landing_click` and `ebook_checkout_click` (separate intent events). They are not purchase or revenue confirmations. See `docs/EBOOK_ANALYTICS.md` for definitions and validation limits.
+- GA4 `G-68E95X4DZT` receives `ebook_introduction_view` (exposure), `ebook_offer_continue` (offer choice), `ebook_site_continue` (continue browsing), `ebook_landing_view` (offer page load), `ebook_landing_click` and `ebook_checkout_click` (separate intent events). Product attributes supply `ebook_id` and `ebook_title` for current and future books. They are not purchase or revenue confirmations. See `docs/EBOOK_ANALYTICS.md` and `docs/GA4_REPORTS.md` for definitions, native reports and validation limits.
 - The verified checkout is https://pay.hotmart.com/Q108197102H. Recheck Hotmart before changing price, refund period or delivery claims.
 
 ## Manual Checks

@@ -142,16 +142,26 @@ window.luizTerraInsights = insightArticles;
 
 const ebookIntroduction = document.querySelector("#ebook-introduction");
 const ebookSessionKey = "luiz-terra-ebook-cx-v1-introduced";
-const ebookAdId = "cx_na_operacao_launch_v1";
+const ebookAdId = ebookIntroduction?.dataset.ebookAdId || "cx_na_operacao_launch_v1";
 let ebookIntroductionShown = false;
 let ebookDecisionRecorded = false;
 
-const recordEbookEvent = (eventName, placement, parameters = {}) => {
+const ebookIdentity = (element) => {
+  const product = element?.closest("[data-ebook-id]");
+  if (!product?.dataset.ebookId) return {};
+  return {
+    ebook_id: product.dataset.ebookId,
+    ebook_title: product.dataset.ebookTitle || product.dataset.ebookId,
+    item_id: product.dataset.ebookId,
+    item_name: product.dataset.ebookTitle || product.dataset.ebookId,
+  };
+};
+
+const recordEbookEvent = (eventName, placement, parameters = {}, element = ebookIntroduction) => {
   if (typeof window.gtag === "function") {
     window.gtag("event", eventName, {
       send_to: "G-68E95X4DZT",
-      item_id: "cx-na-operacao",
-      item_name: "CX na Operação",
+      ...ebookIdentity(element),
       placement,
       ...parameters,
     });
@@ -189,15 +199,18 @@ document.querySelectorAll("[data-ebook-placement]").forEach((link) => {
       }
       ebookIntroduction.close();
     }
-    recordEbookEvent("ebook_landing_click", link.dataset.ebookPlacement);
+    recordEbookEvent("ebook_landing_click", link.dataset.ebookPlacement, {}, link);
   });
 });
 
 document.querySelectorAll("[data-ebook-checkout]").forEach((link) => {
   link.addEventListener("click", () => {
-    recordEbookEvent("ebook_checkout_click", link.dataset.ebookCheckout);
+    recordEbookEvent("ebook_checkout_click", link.dataset.ebookCheckout, {}, link);
   });
 });
+
+const ebookLanding = document.querySelector("body.ebook-landing[data-ebook-id]");
+if (ebookLanding) recordEbookEvent("ebook_landing_view", "landing", {}, ebookLanding);
 
 if (typeof HTMLDialogElement !== "undefined" && ebookIntroduction instanceof HTMLDialogElement) {
   const rememberIntroduction = () => {

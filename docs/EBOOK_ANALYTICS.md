@@ -10,10 +10,13 @@ Produto: `cx-na-operacao`. Anuncio: `cx_na_operacao_launch_v1`.
 | `ebook_introduction_view` | A apresentacao foi aberta e esta visivel. | Uma exibicao |
 | `ebook_offer_continue` | Clique em Conhecer o eBook dentro da apresentacao. | Uma escolha pela oferta |
 | `ebook_site_continue` | Continuar no site, X, Escape ou clique no fundo externo. | Uma escolha por seguir navegando |
+| `ebook_landing_view` | A pagina de oferta do eBook foi carregada. | Uma visualizacao da oferta, incluindo recargas |
 | `ebook_landing_click` | Link para a landing page, com `placement` identificando faixa ou apresentacao. | Clique separado; nao somar as escolhas |
 | `ebook_checkout_click` | Clique para abrir o checkout da Hotmart. | Intencao de compra, nao pagamento |
 
 Exibicao e escolhas levam `ebook_ad_id`. As escolhas tambem levam `interaction_method`: `offer_button`, `continue_button`, `close_icon`, `escape`, `backdrop` ou `other_close`.
+
+Todos os eventos do eBook levam `ebook_id` e `ebook_title`, obtidos dos atributos `data-ebook-id` e `data-ebook-title` do produto na pagina. Nao usar o ID do CX na Operacao em outros produtos. Os proximos eBooks devem reutilizar os nomes de eventos e informar seus proprios ID, titulo e campanha. O relatorio inclui o prefixo `ebook_`, nao um produto fixo.
 
 A mesma exibicao emite no maximo uma escolha. Seguir para a oferta fecha a apresentacao, mas nao gera simultaneamente uma escolha pelo site. A navegacao tem limite de espera de 700 ms e nao depende da disponibilidade do Analytics. Cliques modificados para abrir uma nova aba preservam o comportamento do navegador.
 
@@ -33,6 +36,7 @@ Nao ha evento de escolha quando a pessoa simplesmente fecha a aba ou sai da pagi
 
 - Propriedade identificada na interface: Site Pessoal - Luiz Terra, ID `544154510`, conta `399962631`.
 - Dimensoes personalizadas de escopo Evento cadastradas em 26/10/2026: `eBook Identificador do anuncio` (`ebook_ad_id`) e `eBook Metodo de interacao` (`interaction_method`).
+- Dimensoes adicionadas para os relatorios multiproduto: `eBook ID do produto` (`ebook_id`), `eBook Titulo` (`ebook_title`) e `eBook Posicao do CTA` (`placement`).
 - No relatorio de Eventos, comparar os tres eventos da apresentacao. Para a decomposicao, usar as dimensoes do anuncio e do metodo de interacao.
 - Nao marcar a escolha por continuar no site como evento principal. Esta entrega nao cria conversoes de compra nem altera conversoes do Google Ads.
 - A coleta nao e retroativa. As escolhas de fechamento nao eram medidas antes desta alteracao.
@@ -55,6 +59,10 @@ Nao ha evento de escolha quando a pessoa simplesmente fecha a aba ou sai da pagi
 - Os acessos de validacao usaram URLs com `qa=ebook-...-20261026` e depuracao restrita ao navegador de teste. Os numeros do DebugView incluem QA, nao representam alcance ou interesse comercial de visitantes. Para analise de desempenho, excluir trafego de teste e usar relatorios processados com filtros consistentes.
 - A navegacao para a landing page e a continuidade na pagina principal foram verificadas no dominio publico. Fechamentos alternativos e prevencao de duplicidade foram cobertos pelos testes locais.
 - Relatorios historicos processados e vendas nao foram validados nesta entrega.
+
+## Relatorios De Acompanhamento
+
+Os tres relatorios nativos do GA4 e suas definicoes estao documentados em `docs/GA4_REPORTS.md`. Novas dimensoes nao preenchem dados anteriores. Permitir o processamento do Google antes de avaliar a ausencia de linhas; nao tratar uma tabela vazia no periodo anterior ao lancamento como falha ou resultado comercial zero.
 
 ## Referencias
 

@@ -6,11 +6,11 @@ const { test } = require("node:test");
 
 const source = fs.readFileSync(path.join(__dirname, "../script.js"), "utf8");
 
-function runPromotion({ seen = false, blocked = false, landing = false, otherDialog = false, analytics = true, acknowledge = false } = {}) {
+function runPromotion({ seen = false, blocked = false, landing = false, otherDialog = false, analytics = true, acknowledge = false, productId = "cx-na-operacao", productTitle = "CX na Operação" } = {}) {
   class Element {
     constructor(dataset = {}) { this.dataset = dataset; this.events = {}; }
     addEventListener(name, fn) { this.events[name] = fn; }
-    closest() { return null; }
+    closest(selector) { return selector === "[data-ebook-id]" && this.dataset.ebookId ? this : null; }
   }
   const closeButton = new Element({ ebookClose: "close_icon" });
   const continueButton = new Element({ ebookClose: "continue_button" });
@@ -21,10 +21,12 @@ function runPromotion({ seen = false, blocked = false, landing = false, otherDia
     querySelectorAll() { return [closeButton, continueButton]; }
     getBoundingClientRect() { return { left: 100, top: 100, right: 500, bottom: 500 }; }
   }
-  const dialog = new Dialog();
-  const checkout = new Element({ ebookCheckout: "hero" });
-  const announcement = new Element({ ebookPlacement: "announcement" });
-  const introduction = new Element({ ebookPlacement: "introduction" });
+  const identity = { ebookId: productId, ebookTitle: productTitle };
+  const dialog = new Dialog({ ...identity, ebookAdId: "cx_na_operacao_launch_v1" });
+  const landingBody = new Element(identity);
+  const checkout = new Element({ ...identity, ebookCheckout: "hero" });
+  const announcement = new Element({ ...identity, ebookPlacement: "announcement" });
+  const introduction = new Element({ ...identity, ebookPlacement: "introduction" });
   introduction.href = "https://www.luizterra.com.br/pt/ebooks/cx-na-operacao/";
   introduction.target = "";
   const storage = new Map(seen ? [["luiz-terra-ebook-cx-v1-introduced", "1"]] : []);
@@ -37,6 +39,7 @@ function runPromotion({ seen = false, blocked = false, landing = false, otherDia
     body: { classList: { contains: () => false } },
     querySelector(selector) {
       if (selector === "#ebook-introduction") return landing ? null : dialog;
+      if (selector === "body.ebook-landing[data-ebook-id]") return landing ? landingBody : null;
       if (selector === "dialog[open]") return otherDialog ? {} : null;
       return null;
     },
@@ -89,7 +92,7 @@ test("checkout clicks are intent events, never purchases or revenue", () => {
   const state = runPromotion({ landing: true });
   state.checkout.events.click();
   state.announcement.events.click();
-  assert.deepEqual(state.events.map((event) => event[1]), ["ebook_checkout_click", "ebook_landing_click"]);
+  assert.deepEqual(state.events.map((event) => event[1]), ["ebook_landing_view", "ebook_checkout_click", "ebook_landing_click"]);
   assert.equal(state.events.some((event) => event[1] === "purchase" || "value" in event[2]), false);
   assert.equal(state.events.every((event) => event[2].send_to === "G-68E95X4DZT"), true);
 });
@@ -157,4 +160,18 @@ test("modified clicks and missing Analytics preserve normal navigation", () => {
     assert.notEqual(event.defaultPrevented, true);
     assert.equal(state.navigations.length, 0);
   }
+});
+
+test("product identity is supplied by the page and supports future ebooks", () => {
+  const current = runPromotion({ landing: true });
+  current.checkout.events.click();
+  for (const event of current.events) {
+    assert.equal(event[2].ebook_id, "cx-na-operacao");
+    assert.equal(event[2].ebook_title, "CX na Operação");
+  }
+  const future = runPromotion({ landing: true, productId: "qa-future-book", productTitle: "QA future book" });
+  future.checkout.events.click();
+  assert.equal(future.events.length, 2);
+  assert.equal(future.events.every(event => event[2].ebook_id === "qa-future-book" && event[2].item_id === "qa-future-book"), true);
+  assert.equal(future.events.every(event => event[2].ebook_title === "QA future book"), true);
 });
