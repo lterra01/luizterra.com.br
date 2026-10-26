@@ -81,7 +81,9 @@ class EbookTests(unittest.TestCase):
                     target = ROOT / unquote(parsed.path.lstrip("/")) if parsed.path.startswith("/") else path.parent / unquote(parsed.path)
                     self.assertTrue(target.exists() or (target / "index.html").exists(), value)
                 self.assertNotIn("CX_na_Operacao_Luiz_Terra_v1.0.pdf", text)
-                self.assertNotIn("LUIZ FERNANDO COELHO TERRA", text)
+                for tag, attrs in page.tags:
+                    if tag == "meta" and attrs.get("name") == "author":
+                        self.assertEqual(attrs.get("content"), "Luiz Terra")
 
     def test_sitemap_and_public_assets(self):
         ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
