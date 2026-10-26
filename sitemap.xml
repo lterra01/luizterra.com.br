@@ -42,6 +42,15 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.luizterra.com.br/ebooks/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/ebooks/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/ebooks/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/ebooks/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/ebooks/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.luizterra.com.br/ebooks/cx-na-operacao/</loc>
     <lastmod>2026-10-26</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/ebooks/cx-na-operacao/" />
@@ -285,6 +294,15 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.luizterra.com.br/pt/ebooks/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/ebooks/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/ebooks/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/ebooks/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/ebooks/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.luizterra.com.br/pt/ebooks/cx-na-operacao/</loc>
     <lastmod>2026-10-26</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/ebooks/cx-na-operacao/" />
@@ -525,6 +543,15 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/topics/international-market-entry/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/topics/international-market-entry/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/topics/international-market-entry/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/es/ebooks/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/ebooks/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/ebooks/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/ebooks/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/ebooks/" />
     <priority>0.8</priority>
   </url>
   <url>

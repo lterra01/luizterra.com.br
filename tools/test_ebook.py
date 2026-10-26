@@ -8,6 +8,7 @@ from urllib.parse import unquote, urlsplit
 from xml.etree import ElementTree as ET
 
 from ebook_content import EBOOK, EBOOK_COPY
+from ebook_catalog import EBOOKS, COLLECTION_PATH, COLLECTION_ID
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "https://www.luizterra.com.br"
@@ -52,7 +53,9 @@ class EbookTests(unittest.TestCase):
                 self.assertNotIn('id="ebook-introduction"', text)
                 self.assertNotIn("noindex", text)
                 self.assertIn(EBOOK_COPY[lang]["buy"], text)
-                self.assertEqual(len([a for t, a in page.tags if t == "a" and "data-ebook-checkout" in a]), 2)
+                checkout_links = [a for t, a in page.tags if t == "a" and "data-ebook-checkout" in a]
+                self.assertEqual(len(checkout_links), 4)
+                self.assertEqual(sum(a["href"] == EBOOK["checkout"] for a in checkout_links), 2)
                 book = next(item for schema in page.schemas for item in schema["@graph"] if item.get("@type") == ["Book", "Product"])
                 self.assertEqual(book["offers"]["price"], "9.99")
                 self.assertEqual(book["offers"]["priceCurrency"], "BRL")
@@ -64,15 +67,18 @@ class EbookTests(unittest.TestCase):
 
     def test_sitewide_promotion_and_links(self):
         for path in ROOT.rglob("*.html"):
+            if "node_modules" in path.parts or ".wrangler" in path.parts:
+                continue
             with self.subTest(path=path.relative_to(ROOT)):
                 text = path.read_text(encoding="utf-8")
                 page = Page(text)
-                if EBOOK["path"] not in path.as_posix():
+                is_sales_page = any(tag == "body" and any(name in attrs.get("class", "").split() for name in ("ebook-landing", "ebook-catalog")) for tag, attrs in page.tags)
+                if not is_sales_page:
                     self.assertEqual(text.count('id="ebook-introduction"'), 1)
                     self.assertIn('class="ebook-announcement"', text)
                     modal = next(attrs for tag, attrs in page.tags if attrs.get("id") == "ebook-introduction")
-                    self.assertEqual(modal.get("data-ebook-id"), EBOOK["id"])
-                    self.assertEqual(modal.get("data-ebook-ad-id"), EBOOK["campaign_id"])
+                    self.assertEqual(modal.get("data-ebook-collection-id"), COLLECTION_ID)
+                    self.assertEqual(modal.get("data-ebook-ad-id"), "cx_na_pratica_collection_v1")
                 for tag, attrs in page.tags:
                     if tag not in ("a", "img", "script", "link"):
                         continue
@@ -97,8 +103,26 @@ class EbookTests(unittest.TestCase):
         self.assertEqual(len(urls), len(set(urls)))
         for prefix in ("", "pt/", "es/"):
             self.assertIn(BASE + "/" + prefix + EBOOK["path"], urls)
+            self.assertIn(BASE + "/" + prefix + COLLECTION_PATH, urls)
         self.assertTrue((ROOT / EBOOK["cover"].lstrip("/")).exists())
         self.assertFalse(any((ROOT / "public").rglob("CX_na_Operacao*.pdf")))
+
+    def test_collection_products_and_tracking(self):
+        self.assertEqual(len({book["id"] for book in EBOOKS}), 3)
+        for prefix in ("", "pt/", "es/"):
+            route = prefix + COLLECTION_PATH
+            page = Page((ROOT / route / "index.html").read_text(encoding="utf-8"))
+            self.assertIn(("link", {"rel": "canonical", "href": BASE + "/" + route}), page.tags)
+            products = [attrs for tag, attrs in page.tags if tag == "article" and "data-ebook-product" in attrs]
+            self.assertEqual({attrs["data-ebook-id"] for attrs in products}, {book["id"] for book in EBOOKS})
+            offers = [attrs["href"] for tag, attrs in page.tags if "data-ebook-checkout" in attrs]
+            self.assertEqual({urlsplit(url)._replace(query="").geturl() for url in offers}, {book["checkout"] for book in EBOOKS})
+            listing = next(item for schema in page.schemas for item in schema["@graph"] if item.get("@type") == "ItemList")
+            self.assertEqual(listing["numberOfItems"], 3)
+            self.assertEqual({item["item"]["numberOfPages"] for item in listing["itemListElement"]}, {25, 27})
+        for book in EBOOKS:
+            self.assertTrue((ROOT / book["cover"].lstrip("/")).exists())
+        self.assertFalse(any((ROOT / "public" / "ebooks").glob("*.pdf")))
 
 
 if __name__ == "__main__":

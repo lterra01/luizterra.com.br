@@ -2,7 +2,7 @@
 
 Criados em 26/10/2026 na propriedade `Site Pessoal - Luiz Terra` (`544154510`), conta `399962631`, fluxo Web `15196204898`, medicao `G-68E95X4DZT`.
 
-Acesso autenticado: Google Analytics > Relatorios > Luiz Terra - Performance > Acompanhamento. A colecao `16208104030` contem os tres relatorios abaixo. Publicar a colecao disponibiliza o menu aos usuarios ja autorizados da propriedade; nao publica os dados no website.
+Acesso autenticado: Google Analytics > Relatorios > Luiz Terra - Performance > Acompanhamento. A colecao `16208104030` contem os quatro relatorios abaixo. Publicar a colecao disponibiliza o menu aos usuarios ja autorizados da propriedade; nao publica os dados no website.
 
 ## 01 eBooks - Interesse e checkout
 
@@ -10,12 +10,22 @@ Acesso autenticado: Google Analytics > Relatorios > Luiz Terra - Performance > A
 - Filtro permanente: Nome do evento comeca com `ebook_`, sem restringir ao primeiro produto.
 - Metricas: contagem de eventos, total de usuarios e contagem de eventos por usuario ativo.
 - Dimensoes selecionaveis: nome do evento, ID do produto, titulo do eBook, campanha da apresentacao, metodo de interacao, posicao do CTA e caminho da pagina.
-- Eventos: `ebook_introduction_view`, `ebook_offer_continue`, `ebook_site_continue`, `ebook_landing_view`, `ebook_landing_click` e `ebook_checkout_click`.
+- Eventos: `ebook_introduction_view`, `ebook_offer_continue`, `ebook_site_continue`, `ebook_landing_view`, `ebook_catalog_view`, `ebook_product_view`, `ebook_landing_click` e `ebook_checkout_click`.
 - A soma dos eventos nao representa pessoas, compras nem um funil sequencial de conversao. Um clique da apresentacao pode gerar `ebook_offer_continue` e `ebook_landing_click`; nao soma-los como duas decisoes. Nao somar usuarios de linhas com possivel sobreposicao.
-- Taxas de interesse e continuidade: usar as contagens das respectivas escolhas divididas pelas exibicoes da apresentacao, com o mesmo produto, campanha, periodo e filtros. Acesso direto a uma oferta nao exige exibicao da apresentacao.
-- Nenhum evento de compra, receita, ROAS ou confirmacao da entrega na Hotmart foi implementado. A visualizacao da pagina nao significa leitura completa; o clique para o checkout nao significa pagamento.
+- Taxas de interesse e continuidade: usar as contagens das respectivas escolhas divididas pelas exibicoes da apresentacao, com a mesma colecao, campanha, periodo e filtros. A apresentacao da colecao nao e uma exposicao atribuida a um unico produto. Acesso direto a uma oferta nao exige exibicao da apresentacao.
+- Este relatorio mede intencao, nao pagamento ou receita. A visualizacao da pagina nao significa leitura completa; o clique para o checkout nao significa pagamento. Compras ficam no relatorio 04.
 
-Os proximos eBooks devem reutilizar os nomes de eventos e informar seu proprio `ebook_id`, `ebook_title` e campanha nos atributos de produto. A fonte atual e `tools/ebook_content.py`; o gerador aplica os atributos na apresentacao, faixa e pagina de oferta. O JavaScript resolve o produto no elemento mais proximo com `data-ebook-id`, sem atribuir outros produtos ao CX na Operacao.
+Os proximos eBooks devem reutilizar os nomes de eventos e informar seu proprio `ebook_id`, `ebook_title` e ID Hotmart no catalogo `tools/ebook_catalog.py`. O JavaScript resolve o produto mais proximo; a colecao usa `ebook_collection_id`, sem atribuir outros produtos ao CX na Operacao.
+
+## 04 eBooks - Compras e receita
+
+- ID do relatorio: `16208361514`. Modelo: Compras de e-commerce. Salvo e adicionado a colecao publicada em 26/10/2026.
+- Filtro permanente: Categoria do item corresponde a RegEx `^eBook$`. Novos livros com a mesma categoria podem aparecer sem recriar o relatorio.
+- Metricas: itens comprados, receita do item e valor do reembolso do item. Sem colunas de carrinho ou visualizacao de item que nao estao instrumentadas como e-commerce.
+- Dimensoes nativas: nome do item, ID, categoria, marca e afiliacao, entre outras do modelo.
+- Compras dependem da ativacao do webhook autenticado, das vendas genuinas aprovadas e do processamento do Google. Consulte `integrations/hotmart-ga4/README.md` para o estado de ativacao. Uma tabela vazia hoje nao comprova ausencia de vendas na Hotmart.
+- A receita e a da oferta do produto; nao e comissao liquida nem saldo da Hotmart. Conferir separadamente reembolsos e a definicao nativa de receita do item; nao subtrair o reembolso duas vezes.
+- O identificador do servidor e tecnico, por transacao, nao um visitante. Nao usar usuarios, pais ou canal deste fluxo como compradores reais ou atribuicao do anuncio. Nao ha ROAS implementado.
 
 ## 02 Site - Engajamento por pagina
 

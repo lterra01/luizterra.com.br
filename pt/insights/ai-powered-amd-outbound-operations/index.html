@@ -41,8 +41,10 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-68E95X4DZT');
-      gtag('config', 'AW-18474840846');
+      if (['www.luizterra.com.br', 'luizterra.com.br'].includes(window.location.hostname)) {
+        gtag('config', 'G-68E95X4DZT');
+        gtag('config', 'AW-18474840846');
+      }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -313,24 +315,24 @@
       <div class="footer-links" aria-label="Footer links">
         <a href="mailto:contact@luizterra.com.br">contact@luizterra.com.br</a>
         <a href="https://linkedin.com/in/lterra" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="/pt/ebooks/cx-na-operacao/">eBook: CX na Operação</a>
+        <a href="/pt/ebooks/">eBooks: CX na Prática</a>
       </div>
     </footer>
-    <aside class="ebook-announcement" aria-label="EBOOK DE LUIZ TERRA" data-ebook-id="cx-na-operacao" data-ebook-title="CX na Operação">
-      <a href="/pt/ebooks/cx-na-operacao/" data-ebook-placement="announcement">
-        <span class="ebook-announcement-copy"><small>EBOOK DE LUIZ TERRA</small><strong>CX na Operação · 7 rotinas para organizar o atendimento</strong></span>
-        <span class="ebook-announcement-price">R$ 9,99</span>
-        <span class="ebook-announcement-action">Conhecer o eBook<span aria-hidden="true"> &#8594;</span></span>
+    <aside class="ebook-announcement" aria-label="EBOOKS DE LUIZ TERRA" data-ebook-collection-id="cx-na-pratica">
+      <a href="/pt/ebooks/" data-ebook-placement="announcement">
+        <span class="ebook-announcement-copy"><small>EBOOKS DE LUIZ TERRA</small><strong>CX na Prática · 3 eBooks de Luiz Terra</strong></span>
+        <span class="ebook-announcement-price">R$ 9,99 <small>cada · pagamento único</small></span>
+        <span class="ebook-announcement-action">Conhecer a coleção<span aria-hidden="true"> &#8594;</span></span>
       </a>
     </aside>
-    <dialog class="ebook-modal" id="ebook-introduction" aria-labelledby="ebook-introduction-title" aria-describedby="ebook-introduction-description" data-ebook-id="cx-na-operacao" data-ebook-title="CX na Operação" data-ebook-ad-id="cx_na_operacao_launch_v1">
-      <button type="button" class="ebook-modal-close" data-ebook-close="close_icon" aria-label="Fechar apresentação do eBook" title="Fechar apresentação do eBook" autofocus>&times;</button>
-      <img src="/public/ebooks/cx-na-operacao.webp" width="1254" height="1254" loading="lazy" alt="CX na Operação - Luiz Terra" />
-      <p class="eyebrow">EBOOK EM PORTUGUÊS · EDIÇÃO 1.0</p>
-      <h2 id="ebook-introduction-title">CX na Operação</h2>
-      <p id="ebook-introduction-description">7 rotinas, quatro fichas e um plano de aplicação para supervisores e coordenadores de atendimento.</p>
-      <p class="ebook-modal-price">R$ 9,99 <small>à vista · pagamento único</small></p>
-      <a class="button primary" href="/pt/ebooks/cx-na-operacao/" data-ebook-placement="introduction">Conhecer o eBook</a>
+    <dialog class="ebook-modal ebook-collection-modal" id="ebook-introduction" aria-labelledby="ebook-introduction-title" aria-describedby="ebook-introduction-description" data-ebook-collection-id="cx-na-pratica" data-ebook-ad-id="cx_na_pratica_collection_v1" data-ebook-session-key="luiz-terra-ebook-collection-v1-introduced">
+      <button type="button" class="ebook-modal-close" data-ebook-close="close_icon" aria-label="Fechar apresentação dos eBooks" title="Fechar apresentação dos eBooks" autofocus>&times;</button>
+      <p class="eyebrow">EBOOKS DE LUIZ TERRA</p>
+      <h2 id="ebook-introduction-title">CX na Prática</h2>
+      <p id="ebook-introduction-description">Rotinas, indicadores e qualidade: três eBooks para apoiar decisões no atendimento.</p>
+      <div class="ebook-modal-books"><a href="/pt/ebooks/#cx-na-operacao" data-ebook-placement="introduction" data-ebook-id="cx-na-operacao" data-ebook-title="CX na Operação" data-hotmart-product-id="8811187"><img src="/public/ebooks/cx-na-operacao.webp" width="1254" height="1254" loading="lazy" alt="CX na Operação - Luiz Terra" /><span>CX na Operação</span></a><a href="/pt/ebooks/#indicadores-de-atendimento-na-pratica" data-ebook-placement="introduction" data-ebook-id="indicadores-de-atendimento-na-pratica" data-ebook-title="Indicadores de Atendimento na Prática" data-hotmart-product-id="8811999"><img src="/public/ebooks/indicadores-de-atendimento-na-pratica.webp" width="1254" height="1254" loading="lazy" alt="Indicadores de Atendimento na Prática - Luiz Terra" /><span>Indicadores de Atendimento na Prática</span></a><a href="/pt/ebooks/#qualidade-e-feedback-no-atendimento" data-ebook-placement="introduction" data-ebook-id="qualidade-e-feedback-no-atendimento" data-ebook-title="Qualidade e Feedback no Atendimento" data-hotmart-product-id="8812046"><img src="/public/ebooks/qualidade-e-feedback-no-atendimento.webp" width="1254" height="1254" loading="lazy" alt="Qualidade e Feedback no Atendimento - Luiz Terra" /><span>Qualidade e Feedback no Atendimento</span></a></div>
+      <p class="ebook-modal-price">R$ 9,99 <small>cada · pagamento único</small></p>
+      <a class="button primary" href="/pt/ebooks/" data-ebook-placement="introduction">Conhecer a coleção</a>
       <button class="ebook-continue" type="button" data-ebook-close="continue_button">Continuar no site</button>
     </dialog>
     <script src="/script.js"></script>

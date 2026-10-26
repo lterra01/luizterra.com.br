@@ -6,11 +6,15 @@ const { test } = require("node:test");
 
 const source = fs.readFileSync(path.join(__dirname, "../script.js"), "utf8");
 
-function runPromotion({ seen = false, blocked = false, landing = false, otherDialog = false, analytics = true, acknowledge = false, productId = "cx-na-operacao", productTitle = "CX na Operação" } = {}) {
+function runPromotion({ seen = false, blocked = false, landing = false, catalog = false, collection = false, observe = false, otherDialog = false, analytics = true, acknowledge = false, hostname = "www.luizterra.com.br", productId = "cx-na-operacao", productTitle = "CX na Operação" } = {}) {
   class Element {
     constructor(dataset = {}) { this.dataset = dataset; this.events = {}; }
     addEventListener(name, fn) { this.events[name] = fn; }
-    closest(selector) { return selector === "[data-ebook-id]" && this.dataset.ebookId ? this : null; }
+    closest(selector) {
+      if (selector === "[data-ebook-id]" && this.dataset.ebookId) return this;
+      if (selector === "[data-ebook-collection-id]" && this.dataset.ebookCollectionId) return this;
+      return null;
+    }
   }
   const closeButton = new Element({ ebookClose: "close_icon" });
   const continueButton = new Element({ ebookClose: "continue_button" });
@@ -21,9 +25,17 @@ function runPromotion({ seen = false, blocked = false, landing = false, otherDia
     querySelectorAll() { return [closeButton, continueButton]; }
     getBoundingClientRect() { return { left: 100, top: 100, right: 500, bottom: 500 }; }
   }
-  const identity = { ebookId: productId, ebookTitle: productTitle };
+  const identity = collection ? { ebookCollectionId: "cx-na-pratica" } : { ebookId: productId, ebookTitle: productTitle };
   const dialog = new Dialog({ ...identity, ebookAdId: "cx_na_operacao_launch_v1" });
   const landingBody = new Element(identity);
+  const catalogBody = new Element({ ebookCollectionId: "cx-na-pratica" });
+  const products = [new Element({ ebookId: "cx-na-operacao", ebookTitle: "CX na Operação" }), new Element({ ebookId: "indicadores", ebookTitle: "Indicadores" })];
+  const observers = [];
+  class Observer {
+    constructor(callback) { this.callback = callback; observers.push(this); }
+    observe() {}
+    unobserve() {}
+  }
   const checkout = new Element({ ...identity, ebookCheckout: "hero" });
   const announcement = new Element({ ...identity, ebookPlacement: "announcement" });
   const introduction = new Element({ ...identity, ebookPlacement: "introduction" });
@@ -38,23 +50,27 @@ function runPromotion({ seen = false, blocked = false, landing = false, otherDia
     activeElement: new Element(), visibilityState: "visible",
     body: { classList: { contains: () => false } },
     querySelector(selector) {
-      if (selector === "#ebook-introduction") return landing ? null : dialog;
+      if (selector === "#ebook-introduction") return landing || catalog ? null : dialog;
       if (selector === "body.ebook-landing[data-ebook-id]") return landing ? landingBody : null;
+      if (selector === "body.ebook-catalog[data-ebook-collection-id]") return catalog ? catalogBody : null;
       if (selector === "dialog[open]") return otherDialog ? {} : null;
       return null;
     },
     querySelectorAll(selector) {
       if (selector === "[data-ebook-checkout]") return [checkout];
       if (selector === "[data-ebook-placement]") return [announcement, introduction];
+      if (selector === "[data-ebook-product]") return catalog ? products : [];
       return [];
     },
     addEventListener() {},
   };
   const context = {
     document, HTMLElement: Element, HTMLDialogElement: Dialog,
+    ...(observe ? { IntersectionObserver: Observer } : {}),
     window: {
+      ...(observe ? { IntersectionObserver: Observer } : {}),
       setTimeout: (fn) => timers.push(fn),
-      location: { assign: (url) => navigations.push(url) },
+      location: { hostname, assign: (url) => navigations.push(url) },
       ...(analytics ? { gtag: (...args) => {
         events.push(args);
         if (acknowledge) args[2]?.event_callback?.();
@@ -67,11 +83,20 @@ function runPromotion({ seen = false, blocked = false, landing = false, otherDia
   };
   vm.runInNewContext(source, context);
   flushTimers();
-  return { dialog, closeButton, continueButton, checkout, announcement, introduction, storage, events, navigations, flushTimers };
+  return { dialog, closeButton, continueButton, checkout, announcement, introduction, storage, events, navigations, flushTimers, products, observers };
 }
 
 const choices = (state) => state.events.filter((event) => ["ebook_offer_continue", "ebook_site_continue"].includes(event[1]));
 const click = (extra = {}) => ({ button: 0, preventDefault() { this.defaultPrevented = true; }, ...extra });
+
+test("local previews do not send production Analytics events", () => {
+  const state = runPromotion({ hostname: "127.0.0.1" });
+  assert.equal(state.dialog.open, true);
+  state.introduction.events.click(click());
+  state.flushTimers();
+  assert.equal(state.events.length, 0);
+  assert.equal(state.navigations.length, 1);
+});
 
 test("first visit opens a dismissible dialog and remembers the session", () => {
   const state = runPromotion();
@@ -174,4 +199,27 @@ test("product identity is supplied by the page and supports future ebooks", () =
   assert.equal(future.events.length, 2);
   assert.equal(future.events.every(event => event[2].ebook_id === "qa-future-book" && event[2].item_id === "qa-future-book"), true);
   assert.equal(future.events.every(event => event[2].ebook_title === "QA future book"), true);
+});
+
+test("collection introductions never pretend to be an individual product", () => {
+  const state = runPromotion({ collection: true });
+  assert.equal(state.events[0][2].ebook_collection_id, "cx-na-pratica");
+  assert.equal("ebook_id" in state.events[0][2], false);
+  state.introduction.dataset.ebookId = "indicadores";
+  state.introduction.dataset.ebookTitle = "Indicadores";
+  state.introduction.events.click(click());
+  assert.equal(choices(state)[0][2].ebook_id, "indicadores");
+});
+
+test("catalogue records one product exposure only after it is half visible", () => {
+  const state = runPromotion({ catalog: true, observe: true });
+  assert.equal(state.events[0][1], "ebook_catalog_view");
+  const observer = state.observers.at(-1);
+  observer.callback([{ target: state.products[1], isIntersecting: true, intersectionRatio: 0.3 }]);
+  assert.equal(state.events.filter(event => event[1] === "ebook_product_view").length, 0);
+  observer.callback([{ target: state.products[1], isIntersecting: true, intersectionRatio: 0.6 }]);
+  observer.callback([{ target: state.products[1], isIntersecting: true, intersectionRatio: 1 }]);
+  const views = state.events.filter(event => event[1] === "ebook_product_view");
+  assert.equal(views.length, 1);
+  assert.equal(views[0][2].ebook_id, "indicadores");
 });

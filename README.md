@@ -39,13 +39,15 @@ The initial authority collection was developed editorially for the requested sea
 
 ## eBook Storefront
 
+- Collection: `/ebooks/`, `/pt/ebooks/`, `/es/ebooks/`, with all three independently sold titles from `tools/ebook_catalog.py`.
 - Sales pages: `/ebooks/cx-na-operacao/`, `/pt/ebooks/cx-na-operacao/`, `/es/ebooks/cx-na-operacao/`.
-- The product is a Portuguese PDF. English and Spanish pages describe the same Portuguese edition.
-- Product facts and copy: `tools/ebook_content.py`; rebuild with `tools/build_static_site.py`.
+- All three books are Portuguese PDFs. English and Spanish pages describe the same Portuguese editions.
+- First-book detailed copy: `tools/ebook_content.py`; catalog facts, copy and Hotmart IDs: `tools/ebook_catalog.py`. Rebuild with `tools/build_static_site.py`.
 - The public site contains promotional images only. Do not add the paid PDF or editable manuscript to this repository.
 - Existing pages include a persistent announcement and a dismissible native dialog shown once per browser session. Blocked session storage disables the dialog, not the announcement.
-- GA4 `G-68E95X4DZT` receives `ebook_introduction_view` (exposure), `ebook_offer_continue` (offer choice), `ebook_site_continue` (continue browsing), `ebook_landing_view` (offer page load), `ebook_landing_click` and `ebook_checkout_click` (separate intent events). Product attributes supply `ebook_id` and `ebook_title` for current and future books. They are not purchase or revenue confirmations. See `docs/EBOOK_ANALYTICS.md` and `docs/GA4_REPORTS.md` for definitions, native reports and validation limits.
-- The verified checkout is https://pay.hotmart.com/Q108197102H. Recheck Hotmart before changing price, refund period or delivery claims.
+- GA4 `G-68E95X4DZT` receives `ebook_introduction_view`, `ebook_offer_continue`, `ebook_site_continue`, `ebook_landing_view`, `ebook_catalog_view`, `ebook_product_view`, `ebook_landing_click` and `ebook_checkout_click`. Product interactions supply their own ID and title; collection exposure supplies only the collection ID. These are not paid purchases. Localhost does not send Analytics events.
+- Authenticated server-side purchase/refund receiver: `integrations/hotmart-ga4/`. Deployment, secrets, validation and financial limitations are documented there; code availability alone does not mean it is activated. See `docs/EBOOK_ANALYTICS.md` and `docs/GA4_REPORTS.md` for reporting definitions.
+- Verified checkout links and promotional covers are in the catalog. Recheck Hotmart before changing price, refund period or delivery claims. Paid files must remain outside this public repository.
 
 ## Manual Checks
 

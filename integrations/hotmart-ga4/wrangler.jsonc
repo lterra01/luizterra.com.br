@@ -1,0 +1,15 @@
+{
+  "name": "luizterra-hotmart-ga4",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-26",
+  "workers_dev": true,
+  "observability": { "enabled": false },
+  "vars": {
+    "GA4_MEASUREMENT_ID": "G-68E95X4DZT",
+    "DELIVERY_MODE": "validate"
+  },
+  "durable_objects": {
+    "bindings": [{ "name": "TRANSACTIONS", "class_name": "TransactionLedger" }]
+  },
+  "exports": { "TransactionLedger": { "type": "durable-object", "storage": "sqlite" } }
+}

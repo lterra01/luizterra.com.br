@@ -141,23 +141,28 @@ copyLinkButtons.forEach((button) => {
 window.luizTerraInsights = insightArticles;
 
 const ebookIntroduction = document.querySelector("#ebook-introduction");
-const ebookSessionKey = "luiz-terra-ebook-cx-v1-introduced";
+const ebookSessionKey = ebookIntroduction?.dataset.ebookSessionKey || "luiz-terra-ebook-cx-v1-introduced";
 const ebookAdId = ebookIntroduction?.dataset.ebookAdId || "cx_na_operacao_launch_v1";
 let ebookIntroductionShown = false;
 let ebookDecisionRecorded = false;
 
 const ebookIdentity = (element) => {
   const product = element?.closest("[data-ebook-id]");
-  if (!product?.dataset.ebookId) return {};
+  if (!product?.dataset.ebookId) {
+    const collection = element?.closest("[data-ebook-collection-id]");
+    return collection ? { ebook_collection_id: collection.dataset.ebookCollectionId } : {};
+  }
   return {
     ebook_id: product.dataset.ebookId,
     ebook_title: product.dataset.ebookTitle || product.dataset.ebookId,
     item_id: product.dataset.ebookId,
     item_name: product.dataset.ebookTitle || product.dataset.ebookId,
+    ...(product.dataset.hotmartProductId ? { hotmart_product_id: product.dataset.hotmartProductId } : {}),
   };
 };
 
 const recordEbookEvent = (eventName, placement, parameters = {}, element = ebookIntroduction) => {
+  if (typeof window.location.hostname === "string" && !["www.luizterra.com.br", "luizterra.com.br"].includes(window.location.hostname)) return;
   if (typeof window.gtag === "function") {
     window.gtag("event", eventName, {
       send_to: "G-68E95X4DZT",
@@ -168,14 +173,14 @@ const recordEbookEvent = (eventName, placement, parameters = {}, element = ebook
   }
 };
 
-const recordEbookDecision = (choice, method, parameters = {}) => {
+const recordEbookDecision = (choice, method, parameters = {}, element = ebookIntroduction) => {
   if (!ebookIntroductionShown || ebookDecisionRecorded) return;
   ebookDecisionRecorded = true;
   recordEbookEvent(choice === "offer" ? "ebook_offer_continue" : "ebook_site_continue", "introduction", {
     ebook_ad_id: ebookAdId,
     interaction_method: method,
     ...parameters,
-  });
+  }, element);
 };
 
 document.querySelectorAll("[data-ebook-placement]").forEach((link) => {
@@ -193,9 +198,9 @@ document.querySelectorAll("[data-ebook-placement]").forEach((link) => {
         };
         // Keep navigation working even when Analytics is delayed or blocked.
         window.setTimeout(continueToOffer, 700);
-        recordEbookDecision("offer", "offer_button", { event_callback: continueToOffer, event_timeout: 600 });
+        recordEbookDecision("offer", "offer_button", { event_callback: continueToOffer, event_timeout: 600 }, link);
       } else {
-        recordEbookDecision("offer", "offer_button");
+        recordEbookDecision("offer", "offer_button", {}, link);
       }
       ebookIntroduction.close();
     }
@@ -211,6 +216,21 @@ document.querySelectorAll("[data-ebook-checkout]").forEach((link) => {
 
 const ebookLanding = document.querySelector("body.ebook-landing[data-ebook-id]");
 if (ebookLanding) recordEbookEvent("ebook_landing_view", "landing", {}, ebookLanding);
+const ebookCatalog = document.querySelector("body.ebook-catalog[data-ebook-collection-id]");
+if (ebookCatalog) recordEbookEvent("ebook_catalog_view", "catalog", {}, ebookCatalog);
+
+if ("IntersectionObserver" in window) {
+  const viewedProducts = new WeakSet();
+  const productObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || entry.intersectionRatio < 0.5 || viewedProducts.has(entry.target)) return;
+      viewedProducts.add(entry.target);
+      recordEbookEvent("ebook_product_view", ebookCatalog ? "catalog" : "related", {}, entry.target);
+      productObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll("[data-ebook-product]").forEach((product) => productObserver.observe(product));
+}
 
 if (typeof HTMLDialogElement !== "undefined" && ebookIntroduction instanceof HTMLDialogElement) {
   const rememberIntroduction = () => {
