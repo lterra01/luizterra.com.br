@@ -142,19 +142,53 @@ window.luizTerraInsights = insightArticles;
 
 const ebookIntroduction = document.querySelector("#ebook-introduction");
 const ebookSessionKey = "luiz-terra-ebook-cx-v1-introduced";
+const ebookAdId = "cx_na_operacao_launch_v1";
+let ebookIntroductionShown = false;
+let ebookDecisionRecorded = false;
 
-const recordEbookEvent = (eventName, placement) => {
+const recordEbookEvent = (eventName, placement, parameters = {}) => {
   if (typeof window.gtag === "function") {
     window.gtag("event", eventName, {
+      send_to: "G-68E95X4DZT",
       item_id: "cx-na-operacao",
       item_name: "CX na Operação",
       placement,
+      ...parameters,
     });
   }
 };
 
+const recordEbookDecision = (choice, method, parameters = {}) => {
+  if (!ebookIntroductionShown || ebookDecisionRecorded) return;
+  ebookDecisionRecorded = true;
+  recordEbookEvent(choice === "offer" ? "ebook_offer_continue" : "ebook_site_continue", "introduction", {
+    ebook_ad_id: ebookAdId,
+    interaction_method: method,
+    ...parameters,
+  });
+};
+
 document.querySelectorAll("[data-ebook-placement]").forEach((link) => {
-  link.addEventListener("click", () => {
+  link.addEventListener("click", (event) => {
+    if (link.dataset.ebookPlacement === "introduction" && ebookIntroduction?.open) {
+      const sameTabClick = event.button === 0 && !event.ctrlKey && !event.metaKey &&
+        !event.shiftKey && !event.altKey && link.target !== "_blank";
+      if (sameTabClick && typeof window.gtag === "function") {
+        event.preventDefault();
+        let navigated = false;
+        const continueToOffer = () => {
+          if (navigated) return;
+          navigated = true;
+          window.location.assign(link.href);
+        };
+        // Keep navigation working even when Analytics is delayed or blocked.
+        window.setTimeout(continueToOffer, 700);
+        recordEbookDecision("offer", "offer_button", { event_callback: continueToOffer, event_timeout: 600 });
+      } else {
+        recordEbookDecision("offer", "offer_button");
+      }
+      ebookIntroduction.close();
+    }
     recordEbookEvent("ebook_landing_click", link.dataset.ebookPlacement);
   });
 });
@@ -175,18 +209,26 @@ if (typeof HTMLDialogElement !== "undefined" && ebookIntroduction instanceof HTM
   };
 
   ebookIntroduction.querySelectorAll("[data-ebook-close]").forEach((button) => {
-    button.addEventListener("click", () => ebookIntroduction.close());
+    button.addEventListener("click", () => {
+      recordEbookDecision("site", button.dataset.ebookClose);
+      ebookIntroduction.close();
+    });
   });
 
+  ebookIntroduction.addEventListener("cancel", () => recordEbookDecision("site", "escape"));
   ebookIntroduction.addEventListener("click", (event) => {
     const bounds = ebookIntroduction.getBoundingClientRect();
     if (event.target === ebookIntroduction &&
         (event.clientX < bounds.left || event.clientX > bounds.right ||
          event.clientY < bounds.top || event.clientY > bounds.bottom)) {
+      recordEbookDecision("site", "backdrop");
       ebookIntroduction.close();
     }
   });
-  ebookIntroduction.addEventListener("close", rememberIntroduction);
+  ebookIntroduction.addEventListener("close", () => {
+    recordEbookDecision("site", "other_close");
+    rememberIntroduction();
+  });
 
   let alreadyIntroduced = false;
   try {
@@ -200,8 +242,9 @@ if (typeof HTMLDialogElement !== "undefined" && ebookIntroduction instanceof HTM
       if (document.visibilityState === "visible" && !document.querySelector("dialog[open]") &&
           !document.body.classList.contains("nav-open") && !isEditableTarget(document.activeElement)) {
         ebookIntroduction.showModal();
+        ebookIntroductionShown = true;
         rememberIntroduction();
-        recordEbookEvent("ebook_introduction_view", "first_session_entry");
+        recordEbookEvent("ebook_introduction_view", "first_session_entry", { ebook_ad_id: ebookAdId });
       }
     }, 1800);
   }

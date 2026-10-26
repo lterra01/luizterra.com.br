@@ -1370,14 +1370,14 @@ def ebook_promotion(lang: str) -> str:
       </a>
     </aside>
     <dialog class="ebook-modal" id="ebook-introduction" aria-labelledby="ebook-introduction-title" aria-describedby="ebook-introduction-description">
-      <button type="button" class="ebook-modal-close" data-ebook-close aria-label="{esc(c['close'])}" title="{esc(c['close'])}" autofocus>&times;</button>
+      <button type="button" class="ebook-modal-close" data-ebook-close="close_icon" aria-label="{esc(c['close'])}" title="{esc(c['close'])}" autofocus>&times;</button>
       <img src="{EBOOK['cover']}" width="1254" height="1254" loading="lazy" alt="{esc(EBOOK['name'])} - Luiz Terra" />
       <p class="eyebrow">{esc(c['label'])}</p>
       <h2 id="ebook-introduction-title">{esc(c['modal_title'])}</h2>
       <p id="ebook-introduction-description">{esc(c['modal_text'])}</p>
       <p class="ebook-modal-price">{EBOOK['price_label']} <small>{esc(c['single'])}</small></p>
       <a class="button primary" href="{path}" data-ebook-placement="introduction">{esc(c['learn'])}</a>
-      <button class="ebook-continue" type="button" data-ebook-close>{esc(c['continue'])}</button>
+      <button class="ebook-continue" type="button" data-ebook-close="continue_button">{esc(c['continue'])}</button>
     </dialog>"""
 
 
@@ -2342,7 +2342,7 @@ The initial authority collection was developed editorially for the requested sea
 - Product facts and copy: `tools/ebook_content.py`; rebuild with `tools/build_static_site.py`.
 - The public site contains promotional images only. Do not add the paid PDF or editable manuscript to this repository.
 - Existing pages include a persistent announcement and a dismissible native dialog shown once per browser session. Blocked session storage disables the dialog, not the announcement.
-- `ebook_landing_click`, `ebook_checkout_click` and `ebook_introduction_view` are intent events, not purchase or revenue confirmations. They use the existing Google tag only.
+- GA4 `G-68E95X4DZT` receives `ebook_introduction_view` (exposure), `ebook_offer_continue` (offer choice), `ebook_site_continue` (continue browsing), `ebook_landing_click` and `ebook_checkout_click` (separate intent events). They are not purchase or revenue confirmations. See `docs/EBOOK_ANALYTICS.md` for definitions and validation limits.
 - The verified checkout is https://pay.hotmart.com/Q108197102H. Recheck Hotmart before changing price, refund period or delivery claims.
 
 ## Manual Checks

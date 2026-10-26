@@ -44,7 +44,7 @@ The initial authority collection was developed editorially for the requested sea
 - Product facts and copy: `tools/ebook_content.py`; rebuild with `tools/build_static_site.py`.
 - The public site contains promotional images only. Do not add the paid PDF or editable manuscript to this repository.
 - Existing pages include a persistent announcement and a dismissible native dialog shown once per browser session. Blocked session storage disables the dialog, not the announcement.
-- `ebook_landing_click`, `ebook_checkout_click` and `ebook_introduction_view` are intent events, not purchase or revenue confirmations. They use the existing Google tag only.
+- GA4 `G-68E95X4DZT` receives `ebook_introduction_view` (exposure), `ebook_offer_continue` (offer choice), `ebook_site_continue` (continue browsing), `ebook_landing_click` and `ebook_checkout_click` (separate intent events). They are not purchase or revenue confirmations. See `docs/EBOOK_ANALYTICS.md` for definitions and validation limits.
 - The verified checkout is https://pay.hotmart.com/Q108197102H. Recheck Hotmart before changing price, refund period or delivery claims.
 
 ## Manual Checks
