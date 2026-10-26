@@ -265,6 +265,131 @@ RELATED_OVERRIDES = {
 
 NEW_ARTICLES = [
     article(
+        slug="voice-ai-telecom-discipline",
+        title={
+            "en": "Voice AI Needs Telecom Discipline",
+            "pt": "IA de voz precisa de disciplina de telecomunicações",
+            "es": "La IA de voz necesita disciplina de telecomunicaciones",
+        },
+        seo_title={
+            "en": "Voice AI: Telecom Discipline for Scale | Luiz Terra",
+            "pt": "IA de Voz e Disciplina de Telecom | Luiz Terra",
+            "es": "IA de Voz y Disciplina de Telecom | Luiz Terra",
+        },
+        summary={
+            "en": "Why enterprise voice AI needs carrier control, media observability, capacity planning, reliable transfers and verified business outcomes.",
+            "pt": "Por que a IA de voz empresarial exige controle de operadoras, observabilidade, capacidade, transferências confiáveis e resultados verificados.",
+            "es": "Por qué la IA de voz empresarial exige control de operadores, observabilidad, capacidad, transferencias fiables y resultados verificados.",
+        },
+        category={"en": "AI & Automation", "pt": "IA e Automação", "es": "IA y Automatización"},
+        cluster="ai-contact-centers",
+        tags=["Voice AI", "Telecom", "Contact Center", "Media observability", "AI governance"],
+        sections={
+            "en": [
+                ("The demonstration is not the operating model", [
+                    "Voice AI can sound impressive in a controlled demonstration. Enterprise value begins when it can operate reliably across thousands of real conversations. The question changes from whether the system can answer naturally to whether it can complete the customer objective under real operating conditions.",
+                    "At scale, many failures do not originate inside the language model. They appear at the boundaries between intelligence and the communications network: latency, jitter, codecs, route quality, caller identity, call progress detection, transfers, recording, regional connectivity and human fallback. Voice AI is not only an AI product. It is also a telecom operating system.",
+                ]),
+                ("Control the route and observe the media", [
+                    "Carrier and route control is the first discipline. Enterprises need visibility into where traffic runs, how routes perform and what alternatives exist when quality degrades. A route should not become an invisible dependency simply because the conversational layer is delivered as a service.",
+                    "Media observability is the second discipline. Teams must understand audio quality, silence, interruption, packet conditions and the timing of every stage of a conversation. Listening to a natural response in a demonstration is different from understanding the conditions that produced the audio in production.",
+                ]),
+                ("Plan capacity and preserve continuity", [
+                    "Capacity planning is the third discipline. Concurrency, peaks, retry policies and regional demand affect both customer experience and unit economics. These variables belong in the operating review alongside conversational quality, because they shape what the service can deliver when demand changes.",
+                    "Continuity and escalation is the fourth discipline. A conversation must survive a transfer from AI to a person without losing the call, the customer context or the promise already made. A transfer is not a successful fallback if it leaves the customer repeating the same information or restarting the journey.",
+                ]),
+                ("Protect the interaction and verify the outcome", [
+                    "Security and compliance is the fifth discipline. Identity, consent, recording, fraud controls and data handling vary by market and use case. These responsibilities cannot be separated from the conversation or assumed to be identical across every regional operation.",
+                    "Outcome verification is the sixth discipline. A natural conversation is not automatically a successful one. The system must confirm whether the customer objective was completed correctly and within policy. This connects technical execution with the result the business and the customer actually need.",
+                ]),
+                ("Use a scorecard with three perspectives", [
+                    "The conversational perspective covers recognition quality, response relevance, interruption handling, escalation behavior and grounding in approved knowledge. It explains how the intelligence behaves during the interaction.",
+                    "The network perspective covers connection success, route quality, media delay, call completion, transfer integrity and service availability. It explains whether the communication can happen reliably from beginning to end.",
+                    "The business perspective covers resolution, repeat contact, conversion, collections outcome, cost to serve, compliance and customer trust. The three views must be reviewed together. Optimizing only one creates hidden tradeoffs: lower telecom cost can reduce audio quality, a more natural response can increase latency, and higher containment can be harmful if customers cannot reach the right human expert.",
+                ]),
+                ("Govern the conversation as one service", [
+                    "The strongest operating model brings AI, contact center, telecom, security, legal and business owners into one governance cycle. Incidents should be reviewed end to end, because the customer experiences the conversation as one service rather than a collection of supplier boundaries.",
+                    "Voice AI will scale when companies stop treating the network as a commodity and start managing every conversation as a measurable production system. Reliability is a shared operating responsibility, not a claim that can be established by conversational fluency alone.",
+                ]),
+            ],
+            "pt": [
+                ("A demonstração não é o modelo operacional", [
+                    "A IA de voz pode impressionar em uma demonstração controlada. O valor empresarial começa quando ela consegue operar com confiabilidade em milhares de conversas reais. A pergunta deixa de ser se o sistema responde naturalmente e passa a ser se consegue concluir o objetivo do cliente nas condições reais da operação.",
+                    "Em escala, muitas falhas não começam no modelo de linguagem. Elas aparecem nas fronteiras entre inteligência e rede de comunicações: latência, jitter, codecs, qualidade das rotas, identidade de quem liga, detecção do progresso da chamada, transferências, gravação, conectividade regional e apoio humano. A IA de voz não é apenas um produto de IA. Também é um sistema operacional de telecomunicações.",
+                ]),
+                ("Controle a rota e observe a mídia", [
+                    "Controle de operadoras e rotas é a primeira disciplina. A empresa precisa enxergar por onde o tráfego passa, como as rotas se comportam e quais alternativas existem quando a qualidade se degrada. Uma rota não deve se tornar uma dependência invisível só porque a camada conversacional é entregue como serviço.",
+                    "Observabilidade de mídia é a segunda disciplina. As equipes precisam compreender qualidade do áudio, silêncio, interrupções, condições dos pacotes e tempos de cada etapa da conversa. Ouvir uma resposta natural em uma demonstração é diferente de entender as condições que produziram aquele áudio em produção.",
+                ]),
+                ("Planeje a capacidade e preserve a continuidade", [
+                    "Planejamento de capacidade é a terceira disciplina. Simultaneidade, picos, políticas de novas tentativas e demanda regional afetam tanto a experiência quanto a economia por interação. Essas variáveis precisam fazer parte da análise operacional junto com a qualidade conversacional, porque definem o que o serviço consegue entregar quando a demanda muda.",
+                    "Continuidade e escalonamento são a quarta disciplina. A conversa precisa sobreviver à transferência da IA para uma pessoa sem perder a chamada, o contexto do cliente ou a promessa já feita. A transferência não é um apoio humano bem-sucedido se obriga o cliente a repetir as informações ou recomeçar a jornada.",
+                ]),
+                ("Proteja a interação e verifique o resultado", [
+                    "Segurança e conformidade são a quinta disciplina. Identidade, consentimento, gravação, controles de fraude e tratamento de dados variam por mercado e caso de uso. Essas responsabilidades não podem ser separadas da conversa nem consideradas idênticas em todas as operações regionais.",
+                    "Verificação de resultados é a sexta disciplina. Uma conversa natural não é automaticamente uma conversa bem-sucedida. O sistema precisa confirmar se o objetivo do cliente foi concluído corretamente e dentro da política. Isso conecta a execução técnica ao resultado de que o negócio e o cliente realmente precisam.",
+                ]),
+                ("Use um quadro de indicadores com três perspectivas", [
+                    "A perspectiva conversacional reúne qualidade do reconhecimento, relevância das respostas, tratamento de interrupções, comportamento de escalonamento e uso de conhecimento aprovado. Ela mostra como a inteligência se comporta durante a interação.",
+                    "A perspectiva de rede reúne sucesso de conexão, qualidade das rotas, atraso de mídia, conclusão de chamadas, integridade das transferências e disponibilidade. Ela mostra se a comunicação consegue ocorrer de forma confiável do início ao fim.",
+                    "A perspectiva de negócio reúne resolução, contato repetido, conversão, resultado de cobrança, custo de servir, conformidade e confiança do cliente. As três visões precisam ser analisadas juntas. Otimizar apenas uma cria perdas ocultas: um custo menor de telecom pode reduzir a qualidade do áudio, uma resposta mais natural pode aumentar a latência e uma contenção maior pode prejudicar quem precisa chegar ao especialista humano adequado.",
+                ]),
+                ("Governe a conversa como um único serviço", [
+                    "O modelo operacional mais sólido reúne responsáveis por IA, contact center, telecom, segurança, jurídico e negócio em um mesmo ciclo de governança. Os incidentes devem ser analisados de ponta a ponta, porque o cliente vivencia a conversa como um único serviço, não como uma coleção de fronteiras entre fornecedores.",
+                    "A IA de voz ganhará escala quando as empresas deixarem de tratar a rede como commodity e passarem a gerenciar cada conversa como um sistema de produção mensurável. Confiabilidade é uma responsabilidade operacional compartilhada, não uma conclusão sustentada apenas pela fluência da conversa.",
+                ]),
+            ],
+            "es": [
+                ("La demostración no es el modelo operativo", [
+                    "La IA de voz puede sonar impresionante en una demostración controlada. El valor empresarial comienza cuando puede operar de forma fiable en miles de conversaciones reales. La pregunta deja de ser si el sistema responde con naturalidad y pasa a ser si puede completar el objetivo del cliente en las condiciones reales de la operación.",
+                    "A escala, muchos fallos no se originan en el modelo de lenguaje. Aparecen en los límites entre la inteligencia y la red de comunicaciones: latencia, variación del retardo, códecs, calidad de rutas, identidad del llamante, detección del progreso de la llamada, transferencias, grabación, conectividad regional y respaldo humano. La IA de voz no es solamente un producto de IA. También es un sistema operativo de telecomunicaciones.",
+                ]),
+                ("Controle la ruta y observe el audio", [
+                    "El control de operadores y rutas es la primera disciplina. Las empresas necesitan visibilidad sobre dónde circula el tráfico, cómo rinden las rutas y qué alternativas existen cuando la calidad se degrada. Una ruta no debería convertirse en una dependencia invisible porque la capa conversacional se entregue como servicio.",
+                    "La observabilidad del audio es la segunda disciplina. Los equipos deben comprender la calidad, los silencios, las interrupciones, las condiciones de los paquetes y los tiempos de cada etapa de la conversación. Escuchar una respuesta natural en una demostración es distinto de entender las condiciones que produjeron ese audio en producción.",
+                ]),
+                ("Planifique la capacidad y preserve la continuidad", [
+                    "La planificación de capacidad es la tercera disciplina. La concurrencia, los picos, las políticas de reintento y la demanda regional afectan tanto la experiencia como la economía unitaria. Estas variables deben formar parte de la revisión operativa junto con la calidad conversacional, porque determinan lo que el servicio puede entregar cuando cambia la demanda.",
+                    "La continuidad y el escalamiento son la cuarta disciplina. Una conversación debe sobrevivir a la transferencia de la IA a una persona sin perder la llamada, el contexto del cliente ni la promesa ya realizada. La transferencia no es un respaldo eficaz si obliga al cliente a repetir la información o reiniciar el recorrido.",
+                ]),
+                ("Proteja la interacción y verifique el resultado", [
+                    "La seguridad y el cumplimiento son la quinta disciplina. La identidad, el consentimiento, la grabación, los controles de fraude y el tratamiento de datos varían según el mercado y el caso de uso. Estas responsabilidades no pueden separarse de la conversación ni considerarse idénticas en todas las operaciones regionales.",
+                    "La verificación de resultados es la sexta disciplina. Una conversación natural no es automáticamente una conversación exitosa. El sistema debe confirmar si el objetivo del cliente se completó correctamente y dentro de la política. Así se conecta la ejecución técnica con el resultado que necesitan el negocio y el cliente.",
+                ]),
+                ("Utilice un cuadro de mando con tres perspectivas", [
+                    "La perspectiva conversacional incluye calidad del reconocimiento, relevancia de las respuestas, gestión de interrupciones, comportamiento de escalamiento y uso de conocimiento aprobado. Explica cómo se comporta la inteligencia durante la interacción.",
+                    "La perspectiva de red incluye éxito de conexión, calidad de rutas, retraso del audio, finalización de llamadas, integridad de transferencias y disponibilidad. Explica si la comunicación puede producirse de forma fiable de principio a fin.",
+                    "La perspectiva de negocio incluye resolución, contacto repetido, conversión, resultado de cobros, coste de servicio, cumplimiento y confianza del cliente. Las tres visiones deben revisarse juntas. Optimizar solamente una genera compromisos ocultos: un menor coste de telecomunicaciones puede reducir la calidad del audio, una respuesta más natural puede aumentar la latencia y una mayor contención puede impedir que el cliente llegue al experto humano adecuado.",
+                ]),
+                ("Gobierne la conversación como un único servicio", [
+                    "El modelo operativo más sólido reúne a responsables de IA, contact center, telecomunicaciones, seguridad, legal y negocio en un único ciclo de gobernanza. Los incidentes deben revisarse de extremo a extremo, porque el cliente experimenta la conversación como un solo servicio y no como una colección de fronteras entre proveedores.",
+                    "La IA de voz escalará cuando las empresas dejen de tratar la red como un producto indiferenciado y comiencen a gestionar cada conversación como un sistema de producción medible. La fiabilidad es una responsabilidad operativa compartida, no una conclusión que pueda establecerse únicamente por la fluidez de la conversación.",
+                ]),
+            ],
+        },
+        checklist={
+            "en": ["Review carrier routes and quality alternatives", "Observe media conditions and conversational timing", "Plan concurrency, peaks and retry policies", "Preserve context and promises in human transfers", "Validate identity, consent and data handling for each use case", "Verify resolution alongside network and conversation quality"],
+            "pt": ["Revisar rotas de operadoras e alternativas de qualidade", "Observar condições de mídia e tempos da conversa", "Planejar simultaneidade, picos e novas tentativas", "Preservar contexto e promessas nas transferências humanas", "Validar identidade, consentimento e dados por caso de uso", "Verificar resolução junto com qualidade de rede e conversa"],
+            "es": ["Revisar rutas de operadores y alternativas de calidad", "Observar condiciones del audio y tiempos de conversación", "Planificar concurrencia, picos y reintentos", "Preservar contexto y promesas en las transferencias humanas", "Validar identidad, consentimiento y datos por caso de uso", "Verificar resolución junto con calidad de red y conversación"],
+        },
+        closing={
+            "en": "Review a real voice journey from connection to verified outcome. Bring the conversational, network and business scorecards into the same discussion, and make ownership of transfers, exceptions and incidents explicit. The purpose is not to choose between better intelligence and better telecom. It is to operate them as one service.",
+            "pt": "Revise uma jornada real de voz desde a conexão até o resultado verificado. Leve os indicadores de conversa, rede e negócio para a mesma discussão e deixe claras as responsabilidades por transferências, exceções e incidentes. O objetivo não é escolher entre inteligência melhor e telecom melhor. É operá-las como um único serviço.",
+            "es": "Revise un recorrido real de voz desde la conexión hasta el resultado verificado. Reúna los indicadores de conversación, red y negocio en la misma discusión y haga explícitas las responsabilidades sobre transferencias, excepciones e incidentes. No se trata de elegir entre mejor inteligencia y mejores telecomunicaciones. Se trata de operarlas como un solo servicio.",
+        },
+        faq={
+            "en": [("Why does voice AI need telecom discipline?", "The language model is only part of the service. Routing, audio quality, capacity, transfers, recording and regional connectivity influence whether the conversation can complete reliably."), ("Which metrics should a voice AI operation review?", "Review conversational quality, network performance and business outcomes together, including recognition, latency, connection success, transfer integrity, resolution, repeat contact and compliance.")],
+            "pt": [("Por que a IA de voz precisa de disciplina de telecom?", "O modelo de linguagem é apenas parte do serviço. Rotas, áudio, capacidade, transferências, gravação e conectividade regional influenciam a conclusão confiável da conversa."), ("Quais indicadores a operação de IA de voz deve analisar?", "Analise qualidade conversacional, desempenho de rede e resultados de negócio juntos, incluindo reconhecimento, latência, conexão, integridade das transferências, resolução, contato repetido e conformidade.")],
+            "es": [("¿Por qué la IA de voz necesita disciplina de telecomunicaciones?", "El modelo de lenguaje es solo una parte del servicio. Rutas, audio, capacidad, transferencias, grabación y conectividad regional influyen en la finalización fiable de la conversación."), ("¿Qué indicadores debe revisar una operación de IA de voz?", "Revise juntos calidad conversacional, rendimiento de red y resultados de negocio, incluidos reconocimiento, latencia, conexión, integridad de transferencias, resolución, contacto repetido y cumplimiento.")],
+        },
+        related=["new-cx-stack-telecom-contact-centers", "sip-voice-quality-resilience-global-contact-centers", "ai-evaluation-production-contact-centers", "future-of-sbcs-cloud-contact-centers"],
+        published="2026-10-23",
+        modified="2026-10-26",
+        reading={"en": "5 min read", "pt": "5 min de leitura", "es": "5 min de lectura"},
+        featured=True,
+        source_url="https://www.linkedin.com/pulse/voice-ai-needs-telecom-discipline-luiz-terra-tasue/",
+    ),
+    article(
         slug="new-cx-stack-telecom-contact-centers",
         title={
             "en": "The New CX Stack: Experience, Telecom and Contact Centers Converge",

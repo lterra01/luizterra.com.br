@@ -212,7 +212,7 @@ TOPICS = [
             "es": "La IA crea valor cuando modifica un flujo operativo medible. La pregunta relevante no es si un modelo impresiona, sino si mejora productividad, tasas de contacto, calidad, contención, resultados para el cliente o velocidad de decisión sin crear riesgos inaceptables.",
         },
         "themes": ["AI ROI", "Contact center automation", "AI-powered AMD", "Agent productivity", "Analytics", "Quality and governance"],
-        "articles": ["new-cx-stack-telecom-contact-centers", "ai-contact-centers-roi", "call-center-automation-roi", "ai-powered-amd-outbound-operations"],
+        "articles": ["voice-ai-telecom-discipline", "new-cx-stack-telecom-contact-centers", "ai-contact-centers-roi", "call-center-automation-roi", "ai-powered-amd-outbound-operations"],
     },
     {
         "slug": "latam-nearshore-cx",

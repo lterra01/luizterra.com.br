@@ -1345,12 +1345,12 @@ def footer(lang: str) -> str:
 def render_home(lang: str) -> str:
     c = COPY[lang]
     featured_slugs = [
+        "voice-ai-telecom-discipline",
         "new-cx-stack-telecom-contact-centers",
         "ai-contact-centers-roi",
         "bpos-evaluate-telecom-infrastructure-partners",
         "brazil-customer-service-outsourcing",
         "future-of-sbcs-cloud-contact-centers",
-        "latam-bridge-us-cx-global-delivery",
     ]
     featured_articles = [article for slug in featured_slugs for article in ARTICLES if article["slug"] == slug]
     impact_cards = "\n".join(
@@ -2212,7 +2212,7 @@ International Sales Executive in Telecom, CX, BPO and AI, focused on strategic p
 
 ## Editorial Note
 
-The initial authority collection was developed editorially for the requested search topics. New newsletter editions are synchronized only after public publication is confirmed on LinkedIn, with a visible original-edition link and editorial versions in English, Portuguese and Spanish. The 16 October 2026 edition, The New CX Stack, is the first confirmed newsletter edition incorporated through this flow. Earlier LinkedIn post texts are not assumed to be newsletter editions.
+The initial authority collection was developed editorially for the requested search topics. New newsletter editions are synchronized only after public publication is confirmed on LinkedIn, with a visible original-edition link and editorial versions in English, Portuguese and Spanish. Confirmed editions incorporated through this flow: The New CX Stack (16 October 2026) and Voice AI Needs Telecom Discipline (23 October 2026). Earlier LinkedIn post texts are not assumed to be newsletter editions.
 
 ## Manual Checks
 
