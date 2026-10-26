@@ -268,8 +268,8 @@ NEW_ARTICLES = [
         slug="voice-ai-telecom-discipline",
         title={
             "en": "Voice AI Needs Telecom Discipline",
-            "pt": "IA de voz precisa de disciplina de telecomunicações",
-            "es": "La IA de voz necesita disciplina de telecomunicaciones",
+            "pt": "IA de voz precisa de disciplina de telecom",
+            "es": "La IA de voz necesita disciplina de telecom",
         },
         seo_title={
             "en": "Voice AI: Telecom Discipline for Scale | Luiz Terra",
