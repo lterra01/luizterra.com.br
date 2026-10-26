@@ -51,7 +51,7 @@ test("actual offer amount is used, not commission, fixed list price, tax or inte
   assert.equal(/PRIVATE_TEST|private@|buyer|commissions|payment/.test(json), false);
 });
 
-test("unknown products, malformed amounts and partial refunds require review", () => {
+test("unregistered products cannot normalize; malformed amounts and partial refunds require review", () => {
   const unknown = fixture(); unknown.data.product.id = 999;
   assert.throws(() => normalizeNotification(unknown, products), /UNKNOWN_PRODUCT/);
   for (const value of [-1, Infinity, NaN, "9.99", null]) {
@@ -68,6 +68,19 @@ test("Hottok validation is mandatory and transaction identities are stable and o
   assert.deepEqual(a, await transactionIdentity("HPUNITTEST12345", "TEST_ONLY_SECRET"));
   assert.notEqual(a.key, (await transactionIdentity("HPUNITTEST67890", "TEST_ONLY_SECRET")).key);
   assert.equal(a.key.includes("HPUNITTEST"), false);
+});
+
+test("authenticated fictitious or unregistered products are acknowledged but never collected", async () => {
+  const h = harness("live");
+  try {
+    const payload = fixture(); payload.data.product.id = 999;
+    assert.equal((await h.post(payload, "wrong")).status, 401);
+    const response = await h.post(payload);
+    assert.equal(response.status, 200);
+    assert.equal((await response.json()).code, "ignored_unregistered_product");
+    assert.equal(h.calls.length, 0);
+    assert.equal(h.values.size, 0);
+  } finally { h.restore(); }
 });
 
 test("validation mode never posts to the collection endpoint and stores no buyer data", async () => {

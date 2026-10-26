@@ -33,7 +33,11 @@ export default {
     if (!await authenticated(request.headers.get("X-HOTMART-HOTTOK"), env.HOTMART_HOTTOK)) return reply(401, "unauthorized");
     let record;
     try { record = normalizeNotification(await boundedJson(request), products); }
-    catch (error) { return reply(error.message === "BODY_TOO_LARGE" ? 413 : 422, "requires_review"); }
+    catch (error) {
+      // Hotmart's configuration test uses a fictitious, unregistered product.
+      if (error.message === "UNKNOWN_PRODUCT") return reply(200, "ignored_unregistered_product");
+      return reply(error.message === "BODY_TOO_LARGE" ? 413 : 422, "requires_review");
+    }
     if (!record) return reply(200, "ignored_non_financial_event");
     const identity = await transactionIdentity(record.transaction, env.IDENTITY_SECRET);
     const ledger = env.TRANSACTIONS.get(env.TRANSACTIONS.idFromName(identity.key));

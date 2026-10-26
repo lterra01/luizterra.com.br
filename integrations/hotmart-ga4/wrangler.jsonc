@@ -6,7 +6,7 @@
   "observability": { "enabled": false },
   "vars": {
     "GA4_MEASUREMENT_ID": "G-68E95X4DZT",
-    "DELIVERY_MODE": "validate"
+    "DELIVERY_MODE": "live"
   },
   "durable_objects": {
     "bindings": [{ "name": "TRANSACTIONS", "class_name": "TransactionLedger" }]

@@ -1143,6 +1143,7 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
         graph.extend([
             {"@type": "CollectionPage", "@id": f"{url}#webpage", "url": url,
              "name": COLLECTION_COPY[lang]["title"], "description": COLLECTION_COPY[lang]["description"],
+             "dateModified": max(book["modified"] for book in EBOOKS),
              "inLanguage": META[lang]["lang"], "mainEntity": {"@id": f"{url}#books"}},
             {"@type": "ItemList", "@id": f"{url}#books", "numberOfItems": len(EBOOKS),
              "itemListElement": [{"@type": "ListItem", "position": book["volume"], "item": {
@@ -2050,7 +2051,9 @@ def build_sitemap() -> None:
 
     def sitemap_url(lang: str, path: str) -> str:
         updated = DATE_MODIFIED
-        if path == EBOOK["path"]:
+        if path == COLLECTION_PATH:
+            updated = max(book["modified"] for book in EBOOKS)
+        elif path == EBOOK["path"]:
             updated = EBOOK["modified"]
         elif path.startswith("insights/") and path != "insights/":
             slug = path.removeprefix("insights/").rstrip("/")

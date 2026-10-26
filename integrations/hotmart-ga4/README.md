@@ -2,15 +2,17 @@
 
 ## Estado
 
-Implementacao preparada em 26/10/2026. Configuracao inicial segura: `DELIVERY_MODE=validate`.
-Consulte o registro de ativacao ao final deste documento antes de considerar a coleta ativa.
-Nao ha comprovacao de compra real nem de receita processada apenas por existir este codigo.
+Ativado em 26/10/2026 em `DELIVERY_MODE=live`, apos validacao separada sem coletar compras ficticias.
+URL: `https://luizterra-hotmart-ga4.luizterra-hotmart-ga4.workers.dev/hotmart`.
+Para uma nova implantacao de teste, pausar o webhook e usar `validate` explicitamente. O arquivo Wrangler agora preserva o modo real de producao.
+Coleta configurada e testes aprovados nao comprovam uma compra genuina nem receita processada no GA4.
 
 ## Contrato
 
 - Cloudflare Workers Free + Durable Objects SQLite; nao habilitar plano pago.
 - `POST /hotmart`, JSON v2.0.0, cabecalho obrigatorio `X-HOTMART-HOTTOK`.
 - Produtos permitidos gerados da fonte `tools/ebook_catalog.py` em `products.json`.
+- Produto ficticio do teste padrao da Hotmart e outros IDs nao cadastrados: HTTP 200 `ignored_unregistered_product`, sem persistir nem enviar ao GA4. Isso confirma transporte, nao validacao de uma venda. Novos livros exigem cadastro explicito no catalogo e no webhook.
 - `PURCHASE_APPROVED` + `APPROVED`: `purchase`. Boleto/Pix pendente e cancelamentos sao ignorados.
 - `PURCHASE_REFUNDED` + `REFUNDED` ou `PURCHASE_CHARGEBACK` + `CHARGEBACK`: um `refund` integral, somente apos compra registrada.
 - Valor da oferta em `purchase.price`, sem juros/taxas de `full_price` e sem confundir com comissao.
@@ -43,7 +45,7 @@ Cadastrar como secrets da Cloudflare, nunca vars em JSON ou codigo publico:
 pnpm install --frozen-lockfile
 pnpm test
 pnpm check
-pnpm exec wrangler login --use-keyring --scopes account:read user:read workers:write
+pnpm exec wrangler login --device --use-keyring --scopes account:read user:read workers_scripts:write
 pnpm exec wrangler deploy
 pnpm exec wrangler secret put HOTMART_HOTTOK
 pnpm exec wrangler secret put GA4_API_SECRET
@@ -53,6 +55,7 @@ pnpm exec wrangler secret put IDENTITY_SECRET
 As credenciais devem ser inseridas de forma privada, nao em comandos versionados, chat ou capturas. O login oficial do Wrangler usa o cofre do sistema quando disponivel. Autorizacao de publicacao/segredos e obrigatoria antes da ativacao.
 
 1. Implantar inicialmente em `validate` e confirmar `/health`.
+   `validate-remote.mjs` testa os tres produtos e a idempotencia. Exige `WORKER_URL` HTTPS, `HOTMART_HOTTOK` privado e recusa rodar se `/health` nao confirmar `ready_validate`. Nao executar testes sinteticos diretamente no endpoint MP de coleta.
 2. Configurar Hotmart v2.0.0 para estes tres produtos, apenas aprovado/reembolsado/chargeback.
 3. Usar o teste da Hotmart somente enquanto o receptor estiver em `validate`; conferir `validated_not_collected` e nenhuma mensagem de validacao do GA4.
 4. Desligar a configuracao de teste da Hotmart antes de mudar para `live`; nunca reenviar historico de testes para producao.
@@ -74,7 +77,12 @@ Na Hotmart, revisar historico de entregas e falhas. No Cloudflare, conferir saud
 
 ## Registro De Ativacao
 
-- Testes locais: 9 testes do receptor, 13 testes de promocao e 4 testes HTML aprovados; bundle Wrangler validado em dry-run.
+- Testes locais: 10 testes do receptor, 13 testes de promocao e 4 testes HTML aprovados; bundle Wrangler validado em dry-run.
 - Runtime local workerd/SQLite verificado: sem segredos retorna 503; token ausente retorna 401; boleto pendente retorna 200 ignorado; aprovacao sintetica antiga passa pelo Durable Object e retorna 202 para revisao. Nenhum desses testes enviou purchase ao GA4.
-- Publicacao do receptor, cadastro de segredos, webhook da Hotmart e modo live: pendentes de ativacao verificada.
+- Cloudflare Free, Durable Object SQLite `TransactionLedger`; sem upgrade pago, sem mudanca no DNS do site, logs e traces desabilitados. Autenticacao Wrangler protegida pelo Windows Credential Manager; escopo especifico `workers_scripts:write`, alem de leitura da conta/usuario.
+- Chave GA4 exclusiva `Luiz Terra - Hotmart webhook` criada no fluxo `15196204898`, apos confirmacao do usuario sobre privacidade. Os tres secrets da Cloudflare foram cadastrados sem valores no codigo/publicacao.
+- Validacao remota dos tres produtos: `validated_not_collected` e `duplicate_ignored`, somente `/debug/mp/collect`. Nenhuma compra sintetica enviada ao endpoint de coleta.
+- Teste oficial Hotmart: tres notificacoes ficticias da transacao `HP16015479281022` (aprovado, reembolsado, chargeback) retornaram `200 - Processado`. Seu produto ficticio nao pertence ao catalogo e foi ignorado; esse recibo comprova transporte, nao pagamento nem receita no Google.
+- Configuracao Hotmart `Luiz Terra - eBooks GA4`: ativa, v2.0.0, somente os tres eBooks e os tres eventos financeiros. Produtos e eventos reabertos e conferidos na interface.
+- Versao Cloudflare live: `c925769c-5b47-4ce1-99b0-8ef50ef15a69`, publicada a 100%. `/health`: HTTPS 200 `ready_live`; POST sem autenticacao: 401; evento nao financeiro autenticado: 200 ignorado. Nenhum teste de compra foi enviado em live.
 - Compra genuina e receita no GA4 processado: ainda nao verificadas.

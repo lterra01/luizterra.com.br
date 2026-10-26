@@ -66,7 +66,16 @@ Nao ha evento de escolha quando a pessoa simplesmente fecha a aba ou sai da pagi
 
 ## Relatorios De Acompanhamento
 
-Os tres relatorios nativos do GA4 e suas definicoes estao documentados em `docs/GA4_REPORTS.md`. Novas dimensoes nao preenchem dados anteriores. Permitir o processamento do Google antes de avaliar a ausencia de linhas; nao tratar uma tabela vazia no periodo anterior ao lancamento como falha ou resultado comercial zero.
+Os quatro relatorios nativos do GA4 e suas definicoes estao documentados em `docs/GA4_REPORTS.md`. Novas dimensoes nao preenchem dados anteriores. Permitir o processamento do Google antes de avaliar a ausencia de linhas; nao tratar uma tabela vazia no periodo anterior ao lancamento como falha ou resultado comercial zero.
+
+### Publicacao Da Colecao Em 26/10/2026
+
+- Commit `5b61d6a`, GitHub Pages run `40382572982`: concluido com sucesso.
+- Catalogos EN/PT/ES e pagina detalhada anterior retornaram HTTP 200 com os dois novos checkouts.
+- Sitemap publico: 87 URLs distintas, incluindo as tres rotas do catalogo.
+- Os 13 testes de promocao, 10 testes do receptor e 4 testes HTML passaram. O receptor tambem foi iniciado no runtime local workerd/SQLite, sem enviar compras ao Google. Catalogos EN/PT/ES conferidos a 375, 768 e 1280 px, sem overflow horizontal e com os tres links de compra legiveis.
+- Webhook Hotmart ativo em live, com os tres produtos e eventos aprovado/reembolsado/chargeback. Validacao remota dos tres produtos no debug do Google aprovada, sem coletar compras ficticias. Teste de transporte da Hotmart: tres retornos HTTP 200 para produto ficticio ignorado.
+- O relatorio 04 foi reaberto na colecao publicada. Nao ha ainda prova de compra real recebida/processada; conferir a proxima venda genuina na Hotmart e no GA4 processado.
 
 ## Compras Confirmadas E Receita
 
