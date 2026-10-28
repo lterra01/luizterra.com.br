@@ -219,6 +219,44 @@ if (ebookLanding) recordEbookEvent("ebook_landing_view", "landing", {}, ebookLan
 const ebookCatalog = document.querySelector("body.ebook-catalog[data-ebook-collection-id]");
 if (ebookCatalog) recordEbookEvent("ebook_catalog_view", "catalog", {}, ebookCatalog);
 
+const recordMiniExpertEvent = (name, placement, element) => {
+  if (!["www.luizterra.com.br", "luizterra.com.br"].includes(window.location.hostname)) return;
+  const product = element?.closest("[data-mini-expert-id]");
+  if (!product?.dataset.miniExpertId || typeof window.gtag !== "function") return;
+  window.gtag("event", name, {
+    send_to: "G-68E95X4DZT",
+    product_id: product.dataset.miniExpertId,
+    item_id: product.dataset.miniExpertId,
+    item_name: product.dataset.miniExpertTitle,
+    hotmart_product_id: product.dataset.hotmartProductId,
+    item_category: "AI assistant",
+    billing_period: "monthly",
+    placement,
+  });
+};
+
+document.querySelectorAll("[data-mini-expert-link]").forEach((link) => {
+  link.addEventListener("click", () => recordMiniExpertEvent("mini_expert_landing_click", link.dataset.miniExpertLink, link));
+});
+document.querySelectorAll("[data-mini-expert-checkout]").forEach((link) => {
+  link.addEventListener("click", () => recordMiniExpertEvent("mini_expert_checkout_click", link.dataset.miniExpertCheckout, link));
+});
+const miniExpertLanding = document.querySelector("body.mini-expert-landing");
+if (miniExpertLanding) recordMiniExpertEvent("mini_expert_landing_view", "landing", miniExpertLanding);
+const miniExpertProducts = document.querySelectorAll("[data-mini-expert-product]");
+if (miniExpertProducts.length && "IntersectionObserver" in window) {
+  const seen = new WeakSet();
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || entry.intersectionRatio < 0.5 || seen.has(entry.target)) return;
+      seen.add(entry.target);
+      recordMiniExpertEvent("mini_expert_product_view", entry.target.dataset.productPlacement, entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.5 });
+  miniExpertProducts.forEach((product) => observer.observe(product));
+}
+
 if ("IntersectionObserver" in window) {
   const viewedProducts = new WeakSet();
   const productObserver = new IntersectionObserver((entries) => {

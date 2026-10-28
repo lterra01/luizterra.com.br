@@ -72,7 +72,7 @@ class EbookTests(unittest.TestCase):
             with self.subTest(path=path.relative_to(ROOT)):
                 text = path.read_text(encoding="utf-8")
                 page = Page(text)
-                is_sales_page = any(tag == "body" and any(name in attrs.get("class", "").split() for name in ("ebook-landing", "ebook-catalog")) for tag, attrs in page.tags)
+                is_sales_page = any(tag == "body" and any(name in attrs.get("class", "").split() for name in ("ebook-landing", "ebook-catalog", "mini-expert-landing")) for tag, attrs in page.tags)
                 if not is_sales_page:
                     self.assertEqual(text.count('id="ebook-introduction"'), 1)
                     self.assertIn('class="ebook-announcement"', text)

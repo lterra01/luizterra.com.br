@@ -1315,6 +1315,82 @@ body:has(> .ebook-announcement) {
   .ebook-collection-modal .ebook-modal-books span { font-size: 11px; }
 }
 
+.mini-expert-landing { background: #fff; color: #14221f; }
+.mini-expert-inner,
+.mini-expert-feature-inner,
+.mini-expert-offer-inner { width: min(1100px, calc(100% - 48px)); margin-inline: auto; }
+.mini-expert-heading { padding: 32px 0 24px; }
+.mini-expert-heading h1 { max-width: 900px; margin: 16px 0; font-size: 44px; line-height: 1.12; overflow-wrap: break-word; }
+.mini-expert-heading p { max-width: 780px; color: #405b52; }
+.mini-expert-heading .mini-expert-intro { font-size: 22px; color: #14221f; margin-bottom: 12px; }
+.mini-expert-main .eyebrow,
+.mini-expert-feature .eyebrow { color: #14685e; }
+.mini-expert-offer { padding: 12px 0 40px; }
+.mini-expert-offer-inner { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 48px; align-items: center; }
+.mini-expert-offer img { display: block; width: 280px; height: 280px; object-fit: contain; }
+.mini-expert-price { font-family: var(--font-heading, 'Space Grotesk', sans-serif); font-size: 32px; line-height: 1.3; margin: 18px 0; color: #14221f; }
+.mini-expert-price small { font-family: Inter, sans-serif; font-size: 16px; font-weight: 400; }
+.mini-expert-language { font-size: 14px; color: #405b52; margin-bottom: 22px; }
+.mini-expert-note { margin-top: 18px; max-width: 650px; font-size: 13px; line-height: 1.65; color: #405b52; }
+.mini-expert-benefits,
+.mini-expert-limits,
+.mini-expert-faq { padding: 40px 0; border-top: 1px solid #dce5df; }
+.mini-expert-main h2 { font-size: 28px; line-height: 1.2; margin-bottom: 24px; }
+.mini-expert-benefits { background: #f4f7f5; }
+.mini-expert-benefit-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.mini-expert-benefit-grid h3 { font-size: 20px; margin-bottom: 12px; }
+.mini-expert-benefit-grid p,
+.mini-expert-limits p { color: #405b52; font-size: 15px; }
+.mini-expert-limits p { max-width: 840px; }
+.mini-expert-limits p + p { margin-top: 18px; }
+.mini-expert-faq .faq-list { margin-bottom: 28px; }
+.mini-expert-faq summary { color: #14221f; }
+.mini-expert-faq details p { color: #405b52; }
+.mini-expert-books { color: #14685e; text-decoration: underline; text-underline-offset: 4px; }
+.mini-expert-feature { padding: 48px 0; background: #fff; color: #14221f; border-block: 1px solid #dce5df; }
+.mini-expert-feature-inner { display: grid; grid-template-columns: 240px minmax(0, 1fr); align-items: center; gap: 40px; }
+.mini-expert-feature img { display: block; width: 240px; height: 240px; object-fit: contain; }
+.mini-expert-feature h2 { font-size: 30px; line-height: 1.2; max-width: 650px; margin: 14px 0; }
+.mini-expert-feature p:not(.eyebrow):not(.mini-expert-price) { max-width: 720px; color: #405b52; }
+.mini-expert-main :focus-visible,
+.mini-expert-feature :focus-visible { outline: 3px solid #14685e; outline-offset: 5px; }
+.mini-expert-landing .site-footer,
+.mini-expert-landing .site-footer small,
+.ebook-catalog .site-footer,
+.ebook-catalog .site-footer small { color: #405b52; }
+.mini-expert-landing .footer-links,
+.ebook-catalog .footer-links { color: #14685e; }
+@media (max-width: 768px) {
+  .mini-expert-inner,
+  .mini-expert-offer-inner,
+  .mini-expert-feature-inner { width: calc(100% - 32px); }
+  .mini-expert-heading h1 { font-size: 32px; }
+  .mini-expert-heading .mini-expert-intro { font-size: 20px; }
+  .mini-expert-offer-inner,
+  .mini-expert-feature-inner { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .mini-expert-offer img { width: 220px; height: 220px; }
+  .mini-expert-feature img { width: 180px; height: 180px; }
+  .mini-expert-feature h2,
+  .mini-expert-main h2 { font-size: 26px; }
+  .mini-expert-benefit-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .mini-expert-offer .button,
+  .mini-expert-feature .button { width: 100%; padding-inline: 16px; }
+}
+@media (min-width: 601px) and (max-width: 768px) {
+  .mini-expert-offer-inner { grid-template-columns: 200px minmax(0, 1fr); gap: 24px; }
+  .mini-expert-offer img { width: 200px; height: 200px; }
+}
+@media (max-width: 600px) {
+  .mini-expert-offer-inner { grid-template-columns: 128px minmax(0, 1fr); gap: 16px; }
+  .mini-expert-offer-inner > div { display: contents; }
+  .mini-expert-offer img { width: 128px; height: 128px; grid-column: 1; grid-row: 1 / 3; }
+  .mini-expert-offer .mini-expert-price { grid-column: 2; grid-row: 1; font-size: 28px; margin: 0; }
+  .mini-expert-offer .mini-expert-price small { display: block; }
+  .mini-expert-offer .mini-expert-language { grid-column: 2; grid-row: 2; font-size: 12px; margin: 0; }
+  .mini-expert-offer .button,
+  .mini-expert-offer .mini-expert-note { grid-column: 1 / -1; margin: 0; }
+}
+
 .ebook-hero {
   background: #031b2c url('/public/ebooks/cx-na-operacao-background.webp') center bottom / cover no-repeat;
 }

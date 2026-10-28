@@ -49,6 +49,15 @@ The initial authority collection was developed editorially for the requested sea
 - Authenticated server-side purchase/refund receiver: `integrations/hotmart-ga4/`. Deployment, secrets, validation and financial limitations are documented there; code availability alone does not mean it is activated. See `docs/EBOOK_ANALYTICS.md` and `docs/GA4_REPORTS.md` for reporting definitions.
 - Verified checkout links and promotional covers are in the catalog. Recheck Hotmart before changing price, refund period or delivery claims. Paid files must remain outside this public repository.
 
+## Mini Expert
+
+- Independent AI assistant subscription: `/mini-expert/indicadores-de-atendimento/`, `/pt/mini-expert/indicadores-de-atendimento/`, `/es/mini-expert/indicadores-de-atendimento/`.
+- Canonical offer and localized copy: `tools/mini_expert_content.py`. Verified on 27 October 2026: Hotmart product `8822826`, active sales, individual monthly plan at R$ 199.90 until cancelled, 7-day refund period.
+- The service is in Portuguese, accessed through Hotmart. It is not an eBook, is not included with an eBook purchase and does not include human consulting or automatic integrations. AI responses require verification; submit only authorised aggregated or anonymised data.
+- Featured on the home pages and eBook collection; linked from every footer. Public promotional cover only; no private agent instructions or knowledge files are published.
+- GA4 intent events use `mini_expert_landing_view`, `mini_expert_product_view`, `mini_expert_landing_click` and `mini_expert_checkout_click`, separate from `ebook_*`. No purchase is emitted by the website. The financial receiver and its three-eBook allowlist are unchanged; subscription purchases and renewals are not yet connected to GA4.
+- Rebuild with `tools/build_static_site.py`. Rollback this addition through a dedicated Git revert and republish GitHub Pages; do not delete financial events or change the existing receiver.
+
 ## Manual Checks
 
 - Validate social preview with LinkedIn Post Inspector and WhatsApp after cache propagation.

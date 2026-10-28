@@ -55,9 +55,9 @@ EBOOKS = [
 
 COLLECTION_COPY = {
     "pt": {
-        "title": "CX na Prática: 3 eBooks de Luiz Terra | R$ 9,99 cada",
-        "description": "Conheça os três eBooks de Luiz Terra sobre rotinas, indicadores, qualidade e feedback no atendimento. PDFs em português, R$ 9,99 cada, pela Hotmart.",
-        "intro": "Três guias para quem supervisiona ou coordena o atendimento. Escolha o tema que sua operação precisa trabalhar agora.",
+        "title": "CX na Prática: eBooks e Mini Expert | Luiz Terra",
+        "description": "Três eBooks de atendimento por R$ 9,99 cada e o Mini Expert de Indicadores, assistente de IA por R$ 199,90/mês. Produtos independentes de Luiz Terra na Hotmart.",
+        "intro": "Três guias para quem supervisiona ou coordena o atendimento. Conheça também o Mini Expert, um assistente de IA por assinatura, vendido separadamente.",
         "label": "EBOOKS DE LUIZ TERRA", "language": "Conteúdo em português · PDF · edição 1.0",
         "volume": "Volume", "pages": "páginas", "worksheets": "fichas de trabalho", "buy": "Comprar na Hotmart",
         "details": "O que você encontra", "each": "cada · pagamento único", "collection": "Conhecer a coleção",
@@ -67,9 +67,9 @@ COLLECTION_COPY = {
         "bar": "CX na Prática · 3 eBooks de Luiz Terra", "close": "Fechar apresentação dos eBooks", "continue": "Continuar no site",
     },
     "en": {
-        "title": "CX na Prática: 3 eBooks by Luiz Terra | R$ 9.99 each",
-        "description": "Explore Luiz Terra's three Portuguese-language eBooks on customer service routines, metrics, quality and feedback. PDF editions sold individually on Hotmart.",
-        "intro": "Three guides for customer service supervisors and coordinators. Choose the topic your operation needs to work on next.",
+        "title": "CX na Prática: eBooks and Mini Expert | Luiz Terra",
+        "description": "Three customer service eBooks at R$ 9.99 each and the Mini Expert AI assistant at R$ 199.90/month. Independent Portuguese-language products by Luiz Terra.",
+        "intro": "Three guides for customer service supervisors and coordinators. Also explore the Mini Expert, an independent Portuguese-language AI assistant subscription.",
         "label": "EBOOKS BY LUIZ TERRA", "language": "Portuguese-language content · PDF · edition 1.0",
         "volume": "Volume", "pages": "pages", "worksheets": "worksheets", "buy": "Buy on Hotmart",
         "details": "Inside this eBook", "each": "each · one-time payment", "collection": "Explore the collection",
@@ -79,9 +79,9 @@ COLLECTION_COPY = {
         "bar": "CX na Prática · 3 eBooks by Luiz Terra", "close": "Close the eBook introduction", "continue": "Continue to the site",
     },
     "es": {
-        "title": "CX na Prática: 3 eBooks de Luiz Terra | R$ 9,99 cada uno",
-        "description": "Conozca los tres eBooks de Luiz Terra sobre rutinas, indicadores, calidad y feedback en atención al cliente. PDFs en portugués, vendidos por separado en Hotmart.",
-        "intro": "Tres guías para supervisores y coordinadores de atención. Elija el tema que su operación necesita trabajar ahora.",
+        "title": "CX na Prática: eBooks y Mini Expert | Luiz Terra",
+        "description": "Tres eBooks de atención por R$ 9,99 cada uno y el asistente de IA Mini Expert por R$ 199,90/mes. Productos independientes de Luiz Terra en portugués.",
+        "intro": "Tres guías para supervisores y coordinadores de atención. Conozca también el Mini Expert, un asistente de IA en portugués por suscripción, vendido por separado.",
         "label": "EBOOKS DE LUIZ TERRA", "language": "Contenido en portugués · PDF · edición 1.0",
         "volume": "Volumen", "pages": "páginas", "worksheets": "fichas de trabajo", "buy": "Comprar en Hotmart",
         "details": "Dentro del eBook", "each": "cada uno · pago único", "collection": "Conocer la colección",

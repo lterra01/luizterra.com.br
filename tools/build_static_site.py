@@ -18,6 +18,7 @@ from article_library import ARTICLE_LEADS, ARTICLE_UPDATES, NEW_ARTICLES, RELATE
 from content_hub import CLUSTER_GUIDANCE, EXECUTIVE_BIO, TOPICS, TOPIC_BY_SLUG, UI
 from ebook_content import EBOOK, EBOOK_COPY
 from ebook_catalog import EBOOKS, COLLECTION_COPY, COLLECTION_ID, COLLECTION_PATH
+from mini_expert_content import MINI_EXPERT, MINI_EXPERT_COPY
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -1042,6 +1043,10 @@ def head(
         og_width = og_height = 1254
         og_alt = "CX na Operação - 7 rotinas para organizar o atendimento - Luiz Terra"
         preload = f'    <link rel="preload" href="{EBOOK["cover"]}" as="image" type="image/webp" fetchpriority="high" />\n'
+    elif page_type == "mini_expert":
+        og_image = f"{BASE_URL}{MINI_EXPERT['cover']}"
+        og_width = og_height = 1080
+        og_alt = MINI_EXPERT["name"] + " - Luiz Terra"
     return f"""  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -1143,7 +1148,7 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
         graph.extend([
             {"@type": "CollectionPage", "@id": f"{url}#webpage", "url": url,
              "name": COLLECTION_COPY[lang]["title"], "description": COLLECTION_COPY[lang]["description"],
-             "dateModified": max(book["modified"] for book in EBOOKS),
+             "dateModified": max(MINI_EXPERT["modified"], *(book["modified"] for book in EBOOKS)),
              "inLanguage": META[lang]["lang"], "mainEntity": {"@id": f"{url}#books"}},
             {"@type": "ItemList", "@id": f"{url}#books", "numberOfItems": len(EBOOKS),
              "itemListElement": [{"@type": "ListItem", "position": book["volume"], "item": {
@@ -1154,6 +1159,28 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
                  "offers": {"@type": "Offer", "url": book["checkout"], "price": book["price"],
                             "priceCurrency": "BRL", "availability": "https://schema.org/InStock"},
              }} for book in EBOOKS]},
+        ])
+    elif page_type == "mini_expert":
+        copy = MINI_EXPERT_COPY[lang]
+        graph.extend([
+            {"@type": "WebPage", "@id": f"{url}#webpage", "url": url,
+             "name": copy["title"], "description": copy["description"],
+             "dateModified": MINI_EXPERT["modified"], "inLanguage": META[lang]["lang"],
+             "mainEntity": {"@id": f"{url}#service"}},
+            {"@type": "Service", "@id": f"{url}#service", "name": MINI_EXPERT["name"],
+             "description": copy["summary"], "url": url, "serviceType": "AI assistant subscription",
+             "image": f"{BASE_URL}{MINI_EXPERT['cover']}", "availableLanguage": "pt-BR",
+             "provider": {"@id": f"{BASE_URL}/#luiz-terra"},
+             "offers": {"@type": "Offer", "url": MINI_EXPERT["checkout"],
+                        "price": MINI_EXPERT["price"], "priceCurrency": MINI_EXPERT["currency"],
+                        "description": copy["terms"], "availability": "https://schema.org/InStock",
+                        "priceSpecification": {"@type": "UnitPriceSpecification",
+                                               "price": MINI_EXPERT["price"], "priceCurrency": "BRL",
+                                               "billingDuration": "P1M", "unitText": "MONTH"}}},
+            {"@type": "FAQPage", "@id": f"{url}#faq", "mainEntity": [
+                {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+                for q, a in copy["faq"]
+            ]},
         ])
     elif page_type == "ebook":
         graph.extend([
@@ -1412,6 +1439,7 @@ def footer(lang: str, promote: bool = True) -> str:
         <a href="mailto:{EMAIL}">{EMAIL}</a>
         <a href="{LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a>
         <a href="{lang_url(lang, COLLECTION_PATH)}">eBooks: CX na Prática</a>
+        <a href="{lang_url(lang, MINI_EXPERT['path'])}" data-mini-expert-link="footer" data-mini-expert-id="{MINI_EXPERT['id']}" data-mini-expert-title="{esc(MINI_EXPERT['name'])}" data-hotmart-product-id="{MINI_EXPERT['hotmart_id']}">Mini Expert</a>
       </div>
     </footer>{ebook_promotion(lang) if promote else ''}"""
 
@@ -1587,6 +1615,7 @@ def render_home(lang: str) -> str:
           </div>
         </div>
       </section>
+{mini_expert_feature(lang, 'home')}
       <section class="content-section section-reveal" id="speaking" aria-labelledby="speaking-title">
         <div class="section-label">{esc(c["speaking_label"])}</div>
         <div class="section-body">
@@ -1945,6 +1974,53 @@ def render_ebook_catalog(lang: str) -> str:
     <main class="ebook-main">
       <section class="ebook-catalog-heading"><div class="ebook-catalog-inner"><p class="eyebrow">{esc(c['label'])}</p><h1>CX na Prática</h1><p>{esc(c['intro'])}</p><p class="ebook-language">{esc(c['language'])}</p></div></section>
       <section class="ebook-catalog-products" aria-label="{esc(c['label'])}"><div class="ebook-product-grid">{ebook_cards(lang, EBOOKS, 'catalog')}</div><p class="ebook-catalog-note">{esc(c['note'])}</p></section>
+{mini_expert_feature(lang, 'catalog')}
+    </main>
+{footer(lang, promote=False)}
+    <script src="/script.js"></script>
+  </body>
+</html>
+"""
+
+
+def mini_expert_feature(lang: str, placement: str) -> str:
+    c = MINI_EXPERT_COPY[lang]
+    return f"""      <section class="mini-expert-feature" aria-labelledby="mini-expert-feature-title" data-mini-expert-product data-mini-expert-id="{MINI_EXPERT['id']}" data-mini-expert-title="{esc(MINI_EXPERT['name'])}" data-hotmart-product-id="{MINI_EXPERT['hotmart_id']}" data-product-placement="{placement}">
+        <div class="mini-expert-feature-inner">
+          <img src="{MINI_EXPERT['cover']}" alt="{esc(MINI_EXPERT['name'])} - Luiz Terra" width="1080" height="1080" loading="lazy" />
+          <div><p class="eyebrow">{esc(c['label'])}</p><h2 id="mini-expert-feature-title">{esc(c['heading'])}</h2><p>{esc(c['summary'])}</p>
+            <p class="mini-expert-price">{MINI_EXPERT['price_label']} <small>{esc(c['month'])}</small></p>
+            <a class="button ebook-buy" href="{lang_url(lang, MINI_EXPERT['path'])}" data-mini-expert-link="{placement}">{esc(c['discover'])} <span aria-hidden="true">&#8594;</span></a>
+            <p class="mini-expert-note">{esc(c['feature_note'])}</p>
+          </div>
+        </div>
+      </section>"""
+
+
+def render_mini_expert(lang: str) -> str:
+    c = MINI_EXPERT_COPY[lang]
+    benefits = "".join(f'<article><h3>{esc(title)}</h3><p>{esc(text)}</p></article>' for title, text in c["benefits"])
+    faq = "".join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in c["faq"])
+    checkout = f'{MINI_EXPERT["checkout"]}?sck=luizterra_site_mini_expert'
+    return f"""<!DOCTYPE html>
+<html lang="{META[lang]['lang']}">
+{head(lang, c['title'], c['description'], MINI_EXPERT['path'], 'mini_expert')}
+  <body class="mini-expert-landing" data-mini-expert-id="{MINI_EXPERT['id']}" data-mini-expert-title="{esc(MINI_EXPERT['name'])}" data-hotmart-product-id="{MINI_EXPERT['hotmart_id']}">
+{nav(lang, MINI_EXPERT['path'])}
+    <main class="ebook-main mini-expert-main">
+      <section class="mini-expert-heading" aria-labelledby="mini-expert-title"><div class="mini-expert-inner">
+        <p class="eyebrow">{esc(c['label'])}</p><h1 id="mini-expert-title">{esc(c['heading'])}</h1><p class="mini-expert-intro">{esc(c['intro'])}</p><p>{esc(c['summary'])}</p>
+      </div></section>
+      <section class="mini-expert-offer" aria-label="{esc(c['label'])}"><div class="mini-expert-offer-inner">
+        <img src="{MINI_EXPERT['cover']}" alt="{esc(MINI_EXPERT['name'])} - Luiz Terra" width="1080" height="1080" fetchpriority="high" />
+        <div><p class="mini-expert-price">{MINI_EXPERT['price_label']} <small>{esc(c['month'])}</small></p><p class="mini-expert-language">{esc(c['language'])}</p>
+          <a class="button ebook-buy" href="{checkout}" target="_blank" rel="noopener" data-mini-expert-checkout="offer">{esc(c['buy'])} <span aria-hidden="true">&#8599;</span></a>
+          <p class="mini-expert-note">{esc(c['terms'])}</p>
+        </div>
+      </div></section>
+      <section class="mini-expert-benefits"><div class="mini-expert-inner"><h2>{esc(c['benefits_title'])}</h2><div class="mini-expert-benefit-grid">{benefits}</div></div></section>
+      <section class="mini-expert-limits"><div class="mini-expert-inner"><h2>{esc(c['limits_title'])}</h2><p>{esc(c['limits'])}</p><p>{esc(c['privacy'])}</p></div></section>
+      <section class="mini-expert-faq"><div class="mini-expert-inner"><h2>{esc(c['faq_title'])}</h2><div class="faq-list ebook-faq">{faq}</div><a class="mini-expert-books" href="{lang_url(lang, COLLECTION_PATH)}">{esc(c['books'])} <span aria-hidden="true">&#8594;</span></a></div></section>
     </main>
 {footer(lang, promote=False)}
     <script src="/script.js"></script>
@@ -2028,6 +2104,7 @@ def build_pages() -> None:
     write(ROOT / "es" / "index.html", render_home("es"))
     for lang in ("en", "pt", "es"):
         write(ROOT / META[lang]["path"] / COLLECTION_PATH / "index.html", render_ebook_catalog(lang))
+        write(ROOT / META[lang]["path"] / MINI_EXPERT["path"] / "index.html", render_mini_expert(lang))
         write(ROOT / META[lang]["path"] / EBOOK["path"] / "index.html", render_ebook(lang))
         write(ROOT / META[lang]["path"] / "executive-bio" / "index.html", render_executive_bio(lang))
         write(ROOT / META[lang]["path"] / "insights" / "index.html", render_insights_index(lang))
@@ -2041,6 +2118,7 @@ def build_sitemap() -> None:
     pages: list[tuple[str, str]] = [("en", ""), ("pt", ""), ("es", "")]
     for lang in ("en", "pt", "es"):
         pages.append((lang, COLLECTION_PATH))
+        pages.append((lang, MINI_EXPERT["path"]))
         pages.append((lang, EBOOK["path"]))
         pages.append((lang, "executive-bio/"))
         pages.append((lang, "insights/"))
@@ -2052,7 +2130,9 @@ def build_sitemap() -> None:
     def sitemap_url(lang: str, path: str) -> str:
         updated = DATE_MODIFIED
         if path == COLLECTION_PATH:
-            updated = max(book["modified"] for book in EBOOKS)
+            updated = max(MINI_EXPERT["modified"], *(book["modified"] for book in EBOOKS))
+        elif path == MINI_EXPERT["path"]:
+            updated = MINI_EXPERT["modified"]
         elif path == EBOOK["path"]:
             updated = EBOOK["modified"]
         elif path.startswith("insights/") and path != "insights/":
@@ -2061,6 +2141,8 @@ def build_sitemap() -> None:
         elif path == "insights/" or path.startswith("topics/") or path == "":
             relevant = [item for item in ARTICLES if not path.startswith("topics/") or item.get("cluster") == path.removeprefix("topics/").rstrip("/")]
             updated = max([DATE_MODIFIED] + [item.get("modified", DATE_MODIFIED) for item in relevant])
+            if path == "":
+                updated = max(updated, MINI_EXPERT["modified"])
         alternates = "\n".join(
             f'    <xhtml:link rel="alternate" hreflang="{code}" href="{BASE_URL}{lang_url(target, path)}" />'
             for code, target in [("en", "en"), ("pt-BR", "pt"), ("es", "es")]
@@ -2164,6 +2246,10 @@ def build_discovery_files() -> None:
 ## eBook
 
 - [CX na Operação]({BASE_URL}/{EBOOK['path']}): A Portuguese PDF eBook by Luiz Terra with seven customer service routines, 27 pages and four worksheets. Sold through Hotmart, not a free download.
+
+## Mini Expert
+
+- [Mini Expert de Indicadores de Atendimento]({BASE_URL}/pt/{MINI_EXPERT['path']}): An independent Portuguese-language AI assistant subscription for customer service supervisors and coordinators. Individual access through Hotmart, R$ 199.90 per month until cancelled, 7-day refund period under the offer terms. Not an eBook, human consulting or automatic system integration. AI responses require verification. Only authorised aggregated or anonymised data should be shared.
 
 ## Topic pages
 
@@ -2407,6 +2493,15 @@ The initial authority collection was developed editorially for the requested sea
 - GA4 `G-68E95X4DZT` receives `ebook_introduction_view`, `ebook_offer_continue`, `ebook_site_continue`, `ebook_landing_view`, `ebook_catalog_view`, `ebook_product_view`, `ebook_landing_click` and `ebook_checkout_click`. Product interactions supply their own ID and title; collection exposure supplies only the collection ID. These are not paid purchases. Localhost does not send Analytics events.
 - Authenticated server-side purchase/refund receiver: `integrations/hotmart-ga4/`. Deployment, secrets, validation and financial limitations are documented there; code availability alone does not mean it is activated. See `docs/EBOOK_ANALYTICS.md` and `docs/GA4_REPORTS.md` for reporting definitions.
 - Verified checkout links and promotional covers are in the catalog. Recheck Hotmart before changing price, refund period or delivery claims. Paid files must remain outside this public repository.
+
+## Mini Expert
+
+- Independent AI assistant subscription: `/mini-expert/indicadores-de-atendimento/`, `/pt/mini-expert/indicadores-de-atendimento/`, `/es/mini-expert/indicadores-de-atendimento/`.
+- Canonical offer and localized copy: `tools/mini_expert_content.py`. Verified on 27 October 2026: Hotmart product `8822826`, active sales, individual monthly plan at R$ 199.90 until cancelled, 7-day refund period.
+- The service is in Portuguese, accessed through Hotmart. It is not an eBook, is not included with an eBook purchase and does not include human consulting or automatic integrations. AI responses require verification; submit only authorised aggregated or anonymised data.
+- Featured on the home pages and eBook collection; linked from every footer. Public promotional cover only; no private agent instructions or knowledge files are published.
+- GA4 intent events use `mini_expert_landing_view`, `mini_expert_product_view`, `mini_expert_landing_click` and `mini_expert_checkout_click`, separate from `ebook_*`. No purchase is emitted by the website. The financial receiver and its three-eBook allowlist are unchanged; subscription purchases and renewals are not yet connected to GA4.
+- Rebuild with `tools/build_static_site.py`. Rollback this addition through a dedicated Git revert and republish GitHub Pages; do not delete financial events or change the existing receiver.
 
 ## Manual Checks
 

@@ -4,7 +4,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.luizterra.com.br/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/" />
@@ -17,7 +17,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/" />
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/" />
@@ -43,11 +43,20 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/ebooks/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/ebooks/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/ebooks/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/ebooks/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/ebooks/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/mini-expert/indicadores-de-atendimento/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/mini-expert/indicadores-de-atendimento/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/mini-expert/indicadores-de-atendimento/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/mini-expert/indicadores-de-atendimento/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/mini-expert/indicadores-de-atendimento/" />
     <priority>0.8</priority>
   </url>
   <url>
@@ -295,11 +304,20 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/ebooks/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/ebooks/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/ebooks/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/ebooks/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/ebooks/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/pt/mini-expert/indicadores-de-atendimento/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/mini-expert/indicadores-de-atendimento/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/mini-expert/indicadores-de-atendimento/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/mini-expert/indicadores-de-atendimento/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/mini-expert/indicadores-de-atendimento/" />
     <priority>0.8</priority>
   </url>
   <url>
@@ -547,11 +565,20 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/ebooks/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/ebooks/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/ebooks/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/ebooks/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/ebooks/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.luizterra.com.br/es/mini-expert/indicadores-de-atendimento/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/mini-expert/indicadores-de-atendimento/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/mini-expert/indicadores-de-atendimento/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/mini-expert/indicadores-de-atendimento/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/mini-expert/indicadores-de-atendimento/" />
     <priority>0.8</priority>
   </url>
   <url>

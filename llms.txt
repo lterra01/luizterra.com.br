@@ -44,6 +44,10 @@
 
 - [CX na Operação](https://www.luizterra.com.br/ebooks/cx-na-operacao/): A Portuguese PDF eBook by Luiz Terra with seven customer service routines, 27 pages and four worksheets. Sold through Hotmart, not a free download.
 
+## Mini Expert
+
+- [Mini Expert de Indicadores de Atendimento](https://www.luizterra.com.br/pt/mini-expert/indicadores-de-atendimento/): An independent Portuguese-language AI assistant subscription for customer service supervisors and coordinators. Individual access through Hotmart, R$ 199.90 per month until cancelled, 7-day refund period under the offer terms. Not an eBook, human consulting or automatic system integration. AI responses require verification. Only authorised aggregated or anonymised data should be shared.
+
 ## Topic pages
 
 - [SBC for Contact Centers](https://www.luizterra.com.br/topics/sbc-contact-centers/): Executive guidance on Session Border Controllers, SIP interoperability, security, carrier connectivity and resilience for cloud and hybrid contact centers.
