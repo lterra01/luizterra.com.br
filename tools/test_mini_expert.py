@@ -1,6 +1,7 @@
 """Validate the independently sold AI subscription after rebuilding the site."""
 
 import json
+import hashlib
 import unittest
 from xml.etree import ElementTree as ET
 
@@ -9,6 +10,13 @@ from test_ebook import BASE, ROOT, Page
 
 
 class MiniExpertTests(unittest.TestCase):
+    def test_content_versioned_assets(self):
+        for route in ("pt/", "pt/ebooks/", "pt/" + MINI_EXPERT["path"]):
+            page = Page((ROOT / route / "index.html").read_text(encoding="utf-8"))
+            for filename, tag, attribute in (("styles.css", "link", "href"), ("script.js", "script", "src")):
+                digest = hashlib.sha256((ROOT / filename).read_bytes()).hexdigest()[:12]
+                self.assertTrue(any(t == tag and a.get(attribute) == f"/{filename}?v={digest}" for t, a in page.tags))
+
     def test_localized_pages_and_subscription_terms(self):
         for lang, prefix in (("en", ""), ("pt", "pt/"), ("es", "es/")):
             with self.subTest(lang=lang):

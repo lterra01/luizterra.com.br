@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import html
+import hashlib
 import json
 import textwrap
 from datetime import datetime
@@ -22,6 +23,8 @@ from mini_expert_content import MINI_EXPERT, MINI_EXPERT_COPY
 
 
 ROOT = Path(__file__).resolve().parents[1]
+CSS_URL = "/styles.css?v=" + hashlib.sha256((ROOT / "styles.css").read_bytes()).hexdigest()[:12]
+SCRIPT_URL = "/script.js?v=" + hashlib.sha256((ROOT / "script.js").read_bytes()).hexdigest()[:12]
 PUBLIC = ROOT / "public"
 IMAGES = PUBLIC / "images"
 BASE_URL = "https://www.luizterra.com.br"
@@ -1079,7 +1082,7 @@ def head(
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" /></noscript>
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="{CSS_URL}" />
     <script type="application/ld+json">{schema_json(lang, path, page_type, article)}</script>
   </head>"""
 
@@ -1660,7 +1663,7 @@ def render_home(lang: str) -> str:
       </section>
     </main>
 {footer(lang)}
-    <script src="/script.js"></script>
+    <script src="{SCRIPT_URL}"></script>
   </body>
 </html>
 """
@@ -1720,7 +1723,7 @@ def render_insights_index(lang: str) -> str:
       </section>
     </main>
 {footer(lang)}
-    <script src="/script.js"></script>
+    <script src="{SCRIPT_URL}"></script>
   </body>
 </html>
 """
@@ -1782,7 +1785,7 @@ def render_topic(lang: str, topic: dict) -> str:
       </section>
     </main>
 {footer(lang)}
-    <script src="/script.js"></script>
+    <script src="{SCRIPT_URL}"></script>
   </body>
 </html>
 """
@@ -1839,7 +1842,7 @@ def render_executive_bio(lang: str) -> str:
       </article>
     </main>
 {footer(lang)}
-    <script src="/script.js"></script>
+    <script src="{SCRIPT_URL}"></script>
   </body>
 </html>
 """
@@ -1943,7 +1946,7 @@ def render_article(lang: str, article: dict) -> str:
       </article>
     </main>
 {footer(lang)}
-    <script src="/script.js"></script>
+    <script src="{SCRIPT_URL}"></script>
   </body>
 </html>
 """
@@ -1977,7 +1980,7 @@ def render_ebook_catalog(lang: str) -> str:
 {mini_expert_feature(lang, 'catalog')}
     </main>
 {footer(lang, promote=False)}
-    <script src="/script.js"></script>
+    <script src="{SCRIPT_URL}"></script>
   </body>
 </html>
 """
@@ -2023,7 +2026,7 @@ def render_mini_expert(lang: str) -> str:
       <section class="mini-expert-faq"><div class="mini-expert-inner"><h2>{esc(c['faq_title'])}</h2><div class="faq-list ebook-faq">{faq}</div><a class="mini-expert-books" href="{lang_url(lang, COLLECTION_PATH)}">{esc(c['books'])} <span aria-hidden="true">&#8594;</span></a></div></section>
     </main>
 {footer(lang, promote=False)}
-    <script src="/script.js"></script>
+    <script src="{SCRIPT_URL}"></script>
   </body>
 </html>
 """
@@ -2083,7 +2086,7 @@ def render_ebook(lang: str) -> str:
       <section class="ebook-section ebook-final section-reveal" aria-labelledby="ebook-final-title"><div class="ebook-section-inner"><p class="eyebrow">CX NA OPERAÇÃO</p><h2 id="ebook-final-title">{esc(c['final_title'])}</h2><p>{esc(c['final_text'])}</p><p class="ebook-price">{EBOOK['price_label']} <small>{esc(c['single'])}</small></p>{buy('final')}<p class="ebook-purchase-note">{esc(c['purchase_note'])}</p></div></section>
     </main>
 {footer(lang, promote=False)}
-    <script src="/script.js"></script>
+    <script src="{SCRIPT_URL}"></script>
   </body>
 </html>
 """
