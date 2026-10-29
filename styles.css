@@ -1215,6 +1215,12 @@ body:has(> .ebook-announcement) {
   font-size: 14px;
 }
 
+.ebook-modal > .eyebrow {
+  max-width: calc(100% - 44px);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
 .ebook-modal .ebook-modal-price {
   font-size: 27px;
   font-weight: 700;

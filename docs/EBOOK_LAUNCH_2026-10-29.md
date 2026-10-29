@@ -1,6 +1,6 @@
 # eBook Launch - 29 October 2026
 
-Status: the author confirmed product finalisation and terms acceptance and explicitly requested website publication. All three additional products show active sales and their public checkouts were verified. Website deployment is in progress.
+Status: released. The author confirmed product finalisation and terms acceptance and explicitly requested website publication. All three additional products show active sales and their public checkouts were verified. GitHub Pages deployment succeeded and the public six-title collection was checked in all three languages.
 
 | Volume | Title | Hotmart ID | Price setting | Files |
 | --- | --- | --- | --- | --- |
@@ -54,7 +54,7 @@ Public checkouts verified without entering buyer data or submitting payment:
 4. Completed locally: rebuild pages, discovery files and README. The 22 Python and 34 Node tests passed; the Worker bundle passed its official dry-run.
 5. Completed: the six-product allowlist was deployed with official Wrangler, preserving secrets, Durable Objects and the financial ledger. The existing Hotmart GA4 webhook was saved and reopened with these same six eBooks and only the original three financial events. The Mini Expert and the other webhook were not added or modified.
 6. Update the Mini Expert's bonus description and the existing Fiverr FAQ to two of six. Do not change service prices, scope, renewal terms or Fiverr delivery channels. Do not add an eleventh FAQ.
-7. Publish the website; read back the real six-title catalogue, bonus choices, schema, campaign ID, sitemap and asset versions.
+7. Completed: the website was published and the public six-title catalogue, bonus choices, schema, campaign ID, sitemap and asset versions were read back. Final mobile spacing was corrected during visual QA.
 8. If the genuine-sale automation is still active and its purpose remains valid, update its product scope without creating a duplicate or replaying events. No sale is inferred from this launch.
 
 Local private layout preview: all six titles, with draft checkout controls disabled. The preview is `noindex,nofollow`, has no Google collection scripts and contains no paid files. It does not constitute deployment, a public offer, a Google indexing request or a purchase receipt.
@@ -67,6 +67,17 @@ Local private layout preview: all six titles, with draft checkout controls disab
 - Current release tests: Python 22, Node site 23, receiver 11. All passed locally.
 - The six-product Worker allowlist was published in the existing live Worker. HTTPS `/health` returned 200 `ready_live`. The Hotmart webhook product selection was saved and reopened with six eBooks and three financial events. Public site deployment is recorded separately; none of these receipts proves an approved sale or processed GA4 revenue.
 - No purchase, payment submission, live financial test, replay or credentials change was performed.
+
+## Public Verification
+
+- Pages deployment #43 succeeded on 29 October 2026. Public collection routes: `/ebooks/`, `/pt/ebooks/`, `/es/ebooks/`.
+- Eighteen public page URLs returned HTTPS 200 with matching canonical, language, required social metadata, valid JSON-LD and no accidental `noindex`. This covers the home, collection, bonus, AI Agent, consulting and first-book page in each language.
+- The public sitemap has 96 distinct canonical URLs and contains all checked routes. The public robots file allows Googlebot. These technical checks do not prove search-engine indexing or ranking.
+- All three new promotional covers were read from the public domain and matched the release assets. Paid PDFs and private evidence remain outside Git.
+- PT/EN/ES catalogue layouts were checked at 375, 768 and 1280 pixels: six loaded covers, no horizontal overflow and fitting titles/buttons. Reduced-motion media was enabled during QA.
+- The six-cover mobile introduction opens and can be dismissed with Continue. Its label was given reserved space beside the close button after visual inspection.
+- The live mobile bonus workflow accepts two selections, disables the other four and prepares an unsent selection. Fiverr origin hides email and keeps delivery in order messages. No message or voucher was sent.
+- Browser QA blocked Google tag/collection requests only in its temporary test tab. No Analytics collection setting, consent policy or production tag was disabled.
 
 ## Rollback
 
