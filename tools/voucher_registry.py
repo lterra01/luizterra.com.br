@@ -16,10 +16,9 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-TITLE_IDS = {
-    "cx-na-operacao", "indicadores-de-atendimento-na-pratica",
-    "qualidade-e-feedback-no-atendimento",
-}
+from ebook_catalog import EBOOKS
+
+TITLE_IDS = {book["id"] for book in EBOOKS}
 DEFAULT_ROOT = Path.home() / ".codex" / "private" / "luizterra-vouchers"
 
 
@@ -93,8 +92,8 @@ def issue(root, customer_ref, source="courtesy", order_ref=None, approved=False,
     invitation.write_text(
         "CORTESIA PRIVADA - LUIZ TERRA\n\n"
         f"Código individual: {code}\nVálido até: {expires.isoformat()} (UTC)\n\n"
-        "Escolha 2 títulos diferentes: CX na Operação; Indicadores de Atendimento na Prática; "
-        "Qualidade e Feedback no Atendimento. Cada título inclui português, inglês e espanhol.\n"
+        f"Escolha 2 títulos diferentes: {'; '.join(book['name'] for book in EBOOKS)}. "
+        "Cada título inclui português, inglês e espanhol.\n"
         "Sem cobrança. Uso único, pessoal e interno autorizado. Sem revenda ou redistribuição.\n"
         "Escolha os títulos em https://www.luizterra.com.br/pt/bonus/ e envie a solicitação "
         "e este código somente no contato privado. A entrega é manual após conferir validade e uso. "

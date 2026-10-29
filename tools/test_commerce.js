@@ -6,7 +6,7 @@ const { test } = require("node:test");
 
 const source = fs.readFileSync(path.join(__dirname, "../script.js"), "utf8");
 
-function run({ hostname = "www.luizterra.com.br", analytics = true } = {}) {
+function run({ hostname = "www.luizterra.com.br", analytics = true, titles = ["cx-na-operacao", "indicadores-de-atendimento-na-pratica", "qualidade-e-feedback-no-atendimento"] } = {}) {
   class Element {
     constructor(dataset = {}) { this.dataset = dataset; this.events = {}; this.hidden = true; this.value = ""; this.textContent = ""; }
     addEventListener(name, callback) { this.events[name] = callback; }
@@ -14,7 +14,7 @@ function run({ hostname = "www.luizterra.com.br", analytics = true } = {}) {
     select() { this.selected = true; }
     closest() { return null; }
   }
-  const choices = ["cx-na-operacao", "indicadores-de-atendimento-na-pratica", "qualidade-e-feedback-no-atendimento"].map((value) => {
+  const choices = titles.map((value) => {
     const choice = new Element({ titleName: value });
     Object.assign(choice, { value, checked: false, disabled: false });
     return choice;
@@ -79,6 +79,21 @@ test("A bonus needs exactly two titles and disables only the third", () => {
   state.choices[0].checked = false; state.change();
   assert.equal(state.choices[2].disabled, false);
   assert.equal(state.ids["#bonus-result"].hidden, true);
+});
+
+test("Six catalogue choices still allow exactly two distinct selections", () => {
+  const state = run({ titles: ["cx-na-operacao", "indicadores-de-atendimento-na-pratica", "qualidade-e-feedback-no-atendimento",
+    "ia-no-atendimento-do-piloto-a-operacao", "voz-e-telecom-para-cx", "vendas-consultivas-em-telecom-e-cx"] });
+  state.choices[3].checked = state.choices[5].checked = true;
+  state.change(); state.submit();
+  assert.equal(state.choices.filter(choice => choice.disabled).length, 4);
+  assert.match(state.ids["#bonus-message"].value, /ia-no-atendimento-do-piloto-a-operacao/);
+  assert.match(state.ids["#bonus-message"].value, /vendas-consultivas-em-telecom-e-cx/);
+  assert.equal(state.events.filter(event => event[1] === "bonus_request_prepare").length, 1);
+  state.choices[0].checked = true;
+  state.submit();
+  assert.equal(state.ids["#bonus-error"].hidden, false);
+  assert.equal(state.events.filter(event => event[1] === "purchase").length, 0);
 });
 
 test("Fiverr redemption never opens email and selection can be copied", async () => {

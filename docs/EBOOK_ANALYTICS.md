@@ -2,7 +2,7 @@
 
 Inicio desta instrumentacao: 26/10/2026. Destino explicito: GA4 `G-68E95X4DZT`.
 Campanha inicial: `cx_na_operacao_launch_v1`. Atualizacao multiproduto: colecao `cx-na-pratica`, anuncio `cx_na_pratica_collection_v1`.
-Fonte canonica: `tools/ebook_catalog.py`, com os tres IDs Hotmart, precos e URLs verificados em 26/10/2026.
+Fonte canonica: `tools/ebook_catalog.py`, com seis IDs Hotmart, precos e URLs; os tres novos checkouts foram conferidos em 29/10/2026.
 
 ## Eventos E Definicoes
 
@@ -86,6 +86,14 @@ O valor enviado e `purchase.price.value` na moeda da oferta: nao e a comissao do
 Dados do comprador sao descartados antes de persistir ou enviar ao Google. O identificador tecnico HMAC e por transacao, nao por pessoa. Nao associa a venda a uma sessao real do site, canal, anuncio ou clique. Eventos do servidor podem criar identidades tecnicas no total geral da propriedade; relatorios especificos de visitas ao site devem restringir ao hostname proprio. Nao anunciar um funil atribuido ou ROAS sem uma futura integracao consentida de client_id/session_id.
 
 Modo `validate` usa somente `/debug/mp/collect`, sem registrar vendas no GA4. Modo `live` envia eventos financeiros reais. Nunca enviar notificacao sintetica de teste para o endpoint de coleta em producao. Autenticacao HTTP, validacao do payload, aceite do GA4 e compra processada no relatorio sao provas diferentes. O estado operacional atualizado fica no README da integracao.
+
+## Ampliacao Em 29/10/2026
+
+Os volumes 4, 5 e 6 foram liberados pelo autor para publicacao apos sua confirmacao de finalizacao dos cadastros e aceite dos termos. Vendas ativas e os checkouts de R$ 9,99 foram conferidos na Hotmart. Consulte `docs/EBOOK_LAUNCH_2026-10-29.md` para separar esses recibos da publicacao e da ativacao financeira.
+
+O catalogo continua separado de futuros rascunhos em `tools/ebook_launches.py`. A contagem, os titulos dos vouchers e a allowlist financeira seguem apenas os produtos liberados. A apresentacao de seis livros recebe um ID de campanha e chave de sessao proprios; o historico da campanha anterior e preservado. Comparar exposicoes e escolhas com o mesmo ID de campanha, periodo e filtros.
+
+Os testes locais verificam seis escolhas e a identidade de cada item na compra simulada, sem enviar eventos ao Google. Eles nao confirmam venda real, receita processada ou implantacao da nova allowlist. Os relatorios existentes usam a categoria eBook e eventos genericos, sem exigir um relatorio novo para cada titulo.
 
 ## Referencias
 

@@ -43,8 +43,15 @@ class CommercePagesTests(unittest.TestCase):
             self.assertTrue(all(a.get("type") == "checkbox" for a in choices))
             self.assertNotRegex(bonus, r"LTCX-[A-F0-9]{24}")
 
-    def test_delivery_languages_and_skus_unchanged(self):
-        self.assertEqual({book["hotmart_id"] for book in EBOOKS}, {"8811187", "8811999", "8812046"})
+    def test_delivery_languages_and_original_offers_unchanged(self):
+        originals = {
+            "cx-na-operacao": ("8811187", "https://pay.hotmart.com/Q108197102H"),
+            "indicadores-de-atendimento-na-pratica": ("8811999", "https://pay.hotmart.com/I108198534I"),
+            "qualidade-e-feedback-no-atendimento": ("8812046", "https://pay.hotmart.com/O108198605F"),
+        }
+        for title_id, expected in originals.items():
+            book = next(book for book in EBOOKS if book["id"] == title_id)
+            self.assertEqual((book["hotmart_id"], book["checkout"]), expected)
         for prefix in ("", "pt/", "es/"):
             page = Page((ROOT / prefix / "ebooks/index.html").read_text(encoding="utf-8"))
             books = next(x for schema in page.schemas for x in schema["@graph"] if x.get("@type") == "ItemList")

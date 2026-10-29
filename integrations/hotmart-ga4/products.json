@@ -13,5 +13,20 @@
     "id": "qualidade-e-feedback-no-atendimento",
     "hotmart_id": "8812046",
     "name": "Qualidade e Feedback no Atendimento"
+  },
+  {
+    "id": "ia-no-atendimento-do-piloto-a-operacao",
+    "hotmart_id": "8836219",
+    "name": "IA no Atendimento: do Piloto à Operação"
+  },
+  {
+    "id": "voz-e-telecom-para-cx",
+    "hotmart_id": "8836306",
+    "name": "Voz e Telecom para CX"
+  },
+  {
+    "id": "vendas-consultivas-em-telecom-e-cx",
+    "hotmart_id": "8836331",
+    "name": "Vendas Consultivas em Telecom e CX"
   }
 ]

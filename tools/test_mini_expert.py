@@ -61,7 +61,9 @@ class MiniExpertTests(unittest.TestCase):
                 self.assertIn('href="/' + prefix + MINI_EXPERT["path"] + '"', text)
         self.assertTrue((ROOT / MINI_EXPERT["cover"].lstrip("/")).exists())
         receiver = json.loads((ROOT / "integrations/hotmart-ga4/products.json").read_text(encoding="utf-8"))
-        self.assertEqual({x["hotmart_id"] for x in receiver}, {"8811187", "8811999", "8812046"})
+        from ebook_catalog import EBOOKS
+        self.assertEqual({x["hotmart_id"] for x in receiver}, {book["hotmart_id"] for book in EBOOKS})
+        self.assertNotIn(MINI_EXPERT["hotmart_id"], {x["hotmart_id"] for x in receiver})
 
 
 if __name__ == "__main__":

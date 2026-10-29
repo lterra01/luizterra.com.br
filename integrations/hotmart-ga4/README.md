@@ -55,8 +55,8 @@ pnpm exec wrangler secret put IDENTITY_SECRET
 As credenciais devem ser inseridas de forma privada, nao em comandos versionados, chat ou capturas. O login oficial do Wrangler usa o cofre do sistema quando disponivel. Autorizacao de publicacao/segredos e obrigatoria antes da ativacao.
 
 1. Implantar inicialmente em `validate` e confirmar `/health`.
-   `validate-remote.mjs` testa os tres produtos e a idempotencia. Exige `WORKER_URL` HTTPS, `HOTMART_HOTTOK` privado e recusa rodar se `/health` nao confirmar `ready_validate`. Nao executar testes sinteticos diretamente no endpoint MP de coleta.
-2. Configurar Hotmart v2.0.0 para estes tres produtos, apenas aprovado/reembolsado/chargeback.
+   `validate-remote.mjs` testa os produtos do catalogo e a idempotencia. Exige `WORKER_URL` HTTPS, `HOTMART_HOTTOK` privado e recusa rodar se `/health` nao confirmar `ready_validate`. Nao executar testes sinteticos diretamente no endpoint MP de coleta.
+2. Configurar Hotmart v2.0.0 somente para os eBooks liberados do catalogo, apenas aprovado/reembolsado/chargeback.
 3. Usar o teste da Hotmart somente enquanto o receptor estiver em `validate`; conferir `validated_not_collected` e nenhuma mensagem de validacao do GA4.
 4. Desligar a configuracao de teste da Hotmart antes de mudar para `live`; nunca reenviar historico de testes para producao.
 5. Alterar `DELIVERY_MODE` para `live`, publicar e conferir a configuracao final da Hotmart. Nao habilitar pixel nativo de purchase simultaneamente.
@@ -86,3 +86,11 @@ Na Hotmart, revisar historico de entregas e falhas. No Cloudflare, conferir saud
 - Configuracao Hotmart `Luiz Terra - eBooks GA4`: ativa, v2.0.0, somente os tres eBooks e os tres eventos financeiros. Produtos e eventos reabertos e conferidos na interface.
 - Versao Cloudflare live: `c925769c-5b47-4ce1-99b0-8ef50ef15a69`, publicada a 100%. `/health`: HTTPS 200 `ready_live`; POST sem autenticacao: 401; evento nao financeiro autenticado: 200 ignorado. Nenhum teste de compra foi enviado em live.
 - Compra genuina e receita no GA4 processado: ainda nao verificadas.
+
+## Ampliacao Em 29/10/2026
+
+- A allowlist foi ampliada para os seis eBooks liberados, incluindo Hotmart `8836219`, `8836306` e `8836331`. Os IDs anteriores, segredos, Durable Object e ledger foram preservados. Assinaturas do AI Agent e pedidos Fiverr continuam fora deste receptor.
+- Publicacao pelo Wrangler oficial, no mesmo Worker e em `DELIVERY_MODE=live`. HTTPS `GET /health` retornou 200 `ready_live`; essa resposta confirma prontidao, nao pagamento ou receita processada.
+- A configuracao existente `Luiz Terra - eBooks GA4` foi salva e reaberta na Hotmart: seis eBooks selecionados, Mini Expert nao selecionado, versao 2.0.0 e somente compra aprovada, compra reembolsada e chargeback. A outra configuracao de webhook nao foi alterada.
+- Validacao local: 11 testes do receptor, incluindo identidade de cada um dos seis produtos e protecao contra duplicidade. Nao foram enviados testes financeiros ao Worker live, nao houve compra e nao foram reenviadas notificacoes.
+- Relatorio financeiro existente: a categoria `eBook` acomoda os novos itens, mas uma compra e sua receita so podem ser confirmadas apos venda genuina e processamento do GA4. A implantacao nao comprova essa conciliacao.

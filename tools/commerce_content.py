@@ -1,5 +1,7 @@
 """Public service and bonus terms. No paid files, voucher codes or buyer data."""
 
+from ebook_catalog import EBOOKS
+
 FIVERR = {
     "id": "fiverr-customer-service-kpi-review",
     "path": "consultoria/indicadores-de-atendimento/",
@@ -32,7 +34,7 @@ FIVERR_COPY = {
         "faq": [("É uma análise feita apenas por IA?", "Não. O Mini Expert apoia cálculos e análise. Luiz Terra confere os resultados, avalia as limitações e adapta o relatório aos dados e às regras informadas."),
                 ("O que cobre a revisão?", "Correções ou esclarecimentos do relatório original com a mesma base e escopo. Novos arquivos, canais ou períodos exigem outro acordo dentro da Fiverr."),
                 ("Recebo acesso ao Mini Expert?", "Não. A entrega é o relatório consultivo. A assinatura do AI Agent é um produto independente na Hotmart."),
-                ("Como recebo os eBooks de bônus?", "Após a confirmação do pagamento do pedido, escolha dois dos três títulos e envie a seleção nas mensagens do próprio pedido. Luiz Terra confere a elegibilidade e entrega os PDFs pela Fiverr, sem cobrança adicional. Um bônus por cliente, não por novo pedido.")],
+                ("Como recebo os eBooks de bônus?", f"Após a confirmação do pagamento do pedido, escolha dois dos {len(EBOOKS)} títulos e envie a seleção nas mensagens do próprio pedido. Luiz Terra confere a elegibilidade e entrega os PDFs pela Fiverr, sem cobrança adicional. Um bônus por cliente, não por novo pedido.")],
     },
     "en": {
         "title": "Customer Service KPI Consulting on Fiverr | Luiz Terra",
@@ -55,7 +57,7 @@ FIVERR_COPY = {
         "faq": [("Is the analysis produced only by AI?", "No. The Mini Expert supports calculations and analysis. Luiz Terra checks results, assesses limitations and adapts the report to the supplied data and definitions."),
                 ("What does a revision cover?", "Corrections or clarification of the original report using the same data and scope. New files, channels or periods require a separate agreement on Fiverr."),
                 ("Do I receive Mini Expert access?", "No. The deliverable is a consulting report. The AI Agent subscription is a separate Hotmart product."),
-                ("How do I receive the bonus eBooks?", "Once payment for the order is confirmed, choose two of the three titles and send your selection in that order's messages. Luiz Terra checks eligibility and delivers the PDFs through Fiverr at no extra charge. One bonus per customer, not per new order.")],
+                ("How do I receive the bonus eBooks?", f"Once payment for the order is confirmed, choose two of the {len(EBOOKS)} titles and send your selection in that order's messages. Luiz Terra checks eligibility and delivers the PDFs through Fiverr at no extra charge. One bonus per customer, not per new order.")],
     },
     "es": {
         "title": "Consultoría de Indicadores en Fiverr | Luiz Terra",
@@ -78,7 +80,7 @@ FIVERR_COPY = {
         "faq": [("¿El análisis lo realiza únicamente una IA?", "No. El Mini Expert apoya cálculos y análisis. Luiz Terra verifica resultados, evalúa límites y adapta el informe a los datos y definiciones proporcionados."),
                 ("¿Qué cubre la revisión?", "Correcciones o aclaraciones del informe original con los mismos datos y alcance. Nuevos archivos, canales o periodos requieren otro acuerdo en Fiverr."),
                 ("¿Recibo acceso al Mini Expert?", "No. La entrega es un informe consultivo. La suscripción al AI Agent es un producto independiente de Hotmart."),
-                ("¿Cómo recibo los eBooks de regalo?", "Tras confirmar el pago del pedido, elija dos de los tres títulos y envíe la selección por los mensajes de ese pedido. Luiz Terra comprueba elegibilidad y entrega los PDFs en Fiverr sin coste adicional. Un regalo por cliente, no por cada nuevo pedido.")],
+                ("¿Cómo recibo los eBooks de regalo?", f"Tras confirmar el pago del pedido, elija dos de los {len(EBOOKS)} títulos y envíe la selección por los mensajes de ese pedido. Luiz Terra comprueba elegibilidad y entrega los PDFs en Fiverr sin coste adicional. Un regalo por cliente, no por cada nuevo pedido.")],
     },
 }
 
@@ -87,7 +89,7 @@ BONUS_COPY = {
         "title": "Escolha seus 2 eBooks de bônus | Luiz Terra",
         "description": "Comprou o AI Agent ou a consultoria de Luiz Terra na Fiverr? Escolha dois eBooks de CX na Prática sem custo adicional, após conferência da compra.",
         "label": "BÔNUS DE BOAS-VINDAS", "heading": "Dois eBooks. Você escolhe os títulos.",
-        "summary": "Na compra aprovada do AI Agent ou da consultoria na Fiverr, escolha 2 dos 3 eBooks de CX na Prática, sem custo adicional.",
+        "summary": f"Na compra aprovada do AI Agent ou da consultoria na Fiverr, escolha 2 dos {len(EBOOKS)} eBooks de CX na Prática, sem custo adicional.",
         "terms": "Um benefício por cliente, mesmo que compre os dois serviços. Renovações da assinatura ou novos pedidos não geram outro bônus. Entrega manual após conferir o pagamento e os títulos escolhidos. Cada título inclui os PDFs em português, inglês e espanhol. Uso pessoal e interno autorizado; sem revenda, troca por dinheiro ou redistribuição pública.",
         "cta": "Escolher meus 2 eBooks", "origin": "Origem do benefício",
         "origins": [("mini-expert", "Comprei o AI Agent na Hotmart"), ("fiverr", "Contratei a consultoria na Fiverr"), ("courtesy", "Recebi um voucher privado de cortesia")],
@@ -106,7 +108,7 @@ BONUS_COPY = {
         "title": "Choose your 2 bonus eBooks | Luiz Terra",
         "description": "Bought Luiz Terra's AI Agent or Fiverr consulting service? Choose two CX in Practice eBooks at no extra charge after purchase verification.",
         "label": "WELCOME BONUS", "heading": "Two eBooks. Your choice of titles.",
-        "summary": "With an approved AI Agent or Fiverr consulting purchase, choose any 2 of the 3 CX in Practice eBooks at no extra charge.",
+        "summary": f"With an approved AI Agent or Fiverr consulting purchase, choose any 2 of the {len(EBOOKS)} CX in Practice eBooks at no extra charge.",
         "terms": "One benefit per customer, even when buying both services. Subscription renewals and further orders do not create another bonus. Manual delivery after checking payment and your selection. Each title includes Portuguese, English and Spanish PDFs. Personal and authorised internal use only; no resale, cash exchange or public redistribution.",
         "cta": "Choose my 2 eBooks", "origin": "Benefit source",
         "origins": [("mini-expert", "I bought the AI Agent on Hotmart"), ("fiverr", "I ordered consulting on Fiverr"), ("courtesy", "I received a private courtesy voucher")],
@@ -125,7 +127,7 @@ BONUS_COPY = {
         "title": "Elija sus 2 eBooks de regalo | Luiz Terra",
         "description": "¿Compró el AI Agent o la consultoría de Luiz Terra en Fiverr? Elija dos eBooks de CX en la Práctica sin coste adicional, tras verificar la compra.",
         "label": "REGALO DE BIENVENIDA", "heading": "Dos eBooks. Usted elige los títulos.",
-        "summary": "Con la compra aprobada del AI Agent o la consultoría en Fiverr, elija 2 de los 3 eBooks de CX en la Práctica sin coste adicional.",
+        "summary": f"Con la compra aprobada del AI Agent o la consultoría en Fiverr, elija 2 de los {len(EBOOKS)} eBooks de CX en la Práctica sin coste adicional.",
         "terms": "Un beneficio por cliente, incluso al comprar ambos servicios. Las renovaciones y nuevos pedidos no generan otro regalo. Entrega manual tras comprobar pago y selección. Cada título incluye PDFs en portugués, inglés y español. Uso personal e interno autorizado; sin reventa, cambio por dinero ni redistribución pública.",
         "cta": "Elegir mis 2 eBooks", "origin": "Origen del beneficio",
         "origins": [("mini-expert", "Compré el AI Agent en Hotmart"), ("fiverr", "Contraté la consultoría en Fiverr"), ("courtesy", "Recibí un vale privado de cortesía")],

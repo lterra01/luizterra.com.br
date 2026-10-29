@@ -1,6 +1,9 @@
 """Public catalogue facts verified against the released Hotmart offers."""
 
+import hashlib
+
 from ebook_content import EBOOK
+from ebook_launches import released_additions
 
 COLLECTION_PATH = "ebooks/"
 COLLECTION_ID = "cx-na-pratica"
@@ -60,6 +63,15 @@ EBOOKS = [
     },
 ]
 
+ADDITIONS = released_additions()
+for addition in ADDITIONS:
+    BOOK_TITLES[addition["id"]] = addition["titles"]
+    EBOOKS.append({key: value for key, value in addition.items() if key != "titles"})
+
+CATALOG_REVISION = hashlib.sha256("\n".join(book["id"] for book in EBOOKS).encode("utf-8")).hexdigest()[:12]
+COLLECTION_AD_ID = f"cx_na_pratica_collection_{CATALOG_REVISION}" if ADDITIONS else "cx_na_pratica_collection_v1"
+COLLECTION_SESSION_KEY = f"luiz-terra-ebook-collection-{CATALOG_REVISION}-introduced" if ADDITIONS else "luiz-terra-ebook-collection-v1-introduced"
+
 COLLECTION_COPY = {
     "pt": {
         "title": "CX na Prática: eBooks, AI Agent e Consultoria | Luiz Terra",
@@ -68,10 +80,10 @@ COLLECTION_COPY = {
         "label": "EBOOKS · AI AGENT · CONSULTORIA", "language": "Cada eBook inclui português, inglês e espanhol · PDFs completos · edição 1.0",
         "volume": "Volume", "pages": "páginas", "worksheets": "fichas de trabalho", "buy": "Comprar na Hotmart",
         "details": "O que você encontra", "each": "cada · pagamento único", "collection": "Conhecer a coleção",
-        "related": "Continue a coleção", "related_text": "Aprofunde a medição dos resultados e o desenvolvimento da equipe com os outros dois volumes.",
+        "related": "Continue a coleção", "related_text": "Explore os demais volumes para conectar atendimento, medição e decisões da operação.",
         "note": "Cada título é vendido separadamente por R$ 9,99 e inclui os três idiomas. Pagamento e acesso pela Hotmart. Reembolso em 7 dias, conforme as condições da oferta. AI Agent e consultoria são serviços independentes.",
         "modal_title": "CX na Prática", "modal_text": "eBooks em três idiomas, AI Agent e consultoria. Ao contratar um dos serviços, escolha dois eBooks de bônus.",
-        "bar": "CX na Prática · 3 eBooks de Luiz Terra", "close": "Fechar apresentação dos eBooks", "continue": "Continuar no site",
+        "bar": f"CX na Prática · {len(EBOOKS)} eBooks de Luiz Terra", "close": "Fechar apresentação dos eBooks", "continue": "Continuar no site",
     },
     "en": {
         "title": "CX in Practice: eBooks, AI Agent and Consulting | Luiz Terra",
@@ -80,10 +92,10 @@ COLLECTION_COPY = {
         "label": "EBOOKS · AI AGENT · CONSULTING", "language": "Every eBook includes English, Spanish and Portuguese · complete PDFs · edition 1.0",
         "volume": "Volume", "pages": "pages", "worksheets": "worksheets", "buy": "Buy on Hotmart",
         "details": "Inside this eBook", "each": "each · one-time payment", "collection": "Explore the collection",
-        "related": "Continue the collection", "related_text": "Explore service measurement and team development in the other two volumes.",
+        "related": "Continue the collection", "related_text": "Explore the other volumes to connect customer service, measurement and operating decisions.",
         "note": "Each title is sold separately at R$ 9.99 and includes all three languages. Payment and access through Hotmart. A 7-day refund period applies under the offer terms. AI Agent and consulting are separate services.",
         "modal_title": "CX in Practice", "modal_text": "eBooks in three languages, an AI Agent and consulting. Buy either service and choose two bonus eBooks.",
-        "bar": "CX na Prática · 3 eBooks by Luiz Terra", "close": "Close the eBook introduction", "continue": "Continue to the site",
+        "bar": f"CX na Prática · {len(EBOOKS)} eBooks by Luiz Terra", "close": "Close the eBook introduction", "continue": "Continue to the site",
     },
     "es": {
         "title": "CX en la Práctica: eBooks, AI Agent y Consultoría | Luiz Terra",
@@ -92,9 +104,9 @@ COLLECTION_COPY = {
         "label": "EBOOKS · AI AGENT · CONSULTORÍA", "language": "Cada eBook incluye español, inglés y portugués · PDFs completos · edición 1.0",
         "volume": "Volumen", "pages": "páginas", "worksheets": "fichas de trabajo", "buy": "Comprar en Hotmart",
         "details": "Dentro del eBook", "each": "cada uno · pago único", "collection": "Conocer la colección",
-        "related": "Continúe la colección", "related_text": "Profundice en la medición de resultados y el desarrollo del equipo con los otros dos volúmenes.",
+        "related": "Continúe la colección", "related_text": "Explore los demás volúmenes para conectar atención, medición y decisiones operativas.",
         "note": "Cada título se vende por separado por R$ 9,99 e incluye los tres idiomas. Pago y acceso por Hotmart. Reembolso en 7 días, según la oferta. AI Agent y consultoría son servicios independientes.",
         "modal_title": "CX en la Práctica", "modal_text": "eBooks en tres idiomas, AI Agent y consultoría. Contrate cualquiera de los servicios y elija dos eBooks de regalo.",
-        "bar": "CX na Prática · 3 eBooks de Luiz Terra", "close": "Cerrar presentación de los eBooks", "continue": "Continuar al sitio",
+        "bar": f"CX na Prática · {len(EBOOKS)} eBooks de Luiz Terra", "close": "Cerrar presentación de los eBooks", "continue": "Continuar al sitio",
     },
 }

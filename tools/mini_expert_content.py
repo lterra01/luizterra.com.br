@@ -1,5 +1,7 @@
 """Mini Expert offer verified in the Hotmart dashboard and checkout on 2026-10-27."""
 
+from ebook_catalog import EBOOKS
+
 MINI_EXPERT = {
     "id": "mini-expert-indicadores-de-atendimento",
     "hotmart_id": "8822826",
@@ -36,8 +38,8 @@ MINI_EXPERT_COPY = {
         "privacy": "Para analisar arquivos, use a versão pelo navegador. Envie somente dados agregados ou anonimizados que você tenha autorização para compartilhar. Não envie dados pessoais de clientes ou informações confidenciais.",
         "faq_title": "Antes de assinar",
         "faq": [
-            ("Como recebo os dois eBooks de bônus?", "Após a primeira compra aprovada, escolha dois dos três títulos de CX na Prática e solicite a entrega. Cada título inclui português, inglês e espanhol. Luiz Terra confere o pagamento e entrega os arquivos manualmente. Um benefício por cliente, não por renovação, mesmo que também contrate a consultoria Fiverr."),
-            ("É um eBook ou uma assinatura?", "É uma assinatura mensal de um assistente de IA, independente dos três eBooks. O plano individual custa R$ 199,90 por mês, com cobrança até o cancelamento."),
+            ("Como recebo os dois eBooks de bônus?", f"Após a primeira compra aprovada, escolha dois dos {len(EBOOKS)} títulos de CX na Prática e solicite a entrega. Cada título inclui português, inglês e espanhol. Luiz Terra confere o pagamento e entrega os arquivos manualmente. Um benefício por cliente, não por renovação, mesmo que também contrate a consultoria Fiverr."),
+            ("É um eBook ou uma assinatura?", "É uma assinatura mensal de um assistente de IA, independente dos eBooks. O plano individual custa R$ 199,90 por mês, com cobrança até o cancelamento."),
             ("Como acesso o Mini Expert?", "O acesso individual acontece pela área de membros da Hotmart. Após a compra, a Hotmart envia as instruções de acesso. Para trabalhar com arquivos, utilize a versão pelo navegador."),
             ("Ele se conecta aos sistemas da minha operação?", "Não inclui integração automática. A análise utiliza os dados e o contexto que você fornecer, sem substituir a validação dos números e a decisão da sua equipe."),
             ("Qual é o prazo de reembolso?", "O prazo informado na oferta da Hotmart é de 7 dias. Confira as condições da assinatura e de reembolso na página de pagamento antes de concluir a compra."),
@@ -66,8 +68,8 @@ MINI_EXPERT_COPY = {
         "privacy": "Use the browser version to analyse files. Share only aggregated or anonymised data you are authorised to disclose. Do not submit customer personal data or confidential information.",
         "faq_title": "Before subscribing",
         "faq": [
-            ("How do I receive the two bonus eBooks?", "After the first approved purchase, choose two of the three CX in Practice titles and request delivery. Each includes English, Spanish and Portuguese PDFs. Luiz Terra checks payment and delivers files manually. One benefit per customer, not per renewal, even when also ordering Fiverr consulting."),
-            ("Is this an eBook or a subscription?", "It is a monthly AI assistant subscription, independent of the three eBooks. The individual plan costs R$ 199.90 per month and renews until cancelled."),
+            ("How do I receive the two bonus eBooks?", f"After the first approved purchase, choose two of the {len(EBOOKS)} CX in Practice titles and request delivery. Each includes English, Spanish and Portuguese PDFs. Luiz Terra checks payment and delivers files manually. One benefit per customer, not per renewal, even when also ordering Fiverr consulting."),
+            ("Is this an eBook or a subscription?", "It is a monthly AI assistant subscription, independent of the eBooks. The individual plan costs R$ 199.90 per month and renews until cancelled."),
             ("How do I access the Mini Expert?", "Individual access is through the Hotmart members area. Hotmart sends access instructions after purchase. Use the browser version when working with files. The service is in Portuguese."),
             ("Does it connect to my operational systems?", "Automatic integrations are not included. Analysis uses the data and context you provide and does not replace validation of the numbers or your team's decisions."),
             ("What is the refund period?", "The Hotmart offer states a 7-day refund period. Review the subscription and refund terms on the checkout page before completing a purchase."),
@@ -96,8 +98,8 @@ MINI_EXPERT_COPY = {
         "privacy": "Para analizar archivos, utilice la versión del navegador. Envíe solo datos agregados o anonimizados que tenga autorización para compartir. No envíe datos personales de clientes ni información confidencial.",
         "faq_title": "Antes de suscribirse",
         "faq": [
-            ("¿Cómo recibo los dos eBooks de regalo?", "Tras la primera compra aprobada, elija dos de los tres títulos de CX en la Práctica y solicite la entrega. Cada título incluye español, inglés y portugués. Luiz Terra verifica el pago y entrega manualmente. Un beneficio por cliente, no por renovación, incluso si también contrata la consultoría Fiverr."),
-            ("¿Es un eBook o una suscripción?", "Es una suscripción mensual a un asistente de IA, independiente de los tres eBooks. El plan individual cuesta R$ 199,90 al mes, con cobro hasta la cancelación."),
+            ("¿Cómo recibo los dos eBooks de regalo?", f"Tras la primera compra aprobada, elija dos de los {len(EBOOKS)} títulos de CX en la Práctica y solicite la entrega. Cada título incluye español, inglés y portugués. Luiz Terra verifica el pago y entrega manualmente. Un beneficio por cliente, no por renovación, incluso si también contrata la consultoría Fiverr."),
+            ("¿Es un eBook o una suscripción?", "Es una suscripción mensual a un asistente de IA, independiente de los eBooks. El plan individual cuesta R$ 199,90 al mes, con cobro hasta la cancelación."),
             ("¿Cómo accedo al Mini Expert?", "El acceso individual se realiza por el área de miembros de Hotmart. Hotmart envía las instrucciones después de la compra. Para trabajar con archivos, utilice la versión del navegador. El servicio es en portugués."),
             ("¿Se conecta a los sistemas de mi operación?", "No incluye integración automática. El análisis utiliza los datos y el contexto que proporcione, sin sustituir la validación de los números ni la decisión de su equipo."),
             ("¿Cuál es el plazo de reembolso?", "La oferta de Hotmart indica un plazo de 7 días. Revise las condiciones de la suscripción y del reembolso en la página de pago antes de completar la compra."),

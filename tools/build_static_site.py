@@ -18,7 +18,7 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, Tabl
 from article_library import ARTICLE_LEADS, ARTICLE_UPDATES, NEW_ARTICLES, RELATED_OVERRIDES, SEO_OVERRIDES
 from content_hub import CLUSTER_GUIDANCE, EXECUTIVE_BIO, TOPICS, TOPIC_BY_SLUG, UI
 from ebook_content import EBOOK, EBOOK_COPY
-from ebook_catalog import EBOOKS, COLLECTION_COPY, COLLECTION_ID, COLLECTION_PATH, BOOK_TITLES, DELIVERY_LANGUAGES
+from ebook_catalog import EBOOKS, COLLECTION_COPY, COLLECTION_ID, COLLECTION_PATH, BOOK_TITLES, DELIVERY_LANGUAGES, COLLECTION_AD_ID, COLLECTION_SESSION_KEY
 from mini_expert_content import MINI_EXPERT, MINI_EXPERT_COPY
 from commerce_content import FIVERR, FIVERR_COPY, BONUS_PATH, BONUS_COPY
 
@@ -1446,7 +1446,7 @@ def ebook_promotion(lang: str) -> str:
         <span class="ebook-announcement-action">{esc(c['collection'])}<span aria-hidden="true"> &#8594;</span></span>
       </a>
     </aside>
-    <dialog class="ebook-modal ebook-collection-modal" id="ebook-introduction" aria-labelledby="ebook-introduction-title" aria-describedby="ebook-introduction-description" data-ebook-collection-id="{COLLECTION_ID}" data-ebook-ad-id="cx_na_pratica_collection_v1" data-ebook-session-key="luiz-terra-ebook-collection-v1-introduced">
+    <dialog class="ebook-modal ebook-collection-modal" id="ebook-introduction" aria-labelledby="ebook-introduction-title" aria-describedby="ebook-introduction-description" data-ebook-collection-id="{COLLECTION_ID}" data-ebook-ad-id="{COLLECTION_AD_ID}" data-ebook-session-key="{COLLECTION_SESSION_KEY}">
       <button type="button" class="ebook-modal-close" data-ebook-close="close_icon" aria-label="{esc(c['close'])}" title="{esc(c['close'])}" autofocus>&times;</button>
       <p class="eyebrow">{esc(c['label'])}</p>
       <h2 id="ebook-introduction-title">{esc(c['modal_title'])}</h2>
@@ -2267,7 +2267,7 @@ def build_sitemap() -> None:
             relevant = [item for item in ARTICLES if not path.startswith("topics/") or item.get("cluster") == path.removeprefix("topics/").rstrip("/")]
             updated = max([DATE_MODIFIED] + [item.get("modified", DATE_MODIFIED) for item in relevant])
             if path == "":
-                updated = max(updated, MINI_EXPERT["modified"])
+                updated = max(updated, MINI_EXPERT["modified"], *(book["modified"] for book in EBOOKS))
         alternates = "\n".join(
             f'    <xhtml:link rel="alternate" hreflang="{code}" href="{BASE_URL}{lang_url(target, path)}" />'
             for code, target in [("en", "en"), ("pt-BR", "pt"), ("es", "es")]
@@ -2370,7 +2370,7 @@ def build_discovery_files() -> None:
 
 ## eBook
 
-- [CX in Practice eBooks]({BASE_URL}/{COLLECTION_PATH}): Three independently sold titles at R$ 9.99 each. Every title includes complete Portuguese, English and Spanish PDFs. CX in Operations has 27 pages per edition; Customer Service Metrics in Practice and Customer Service Quality and Feedback have 25 pages per edition. Sold through Hotmart, not public downloads.
+- [CX in Practice eBooks]({BASE_URL}/{COLLECTION_PATH}): {len(EBOOKS)} independently sold titles at R$ 9.99 each. Every title includes complete Portuguese, English and Spanish PDFs. CX in Operations has 27 pages per edition; all other released titles have 25 pages per edition. Topics include service routines, metrics, quality and feedback, responsible AI pilots, voice and telecom, and consultative selling. Sold through Hotmart, not public downloads.
 
 ## Mini Expert
 
@@ -2379,7 +2379,7 @@ def build_discovery_files() -> None:
 ## Consulting and welcome bonus
 
 - [Customer service KPI consulting]({BASE_URL}/{FIVERR['path']}): AI-assisted analysis reviewed by Luiz Terra, ordered and delivered on Fiverr. One aggregated Excel or CSV file, one operation and channel, up to two comparable periods and ten KPIs. Brazilian Portuguese PDF, five-day delivery after complete requirements, one in-scope revision. Base US$ 50, subject to Fiverr checkout fees and conversion. No guaranteed results or agent access.
-- [Choose two bonus eBooks]({BASE_URL}/{BONUS_PATH}): An approved AI Agent or Fiverr consulting purchase grants any two of the three eBook titles, once per customer across both services, not per renewal. Manual verification and delivery. Fiverr customers use their order messages and receive files on Fiverr. Private courtesy vouchers are single-use, valid for 30 days and manually redeemed; not Hotmart checkout coupons. Codes and paid PDFs are not public.
+- [Choose two bonus eBooks]({BASE_URL}/{BONUS_PATH}): An approved AI Agent or Fiverr consulting purchase grants any two of the {len(EBOOKS)} released eBook titles, once per customer across both services, not per renewal. Manual verification and delivery. Fiverr customers use their order messages and receive files on Fiverr. Private courtesy vouchers are single-use, valid for 30 days and manually redeemed; not Hotmart checkout coupons. Codes and paid PDFs are not public.
 
 ## Topic pages
 
@@ -2573,7 +2573,7 @@ def build_pdf() -> None:
 def build_readme() -> None:
     write(
         ROOT / "README.md",
-        """# Luiz Terra Executive Website
+        f"""# Luiz Terra Executive Website
 
 Static executive website for Luiz Terra, published with GitHub Pages.
 
@@ -2614,7 +2614,8 @@ The initial authority collection was developed editorially for the requested sea
 
 ## eBook Storefront
 
-- Collection: `/ebooks/`, `/pt/ebooks/`, `/es/ebooks/`, with all three independently sold titles from `tools/ebook_catalog.py`.
+- Collection: `/ebooks/`, `/pt/ebooks/`, `/es/ebooks/`, with {len(EBOOKS)} independently sold titles from `tools/ebook_catalog.py`.
+- Additional titles and release receipts: `tools/ebook_launches.py`. Drafts are excluded from sale links, bonus choices and the financial allowlist until author release approval, Hotmart terms, delivery, active sales and checkout are verified.
 - Sales pages: `/ebooks/cx-na-operacao/`, `/pt/ebooks/cx-na-operacao/`, `/es/ebooks/cx-na-operacao/`.
 - Every existing product includes Portuguese, English and Spanish PDFs at the unchanged R$ 9.99 price. The original Portuguese files were preserved; the six translated files were added and read back from Hotmart on 29 October 2026.
 - First-book detailed copy: `tools/ebook_content.py`; catalog facts, copy and Hotmart IDs: `tools/ebook_catalog.py`. Rebuild with `tools/build_static_site.py`.
@@ -2630,7 +2631,7 @@ The initial authority collection was developed editorially for the requested sea
 - Canonical offer and localized copy: `tools/mini_expert_content.py`. Verified on 27 October 2026: Hotmart product `8822826`, active sales, individual monthly plan at R$ 199.90 until cancelled, 7-day refund period.
 - The service is in Portuguese, accessed through Hotmart. It is not an eBook, is not included with an eBook purchase and does not include human consulting or automatic integrations. AI responses require verification; submit only authorised aggregated or anonymised data.
 - Featured on the home pages and eBook collection; linked from every footer. Public promotional cover only; no private agent instructions or knowledge files are published.
-- GA4 intent events use `mini_expert_landing_view`, `mini_expert_product_view`, `mini_expert_landing_click` and `mini_expert_checkout_click`, separate from `ebook_*`. No purchase is emitted by the website. The financial receiver and its three-eBook allowlist are unchanged; subscription purchases and renewals are not yet connected to GA4.
+- GA4 intent events use `mini_expert_landing_view`, `mini_expert_product_view`, `mini_expert_landing_click` and `mini_expert_checkout_click`, separate from `ebook_*`. No purchase is emitted by the website. The financial allowlist follows released eBooks only; subscription purchases and renewals are not yet connected to GA4.
 - Rebuild with `tools/build_static_site.py`. Rollback this addition through a dedicated Git revert and republish GitHub Pages; do not delete financial events or change the existing receiver.
 
 ## Consulting and Manual Bonuses
@@ -2640,7 +2641,7 @@ The initial authority collection was developed editorially for the requested sea
 - `/bonus/`, `/pt/bonus/` and `/es/bonus/` prepare a choice of exactly two titles. A prepared message is neither sent nor approved. No paid file is exposed by the website.
 - First approved AI Agent or Fiverr consulting purchase: two chosen titles once per customer across services, not per renewal. Each title includes three language PDFs. Fiverr redemption remains in the paid order's messages.
 - `tools/voucher_registry.py` manages private 30-day, single-use manual grants outside Git. It does not verify payments, automatically deliver files or emit purchase events. See `docs/BONUS_OPERATIONS.md` for the operator workflow.
-- `fiverr_*` and `bonus_*` events measure intent only, without voucher codes, buyer details, order IDs, purchase or revenue. The financial receiver's eBook allowlist remains unchanged.
+- `fiverr_*` and `bonus_*` events measure intent only, without voucher codes, buyer details, order IDs, purchase or revenue. The financial receiver's eBook allowlist follows only released catalogue IDs; service purchases remain separate.
 
 ## Manual Checks
 

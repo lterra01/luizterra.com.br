@@ -2,13 +2,14 @@
 
 ## Commercial rules
 
-- Catalogue: CX na Operacao (8811187), Indicadores de Atendimento na Pratica (8811999), Qualidade e Feedback no Atendimento (8812046).
+- Released catalogue: CX na Operacao (8811187), Indicadores de Atendimento na Pratica (8811999), Qualidade e Feedback no Atendimento (8812046), IA no Atendimento: do Piloto a Operacao (8836219), Voz e Telecom para CX (8836306), Vendas Consultivas em Telecom e CX (8836331).
 - Each existing Hotmart product includes its Portuguese, English and Spanish PDFs at the unchanged R$ 9.99 price. The six translated PDFs were added and the three-file lists reopened on 29 October 2026.
+- The three additional titles also include PT/EN/ES at R$ 9.99 each. Their cover-only replacements were saved and the lists reopened before release approval on 29 October 2026. Bonus recipients may choose two distinct titles from all six, not the entire catalogue.
 - An approved first AI Agent purchase or paid Fiverr consulting order grants any two different titles, once per customer across both services. Renewals and further orders do not grant another bonus.
 - Verify eligibility manually in the relevant platform before issuing a purchase grant. A browser click, prepared message, GA4 event or generated payment is not payment approval.
 - Hotmart does not support a 100% checkout coupon. Courtesy vouchers are private invitations, valid for 30 days, individual and single-use. They are not Hotmart discounts and must never be entered into checkout.
 - Fiverr order, payment, messages and delivery remain on Fiverr. Do not ask Fiverr customers to email, pay elsewhere, or use an off-platform redemption channel.
-- Delivery is manual and has no extra charge. Do not send all three titles when the grant covers two. Each chosen title includes all three language editions.
+- Delivery is manual and has no extra charge. Do not send the entire catalogue when the grant covers two. Each chosen title includes all three language editions.
 
 Official coupon guidance: https://suportehotmart.zendesk.com/hc/pt-br/articles/360015325411-Como-criar-cupons-de-desconto-para-o-meu-produto
 
@@ -64,4 +65,8 @@ Use `--channel fiverr-order` for a Fiverr grant; the CLI refuses off-platform em
 - `fiverr_landing_view`, `fiverr_product_view`, `fiverr_landing_click` and `fiverr_offer_click` measure interest, never a paid Fiverr order.
 - `bonus_landing_view`, `bonus_landing_click`, `bonus_request_prepare` and `bonus_contact_click` measure intent only. They contain no voucher, customer reference, order ID, email, transaction, revenue or message body.
 - Courtesy delivery never emits `purchase` and never creates artificial revenue. This change does not connect Fiverr payments or AI Agent renewals to GA4.
-- The existing financial receiver keeps its three-eBook allowlist. Do not broaden it or resend financial webhooks for this promotion.
+- The financial receiver uses only the released eBook catalogue. New titles require their own release verification and a coordinated allowlist/webhook deployment; the bonus alone does not broaden collection. Never resend financial events for a promotion.
+
+## Prepared Additions
+
+The 29 October volumes on AI operations, voice/telecom and consultative selling are held as drafts in `tools/ebook_launches.py`. Follow `docs/EBOOK_LAUNCH_2026-10-29.md` before making them redeemable. Existing invitations and private ledger entries are preserved; do not issue replacement grants or reset their validity merely because the catalogue expands.

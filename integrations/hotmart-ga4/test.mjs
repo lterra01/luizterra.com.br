@@ -51,6 +51,25 @@ test("actual offer amount is used, not commission, fixed list price, tax or inte
   assert.equal(/PRIVATE_TEST|private@|buyer|commissions|payment/.test(json), false);
 });
 
+test("every released eBook retains its own identity in a purchase item", () => {
+  assert.equal(new Set(products.map(product => product.id)).size, products.length);
+  assert.equal(new Set(products.map(product => product.hotmart_id)).size, products.length);
+  for (const product of products) {
+    const payload = fixture();
+    payload.data.product.id = Number(product.hotmart_id);
+    const normalised = normalizeNotification(payload, products);
+    assert.equal(normalised.ebook_id, product.id);
+    const event = measurement(normalised, "123.456").events[0];
+    assert.equal(event.name, "purchase");
+    assert.equal(event.params.items.length, 1);
+    assert.equal(event.params.items[0].item_id, product.id);
+    assert.equal(event.params.items[0].item_name, product.name);
+    assert.equal(event.params.items[0].quantity, 1);
+    assert.equal(event.params.value, 9.99);
+    assert.equal(event.params.currency, "BRL");
+  }
+});
+
 test("unregistered products cannot normalize; malformed amounts and partial refunds require review", () => {
   const unknown = fixture(); unknown.data.product.id = 999;
   assert.throws(() => normalizeNotification(unknown, products), /UNKNOWN_PRODUCT/);

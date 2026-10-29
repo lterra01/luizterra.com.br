@@ -8,7 +8,8 @@ from urllib.parse import unquote, urlsplit
 from xml.etree import ElementTree as ET
 
 from ebook_content import EBOOK, EBOOK_COPY
-from ebook_catalog import EBOOKS, COLLECTION_PATH, COLLECTION_ID
+from ebook_catalog import EBOOKS, COLLECTION_PATH, COLLECTION_ID, COLLECTION_AD_ID, COLLECTION_SESSION_KEY
+from ebook_launches import released_additions
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "https://www.luizterra.com.br"
@@ -54,7 +55,7 @@ class EbookTests(unittest.TestCase):
                 self.assertNotIn("noindex", text)
                 self.assertIn(EBOOK_COPY[lang]["buy"], text)
                 checkout_links = [a for t, a in page.tags if t == "a" and "data-ebook-checkout" in a]
-                self.assertEqual(len(checkout_links), 4)
+                self.assertEqual(len(checkout_links), len(EBOOKS) + 1)
                 self.assertEqual(sum(a["href"] == EBOOK["checkout"] for a in checkout_links), 2)
                 book = next(item for schema in page.schemas for item in schema["@graph"] if item.get("@type") == ["Book", "Product"])
                 self.assertEqual(book["offers"]["price"], "9.99")
@@ -78,7 +79,8 @@ class EbookTests(unittest.TestCase):
                     self.assertIn('class="ebook-announcement"', text)
                     modal = next(attrs for tag, attrs in page.tags if attrs.get("id") == "ebook-introduction")
                     self.assertEqual(modal.get("data-ebook-collection-id"), COLLECTION_ID)
-                    self.assertEqual(modal.get("data-ebook-ad-id"), "cx_na_pratica_collection_v1")
+                    self.assertEqual(modal.get("data-ebook-ad-id"), COLLECTION_AD_ID)
+                    self.assertEqual(modal.get("data-ebook-session-key"), COLLECTION_SESSION_KEY)
                 for tag, attrs in page.tags:
                     if tag not in ("a", "img", "script", "link"):
                         continue
@@ -108,7 +110,7 @@ class EbookTests(unittest.TestCase):
         self.assertFalse(any((ROOT / "public").rglob("CX_na_Operacao*.pdf")))
 
     def test_collection_products_and_tracking(self):
-        self.assertEqual(len({book["id"] for book in EBOOKS}), 3)
+        self.assertEqual(len({book["id"] for book in EBOOKS}), 3 + len(released_additions()))
         for prefix in ("", "pt/", "es/"):
             route = prefix + COLLECTION_PATH
             page = Page((ROOT / route / "index.html").read_text(encoding="utf-8"))
@@ -118,8 +120,8 @@ class EbookTests(unittest.TestCase):
             offers = [attrs["href"] for tag, attrs in page.tags if "data-ebook-checkout" in attrs]
             self.assertEqual({urlsplit(url)._replace(query="").geturl() for url in offers}, {book["checkout"] for book in EBOOKS})
             listing = next(item for schema in page.schemas for item in schema["@graph"] if item.get("@type") == "ItemList")
-            self.assertEqual(listing["numberOfItems"], 3)
-            self.assertEqual({item["item"]["numberOfPages"] for item in listing["itemListElement"]}, {25, 27})
+            self.assertEqual(listing["numberOfItems"], len(EBOOKS))
+            self.assertEqual({item["item"]["numberOfPages"] for item in listing["itemListElement"]}, {book["pages"] for book in EBOOKS})
         for book in EBOOKS:
             self.assertTrue((ROOT / book["cover"].lstrip("/")).exists())
         self.assertFalse(any((ROOT / "public" / "ebooks").glob("*.pdf")))

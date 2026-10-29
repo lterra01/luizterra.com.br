@@ -39,7 +39,8 @@ The initial authority collection was developed editorially for the requested sea
 
 ## eBook Storefront
 
-- Collection: `/ebooks/`, `/pt/ebooks/`, `/es/ebooks/`, with all three independently sold titles from `tools/ebook_catalog.py`.
+- Collection: `/ebooks/`, `/pt/ebooks/`, `/es/ebooks/`, with 6 independently sold titles from `tools/ebook_catalog.py`.
+- Additional titles and release receipts: `tools/ebook_launches.py`. Drafts are excluded from sale links, bonus choices and the financial allowlist until author release approval, Hotmart terms, delivery, active sales and checkout are verified.
 - Sales pages: `/ebooks/cx-na-operacao/`, `/pt/ebooks/cx-na-operacao/`, `/es/ebooks/cx-na-operacao/`.
 - Every existing product includes Portuguese, English and Spanish PDFs at the unchanged R$ 9.99 price. The original Portuguese files were preserved; the six translated files were added and read back from Hotmart on 29 October 2026.
 - First-book detailed copy: `tools/ebook_content.py`; catalog facts, copy and Hotmart IDs: `tools/ebook_catalog.py`. Rebuild with `tools/build_static_site.py`.
@@ -55,7 +56,7 @@ The initial authority collection was developed editorially for the requested sea
 - Canonical offer and localized copy: `tools/mini_expert_content.py`. Verified on 27 October 2026: Hotmart product `8822826`, active sales, individual monthly plan at R$ 199.90 until cancelled, 7-day refund period.
 - The service is in Portuguese, accessed through Hotmart. It is not an eBook, is not included with an eBook purchase and does not include human consulting or automatic integrations. AI responses require verification; submit only authorised aggregated or anonymised data.
 - Featured on the home pages and eBook collection; linked from every footer. Public promotional cover only; no private agent instructions or knowledge files are published.
-- GA4 intent events use `mini_expert_landing_view`, `mini_expert_product_view`, `mini_expert_landing_click` and `mini_expert_checkout_click`, separate from `ebook_*`. No purchase is emitted by the website. The financial receiver and its three-eBook allowlist are unchanged; subscription purchases and renewals are not yet connected to GA4.
+- GA4 intent events use `mini_expert_landing_view`, `mini_expert_product_view`, `mini_expert_landing_click` and `mini_expert_checkout_click`, separate from `ebook_*`. No purchase is emitted by the website. The financial allowlist follows released eBooks only; subscription purchases and renewals are not yet connected to GA4.
 - Rebuild with `tools/build_static_site.py`. Rollback this addition through a dedicated Git revert and republish GitHub Pages; do not delete financial events or change the existing receiver.
 
 ## Consulting and Manual Bonuses
@@ -65,7 +66,7 @@ The initial authority collection was developed editorially for the requested sea
 - `/bonus/`, `/pt/bonus/` and `/es/bonus/` prepare a choice of exactly two titles. A prepared message is neither sent nor approved. No paid file is exposed by the website.
 - First approved AI Agent or Fiverr consulting purchase: two chosen titles once per customer across services, not per renewal. Each title includes three language PDFs. Fiverr redemption remains in the paid order's messages.
 - `tools/voucher_registry.py` manages private 30-day, single-use manual grants outside Git. It does not verify payments, automatically deliver files or emit purchase events. See `docs/BONUS_OPERATIONS.md` for the operator workflow.
-- `fiverr_*` and `bonus_*` events measure intent only, without voucher codes, buyer details, order IDs, purchase or revenue. The financial receiver's eBook allowlist remains unchanged.
+- `fiverr_*` and `bonus_*` events measure intent only, without voucher codes, buyer details, order IDs, purchase or revenue. The financial receiver's eBook allowlist follows only released catalogue IDs; service purchases remain separate.
 
 ## Manual Checks
 
