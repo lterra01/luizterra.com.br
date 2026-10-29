@@ -1347,6 +1347,48 @@ body:has(> .ebook-announcement) {
 .mini-expert-faq summary { color: #14221f; }
 .mini-expert-faq details p { color: #405b52; }
 .mini-expert-books { color: #14685e; text-decoration: underline; text-underline-offset: 4px; }
+.commerce-inner { width: min(1100px, calc(100% - 48px)); margin-inline: auto; }
+#ebooks, #ai-agent, #consulting { scroll-margin-top: 96px; }
+.commerce-sections { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 24px; color: #14634e; }
+.commerce-sections a { text-decoration: underline; text-underline-offset: 5px; padding-block: 8px; }
+.commerce-bonus { padding: 48px 0; background: #eef5f0; border-block: 1px solid #ceded3; color: #14221f; }
+.commerce-bonus .eyebrow, .commerce-consulting .eyebrow { color: #14634e; }
+.commerce-bonus h2 { max-width: 760px; font-size: 30px; line-height: 1.2; margin: 14px 0 18px; }
+.commerce-bonus p { max-width: 850px; }
+.commerce-bonus .button { margin-block: 22px 0; }
+.commerce-terms { max-width: 850px; font-size: 13px; line-height: 1.7; color: #405b52; margin-top: 18px; }
+.commerce-consulting { padding: 48px 0; background: #fff; color: #14221f; border-bottom: 1px solid #dce5df; }
+.commerce-service-inner { width: min(1100px, calc(100% - 48px)); margin-inline: auto; display: grid; grid-template-columns: minmax(0, 430px) minmax(0, 1fr); gap: 40px; align-items: center; }
+.commerce-service-inner > img { display: block; width: 100%; height: auto; aspect-ratio: 1280 / 769; object-fit: contain; }
+.commerce-consulting h2 { font-size: 30px; line-height: 1.2; margin: 14px 0; }
+.commerce-consulting p { color: #405b52; }
+.commerce-report { padding: 16px 0 40px; }
+.commerce-report img { display: block; width: min(100%, 850px); height: auto; aspect-ratio: 1280 / 769; object-fit: contain; }
+.consulting-landing .site-nav, .bonus-landing .site-nav { color: var(--text); }
+.bonus-selection { padding: 20px 0 48px; }
+.bonus-selection form { max-width: 850px; }
+.bonus-selection select { display: block; width: min(100%, 560px); min-height: 48px; margin: 10px 0 28px; padding: 10px 36px 10px 12px; border: 1px solid #8ca999; border-radius: 4px; background: #fff; color: #14221f; font: inherit; }
+.bonus-selection fieldset { min-width: 0; padding: 0; border: 0; }
+.bonus-selection legend { margin-bottom: 16px; font-weight: 600; }
+.bonus-choices { display: grid; gap: 12px; }
+.bonus-choice { display: grid; grid-template-columns: 22px 64px minmax(0, 1fr); gap: 16px; align-items: center; min-height: 100px; padding: 12px; border: 1px solid #c6d8cc; border-radius: 4px; cursor: pointer; }
+.bonus-choice:has(input:checked) { background: #eef5f0; border-color: #14634e; }
+.bonus-choice:has(input:disabled) { opacity: .6; cursor: default; }
+.bonus-choice img { width: 64px; height: 64px; object-fit: contain; }
+.bonus-choice input { width: 20px; height: 20px; margin: 0; accent-color: #14634e; }
+.bonus-choice strong { display: block; font-weight: 600; line-height: 1.4; overflow-wrap: break-word; }
+.bonus-choice small { display: block; margin-top: 6px; color: #405b52; }
+.bonus-count { margin: 14px 0; color: #405b52; }
+.bonus-error { color: #a72828; font-size: 14px; margin-bottom: 14px; }
+.commerce-channel { max-width: 850px; margin-top: 18px; color: #405b52; }
+.bonus-result { max-width: 850px; border-top: 1px solid #ceded3; padding-top: 28px; margin-top: 28px; }
+.bonus-result textarea { display: block; width: 100%; min-height: 180px; padding: 16px; resize: vertical; font: inherit; line-height: 1.5; color: #14221f; background: #f4f7f5; border: 1px solid #c6d8cc; border-radius: 4px; user-select: text; }
+.bonus-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0; }
+.bonus-secondary { background: #fff; color: #14634e; border: 1px solid #14634e; cursor: pointer; }
+.bonus-landing [hidden] { display: none !important; }
+.bonus-landing :focus-visible { outline: 3px solid #14634e; outline-offset: 4px; }
+.bonus-landing .site-nav :focus-visible { outline-color: var(--accent); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 .mini-expert-feature { padding: 48px 0; background: #fff; color: #14221f; border-block: 1px solid #dce5df; }
 .mini-expert-feature-inner { display: grid; grid-template-columns: 240px minmax(0, 1fr); align-items: center; gap: 40px; }
 .mini-expert-feature img { display: block; width: 240px; height: 240px; object-fit: contain; }
@@ -1361,6 +1403,15 @@ body:has(> .ebook-announcement) {
 .mini-expert-landing .footer-links,
 .ebook-catalog .footer-links { color: #14685e; }
 @media (max-width: 768px) {
+  .commerce-inner, .commerce-service-inner { width: calc(100% - 32px); }
+  .commerce-service-inner { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .commerce-service-inner > img { max-width: 430px; }
+  .commerce-bonus h2, .commerce-consulting h2 { font-size: 26px; }
+  .commerce-bonus .button, .commerce-consulting .button, .consulting-landing .button { width: 100%; padding-inline: 16px; }
+  .bonus-choice { grid-template-columns: 20px 52px minmax(0, 1fr); gap: 10px; }
+  .bonus-choice img { width: 52px; height: 52px; }
+  .bonus-choice strong { font-size: 14px; }
+  .bonus-actions .button { width: 100%; }
   .mini-expert-inner,
   .mini-expert-offer-inner,
   .mini-expert-feature-inner { width: calc(100% - 32px); }
@@ -1731,7 +1782,7 @@ body:has(> .ebook-announcement) {
   .ebook-hero h1 {
     max-width: calc(100% - 110px);
     margin-top: 18px;
-    font-size: 40px;
+    font-size: 34px;
   }
 
   .ebook-cover {
@@ -1859,7 +1910,7 @@ body:has(> .ebook-announcement) {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1180px) {
   .nav-toggle {
     display: block;
   }
@@ -1874,6 +1925,8 @@ body:has(> .ebook-announcement) {
     border: 1px solid var(--divider);
     padding: 10px;
     background: #10141c;
+    max-height: calc(100dvh - 94px);
+    overflow-y: auto;
   }
 
   .nav-links.is-open {
@@ -1892,7 +1945,9 @@ body:has(> .ebook-announcement) {
   .nav-cta {
     text-align: center;
   }
+}
 
+@media (max-width: 900px) {
   .hero,
   .content-section,
   .contact-section {

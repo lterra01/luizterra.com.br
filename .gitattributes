@@ -1,2 +1,4 @@
 *.pdf binary
 *.png binary
+script.js text eol=lf
+styles.css text eol=lf

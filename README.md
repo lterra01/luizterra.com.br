@@ -41,7 +41,7 @@ The initial authority collection was developed editorially for the requested sea
 
 - Collection: `/ebooks/`, `/pt/ebooks/`, `/es/ebooks/`, with all three independently sold titles from `tools/ebook_catalog.py`.
 - Sales pages: `/ebooks/cx-na-operacao/`, `/pt/ebooks/cx-na-operacao/`, `/es/ebooks/cx-na-operacao/`.
-- All three books are Portuguese PDFs. English and Spanish pages describe the same Portuguese editions.
+- Every existing product includes Portuguese, English and Spanish PDFs at the unchanged R$ 9.99 price. The original Portuguese files were preserved; the six translated files were added and read back from Hotmart on 29 October 2026.
 - First-book detailed copy: `tools/ebook_content.py`; catalog facts, copy and Hotmart IDs: `tools/ebook_catalog.py`. Rebuild with `tools/build_static_site.py`.
 - The public site contains promotional images only. Do not add the paid PDF or editable manuscript to this repository.
 - Existing pages include a persistent announcement and a dismissible native dialog shown once per browser session. Blocked session storage disables the dialog, not the announcement.
@@ -57,6 +57,15 @@ The initial authority collection was developed editorially for the requested sea
 - Featured on the home pages and eBook collection; linked from every footer. Public promotional cover only; no private agent instructions or knowledge files are published.
 - GA4 intent events use `mini_expert_landing_view`, `mini_expert_product_view`, `mini_expert_landing_click` and `mini_expert_checkout_click`, separate from `ebook_*`. No purchase is emitted by the website. The financial receiver and its three-eBook allowlist are unchanged; subscription purchases and renewals are not yet connected to GA4.
 - Rebuild with `tools/build_static_site.py`. Rollback this addition through a dedicated Git revert and republish GitHub Pages; do not delete financial events or change the existing receiver.
+
+## Consulting and Manual Bonuses
+
+- Localized Fiverr landing pages use `/consultoria/indicadores-de-atendimento/` with `/pt/` and `/es/` variants. Public offer and scope are in `tools/commerce_content.py`.
+- The service uses one aggregated file, one operation/channel, two comparable periods, up to ten KPIs, a Portuguese PDF, five-day delivery and one in-scope revision. Ordering, payment and delivery stay on Fiverr.
+- `/bonus/`, `/pt/bonus/` and `/es/bonus/` prepare a choice of exactly two titles. A prepared message is neither sent nor approved. No paid file is exposed by the website.
+- First approved AI Agent or Fiverr consulting purchase: two chosen titles once per customer across services, not per renewal. Each title includes three language PDFs. Fiverr redemption remains in the paid order's messages.
+- `tools/voucher_registry.py` manages private 30-day, single-use manual grants outside Git. It does not verify payments, automatically deliver files or emit purchase events. See `docs/BONUS_OPERATIONS.md` for the operator workflow.
+- `fiverr_*` and `bonus_*` events measure intent only, without voucher codes, buyer details, order IDs, purchase or revenue. The financial receiver's eBook allowlist remains unchanged.
 
 ## Manual Checks
 

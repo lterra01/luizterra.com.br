@@ -257,6 +257,95 @@ if (miniExpertProducts.length && "IntersectionObserver" in window) {
   miniExpertProducts.forEach((product) => observer.observe(product));
 }
 
+const recordCommerceIntent = (name, parameters = {}) => {
+  if (!["www.luizterra.com.br", "luizterra.com.br"].includes(window.location.hostname)) return;
+  if (typeof window.gtag !== "function") return;
+  window.gtag("event", name, { send_to: "G-68E95X4DZT", ...parameters });
+};
+const fiverrIdentity = { item_id: "fiverr-customer-service-kpi-review", item_category: "Consulting" };
+document.querySelectorAll("[data-fiverr-link]").forEach((link) => {
+  link.addEventListener("click", () => recordCommerceIntent("fiverr_landing_click", { ...fiverrIdentity, placement: link.dataset.fiverrLink }));
+});
+document.querySelectorAll("[data-fiverr-checkout]").forEach((link) => {
+  link.addEventListener("click", () => recordCommerceIntent("fiverr_offer_click", { ...fiverrIdentity, placement: link.dataset.fiverrCheckout }));
+});
+if (document.querySelector("body.consulting-landing")) {
+  recordCommerceIntent("fiverr_landing_view", fiverrIdentity);
+}
+if ("IntersectionObserver" in window) {
+  const seenConsulting = new WeakSet();
+  const consultingObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || entry.intersectionRatio < 0.5 || seenConsulting.has(entry.target)) return;
+      seenConsulting.add(entry.target);
+      recordCommerceIntent("fiverr_product_view", { ...fiverrIdentity, placement: entry.target.dataset.productPlacement });
+      consultingObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll("[data-fiverr-product]").forEach((product) => consultingObserver.observe(product));
+}
+document.querySelectorAll("[data-bonus-link]").forEach((link) => {
+  link.addEventListener("click", () => recordCommerceIntent("bonus_landing_click", { placement: link.dataset.bonusLink }));
+});
+
+const bonusForm = document.querySelector("#bonus-request");
+if (bonusForm) {
+  const labels = JSON.parse(document.querySelector("#bonus-copy-data").textContent);
+  const choices = Array.from(bonusForm.querySelectorAll('input[name="title"]'));
+  const origin = document.querySelector("#bonus-origin");
+  const result = document.querySelector("#bonus-result");
+  const message = document.querySelector("#bonus-message");
+  const email = document.querySelector("#bonus-email");
+  const status = document.querySelector("#bonus-status");
+  const error = document.querySelector("#bonus-error");
+  let prepared = false;
+  const updateBonusSelection = () => {
+    const count = choices.filter((choice) => choice.checked).length;
+    choices.forEach((choice) => { choice.disabled = count === 2 && !choice.checked; });
+    document.querySelector("#bonus-count").textContent = String(count);
+    document.querySelector("#bonus-fiverr-note").hidden = origin.value !== "fiverr";
+    document.querySelector("#bonus-email-note").hidden = origin.value === "fiverr";
+    result.hidden = true;
+    error.hidden = true;
+    prepared = false;
+  };
+  bonusForm.addEventListener("change", updateBonusSelection);
+  bonusForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const selected = choices.filter((choice) => choice.checked);
+    if (selected.length !== 2 || new Set(selected.map((choice) => choice.value)).size !== 2) {
+      error.textContent = labels.error;
+      error.hidden = false;
+      choices.find((choice) => !choice.checked)?.focus();
+      return;
+    }
+    const titles = selected.map((choice) => choice.dataset.titleName);
+    message.value = `${labels.message}\n\n${titles.map((title) => `- ${title}`).join("\n")}\n\nPDF: PT / EN / ES`;
+    email.hidden = origin.value === "fiverr";
+    email.href = origin.value === "fiverr" ? "" : `mailto:contact@luizterra.com.br?subject=${encodeURIComponent(labels.subject)}&body=${encodeURIComponent(message.value)}`;
+    result.hidden = false;
+    error.hidden = true;
+    status.textContent = labels.pending;
+    if (!prepared) recordCommerceIntent("bonus_request_prepare", { benefit_source: origin.value, selected_count: 2 });
+    prepared = true;
+  });
+  document.querySelector("#bonus-copy").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(message.value);
+      status.textContent = labels.copied;
+    } catch {
+      message.focus();
+      message.select();
+      status.textContent = labels.copy_error;
+    }
+  });
+  email.addEventListener("click", () => {
+    if (prepared && origin.value !== "fiverr") recordCommerceIntent("bonus_contact_click", { benefit_source: origin.value });
+  });
+  updateBonusSelection();
+  recordCommerceIntent("bonus_landing_view");
+}
+
 if ("IntersectionObserver" in window) {
   const viewedProducts = new WeakSet();
   const productObserver = new IntersectionObserver((entries) => {

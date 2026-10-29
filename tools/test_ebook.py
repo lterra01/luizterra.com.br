@@ -60,7 +60,7 @@ class EbookTests(unittest.TestCase):
                 self.assertEqual(book["offers"]["price"], "9.99")
                 self.assertEqual(book["offers"]["priceCurrency"], "BRL")
                 self.assertEqual(book["offers"]["url"], EBOOK["checkout"])
-                self.assertEqual(book["inLanguage"], "pt-BR")
+                self.assertEqual(book["inLanguage"], ["pt-BR", "en", "es"])
                 self.assertEqual(book["numberOfPages"], 27)
                 self.assertEqual(len(EBOOK_COPY[lang]["routines"]), 7)
                 self.assertEqual(len(EBOOK_COPY[lang]["materials"]), 4)

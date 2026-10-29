@@ -18,8 +18,9 @@ from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, Tabl
 from article_library import ARTICLE_LEADS, ARTICLE_UPDATES, NEW_ARTICLES, RELATED_OVERRIDES, SEO_OVERRIDES
 from content_hub import CLUSTER_GUIDANCE, EXECUTIVE_BIO, TOPICS, TOPIC_BY_SLUG, UI
 from ebook_content import EBOOK, EBOOK_COPY
-from ebook_catalog import EBOOKS, COLLECTION_COPY, COLLECTION_ID, COLLECTION_PATH
+from ebook_catalog import EBOOKS, COLLECTION_COPY, COLLECTION_ID, COLLECTION_PATH, BOOK_TITLES, DELIVERY_LANGUAGES
 from mini_expert_content import MINI_EXPERT, MINI_EXPERT_COPY
+from commerce_content import FIVERR, FIVERR_COPY, BONUS_PATH, BONUS_COPY
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -1050,6 +1051,10 @@ def head(
         og_image = f"{BASE_URL}{MINI_EXPERT['cover']}"
         og_width = og_height = 1080
         og_alt = MINI_EXPERT["name"] + " - Luiz Terra"
+    elif page_type == "consulting":
+        og_image = f"{BASE_URL}{FIVERR['cover']}"
+        og_width, og_height = 1280, 769
+        og_alt = FIVERR_COPY[lang]["heading"] + " - Luiz Terra"
     return f"""  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -1156,13 +1161,34 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
             {"@type": "ItemList", "@id": f"{url}#books", "numberOfItems": len(EBOOKS),
              "itemListElement": [{"@type": "ListItem", "position": book["volume"], "item": {
                  "@type": ["Book", "Product"], "@id": f"{url}#{book['id']}", "name": book["name"],
-                 "author": {"@id": f"{BASE_URL}/#luiz-terra"}, "inLanguage": "pt-BR",
+                 "author": {"@id": f"{BASE_URL}/#luiz-terra"}, "inLanguage": DELIVERY_LANGUAGES,
                  "numberOfPages": book["pages"], "bookFormat": "https://schema.org/EBook",
                  "image": f"{BASE_URL}{book['cover']}", "sku": book["hotmart_id"],
                  "offers": {"@type": "Offer", "url": book["checkout"], "price": book["price"],
                             "priceCurrency": "BRL", "availability": "https://schema.org/InStock"},
              }} for book in EBOOKS]},
         ])
+    elif page_type == "consulting":
+        copy = FIVERR_COPY[lang]
+        graph.extend([
+            {"@type": "WebPage", "@id": f"{url}#webpage", "url": url,
+             "name": copy["title"], "description": copy["description"],
+             "dateModified": FIVERR["modified"], "inLanguage": META[lang]["lang"],
+             "mainEntity": {"@id": f"{url}#service"}},
+            {"@type": "Service", "@id": f"{url}#service", "name": copy["heading"],
+             "description": copy["summary"], "url": url, "serviceType": "Customer service KPI consulting",
+             "image": f"{BASE_URL}{FIVERR['cover']}", "availableLanguage": "pt-BR",
+             "provider": {"@id": f"{BASE_URL}/#luiz-terra"},
+             "offers": {"@type": "Offer", "url": FIVERR["url"], "price": FIVERR["price"],
+                        "priceCurrency": FIVERR["currency"], "description": copy["terms"]}},
+            {"@type": "FAQPage", "@id": f"{url}#faq", "mainEntity": [
+                {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+                for q, a in copy["faq"]]},
+        ])
+    elif page_type == "bonus":
+        graph.append({"@type": "WebPage", "@id": f"{url}#webpage", "url": url,
+                      "name": BONUS_COPY[lang]["title"], "description": BONUS_COPY[lang]["description"],
+                      "dateModified": FIVERR["modified"], "inLanguage": META[lang]["lang"]})
     elif page_type == "mini_expert":
         copy = MINI_EXPERT_COPY[lang]
         graph.extend([
@@ -1196,7 +1222,7 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
             {
                 "@type": ["Book", "Product"], "@id": f"{BASE_URL}/{EBOOK['path']}#book",
                 "name": EBOOK["name"], "description": EBOOK_COPY[lang]["description"],
-                "author": {"@id": f"{BASE_URL}/#luiz-terra"}, "inLanguage": "pt-BR",
+                "author": {"@id": f"{BASE_URL}/#luiz-terra"}, "inLanguage": DELIVERY_LANGUAGES,
                 "bookFormat": "https://schema.org/EBook", "numberOfPages": 27,
                 "image": f"{BASE_URL}{EBOOK['cover']}", "url": url,
                 "offers": {"@type": "Offer", "url": EBOOK["checkout"], "price": EBOOK["price"],
@@ -1385,6 +1411,7 @@ def nav(lang: str, current_path: str = "") -> str:
         (lang_url(lang, "executive-bio/"), UI[lang]["bio"]),
         (section("speaking"), c["nav"][3]),
         (section("contact"), c["nav"][4]),
+        (lang_url(lang, COLLECTION_PATH), {"pt": "eBooks e serviços", "en": "eBooks & services", "es": "eBooks y servicios"}[lang]),
     ]
     links = "\n".join(f'        <a href="{href}">{esc(label)}</a>' for href, label in nav_items)
     lang_links = "\n".join(
@@ -1443,6 +1470,8 @@ def footer(lang: str, promote: bool = True) -> str:
         <a href="{LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a>
         <a href="{lang_url(lang, COLLECTION_PATH)}">eBooks: CX na Prática</a>
         <a href="{lang_url(lang, MINI_EXPERT['path'])}" data-mini-expert-link="footer" data-mini-expert-id="{MINI_EXPERT['id']}" data-mini-expert-title="{esc(MINI_EXPERT['name'])}" data-hotmart-product-id="{MINI_EXPERT['hotmart_id']}">Mini Expert</a>
+        <a href="{lang_url(lang, FIVERR['path'])}" data-fiverr-link="footer">{esc(FIVERR_COPY[lang]['discover'])}</a>
+        <a href="{lang_url(lang, BONUS_PATH)}" data-bonus-link="footer">{esc(BONUS_COPY[lang]['cta'])}</a>
       </div>
     </footer>{ebook_promotion(lang) if promote else ''}"""
 
@@ -1619,6 +1648,8 @@ def render_home(lang: str) -> str:
         </div>
       </section>
 {mini_expert_feature(lang, 'home')}
+{fiverr_feature(lang, 'home')}
+{bonus_feature(lang)}
       <section class="content-section section-reveal" id="speaking" aria-labelledby="speaking-title">
         <div class="section-label">{esc(c["speaking_label"])}</div>
         <div class="section-body">
@@ -1959,7 +1990,7 @@ def ebook_cards(lang: str, books: list[dict], placement: str) -> str:
         topics = "".join(f"<li>{esc(topic)}</li>" for topic in book["topics"][lang])
         cards.append(f"""<article class="ebook-product" id="{book['id']}" data-ebook-product data-ebook-id="{book['id']}" data-ebook-title="{esc(book['name'])}" data-hotmart-product-id="{book['hotmart_id']}">
           <img src="{book['cover']}" alt="{esc(book['name'])} - Luiz Terra" width="1254" height="1254" loading="{'eager' if placement == 'catalog' and book['volume'] == 1 else 'lazy'}" />
-          <div class="ebook-product-copy"><p class="eyebrow">{esc(c['volume'])} {book['volume']:02d}</p><h2>{esc(book['name'])}</h2>
+          <div class="ebook-product-copy"><p class="eyebrow">{esc(c['volume'])} {book['volume']:02d} · PT / EN / ES</p><h2>{esc(BOOK_TITLES[book['id']][lang])}</h2>
           <p>{esc(book['summary'][lang])}</p><p class="ebook-product-facts">{book['pages']} {esc(c['pages'])} · {book['worksheets']} {esc(c['worksheets'])}</p>
           <details><summary>{esc(c['details'])}</summary><ul>{topics}</ul></details>
           <div class="ebook-product-purchase"><strong>{book['price_label']}</strong><a class="button ebook-buy" href="{book['checkout']}?sck=luizterra_site_{placement}" target="_blank" rel="noopener" data-ebook-checkout="{placement}">{esc(c['buy'])} <span aria-hidden="true">&#8599;</span></a></div></div>
@@ -1975,9 +2006,11 @@ def render_ebook_catalog(lang: str) -> str:
   <body class="ebook-catalog" data-ebook-collection-id="{COLLECTION_ID}">
 {nav(lang, COLLECTION_PATH)}
     <main class="ebook-main">
-      <section class="ebook-catalog-heading"><div class="ebook-catalog-inner"><p class="eyebrow">{esc(c['label'])}</p><h1>CX na Prática</h1><p>{esc(c['intro'])}</p><p class="ebook-language">{esc(c['language'])}</p></div></section>
-      <section class="ebook-catalog-products" aria-label="{esc(c['label'])}"><div class="ebook-product-grid">{ebook_cards(lang, EBOOKS, 'catalog')}</div><p class="ebook-catalog-note">{esc(c['note'])}</p></section>
+      <section class="ebook-catalog-heading"><div class="ebook-catalog-inner"><p class="eyebrow">{esc(c['label'])}</p><h1>{esc(c['modal_title'])}</h1><p>{esc(c['intro'])}</p><p class="ebook-language">{esc(c['language'])}</p><nav class="commerce-sections" aria-label="{esc(c['label'])}"><a href="#ebooks">eBooks</a><a href="#ai-agent">AI Agent</a><a href="#consulting">Fiverr</a><a href="{lang_url(lang, BONUS_PATH)}" data-bonus-link="catalog">{esc(BONUS_COPY[lang]['cta'])} &#8594;</a></nav></div></section>
+      <section class="ebook-catalog-products" id="ebooks" aria-label="{esc(c['label'])}"><div class="ebook-product-grid">{ebook_cards(lang, EBOOKS, 'catalog')}</div><p class="ebook-catalog-note">{esc(c['note'])}</p></section>
 {mini_expert_feature(lang, 'catalog')}
+{fiverr_feature(lang, 'catalog')}
+{bonus_feature(lang)}
     </main>
 {footer(lang, promote=False)}
     <script src="{SCRIPT_URL}"></script>
@@ -1988,7 +2021,7 @@ def render_ebook_catalog(lang: str) -> str:
 
 def mini_expert_feature(lang: str, placement: str) -> str:
     c = MINI_EXPERT_COPY[lang]
-    return f"""      <section class="mini-expert-feature" aria-labelledby="mini-expert-feature-title" data-mini-expert-product data-mini-expert-id="{MINI_EXPERT['id']}" data-mini-expert-title="{esc(MINI_EXPERT['name'])}" data-hotmart-product-id="{MINI_EXPERT['hotmart_id']}" data-product-placement="{placement}">
+    return f"""      <section class="mini-expert-feature" id="ai-agent" aria-labelledby="mini-expert-feature-title" data-mini-expert-product data-mini-expert-id="{MINI_EXPERT['id']}" data-mini-expert-title="{esc(MINI_EXPERT['name'])}" data-hotmart-product-id="{MINI_EXPERT['hotmart_id']}" data-product-placement="{placement}">
         <div class="mini-expert-feature-inner">
           <img src="{MINI_EXPERT['cover']}" alt="{esc(MINI_EXPERT['name'])} - Luiz Terra" width="1080" height="1080" loading="lazy" />
           <div><p class="eyebrow">{esc(c['label'])}</p><h2 id="mini-expert-feature-title">{esc(c['heading'])}</h2><p>{esc(c['summary'])}</p>
@@ -2024,8 +2057,91 @@ def render_mini_expert(lang: str) -> str:
       <section class="mini-expert-benefits"><div class="mini-expert-inner"><h2>{esc(c['benefits_title'])}</h2><div class="mini-expert-benefit-grid">{benefits}</div></div></section>
       <section class="mini-expert-limits"><div class="mini-expert-inner"><h2>{esc(c['limits_title'])}</h2><p>{esc(c['limits'])}</p><p>{esc(c['privacy'])}</p></div></section>
       <section class="mini-expert-faq"><div class="mini-expert-inner"><h2>{esc(c['faq_title'])}</h2><div class="faq-list ebook-faq">{faq}</div><a class="mini-expert-books" href="{lang_url(lang, COLLECTION_PATH)}">{esc(c['books'])} <span aria-hidden="true">&#8594;</span></a></div></section>
+{bonus_feature(lang)}
     </main>
 {footer(lang, promote=False)}
+    <script src="{SCRIPT_URL}"></script>
+  </body>
+</html>
+"""
+
+
+def bonus_feature(lang: str) -> str:
+    c = BONUS_COPY[lang]
+    return f"""      <section class="commerce-bonus" aria-labelledby="commerce-bonus-title"><div class="commerce-inner">
+        <p class="eyebrow">{esc(c['label'])}</p><h2 id="commerce-bonus-title">{esc(c['heading'])}</h2><p>{esc(c['summary'])}</p>
+        <a class="button ebook-buy" href="{lang_url(lang, BONUS_PATH)}" data-bonus-link="feature">{esc(c['cta'])} <span aria-hidden="true">&#8594;</span></a>
+        <p class="commerce-terms">{esc(c['terms'])}</p>
+      </div></section>"""
+
+
+def fiverr_feature(lang: str, placement: str) -> str:
+    c = FIVERR_COPY[lang]
+    return f"""      <section class="commerce-consulting" id="consulting" aria-labelledby="fiverr-feature-title" data-fiverr-product data-product-placement="{placement}"><div class="commerce-service-inner">
+        <img src="{FIVERR['cover']}" width="1280" height="769" alt="{esc(c['heading'])} - Luiz Terra" loading="lazy" />
+        <div><p class="eyebrow">{esc(c['label'])}</p><h2 id="fiverr-feature-title">{esc(c['heading'])}</h2><p>{esc(c['summary'])}</p>
+        <p class="mini-expert-price">{FIVERR['price_label']} <small>{esc(c['unit'])}</small></p><p class="mini-expert-language">{esc(c['language'])}</p>
+        <a class="button ebook-buy" href="{lang_url(lang, FIVERR['path'])}" data-fiverr-link="{placement}">{esc(c['discover'])} <span aria-hidden="true">&#8594;</span></a>
+        <p class="commerce-terms">{esc(c['terms'])}</p></div>
+      </div></section>"""
+
+
+def render_consulting(lang: str) -> str:
+    c = FIVERR_COPY[lang]
+    scope = "".join(f'<article><h3>{esc(title)}</h3><p>{esc(text)}</p></article>' for title, text in c["scope"])
+    faq = "".join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in c["faq"])
+    return f"""<!DOCTYPE html>
+<html lang="{META[lang]['lang']}">
+{head(lang, c['title'], c['description'], FIVERR['path'], 'consulting')}
+  <body class="consulting-landing mini-expert-landing">
+{nav(lang, FIVERR['path'])}
+    <main class="ebook-main mini-expert-main">
+      <section class="mini-expert-heading"><div class="mini-expert-inner"><p class="eyebrow">{esc(c['label'])}</p><h1>{esc(c['heading'])}</h1><p>{esc(c['summary'])}</p>
+        <p class="mini-expert-price">{FIVERR['price_label']} <small>{esc(c['unit'])}</small></p><p class="mini-expert-language">{esc(c['language'])}</p>
+        <a class="button ebook-buy" href="{FIVERR['url']}" target="_blank" rel="noopener" data-fiverr-checkout="offer">{esc(c['buy'])} <span aria-hidden="true">&#8599;</span></a><p class="commerce-terms">{esc(c['terms'])}</p>
+      </div></section>
+      <section class="commerce-report"><div class="commerce-inner"><img src="{FIVERR['cover']}" width="1280" height="769" alt="{esc(c['heading'])} - Luiz Terra" fetchpriority="high" /></div></section>
+      <section class="mini-expert-benefits"><div class="mini-expert-inner"><h2>{esc(c['scope_title'])}</h2><div class="mini-expert-benefit-grid">{scope}</div></div></section>
+{bonus_feature(lang)}
+      <section class="mini-expert-limits"><div class="mini-expert-inner"><h2>{esc(c['limits_title'])}</h2><p>{esc(c['limits'])}</p><p>{esc(c['privacy'])}</p><p>{esc(c['platform'])}</p></div></section>
+      <section class="mini-expert-faq"><div class="mini-expert-inner"><h2>{esc(c['faq_title'])}</h2><div class="faq-list ebook-faq">{faq}</div></div></section>
+    </main>
+{footer(lang, promote=False)}
+    <script src="{SCRIPT_URL}"></script>
+  </body>
+</html>
+"""
+
+
+def render_bonus(lang: str) -> str:
+    c = BONUS_COPY[lang]
+    origins = "".join(f'<option value="{value}">{esc(label)}</option>' for value, label in c["origins"])
+    choices = "".join(f'<label class="bonus-choice"><input type="checkbox" name="title" value="{book["id"]}" data-title-name="{esc(BOOK_TITLES[book["id"]][lang])}" /><img src="{book["cover"]}" alt="" width="1254" height="1254" /><span><strong>{esc(BOOK_TITLES[book["id"]][lang])}</strong><small>PDF · PT / EN / ES</small></span></label>' for book in EBOOKS)
+    messages = json.dumps({key: c[key] for key in ("error", "message", "subject", "copied", "copy_error", "pending")}, ensure_ascii=False).replace("<", "\\u003c")
+    return f"""<!DOCTYPE html>
+<html lang="{META[lang]['lang']}">
+{head(lang, c['title'], c['description'], BONUS_PATH, 'bonus')}
+  <body class="bonus-landing mini-expert-landing">
+{nav(lang, BONUS_PATH)}
+    <main class="ebook-main mini-expert-main">
+      <section class="mini-expert-heading"><div class="commerce-inner"><p class="eyebrow">{esc(c['label'])}</p><h1>{esc(c['heading'])}</h1><p>{esc(c['summary'])}</p><p class="commerce-terms">{esc(c['terms'])}</p></div></section>
+      <section class="bonus-selection"><div class="commerce-inner">
+        <form id="bonus-request"><label for="bonus-origin">{esc(c['origin'])}</label><select id="bonus-origin" name="origin">{origins}</select>
+          <fieldset><legend>{esc(c['choose'])}</legend><div class="bonus-choices">{choices}</div></fieldset>
+          <p class="bonus-count" aria-live="polite">{esc(c['count'])}: <span id="bonus-count">0</span> / 2</p>
+          <p id="bonus-error" class="bonus-error" role="alert" hidden></p><button class="button ebook-buy" type="submit">{esc(c['prepare'])} <span aria-hidden="true">&#8594;</span></button>
+        </form>
+        <p class="commerce-terms">{esc(c['privacy'])}</p><p id="bonus-email-note" class="commerce-channel">{esc(c['email_note'])}</p><p id="bonus-fiverr-note" class="commerce-channel" hidden>{esc(c['fiverr_note'])}</p>
+        <div id="bonus-result" class="bonus-result" hidden><h2>{esc(c['result_title'])}</h2><label class="visually-hidden" for="bonus-message">{esc(c['result_title'])}</label><textarea id="bonus-message" rows="6" readonly></textarea>
+          <div class="bonus-actions"><button id="bonus-copy" class="button bonus-secondary" type="button">{esc(c['copy'])}</button><a class="button ebook-buy" id="bonus-email" href="mailto:{EMAIL}">{esc(c['email_action'])} <span aria-hidden="true">&#8599;</span></a></div>
+          <p id="bonus-status" role="status"></p>
+        </div>
+        <noscript><p>{esc(c['choose'])}. {esc(c['email_note'])} {esc(c['fiverr_note'])}</p></noscript>
+      </div></section>
+      <section class="mini-expert-limits"><div class="commerce-inner"><h2>{esc(c['voucher_title'])}</h2><p>{esc(c['voucher_terms'])}</p><a class="mini-expert-books" href="{lang_url(lang, COLLECTION_PATH)}">{esc(c['back'])} <span aria-hidden="true">&#8594;</span></a></div></section>
+    </main>
+{footer(lang, promote=False)}
+    <script id="bonus-copy-data" type="application/json">{messages}</script>
     <script src="{SCRIPT_URL}"></script>
   </body>
 </html>
@@ -2052,7 +2168,7 @@ def render_ebook(lang: str) -> str:
         <div class="ebook-hero-inner">
           <div class="ebook-hero-copy">
             <p class="eyebrow">{esc(c['label'])}</p>
-            <h1 id="ebook-title">CX na <span>Operação</span></h1>
+            <h1 id="ebook-title">{esc(BOOK_TITLES[EBOOK['id']][lang])}</h1>
             <p class="ebook-subtitle">{esc(c['subtitle'])}</p>
             <p class="ebook-intro">{esc(c['intro'])}</p>
             <p class="ebook-price">{EBOOK['price_label']} <small>{esc(c['single'])}</small></p>
@@ -2108,6 +2224,8 @@ def build_pages() -> None:
     for lang in ("en", "pt", "es"):
         write(ROOT / META[lang]["path"] / COLLECTION_PATH / "index.html", render_ebook_catalog(lang))
         write(ROOT / META[lang]["path"] / MINI_EXPERT["path"] / "index.html", render_mini_expert(lang))
+        write(ROOT / META[lang]["path"] / FIVERR["path"] / "index.html", render_consulting(lang))
+        write(ROOT / META[lang]["path"] / BONUS_PATH / "index.html", render_bonus(lang))
         write(ROOT / META[lang]["path"] / EBOOK["path"] / "index.html", render_ebook(lang))
         write(ROOT / META[lang]["path"] / "executive-bio" / "index.html", render_executive_bio(lang))
         write(ROOT / META[lang]["path"] / "insights" / "index.html", render_insights_index(lang))
@@ -2122,6 +2240,8 @@ def build_sitemap() -> None:
     for lang in ("en", "pt", "es"):
         pages.append((lang, COLLECTION_PATH))
         pages.append((lang, MINI_EXPERT["path"]))
+        pages.append((lang, FIVERR["path"]))
+        pages.append((lang, BONUS_PATH))
         pages.append((lang, EBOOK["path"]))
         pages.append((lang, "executive-bio/"))
         pages.append((lang, "insights/"))
@@ -2136,6 +2256,8 @@ def build_sitemap() -> None:
             updated = max(MINI_EXPERT["modified"], *(book["modified"] for book in EBOOKS))
         elif path == MINI_EXPERT["path"]:
             updated = MINI_EXPERT["modified"]
+        elif path in (FIVERR["path"], BONUS_PATH):
+            updated = FIVERR["modified"]
         elif path == EBOOK["path"]:
             updated = EBOOK["modified"]
         elif path.startswith("insights/") and path != "insights/":
@@ -2248,11 +2370,16 @@ def build_discovery_files() -> None:
 
 ## eBook
 
-- [CX na Operação]({BASE_URL}/{EBOOK['path']}): A Portuguese PDF eBook by Luiz Terra with seven customer service routines, 27 pages and four worksheets. Sold through Hotmart, not a free download.
+- [CX in Practice eBooks]({BASE_URL}/{COLLECTION_PATH}): Three independently sold titles at R$ 9.99 each. Every title includes complete Portuguese, English and Spanish PDFs. CX in Operations has 27 pages per edition; Customer Service Metrics in Practice and Customer Service Quality and Feedback have 25 pages per edition. Sold through Hotmart, not public downloads.
 
 ## Mini Expert
 
 - [Mini Expert de Indicadores de Atendimento]({BASE_URL}/pt/{MINI_EXPERT['path']}): An independent Portuguese-language AI assistant subscription for customer service supervisors and coordinators. Individual access through Hotmart, R$ 199.90 per month until cancelled, 7-day refund period under the offer terms. Not an eBook, human consulting or automatic system integration. AI responses require verification. Only authorised aggregated or anonymised data should be shared.
+
+## Consulting and welcome bonus
+
+- [Customer service KPI consulting]({BASE_URL}/{FIVERR['path']}): AI-assisted analysis reviewed by Luiz Terra, ordered and delivered on Fiverr. One aggregated Excel or CSV file, one operation and channel, up to two comparable periods and ten KPIs. Brazilian Portuguese PDF, five-day delivery after complete requirements, one in-scope revision. Base US$ 50, subject to Fiverr checkout fees and conversion. No guaranteed results or agent access.
+- [Choose two bonus eBooks]({BASE_URL}/{BONUS_PATH}): An approved AI Agent or Fiverr consulting purchase grants any two of the three eBook titles, once per customer across both services, not per renewal. Manual verification and delivery. Fiverr customers use their order messages and receive files on Fiverr. Private courtesy vouchers are single-use, valid for 30 days and manually redeemed; not Hotmart checkout coupons. Codes and paid PDFs are not public.
 
 ## Topic pages
 
@@ -2489,7 +2616,7 @@ The initial authority collection was developed editorially for the requested sea
 
 - Collection: `/ebooks/`, `/pt/ebooks/`, `/es/ebooks/`, with all three independently sold titles from `tools/ebook_catalog.py`.
 - Sales pages: `/ebooks/cx-na-operacao/`, `/pt/ebooks/cx-na-operacao/`, `/es/ebooks/cx-na-operacao/`.
-- All three books are Portuguese PDFs. English and Spanish pages describe the same Portuguese editions.
+- Every existing product includes Portuguese, English and Spanish PDFs at the unchanged R$ 9.99 price. The original Portuguese files were preserved; the six translated files were added and read back from Hotmart on 29 October 2026.
 - First-book detailed copy: `tools/ebook_content.py`; catalog facts, copy and Hotmart IDs: `tools/ebook_catalog.py`. Rebuild with `tools/build_static_site.py`.
 - The public site contains promotional images only. Do not add the paid PDF or editable manuscript to this repository.
 - Existing pages include a persistent announcement and a dismissible native dialog shown once per browser session. Blocked session storage disables the dialog, not the announcement.
@@ -2505,6 +2632,15 @@ The initial authority collection was developed editorially for the requested sea
 - Featured on the home pages and eBook collection; linked from every footer. Public promotional cover only; no private agent instructions or knowledge files are published.
 - GA4 intent events use `mini_expert_landing_view`, `mini_expert_product_view`, `mini_expert_landing_click` and `mini_expert_checkout_click`, separate from `ebook_*`. No purchase is emitted by the website. The financial receiver and its three-eBook allowlist are unchanged; subscription purchases and renewals are not yet connected to GA4.
 - Rebuild with `tools/build_static_site.py`. Rollback this addition through a dedicated Git revert and republish GitHub Pages; do not delete financial events or change the existing receiver.
+
+## Consulting and Manual Bonuses
+
+- Localized Fiverr landing pages use `/consultoria/indicadores-de-atendimento/` with `/pt/` and `/es/` variants. Public offer and scope are in `tools/commerce_content.py`.
+- The service uses one aggregated file, one operation/channel, two comparable periods, up to ten KPIs, a Portuguese PDF, five-day delivery and one in-scope revision. Ordering, payment and delivery stay on Fiverr.
+- `/bonus/`, `/pt/bonus/` and `/es/bonus/` prepare a choice of exactly two titles. A prepared message is neither sent nor approved. No paid file is exposed by the website.
+- First approved AI Agent or Fiverr consulting purchase: two chosen titles once per customer across services, not per renewal. Each title includes three language PDFs. Fiverr redemption remains in the paid order's messages.
+- `tools/voucher_registry.py` manages private 30-day, single-use manual grants outside Git. It does not verify payments, automatically deliver files or emit purchase events. See `docs/BONUS_OPERATIONS.md` for the operator workflow.
+- `fiverr_*` and `bonus_*` events measure intent only, without voucher codes, buyer details, order IDs, purchase or revenue. The financial receiver's eBook allowlist remains unchanged.
 
 ## Manual Checks
 
