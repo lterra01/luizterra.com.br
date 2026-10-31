@@ -211,12 +211,12 @@ SEO_OVERRIDES = {
     },
     "brazil-customer-service-outsourcing": {
         "en": "Brazil Customer Service Outsourcing: CX, Telecom and BPO Guide | Luiz Terra",
-        "pt": "Terceirização de Atendimento no Brasil: Guia de CX, Telecom e BPO | Luiz Terra",
+        "pt": "Terceirização de Atendimento no Brasil: CX, Telecom e BPO | Luiz Terra",
         "es": "Outsourcing de Atención en Brasil: Guía de CX, Telecom y BPO | Luiz Terra",
     },
     "ai-contact-centers-roi": {
         "en": "Contact Center AI ROI: Metrics, Baselines and Business Value | Luiz Terra",
-        "pt": "ROI de IA em Contact Centers: Métricas, Base e Valor de Negócio | Luiz Terra",
+        "pt": "ROI de IA em Contact Centers: Métricas e Valor | Luiz Terra",
         "es": "ROI de IA en Contact Centers: Métricas, Línea Base y Valor | Luiz Terra",
     },
     "latam-bridge-us-cx-global-delivery": {
@@ -226,10 +226,42 @@ SEO_OVERRIDES = {
     },
     "ai-powered-amd-outbound-operations": {
         "en": "AI Answering Machine Detection for Contact Centers: AMD Guide | Luiz Terra",
-        "pt": "AMD com IA em Contact Centers: Guia de Answering Machine Detection | Luiz Terra",
-        "es": "AMD con IA en Contact Centers: Guía de Answering Machine Detection | Luiz Terra",
+        "pt": "AMD com IA: Answering Machine Detection em Contact Centers | Luiz Terra",
+        "es": "AMD con IA: Answering Machine Detection en Contact Centers | Luiz Terra",
+    },
+    "european-ccaas-local-telecom-partners": {
+        "en": "CCaaS Europe: Why Local Telecom Partners Matter | Luiz Terra",
+        "pt": "CCaaS na Europa: o Papel dos Parceiros Locais | Luiz Terra",
+        "es": "CCaaS en Europa: Socios Locales de Telecom | Luiz Terra",
+    },
+    "sbc-as-a-service-bpo-ccaas": {
+        "en": "Managed SBC as a Service for BPO and CCaaS | Luiz Terra",
+        "pt": "SBC Gerenciado para BPO e CCaaS | Luiz Terra",
+        "es": "SBC Gestionado para BPO y CCaaS | Luiz Terra",
+    },
+    "sip-voice-quality-resilience-global-contact-centers": {
+        "en": "SIP Voice Quality and Resilience in Contact Centers | Luiz Terra",
+        "pt": "SIP: Qualidade de Voz e Resiliência em Contact Centers | Luiz Terra",
+        "es": "SIP: Calidad de Voz y Resiliencia en Contact Centers | Luiz Terra",
+    },
+    "strategic-partnerships-vs-reseller-agreements": {
+        "en": "Strategic Partnerships vs Reseller Agreements | Luiz Terra",
+        "pt": "Parcerias Estratégicas ou Acordos de Revenda? | Luiz Terra",
+        "es": "Alianzas Estratégicas o Acuerdos de Reventa | Luiz Terra",
+    },
+    "customer-effort-architecture-contact-centers": {
+        "en": "Customer Effort and Contact Center Architecture | Luiz Terra",
+        "pt": "Esforço do Cliente e Arquitetura de Contact Center | Luiz Terra",
+        "es": "Esfuerzo del Cliente y Arquitectura de Contact Center | Luiz Terra",
     },
 }
+
+SEO_UPDATE_DATES = dict.fromkeys((
+    "brazil-customer-service-outsourcing", "ai-contact-centers-roi",
+    "ai-powered-amd-outbound-operations", "european-ccaas-local-telecom-partners",
+    "sbc-as-a-service-bpo-ccaas", "sip-voice-quality-resilience-global-contact-centers",
+    "strategic-partnerships-vs-reseller-agreements", "customer-effort-architecture-contact-centers",
+), "2026-10-31")
 
 ARTICLE_LEADS = {
     "brazil-customer-service-outsourcing": {

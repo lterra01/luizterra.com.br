@@ -15,7 +15,7 @@ from reportlab.lib.units import inch
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
-from article_library import ARTICLE_LEADS, ARTICLE_UPDATES, NEW_ARTICLES, RELATED_OVERRIDES, SEO_OVERRIDES
+from article_library import ARTICLE_LEADS, ARTICLE_UPDATES, NEW_ARTICLES, RELATED_OVERRIDES, SEO_OVERRIDES, SEO_UPDATE_DATES
 from content_hub import CLUSTER_GUIDANCE, EXECUTIVE_BIO, TOPICS, TOPIC_BY_SLUG, UI
 from ebook_content import EBOOK, EBOOK_COPY
 from ebook_catalog import EBOOKS, COLLECTION_COPY, COLLECTION_ID, COLLECTION_PATH, BOOK_TITLES, DELIVERY_LANGUAGES, COLLECTION_AD_ID, COLLECTION_SESSION_KEY
@@ -34,6 +34,7 @@ LINKEDIN = "https://linkedin.com/in/lterra"
 PHOTO = IMAGES / "luiz-terra-executive.jpg"
 DATE_PUBLISHED = "2026-07-03"
 DATE_MODIFIED = "2026-10-15"
+SEO_MODIFIED = "2026-10-31"
 SCHEMA_DATE_CREATED = f"{DATE_PUBLISHED}T00:00:00-03:00"
 SCHEMA_DATE_MODIFIED = f"{DATE_MODIFIED}T00:00:00-03:00"
 
@@ -44,7 +45,7 @@ META = {
         "locale": "en_US",
         "path": "",
         "title": "Luiz Terra | International Sales Executive in Telecom, CX, BPO & AI",
-        "description": "Luiz Terra is an international sales executive focused on Telecom, CX, BPO, Contact Center, CCaaS and AI-powered communications, with extensive experience developing international markets, strategic partnerships and enterprise business across LATAM, North America, Europe and Africa.",
+        "description": "Luiz Terra: international sales executive with 28+ years in Telecom, CX, BPO, CCaaS and AI, developing markets and partnerships across four global regions.",
         "og_title": "Luiz Terra | Telecom, CX, BPO & AI Executive",
         "og_description": "International sales executive helping technology companies, telecom providers and contact center ecosystems expand through strategic partnerships and market-entry execution.",
     },
@@ -915,6 +916,8 @@ for existing_article in ARTICLES:
         apply_editorial_payload(existing_article, payload)
     if existing_article["slug"] in SEO_OVERRIDES:
         existing_article["seo_title"] = SEO_OVERRIDES[existing_article["slug"]]
+    if existing_article["slug"] in SEO_UPDATE_DATES:
+        existing_article["modified"] = SEO_UPDATE_DATES[existing_article["slug"]]
     if existing_article["slug"] in ARTICLE_LEADS:
         existing_article["lead"] = ARTICLE_LEADS[existing_article["slug"]]
     if existing_article["slug"] in RELATED_OVERRIDES:
@@ -925,6 +928,8 @@ for payload in NEW_ARTICLES:
     apply_editorial_payload(new_article, payload)
     if new_article["slug"] in SEO_OVERRIDES:
         new_article["seo_title"] = SEO_OVERRIDES[new_article["slug"]]
+    if new_article["slug"] in SEO_UPDATE_DATES:
+        new_article["modified"] = SEO_UPDATE_DATES[new_article["slug"]]
     if new_article["slug"] in ARTICLE_LEADS:
         new_article["lead"] = ARTICLE_LEADS[new_article["slug"]]
     if new_article["slug"] in RELATED_OVERRIDES:
@@ -1046,7 +1051,7 @@ def head(
         og_image = f"{BASE_URL}{EBOOK['cover']}"
         og_width = og_height = 1254
         og_alt = "CX na Operação - 7 rotinas para organizar o atendimento - Luiz Terra"
-        preload = f'    <link rel="preload" href="{EBOOK["cover"]}" as="image" type="image/webp" fetchpriority="high" />\n'
+        preload = f'    <link rel="preload" href="{EBOOK["cover"].replace(".webp", "-640.webp")}" as="image" type="image/webp" imagesrcset="{ebook_cover_srcset(EBOOK)}" imagesizes="{ebook_cover_sizes(page_type)}" fetchpriority="high" />\n'
     elif page_type == "mini_expert":
         og_image = f"{BASE_URL}{MINI_EXPERT['cover']}"
         og_width = og_height = 1080
@@ -1156,14 +1161,17 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
         graph.extend([
             {"@type": "CollectionPage", "@id": f"{url}#webpage", "url": url,
              "name": COLLECTION_COPY[lang]["title"], "description": COLLECTION_COPY[lang]["description"],
-             "dateModified": max(MINI_EXPERT["modified"], *(book["modified"] for book in EBOOKS)),
-             "inLanguage": META[lang]["lang"], "mainEntity": {"@id": f"{url}#books"}},
+             "dateModified": SEO_MODIFIED,
+             "inLanguage": META[lang]["lang"], "mainEntity": {"@id": f"{url}#books"},
+             "isPartOf": {"@id": f"{BASE_URL}/#website"}},
             {"@type": "ItemList", "@id": f"{url}#books", "numberOfItems": len(EBOOKS),
              "itemListElement": [{"@type": "ListItem", "position": book["volume"], "item": {
-                 "@type": ["Book", "Product"], "@id": f"{url}#{book['id']}", "name": book["name"],
+                 "@type": "Book", "@id": f"{url}#{book['id']}", "name": BOOK_TITLES[book["id"]][lang],
+                 "description": book["summary"][lang], "url": f"{url}#{book['id']}",
                  "author": {"@id": f"{BASE_URL}/#luiz-terra"}, "inLanguage": DELIVERY_LANGUAGES,
                  "numberOfPages": book["pages"], "bookFormat": "https://schema.org/EBook",
-                 "image": f"{BASE_URL}{book['cover']}", "sku": book["hotmart_id"],
+                 "image": f"{BASE_URL}{book['cover']}",
+                 "identifier": {"@type": "PropertyValue", "propertyID": "Hotmart product ID", "value": book["hotmart_id"]},
                  "offers": {"@type": "Offer", "url": book["checkout"], "price": book["price"],
                             "priceCurrency": "BRL", "availability": "https://schema.org/InStock"},
              }} for book in EBOOKS]},
@@ -1216,12 +1224,13 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
             {
                 "@type": "WebPage", "@id": f"{url}#webpage", "url": url,
                 "name": EBOOK_COPY[lang]["title"], "description": EBOOK_COPY[lang]["description"],
-                "inLanguage": META[lang]["lang"], "dateModified": EBOOK["modified"],
+                "inLanguage": META[lang]["lang"], "dateModified": SEO_MODIFIED,
                 "mainEntity": {"@id": f"{BASE_URL}/{EBOOK['path']}#book"},
             },
             {
                 "@type": ["Book", "Product"], "@id": f"{BASE_URL}/{EBOOK['path']}#book",
-                "name": EBOOK["name"], "description": EBOOK_COPY[lang]["description"],
+                "name": BOOK_TITLES[EBOOK["id"]][lang], "description": EBOOK_COPY[lang]["description"],
+                "brand": {"@type": "Brand", "name": "Luiz Terra"}, "sku": EBOOKS[0]["hotmart_id"],
                 "author": {"@id": f"{BASE_URL}/#luiz-terra"}, "inLanguage": DELIVERY_LANGUAGES,
                 "bookFormat": "https://schema.org/EBook", "numberOfPages": 27,
                 "image": f"{BASE_URL}{EBOOK['cover']}", "url": url,
@@ -1376,7 +1385,7 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
                     "name": META[lang]["title"],
                     "description": META[lang]["description"],
                     "dateCreated": SCHEMA_DATE_CREATED,
-                    "dateModified": SCHEMA_DATE_MODIFIED,
+                    "dateModified": f"{SEO_MODIFIED}T00:00:00-03:00" if lang == "en" else SCHEMA_DATE_MODIFIED,
                     "inLanguage": META[lang]["lang"],
                     "mainEntity": {"@id": f"{BASE_URL}/#luiz-terra"},
                     "isPartOf": {"@id": f"{BASE_URL}/#website"},
@@ -1395,6 +1404,17 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
                 },
             ]
         )
+
+    if page_type in ("ebook_catalog", "ebook", "mini_expert", "consulting", "bonus"):
+        label = {
+            "ebook_catalog": COLLECTION_COPY[lang]["modal_title"], "ebook": BOOK_TITLES[EBOOK["id"]][lang],
+            "mini_expert": MINI_EXPERT["name"], "consulting": FIVERR_COPY[lang]["heading"],
+            "bonus": BONUS_COPY[lang]["heading"],
+        }[page_type]
+        graph.append({"@type": "BreadcrumbList", "@id": f"{url}#breadcrumb", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Luiz Terra", "item": canonical(lang)},
+            {"@type": "ListItem", "position": 2, "name": label, "item": url},
+        ]})
 
     return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=6)
 
@@ -1434,10 +1454,28 @@ def nav(lang: str, current_path: str = "") -> str:
     </nav>"""
 
 
+def ebook_cover_srcset(book: dict) -> str:
+    return ", ".join(f"{book['cover'].replace('.webp', f'-{width}.webp')} {width}w" for width in (320, 640, 960)) + f", {book['cover']} 1254w"
+
+
+def ebook_cover_sizes(placement: str) -> str:
+    if placement == "introduction":
+        return "(max-width: 640px) 42vw, 220px"
+    if placement == "ebook":
+        return "(max-width: 768px) 86vw, 460px"
+    if placement == "bonus":
+        return "88px"
+    return "(max-width: 768px) 88vw, (max-width: 1100px) 44vw, 360px"
+
+
+def ebook_cover_attributes(book: dict, placement: str) -> str:
+    return f'src="{book["cover"].replace(".webp", "-640.webp")}" srcset="{ebook_cover_srcset(book)}" sizes="{ebook_cover_sizes(placement)}"'
+
+
 def ebook_promotion(lang: str) -> str:
     c = COLLECTION_COPY[lang]
     path = lang_url(lang, COLLECTION_PATH)
-    covers = "".join(f'<a href="{path}#{book["id"]}" data-ebook-placement="introduction" data-ebook-id="{book["id"]}" data-ebook-title="{esc(book["name"])}" data-hotmart-product-id="{book["hotmart_id"]}"><img src="{book["cover"]}" width="1254" height="1254" loading="lazy" alt="{esc(book["name"])} - Luiz Terra" /><span>{esc(book["name"])}</span></a>' for book in EBOOKS)
+    covers = "".join(f'<a href="{path}#{book["id"]}" data-ebook-placement="introduction" data-ebook-id="{book["id"]}" data-ebook-title="{esc(book["name"])}" data-hotmart-product-id="{book["hotmart_id"]}"><img {ebook_cover_attributes(book, "introduction")} width="1254" height="1254" loading="lazy" alt="{esc(BOOK_TITLES[book["id"]][lang])} - Luiz Terra" /><span>{esc(BOOK_TITLES[book["id"]][lang])}</span></a>' for book in EBOOKS)
     return f"""
     <aside class="ebook-announcement" aria-label="{esc(c['label'])}" data-ebook-collection-id="{COLLECTION_ID}">
       <a href="{path}" data-ebook-placement="announcement">
@@ -1989,7 +2027,7 @@ def ebook_cards(lang: str, books: list[dict], placement: str) -> str:
     for book in books:
         topics = "".join(f"<li>{esc(topic)}</li>" for topic in book["topics"][lang])
         cards.append(f"""<article class="ebook-product" id="{book['id']}" data-ebook-product data-ebook-id="{book['id']}" data-ebook-title="{esc(book['name'])}" data-hotmart-product-id="{book['hotmart_id']}">
-          <img src="{book['cover']}" alt="{esc(book['name'])} - Luiz Terra" width="1254" height="1254" loading="{'eager' if placement == 'catalog' and book['volume'] == 1 else 'lazy'}" />
+          <img {ebook_cover_attributes(book, placement)} alt="{esc(BOOK_TITLES[book['id']][lang])} - Luiz Terra" width="1254" height="1254" loading="{'eager' if placement == 'catalog' and book['volume'] == 1 else 'lazy'}" />
           <div class="ebook-product-copy"><p class="eyebrow">{esc(c['volume'])} {book['volume']:02d} · PT / EN / ES</p><h2>{esc(BOOK_TITLES[book['id']][lang])}</h2>
           <p>{esc(book['summary'][lang])}</p><p class="ebook-product-facts">{book['pages']} {esc(c['pages'])} · {book['worksheets']} {esc(c['worksheets'])}</p>
           <details><summary>{esc(c['details'])}</summary><ul>{topics}</ul></details>
@@ -2116,7 +2154,7 @@ def render_consulting(lang: str) -> str:
 def render_bonus(lang: str) -> str:
     c = BONUS_COPY[lang]
     origins = "".join(f'<option value="{value}">{esc(label)}</option>' for value, label in c["origins"])
-    choices = "".join(f'<label class="bonus-choice"><input type="checkbox" name="title" value="{book["id"]}" data-title-name="{esc(BOOK_TITLES[book["id"]][lang])}" /><img src="{book["cover"]}" alt="" width="1254" height="1254" /><span><strong>{esc(BOOK_TITLES[book["id"]][lang])}</strong><small>PDF · PT / EN / ES</small></span></label>' for book in EBOOKS)
+    choices = "".join(f'<label class="bonus-choice"><input type="checkbox" name="title" value="{book["id"]}" data-title-name="{esc(BOOK_TITLES[book["id"]][lang])}" /><img {ebook_cover_attributes(book, "bonus")} alt="" width="1254" height="1254" /><span><strong>{esc(BOOK_TITLES[book["id"]][lang])}</strong><small>PDF · PT / EN / ES</small></span></label>' for book in EBOOKS)
     messages = json.dumps({key: c[key] for key in ("error", "message", "subject", "copied", "copy_error", "pending")}, ensure_ascii=False).replace("<", "\\u003c")
     return f"""<!DOCTYPE html>
 <html lang="{META[lang]['lang']}">
@@ -2175,7 +2213,7 @@ def render_ebook(lang: str) -> str:
             <div class="ebook-actions">{buy('hero')}<a class="ebook-contents-link" href="#ebook-contents">{esc(c['contents_link'])} <span aria-hidden="true">&#8595;</span></a></div>
             <p class="ebook-purchase-note">{esc(c['purchase_note'])}</p>
           </div>
-          <img class="ebook-cover" src="{EBOOK['cover']}" width="1254" height="1254" alt="Capa: CX na Operação, 7 rotinas para organizar o atendimento, Luiz Terra" fetchpriority="high" />
+          <img class="ebook-cover" {ebook_cover_attributes(EBOOK, 'ebook')} width="1254" height="1254" alt="{esc(BOOK_TITLES[EBOOK['id']][lang])} - Luiz Terra" fetchpriority="high" />
         </div>
       </section>
       <section class="ebook-facts" aria-label="{esc(c['label'])}"><div>{facts}</div></section>
@@ -2253,13 +2291,13 @@ def build_sitemap() -> None:
     def sitemap_url(lang: str, path: str) -> str:
         updated = DATE_MODIFIED
         if path == COLLECTION_PATH:
-            updated = max(MINI_EXPERT["modified"], *(book["modified"] for book in EBOOKS))
+            updated = SEO_MODIFIED
         elif path == MINI_EXPERT["path"]:
             updated = MINI_EXPERT["modified"]
         elif path in (FIVERR["path"], BONUS_PATH):
             updated = FIVERR["modified"]
         elif path == EBOOK["path"]:
-            updated = EBOOK["modified"]
+            updated = SEO_MODIFIED
         elif path.startswith("insights/") and path != "insights/":
             slug = path.removeprefix("insights/").rstrip("/")
             updated = next(item.get("modified", DATE_MODIFIED) for item in ARTICLES if item["slug"] == slug)
