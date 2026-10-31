@@ -26,6 +26,9 @@ Os checkouts, precos, bonus, credenciais e receptor financeiro nao foram alterad
   textos, URLs ou datas de publicacao. Metadescricao inglesa da home encurtada.
 - Capas promocionais ganham variantes de 320, 640 e 960 px com `srcset` e `sizes`.
   Originais de 1254 px, imagens sociais e PDFs pagos permanecem preservados.
+- Google Fonts continua via CDN, com `display=optional`, preconnect e carregamento
+  nao bloqueante. Em conexoes lentas a fonte de sistema pode permanecer na primeira
+  visita, evitando troca tardia; a tipografia original continua quando disponivel.
 
 ## Exclusoes Esperadas
 
@@ -90,3 +93,4 @@ e as rotas canonicas anteriores continuam presentes.
 - https://developers.google.com/search/docs/appearance/structured-data/review-snippet
 - https://support.google.com/webmasters/answer/7440203
 - https://www.indexnow.org/documentation
+- https://web.dev/articles/font-best-practices

@@ -2,12 +2,14 @@
 
 import json
 import unittest
+from tempfile import TemporaryDirectory
+from pathlib import Path
 
 from PIL import Image
 
 import build_static_site as build
 from ebook_catalog import BOOK_TITLES, EBOOKS
-from seo_audit import BASE, ROOT, Document, audit, audit_document, schema_nodes, types
+from seo_audit import BASE, ROOT, Document, asset_matches, audit, audit_document, schema_nodes, types
 
 
 class SeoTests(unittest.TestCase):
@@ -17,6 +19,17 @@ class SeoTests(unittest.TestCase):
         self.assertEqual(result["summary"]["pages_with_errors"], 0)
         self.assertTrue(result["summary"]["googlebot_allowed"])
         self.assertGreaterEqual(result["summary"]["canonical_urls"], 96)
+
+    def test_single_analytics_initialization_and_nonblocking_fonts(self):
+        for lang in ("en", "pt", "es"):
+            text = build.render_home(lang)
+            self.assertEqual(text.count("gtag('config', 'G-68E95X4DZT');"), 1)
+            self.assertEqual(text.count("gtag('config', 'AW-18474840846');"), 1)
+            self.assertEqual(text.count("gtag/js?id=G-68E95X4DZT"), 1)
+            fonts = [attrs for tag, attrs in Document(text).tags if tag == "link" and attrs.get("href", "").startswith("https://fonts.googleapis.com/")]
+            self.assertTrue(fonts)
+            self.assertTrue(all("display=optional" in attrs["href"] for attrs in fonts))
+            self.assertEqual(fonts[0].get("media"), "print")
 
     def test_collection_describes_books_not_a_single_product(self):
         for lang in ("en", "pt", "es"):
@@ -84,6 +97,16 @@ class SeoTests(unittest.TestCase):
         text = build.render_ebook_catalog("pt").replace('"@context": "https://schema.org"', '"@context": invalid-json', 1)
         result, _ = audit_document(BASE + "/pt/ebooks/", text)
         self.assertIn("invalid_json_ld", result["errors"])
+
+    def test_public_comparison_accepts_only_text_newline_differences(self):
+        with TemporaryDirectory() as directory:
+            path = Path(directory) / "icon.svg"
+            path.write_bytes(b"<svg>\r\n</svg>\r\n")
+            self.assertTrue(asset_matches(path, b"<svg>\n</svg>\n"))
+            self.assertFalse(asset_matches(path, b"<svg>changed</svg>\n"))
+            binary = path.with_suffix(".webp")
+            binary.write_bytes(b"image\r\n")
+            self.assertFalse(asset_matches(binary, b"image\n"))
 
 
 if __name__ == "__main__":

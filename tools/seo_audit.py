@@ -170,6 +170,15 @@ def fetch(url):
         return {"url": url, "status": getattr(error, "code", None), "error": str(error)}
 
 
+def asset_matches(path, content):
+    if not path.is_file() or content is None:
+        return False
+    local = path.read_bytes()
+    if path.suffix.lower() in {".svg", ".css", ".js", ".xml", ".html"}:
+        return local.replace(b"\r\n", b"\n") == content.replace(b"\r\n", b"\n")
+    return local == content
+
+
 def audit(live=False):
     sitemap_bytes = (ROOT / "sitemap.xml").read_bytes()
     sitemap = ET.fromstring(sitemap_bytes)
@@ -220,7 +229,7 @@ def audit(live=False):
         with ThreadPoolExecutor(max_workers=4) as executor:
             for response in executor.map(fetch, asset_urls):
                 target = local_path(response["url"])
-                matched = target.is_file() and response.get("body") == target.read_bytes()
+                matched = asset_matches(target, response.get("body"))
                 assets.append({key: value for key, value in response.items() if key != "body"} | {"matches_local": matched})
                 if response.get("status") != 200 or not matched:
                     global_errors.append("public_asset_missing_or_changed:" + response["url"])
