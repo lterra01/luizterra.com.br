@@ -56,7 +56,7 @@ class EbookTests(unittest.TestCase):
                 self.assertIn(EBOOK_COPY[lang]["buy"], text)
                 checkout_links = [a for t, a in page.tags if t == "a" and "data-ebook-checkout" in a]
                 self.assertEqual(len(checkout_links), len(EBOOKS) + 1)
-                self.assertEqual(sum(a["href"] == EBOOK["checkout"] for a in checkout_links), 2)
+                self.assertEqual(sum(urlsplit(a["href"])._replace(query="").geturl() == EBOOK["checkout"] for a in checkout_links), 2)
                 book = next(item for schema in page.schemas for item in schema["@graph"] if item.get("@type") == ["Book", "Product"])
                 self.assertEqual(book["offers"]["price"], "9.99")
                 self.assertEqual(book["offers"]["priceCurrency"], "BRL")
@@ -74,7 +74,10 @@ class EbookTests(unittest.TestCase):
                 text = path.read_text(encoding="utf-8")
                 page = Page(text)
                 is_sales_page = any(tag == "body" and any(name in attrs.get("class", "").split() for name in ("ebook-landing", "ebook-catalog", "mini-expert-landing")) for tag, attrs in page.tags)
-                if not is_sales_page:
+                is_free_resource = any("data-cx-resource" in attrs for _, attrs in page.tags)
+                if is_free_resource:
+                    self.assertNotIn('id="ebook-introduction"', text)
+                elif not is_sales_page:
                     self.assertEqual(text.count('id="ebook-introduction"'), 1)
                     self.assertIn('class="ebook-announcement"', text)
                     modal = next(attrs for tag, attrs in page.tags if attrs.get("id") == "ebook-introduction")

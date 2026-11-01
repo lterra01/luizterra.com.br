@@ -4,7 +4,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.luizterra.com.br/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/" />
@@ -17,7 +17,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/" />
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/" />
@@ -42,8 +42,17 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.luizterra.com.br/resources/cx-action-plan/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/resources/cx-action-plan/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/resources/cx-action-plan/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/resources/cx-action-plan/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/resources/cx-action-plan/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.luizterra.com.br/ebooks/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/ebooks/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/ebooks/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/ebooks/" />
@@ -321,8 +330,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.luizterra.com.br/pt/resources/cx-action-plan/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/resources/cx-action-plan/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/resources/cx-action-plan/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/resources/cx-action-plan/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/resources/cx-action-plan/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.luizterra.com.br/pt/ebooks/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/ebooks/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/ebooks/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/ebooks/" />
@@ -600,8 +618,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.luizterra.com.br/es/resources/cx-action-plan/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/resources/cx-action-plan/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/resources/cx-action-plan/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/resources/cx-action-plan/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/resources/cx-action-plan/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.luizterra.com.br/es/ebooks/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/ebooks/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/ebooks/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/ebooks/" />

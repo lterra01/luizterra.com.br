@@ -352,7 +352,7 @@ if ("IntersectionObserver" in window) {
     entries.forEach((entry) => {
       if (!entry.isIntersecting || entry.intersectionRatio < 0.5 || viewedProducts.has(entry.target)) return;
       viewedProducts.add(entry.target);
-      recordEbookEvent("ebook_product_view", ebookCatalog ? "catalog" : "related", {}, entry.target);
+      recordEbookEvent("ebook_product_view", entry.target.dataset.productPlacement || (ebookCatalog ? "catalog" : "related"), {}, entry.target);
       productObserver.unobserve(entry.target);
     });
   }, { threshold: 0.5 });

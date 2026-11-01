@@ -6,6 +6,7 @@ import json
 import textwrap
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from PIL import Image, ImageDraw, ImageFont
 from reportlab.lib import colors
@@ -21,11 +22,14 @@ from ebook_content import EBOOK, EBOOK_COPY
 from ebook_catalog import EBOOKS, COLLECTION_COPY, COLLECTION_ID, COLLECTION_PATH, BOOK_TITLES, DELIVERY_LANGUAGES, COLLECTION_AD_ID, COLLECTION_SESSION_KEY
 from mini_expert_content import MINI_EXPERT, MINI_EXPERT_COPY
 from commerce_content import FIVERR, FIVERR_COPY, BONUS_PATH, BONUS_COPY
+from growth_content import GROWTH_PATH, GROWTH_MODIFIED, GROWTH_COPY, TRACKS, TRACK_BY_BOOK, article_track
 
 
 ROOT = Path(__file__).resolve().parents[1]
 CSS_URL = "/styles.css?v=" + hashlib.sha256((ROOT / "styles.css").read_bytes()).hexdigest()[:12]
 SCRIPT_URL = "/script.js?v=" + hashlib.sha256((ROOT / "script.js").read_bytes()).hexdigest()[:12]
+GROWTH_CSS_URL = "/growth.css?v=" + hashlib.sha256((ROOT / "growth.css").read_bytes()).hexdigest()[:12]
+GROWTH_SCRIPT_URL = "/growth.js?v=" + hashlib.sha256((ROOT / "growth.js").read_bytes()).hexdigest()[:12]
 PUBLIC = ROOT / "public"
 IMAGES = PUBLIC / "images"
 BASE_URL = "https://www.luizterra.com.br"
@@ -1093,6 +1097,8 @@ def head(
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=optional" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=optional" rel="stylesheet" /></noscript>
     <link rel="stylesheet" href="{CSS_URL}" />
+    <link rel="stylesheet" href="{GROWTH_CSS_URL}" />
+    <script src="{GROWTH_SCRIPT_URL}" defer></script>
     <script type="application/ld+json">{schema_json(lang, path, page_type, article)}</script>
   </head>"""
 
@@ -1157,11 +1163,18 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
     }
     graph: list[dict] = [website, person]
 
-    if page_type == "ebook_catalog":
+    if page_type == "cx_resource":
+        graph.append({"@type": "WebPage", "@id": f"{url}#webpage", "url": url,
+                      "name": GROWTH_COPY[lang]["heading"], "description": GROWTH_COPY[lang]["description"],
+                      "datePublished": GROWTH_MODIFIED, "dateModified": GROWTH_MODIFIED,
+                      "inLanguage": META[lang]["lang"], "isAccessibleForFree": True,
+                      "isPartOf": {"@id": f"{BASE_URL}/#website"},
+                      "author": {"@id": f"{BASE_URL}/#luiz-terra"}})
+    elif page_type == "ebook_catalog":
         graph.extend([
             {"@type": "CollectionPage", "@id": f"{url}#webpage", "url": url,
              "name": COLLECTION_COPY[lang]["title"], "description": COLLECTION_COPY[lang]["description"],
-             "dateModified": SEO_MODIFIED,
+             "dateModified": GROWTH_MODIFIED,
              "inLanguage": META[lang]["lang"], "mainEntity": {"@id": f"{url}#books"},
              "isPartOf": {"@id": f"{BASE_URL}/#website"}},
             {"@type": "ItemList", "@id": f"{url}#books", "numberOfItems": len(EBOOKS),
@@ -1385,7 +1398,7 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
                     "name": META[lang]["title"],
                     "description": META[lang]["description"],
                     "dateCreated": SCHEMA_DATE_CREATED,
-                    "dateModified": f"{SEO_MODIFIED}T00:00:00-03:00" if lang == "en" else SCHEMA_DATE_MODIFIED,
+                    "dateModified": f"{GROWTH_MODIFIED}T00:00:00-03:00",
                     "inLanguage": META[lang]["lang"],
                     "mainEntity": {"@id": f"{BASE_URL}/#luiz-terra"},
                     "isPartOf": {"@id": f"{BASE_URL}/#website"},
@@ -1405,11 +1418,12 @@ def schema_json(lang: str, path: str, page_type: str, article: dict | None) -> s
             ]
         )
 
-    if page_type in ("ebook_catalog", "ebook", "mini_expert", "consulting", "bonus"):
+    if page_type in ("ebook_catalog", "ebook", "mini_expert", "consulting", "bonus", "cx_resource"):
         label = {
             "ebook_catalog": COLLECTION_COPY[lang]["modal_title"], "ebook": BOOK_TITLES[EBOOK["id"]][lang],
             "mini_expert": MINI_EXPERT["name"], "consulting": FIVERR_COPY[lang]["heading"],
             "bonus": BONUS_COPY[lang]["heading"],
+            "cx_resource": GROWTH_COPY[lang]["heading"],
         }[page_type]
         graph.append({"@type": "BreadcrumbList", "@id": f"{url}#breadcrumb", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Luiz Terra", "item": canonical(lang)},
@@ -1459,6 +1473,10 @@ def ebook_cover_srcset(book: dict) -> str:
 
 
 def ebook_cover_sizes(placement: str) -> str:
+    if placement == "article":
+        return "104px"
+    if placement == "resource":
+        return "(max-width: 480px) 170px, (max-width: 768px) 120px, 180px"
     if placement == "introduction":
         return "(max-width: 640px) 42vw, 220px"
     if placement == "ebook":
@@ -1470,6 +1488,98 @@ def ebook_cover_sizes(placement: str) -> str:
 
 def ebook_cover_attributes(book: dict, placement: str) -> str:
     return f'src="{book["cover"].replace(".webp", "-640.webp")}" srcset="{ebook_cover_srcset(book)}" sizes="{ebook_cover_sizes(placement)}"'
+
+
+def hotmart_checkout(url: str, placement: str) -> str:
+    # Hotmart SCK accepts up to 30 characters; underscores are reserved.
+    code = f"luizterra-site-{placement.replace('_', '-')}"
+    if len(code) > 30 or any(char not in "abcdefghijklmnopqrstuvwxyz0123456789-" for char in code):
+        raise ValueError("Unsupported Hotmart placement")
+    parts = urlsplit(url)
+    query = dict(parse_qsl(parts.query, keep_blank_values=True))
+    query["sck"] = code
+    return urlunsplit(parts._replace(query=urlencode(query)))
+
+
+def resource_feature(lang: str, placement: str) -> str:
+    c = GROWTH_COPY[lang]
+    return f'''      <section class="cx-band" aria-labelledby="cx-resource-feature-title"><div class="cx-band-inner">
+        <div><p class="eyebrow">{esc(c['label'])}</p><h2 id="cx-resource-feature-title">{esc(c['band_title'])}</h2><p>{esc(c['band_text'])}</p></div>
+        <a class="button primary" href="{lang_url(lang, GROWTH_PATH)}" data-cx-resource-link="{placement}">{esc(c['free_cta'])} <span aria-hidden="true">&#8594;</span></a>
+      </div></section>'''
+
+
+def contextual_offer(lang: str, article: dict) -> str:
+    c = GROWTH_COPY[lang]
+    track = article_track(article)
+    book = next(book for book in EBOOKS if book["id"] == track["book"])
+    return f'''          <section class="cx-context" aria-labelledby="cx-context-title">
+            <p class="eyebrow">{esc(c['label'])}</p><h2 id="cx-context-title">{esc(c['context_title'])}</h2><p>{esc(c['context_text'])}</p>
+            <a class="button primary" href="{lang_url(lang, GROWTH_PATH)}?topic={track['id']}" data-cx-resource-link="article">{esc(c['free_cta'])} <span aria-hidden="true">&#8594;</span></a>
+            <div class="cx-context-book" data-ebook-product data-product-placement="article" data-ebook-id="{book['id']}" data-ebook-title="{esc(book['name'])}" data-hotmart-product-id="{book['hotmart_id']}">
+              <img {ebook_cover_attributes(book, 'article')} width="1254" height="1254" alt="{esc(BOOK_TITLES[book['id']][lang])} - Luiz Terra" loading="lazy" />
+              <div><h3>{esc(BOOK_TITLES[book['id']][lang])}</h3><p>{esc(book['summary'][lang])}</p><strong>{book['price_label']}</strong><br />
+                <a class="button secondary" href="{hotmart_checkout(book['checkout'], 'article')}" target="_blank" rel="noopener" data-ebook-checkout="article">{esc(c['buy'])} <span aria-hidden="true">&#8599;</span></a>
+                <p class="cx-result-note">{esc(c['editions'])}</p></div>
+            </div>
+          </section>'''
+
+
+def render_resource(lang: str) -> str:
+    c = GROWTH_COPY[lang]
+    options = "".join(f'<option value="{track["id"]}">{esc(track["label"][lang])}</option>' for track in TRACKS)
+    panels = []
+    for track in TRACKS:
+        key = track["id"]
+        book = next(book for book in EBOOKS if book["id"] == track["book"])
+        checks = "".join(f'<label class="cx-check"><input type="checkbox" name="ready" value="{index}" /><span>{esc(check[0])}</span></label>' for index, check in enumerate(track["checks"][lang]))
+        readings = "".join(f'<li><a href="{article_path(lang, article)}">{esc(article["title"][lang])}</a></li>' for slug in track["articles"] for article in ARTICLES if article["slug"] == slug)
+        services = f'''<section class="cx-service-paths" aria-labelledby="cx-services-title"><h3 id="cx-services-title">{esc(c['service'])}</h3>
+          <div class="cx-service-row"><div><a href="{lang_url(lang, MINI_EXPERT['path'])}" data-mini-expert-link="resource" data-mini-expert-id="{MINI_EXPERT['id']}" data-mini-expert-title="{esc(MINI_EXPERT['name'])}" data-hotmart-product-id="{MINI_EXPERT['hotmart_id']}">{esc(c['ai'])} &#8594;</a><p>{MINI_EXPERT['price_label']} {esc(MINI_EXPERT_COPY[lang]['month'])}</p></div>
+          <div><a href="{lang_url(lang, FIVERR['path'])}" data-fiverr-link="resource">{esc(c['consulting'])} &#8594;</a><p>{FIVERR['price_label']} · {esc(FIVERR_COPY[lang]['unit'])}</p></div></div>
+          <p class="cx-result-note">{esc(c['service_note'])}</p><p class="cx-result-note">{esc(c['bonus'])} <a href="{lang_url(lang, BONUS_PATH)}" data-bonus-link="resource">{esc(BONUS_COPY[lang]['cta'])} &#8594;</a></p></section>''' if key == "metrics" else ""
+        panels.append(f'''      <section class="cx-track" data-cx-track="{key}" aria-labelledby="cx-{key}-title">
+        <h2 id="cx-{key}-title">{esc(track['label'][lang])}</h2>
+        <form><fieldset><legend>{esc(c['ready'])}</legend>{checks}</fieldset>
+          <button class="button primary cx-generate" type="submit" disabled>{esc(c['generate'])} <span aria-hidden="true">&#8594;</span></button>
+        </form>
+        <section class="cx-result" data-cx-result hidden tabindex="-1" aria-labelledby="cx-{key}-result-title">
+          <h3 id="cx-{key}-result-title">{esc(c['result'])}</h3><p data-cx-maintenance hidden>{esc(c['maintenance'])}</p>
+          <ol data-cx-actions></ol><p>{esc(c['cadence'])}</p><p class="cx-result-note">{esc(c['result_note'])}</p>
+          <button class="button secondary" type="button" data-cx-download disabled>{esc(c['download'])} <span aria-hidden="true">&#8595;</span></button>
+          <p class="cx-status" data-cx-status role="status" aria-live="polite"></p>
+        </section>
+        <section class="cx-recommendation" aria-labelledby="cx-{key}-book-title" data-ebook-product data-product-placement="resource" data-ebook-id="{book['id']}" data-ebook-title="{esc(book['name'])}" data-hotmart-product-id="{book['hotmart_id']}">
+          <img {ebook_cover_attributes(book, 'resource')} width="1254" height="1254" alt="{esc(BOOK_TITLES[book['id']][lang])} - Luiz Terra" loading="lazy" />
+          <div><p class="eyebrow">{esc(c['book'])}</p><h3 id="cx-{key}-book-title">{esc(BOOK_TITLES[book['id']][lang])}</h3><p>{esc(book['summary'][lang])}</p>
+            <p class="cx-price">{book['price_label']}</p><a class="button ebook-buy" href="{hotmart_checkout(book['checkout'], 'resource')}" target="_blank" rel="noopener" data-ebook-checkout="resource">{esc(c['buy'])} <span aria-hidden="true">&#8599;</span></a>
+            <small>{esc(c['editions'])}</small><small>{esc(COLLECTION_COPY[lang]['note'])}</small></div>
+        </section>
+{services}
+        <section class="cx-reading" aria-labelledby="cx-{key}-reading-title"><h3 id="cx-{key}-reading-title">{esc(c['reading'])}</h3><ul>{readings}</ul></section>
+      </section>''')
+    data = {"lang": lang, "tracks": {track["id"]: track["checks"][lang] for track in TRACKS},
+            "evidence": c["evidence"], "cadence": c["cadence"], "downloaded": c["downloaded"],
+            "download_error": c["download_error"], "headers": ["#", c["action"], c["evidence"], c["cadence"]]}
+    data_json = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
+    return f'''<!DOCTYPE html>
+<html lang="{META[lang]['lang']}">
+{head(lang, c['title'], c['description'], GROWTH_PATH, 'cx_resource')}
+  <body class="cx-resource-page">
+{nav(lang, GROWTH_PATH)}
+    <main class="cx-resource-main" data-cx-resource><div class="cx-resource-inner">
+      <header class="cx-resource-header"><p class="eyebrow">{esc(c['label'])}</p><h1>{esc(c['heading'])}</h1><p class="cx-resource-intro">{esc(c['intro'])}</p><p class="cx-resource-privacy">{esc(c['privacy'])}</p></header>
+      <div class="cx-resource-toolbar"><label for="cx-priority">{esc(c['topic'])}</label><select id="cx-priority">{options}</select></div>
+      <noscript><p>{esc(c['noscript'])}</p></noscript>
+{''.join(panels)}
+      <p><a class="cx-catalog-link" href="{lang_url(lang, COLLECTION_PATH)}" data-ebook-placement="resource">{esc(c['catalog'])} &#8594;</a></p>
+    </div></main>
+{footer(lang, promote=False)}
+    <script type="application/json" id="cx-plan-data">{data_json}</script>
+    <script src="{SCRIPT_URL}"></script>
+  </body>
+</html>
+'''
 
 
 def ebook_promotion(lang: str) -> str:
@@ -1507,6 +1617,7 @@ def footer(lang: str, promote: bool = True) -> str:
         <a href="mailto:{EMAIL}">{EMAIL}</a>
         <a href="{LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a>
         <a href="{lang_url(lang, COLLECTION_PATH)}">eBooks: CX na Prática</a>
+        <a href="{lang_url(lang, GROWTH_PATH)}" data-cx-resource-link="footer">{esc(GROWTH_COPY[lang]['heading'])}</a>
         <a href="{lang_url(lang, MINI_EXPERT['path'])}" data-mini-expert-link="footer" data-mini-expert-id="{MINI_EXPERT['id']}" data-mini-expert-title="{esc(MINI_EXPERT['name'])}" data-hotmart-product-id="{MINI_EXPERT['hotmart_id']}">Mini Expert</a>
         <a href="{lang_url(lang, FIVERR['path'])}" data-fiverr-link="footer">{esc(FIVERR_COPY[lang]['discover'])}</a>
         <a href="{lang_url(lang, BONUS_PATH)}" data-bonus-link="footer">{esc(BONUS_COPY[lang]['cta'])}</a>
@@ -1620,6 +1731,7 @@ def render_home(lang: str) -> str:
           </div>
         </div>
       </section>
+{resource_feature(lang, 'home')}
       <section class="content-section section-reveal" id="about" aria-labelledby="about-title">
         <div class="section-label">{esc(c["profile_label"])}</div>
         <div class="section-body">
@@ -1991,6 +2103,7 @@ def render_article(lang: str, article: dict) -> str:
           <ul class="article-checklist">
 {checklist}
           </ul>
+{contextual_offer(lang, article)}
           <h2>{esc(labels["next"])}</h2>
           <p>{esc(enhancement["closing"])}</p>
           <p class="article-cta"><a class="button primary" href="mailto:{EMAIL}?subject=Strategic%20conversation">{esc(UI[lang]["strategic_conversation"])}</a></p>
@@ -2026,12 +2139,15 @@ def ebook_cards(lang: str, books: list[dict], placement: str) -> str:
     cards = []
     for book in books:
         topics = "".join(f"<li>{esc(topic)}</li>" for topic in book["topics"][lang])
+        track = TRACK_BY_BOOK.get(book["id"])
+        fit = f'<div class="cx-product-fit"><strong>{esc(track["label"][lang])}</strong><br /><a href="{lang_url(lang, GROWTH_PATH)}?topic={track["id"]}" data-cx-resource-link="catalog">{esc(GROWTH_COPY[lang]["preview"])} &#8594;</a></div>' if track else ""
         cards.append(f"""<article class="ebook-product" id="{book['id']}" data-ebook-product data-ebook-id="{book['id']}" data-ebook-title="{esc(book['name'])}" data-hotmart-product-id="{book['hotmart_id']}">
           <img {ebook_cover_attributes(book, placement)} alt="{esc(BOOK_TITLES[book['id']][lang])} - Luiz Terra" width="1254" height="1254" loading="{'eager' if placement == 'catalog' and book['volume'] == 1 else 'lazy'}" />
           <div class="ebook-product-copy"><p class="eyebrow">{esc(c['volume'])} {book['volume']:02d} · PT / EN / ES</p><h2>{esc(BOOK_TITLES[book['id']][lang])}</h2>
           <p>{esc(book['summary'][lang])}</p><p class="ebook-product-facts">{book['pages']} {esc(c['pages'])} · {book['worksheets']} {esc(c['worksheets'])}</p>
+          {fit}
           <details><summary>{esc(c['details'])}</summary><ul>{topics}</ul></details>
-          <div class="ebook-product-purchase"><strong>{book['price_label']}</strong><a class="button ebook-buy" href="{book['checkout']}?sck=luizterra_site_{placement}" target="_blank" rel="noopener" data-ebook-checkout="{placement}">{esc(c['buy'])} <span aria-hidden="true">&#8599;</span></a></div></div>
+          <div class="ebook-product-purchase"><strong>{book['price_label']}</strong><a class="button ebook-buy" href="{hotmart_checkout(book['checkout'], placement)}" target="_blank" rel="noopener" data-ebook-checkout="{placement}">{esc(c['buy'])} <span aria-hidden="true">&#8599;</span></a></div></div>
         </article>""")
     return "\n".join(cards)
 
@@ -2045,6 +2161,7 @@ def render_ebook_catalog(lang: str) -> str:
 {nav(lang, COLLECTION_PATH)}
     <main class="ebook-main">
       <section class="ebook-catalog-heading"><div class="ebook-catalog-inner"><p class="eyebrow">{esc(c['label'])}</p><h1>{esc(c['modal_title'])}</h1><p>{esc(c['intro'])}</p><p class="ebook-language">{esc(c['language'])}</p><nav class="commerce-sections" aria-label="{esc(c['label'])}"><a href="#ebooks">eBooks</a><a href="#ai-agent">AI Agent</a><a href="#consulting">Fiverr</a><a href="{lang_url(lang, BONUS_PATH)}" data-bonus-link="catalog">{esc(BONUS_COPY[lang]['cta'])} &#8594;</a></nav></div></section>
+{resource_feature(lang, 'catalog')}
       <section class="ebook-catalog-products" id="ebooks" aria-label="{esc(c['label'])}"><div class="ebook-product-grid">{ebook_cards(lang, EBOOKS, 'catalog')}</div><p class="ebook-catalog-note">{esc(c['note'])}</p></section>
 {mini_expert_feature(lang, 'catalog')}
 {fiverr_feature(lang, 'catalog')}
@@ -2075,7 +2192,7 @@ def render_mini_expert(lang: str) -> str:
     c = MINI_EXPERT_COPY[lang]
     benefits = "".join(f'<article><h3>{esc(title)}</h3><p>{esc(text)}</p></article>' for title, text in c["benefits"])
     faq = "".join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in c["faq"])
-    checkout = f'{MINI_EXPERT["checkout"]}?sck=luizterra_site_mini_expert'
+    checkout = hotmart_checkout(MINI_EXPERT["checkout"], "mini-expert")
     return f"""<!DOCTYPE html>
 <html lang="{META[lang]['lang']}">
 {head(lang, c['title'], c['description'], MINI_EXPERT['path'], 'mini_expert')}
@@ -2194,7 +2311,7 @@ def render_ebook(lang: str) -> str:
     faq = "\n".join(f'<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in c["faq"])
 
     def buy(placement: str) -> str:
-        return f'<a class="button ebook-buy" href="{EBOOK["checkout"]}" target="_blank" rel="noopener" data-ebook-checkout="{placement}">{esc(c["buy"])} <span aria-hidden="true">&#8599;</span></a>'
+        return f'<a class="button ebook-buy" href="{hotmart_checkout(EBOOK["checkout"], placement)}" target="_blank" rel="noopener" data-ebook-checkout="{placement}">{esc(c["buy"])} <span aria-hidden="true">&#8599;</span></a>'
 
     return f"""<!DOCTYPE html>
 <html lang="{META[lang]['lang']}">
@@ -2260,6 +2377,7 @@ def build_pages() -> None:
     write(ROOT / "pt" / "index.html", render_home("pt"))
     write(ROOT / "es" / "index.html", render_home("es"))
     for lang in ("en", "pt", "es"):
+        write(ROOT / META[lang]["path"] / GROWTH_PATH / "index.html", render_resource(lang))
         write(ROOT / META[lang]["path"] / COLLECTION_PATH / "index.html", render_ebook_catalog(lang))
         write(ROOT / META[lang]["path"] / MINI_EXPERT["path"] / "index.html", render_mini_expert(lang))
         write(ROOT / META[lang]["path"] / FIVERR["path"] / "index.html", render_consulting(lang))
@@ -2276,6 +2394,7 @@ def build_pages() -> None:
 def build_sitemap() -> None:
     pages: list[tuple[str, str]] = [("en", ""), ("pt", ""), ("es", "")]
     for lang in ("en", "pt", "es"):
+        pages.append((lang, GROWTH_PATH))
         pages.append((lang, COLLECTION_PATH))
         pages.append((lang, MINI_EXPERT["path"]))
         pages.append((lang, FIVERR["path"]))
@@ -2290,8 +2409,8 @@ def build_sitemap() -> None:
 
     def sitemap_url(lang: str, path: str) -> str:
         updated = DATE_MODIFIED
-        if path == COLLECTION_PATH:
-            updated = SEO_MODIFIED
+        if path in (COLLECTION_PATH, GROWTH_PATH):
+            updated = GROWTH_MODIFIED
         elif path == MINI_EXPERT["path"]:
             updated = MINI_EXPERT["modified"]
         elif path in (FIVERR["path"], BONUS_PATH):
@@ -2305,7 +2424,7 @@ def build_sitemap() -> None:
             relevant = [item for item in ARTICLES if not path.startswith("topics/") or item.get("cluster") == path.removeprefix("topics/").rstrip("/")]
             updated = max([DATE_MODIFIED] + [item.get("modified", DATE_MODIFIED) for item in relevant])
             if path == "":
-                updated = max(updated, MINI_EXPERT["modified"], *(book["modified"] for book in EBOOKS))
+                updated = max(updated, GROWTH_MODIFIED, MINI_EXPERT["modified"], *(book["modified"] for book in EBOOKS))
         alternates = "\n".join(
             f'    <xhtml:link rel="alternate" hreflang="{code}" href="{BASE_URL}{lang_url(target, path)}" />'
             for code, target in [("en", "en"), ("pt-BR", "pt"), ("es", "es")]
