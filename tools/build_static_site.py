@@ -22,7 +22,7 @@ from ebook_content import EBOOK, EBOOK_COPY
 from ebook_catalog import EBOOKS, COLLECTION_COPY, COLLECTION_ID, COLLECTION_PATH, BOOK_TITLES, DELIVERY_LANGUAGES, COLLECTION_AD_ID, COLLECTION_SESSION_KEY
 from mini_expert_content import MINI_EXPERT, MINI_EXPERT_COPY
 from commerce_content import FIVERR, FIVERR_COPY, BONUS_PATH, BONUS_COPY
-from growth_content import GROWTH_PATH, GROWTH_MODIFIED, GROWTH_COPY, TRACKS, TRACK_BY_BOOK, article_track
+from growth_content import GROWTH_PATH, GROWTH_MODIFIED, GROWTH_COPY, PDF_COPY, TRACKS, TRACK_BY_BOOK, article_track
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -30,6 +30,7 @@ CSS_URL = "/styles.css?v=" + hashlib.sha256((ROOT / "styles.css").read_bytes()).
 SCRIPT_URL = "/script.js?v=" + hashlib.sha256((ROOT / "script.js").read_bytes()).hexdigest()[:12]
 GROWTH_CSS_URL = "/growth.css?v=" + hashlib.sha256((ROOT / "growth.css").read_bytes()).hexdigest()[:12]
 GROWTH_SCRIPT_URL = "/growth.js?v=" + hashlib.sha256((ROOT / "growth.js").read_bytes()).hexdigest()[:12]
+GROWTH_PDF_URL = "/growth-pdf.js?v=" + hashlib.sha256((ROOT / "growth-pdf.js").read_bytes()).hexdigest()[:12]
 PUBLIC = ROOT / "public"
 IMAGES = PUBLIC / "images"
 BASE_URL = "https://www.luizterra.com.br"
@@ -1036,6 +1037,7 @@ def head(
     title = page_title or meta["title"]
     desc = description or meta["description"]
     og_type = "article" if page_type == "article" else "website"
+    pdf_script = f'    <script src="{GROWTH_PDF_URL}" defer></script>\n' if page_type == "cx_resource" else ""
     preload = (
         '    <link rel="preload" href="/public/images/luiz-terra-executive-520.webp" as="image" type="image/webp" imagesrcset="/public/images/luiz-terra-executive-320.webp 320w, /public/images/luiz-terra-executive-520.webp 520w" imagesizes="(max-width: 768px) 100vw, 340px" fetchpriority="high" />\n'
         if page_type == "profile"
@@ -1098,7 +1100,7 @@ def head(
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=optional" rel="stylesheet" /></noscript>
     <link rel="stylesheet" href="{CSS_URL}" />
     <link rel="stylesheet" href="{GROWTH_CSS_URL}" />
-    <script src="{GROWTH_SCRIPT_URL}" defer></script>
+{pdf_script}    <script src="{GROWTH_SCRIPT_URL}" defer></script>
     <script type="application/ld+json">{schema_json(lang, path, page_type, article)}</script>
   </head>"""
 
@@ -1560,7 +1562,11 @@ def render_resource(lang: str) -> str:
       </section>''')
     data = {"lang": lang, "tracks": {track["id"]: track["checks"][lang] for track in TRACKS},
             "evidence": c["evidence"], "cadence": c["cadence"], "downloaded": c["downloaded"],
-            "download_error": c["download_error"], "headers": ["#", c["action"], c["evidence"], c["cadence"]]}
+            "download_error": c["download_error"], "download_loading": c["download_loading"],
+            "pdf_library": "/public/vendor/pdf-lib-1.17.1/pdf-lib.min.js",
+            "pdf_copy": {**PDF_COPY[lang], **{key: c[key] for key in ("heading", "label", "evidence", "cadence", "maintenance")}},
+            "pdf_topics": {track["id"]: {"label": track["label"][lang], "relatedTitle": BOOK_TITLES[track["book"]][lang],
+                            "relatedUrl": canonical(lang, COLLECTION_PATH) + "#" + track["book"]} for track in TRACKS}}
     data_json = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     return f'''<!DOCTYPE html>
 <html lang="{META[lang]['lang']}">

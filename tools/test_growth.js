@@ -1,6 +1,6 @@
 const assert = require("node:assert/strict");
 const { test } = require("node:test");
-const { selectActions, planCsv, csvCell } = require("../growth.js");
+const { selectActions } = require("../growth.js");
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
@@ -20,21 +20,6 @@ test("zero, one and five pending checks remain bounded and ordered", () => {
   assert.deepEqual(selectActions(checks, [0, 1, 2, 3, 4]), { maintenance: true, actions: checks.slice(0, 3) });
 });
 
-test("the CSV is UTF-8 compatible, quoted and contains actions rather than user answers", () => {
-  const csv = planCsv(["Prioridade", "Ação", "Evidência", "Revisão"], [["private answer", 'Conferir "volume"; canal', "Período completo"]], "Próxima semana");
-  assert.ok(csv.startsWith("\uFEFF"));
-  assert.ok(csv.includes('"Conferir ""volume""; canal"'));
-  assert.ok(csv.includes("Próxima semana"));
-  assert.ok(!csv.includes("private answer"));
-});
-
-test("spreadsheet formula prefixes are escaped", () => {
-  for (const value of ["=SUM(A1:A3)", "+1", "-1", "@formula", "\tvalue", "\rvalue"]) {
-    assert.ok(csvCell(value).startsWith('"\''));
-  }
-  assert.equal(csvCell("Ação"), '"Ação"');
-});
-
 function runResource({ hostname = "www.luizterra.com.br", analytics = true, search = "", ready = [] } = {}) {
   class Element {
     constructor() { this.events = {}; this.hidden = false; this.disabled = false; this.children = []; this.dataset = {}; }
@@ -44,6 +29,7 @@ function runResource({ hostname = "www.luizterra.com.br", analytics = true, sear
     focus() { this.focused = true; }
     click() { this.clicked = true; }
     remove() { this.removed = true; }
+    setAttribute(name, value) { this[name] = value; }
   }
   const form = new Element();
   const submit = new Element();
@@ -65,51 +51,91 @@ function runResource({ hostname = "www.luizterra.com.br", analytics = true, sear
   const link = new Element();
   link.dataset.cxResourceLink = "home";
   const events = [];
-  const data = { lang: "pt", tracks: { operations: checks }, evidence: "Evidence", headers: ["#", "Action", "Evidence", "Review"], cadence: "Next week", downloaded: "Prepared", download_error: "Unavailable" };
+  const data = { lang: "pt", tracks: { operations: checks }, evidence: "Evidence", cadence: "Next week", downloaded: "Prepared", download_error: "Unavailable", download_loading: "Preparing", pdf_copy: {}, pdf_topics: { operations: { label: "Operations", relatedTitle: "CX", relatedUrl: "https://www.luizterra.com.br/ebooks/" } } };
+  const createdLinks = [];
+  const blobs = [];
+  const pdf = { create: async () => ({ bytes: new Uint8Array([37, 80, 68, 70, 45]) }) };
   const document = {
     body: new Element(),
+    documentElement: { lang: "pt-BR" },
     querySelector(selector) {
       return { "[data-cx-resource]": resource, "#cx-plan-data": { textContent: JSON.stringify(data) }, "#cx-priority": select }[selector];
     },
     querySelectorAll: () => [link],
-    createElement: () => new Element(),
+    createElement: (name) => { const element = new Element(); if (name === "a") createdLinks.push(element); return element; },
   };
   class FakeUrl extends URL {
-    static createObjectURL() { return "blob:local-plan"; }
+    static createObjectURL(blob) { blobs.push(blob); return "blob:local-plan"; }
     static revokeObjectURL() {}
   }
   vm.runInNewContext(fs.readFileSync(path.join(__dirname, "../growth.js"), "utf8"), {
     document, URL: FakeUrl, URLSearchParams, Blob,
-    window: { location: { hostname, search }, setTimeout() {}, ...(analytics ? { gtag: (...event) => events.push(event) } : {}) },
+    window: { location: { hostname, search }, PDFLib: {}, CxPlanPdf: pdf, setTimeout() {}, ...(analytics ? { gtag: (...event) => events.push(event) } : {}) },
   });
-  return { form, result, list, download, status, select, track, events, link, submit };
+  return { form, result, list, download, status, select, track, events, link, submit, pdf, createdLinks, blobs };
 }
 
-test("generation and download are counted at most once per page, without checklist contents", () => {
+test("generation and PDF download are counted at most once per page, without checklist contents", async () => {
   const state = runResource({ ready: [0, 2] });
   state.form.events.submit({ preventDefault() {} });
   state.form.events.submit({ preventDefault() {} });
-  state.download.events.click();
-  state.download.events.click();
+  await state.download.events.click();
+  await state.download.events.click();
   assert.deepEqual(state.events.map((event) => event[1]), ["cx_resource_view", "cx_plan_generate", "cx_plan_download"]);
   assert.equal(state.list.children.length, 3);
   assert.equal(state.result.focused, true);
-  assert.ok(state.events.every((event) => Object.keys(event[2]).sort().join() === "placement,send_to"));
+  assert.ok(state.events.every((event) => Object.keys(event[2]).every((key) => ["send_to", "placement", "file_format"].includes(key))));
+  assert.equal(state.events[2][2].file_format, "pdf");
+  assert.ok(state.createdLinks.every((link) => link.download.endsWith(".pdf")));
+  assert.ok(state.blobs.every((blob) => blob.type === "application/pdf"));
   assert.ok(state.events.every((event) => event[2].send_to === "G-68E95X4DZT"));
   state.form.events.change();
   assert.equal(state.result.hidden, true);
   assert.equal(state.download.disabled, true);
 });
 
-test("local previews and missing Analytics do not collect events or break the plan", () => {
+test("local previews and missing Analytics do not collect events or break the PDF", async () => {
   for (const options of [{ hostname: "127.0.0.1" }, { analytics: false }]) {
     const state = runResource(options);
     state.form.events.submit({ preventDefault() {} });
-    state.download.events.click();
+    await state.download.events.click();
     assert.equal(state.result.hidden, false);
     assert.equal(state.status.textContent, "Prepared");
     assert.equal(state.events.length, 0);
   }
+});
+
+test("double clicks share one PDF operation and a changed plan cannot download stale actions", async () => {
+  const state = runResource();
+  state.form.events.submit({ preventDefault() {} });
+  let finish;
+  let calls = 0;
+  state.pdf.create = () => { calls += 1; return new Promise((resolve) => { finish = resolve; }); };
+  const first = state.download.events.click();
+  await Promise.resolve();
+  await state.download.events.click();
+  assert.equal(calls, 1);
+  assert.equal(state.download.disabled, true);
+  state.form.events.change();
+  finish({ bytes: new Uint8Array([37, 80, 68, 70]) });
+  await first;
+  assert.equal(state.createdLinks.length, 0);
+  assert.equal(state.events.some((event) => event[1] === "cx_plan_download"), false);
+  assert.equal(state.download.disabled, true);
+});
+
+test("a failed PDF can be retried without losing actions or emitting a download event", async () => {
+  const state = runResource();
+  state.form.events.submit({ preventDefault() {} });
+  state.pdf.create = async () => { throw new Error("Unavailable"); };
+  await state.download.events.click();
+  assert.equal(state.status.textContent, "Unavailable");
+  assert.equal(state.list.children.length, 3);
+  assert.equal(state.download.disabled, false);
+  assert.equal(state.events.some((event) => event[1] === "cx_plan_download"), false);
+  state.pdf.create = async () => ({ bytes: new Uint8Array([37, 80, 68, 70]) });
+  await state.download.events.click();
+  assert.equal(state.status.textContent, "Prepared");
 });
 
 test("unknown and prototype-like topic parameters preserve a usable default", () => {

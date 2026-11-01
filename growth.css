@@ -50,6 +50,7 @@
 .cx-result h4 { margin: 8px 0; font-size: 17px; }
 .cx-result p { color: #445e52; }
 .cx-result-note, .cx-status { font-size: 13px; }
+.cx-status { min-height: 1.6em; }
 .cx-result .button:disabled { opacity: 0.55; cursor: not-allowed; }
 .cx-recommendation { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 32px; align-items: start; padding-block: 36px; }
 .cx-recommendation > img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }

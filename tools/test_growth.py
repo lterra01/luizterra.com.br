@@ -40,6 +40,11 @@ class GrowthTests(unittest.TestCase):
             self.assertFalse(any("Product" in types(node) for node in nodes))
             self.assertTrue(any("BreadcrumbList" in types(node) for node in nodes))
             self.assertIn(GROWTH_COPY[lang]["privacy"], text)
+            self.assertIn(GROWTH_COPY[lang]["download"], text)
+            self.assertNotIn("CSV", text)
+            self.assertIn(build.GROWTH_PDF_URL, text)
+            self.assertTrue((build.ROOT / "public/vendor/pdf-lib-1.17.1/pdf-lib.min.js").exists())
+            self.assertTrue((build.ROOT / "public/vendor/pdf-lib-1.17.1/LICENSE.md").exists())
 
     def test_article_recommendations_match_the_subject_and_product_identity(self):
         for article in build.ARTICLES:
