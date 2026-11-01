@@ -36,7 +36,7 @@ EBOOKS = [
         "cover": "/public/ebooks/indicadores-de-atendimento-na-pratica.webp", "modified": "2026-10-29",
         "summary": {
             "pt": "Defina bases de medição, confira os dados e interprete indicadores antes de decidir o que mudar na operação.",
-            "en": "Define measurement baselines, check the data and interpret service metrics before deciding what to change.",
+            "en": "Define measurement methods, check the data and interpret service metrics before deciding what to change.",
             "es": "Defina bases de medición, verifique los datos e interprete indicadores antes de decidir qué cambiar en la operación.",
         },
         "topics": {
@@ -95,7 +95,7 @@ COLLECTION_COPY = {
         "related": "Continue the collection", "related_text": "Explore the other volumes to connect customer service, measurement and operating decisions.",
         "note": "Each title is sold separately at R$ 9.99 and includes all three languages. Payment and access through Hotmart. A 7-day refund period applies under the offer terms. AI Agent and consulting are separate services.",
         "modal_title": "CX in Practice", "modal_text": "eBooks in three languages, an AI Agent and consulting. Buy either service and choose two bonus eBooks.",
-        "bar": f"CX na Prática · {len(EBOOKS)} eBooks by Luiz Terra", "close": "Close the eBook introduction", "continue": "Continue to the site",
+        "bar": f"CX in Practice · {len(EBOOKS)} eBooks by Luiz Terra", "close": "Close the eBook introduction", "continue": "Continue to the site",
     },
     "es": {
         "title": "CX en la Práctica: eBooks, AI Agent y Consultoría | Luiz Terra",
@@ -107,6 +107,6 @@ COLLECTION_COPY = {
         "related": "Continúe la colección", "related_text": "Explore los demás volúmenes para conectar atención, medición y decisiones operativas.",
         "note": "Cada título se vende por separado por R$ 9,99 e incluye los tres idiomas. Pago y acceso por Hotmart. Reembolso en 7 días, según la oferta. AI Agent y consultoría son servicios independientes.",
         "modal_title": "CX en la Práctica", "modal_text": "eBooks en tres idiomas, AI Agent y consultoría. Contrate cualquiera de los servicios y elija dos eBooks de regalo.",
-        "bar": f"CX na Prática · {len(EBOOKS)} eBooks de Luiz Terra", "close": "Cerrar presentación de los eBooks", "continue": "Continuar al sitio",
+        "bar": f"CX en la Práctica · {len(EBOOKS)} eBooks de Luiz Terra", "close": "Cerrar presentación de los eBooks", "continue": "Continuar al sitio",
     },
 }
