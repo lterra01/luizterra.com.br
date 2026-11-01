@@ -63,6 +63,8 @@ class GrowthPdfTests(unittest.TestCase):
                 fields = reader.get_fields()
                 count = len(case["data"]["plan"]["actions"])
                 expected = {f"{name}_{index}" for name in ("owner", "due", "progress") for index in range(1, count + 1)} | {"review_notes", "review_date"}
+                if count < 3:
+                    expected.add("execution_notes")
                 self.assertEqual(set(fields), expected)
                 widgets = []
                 for page in reader.pages:

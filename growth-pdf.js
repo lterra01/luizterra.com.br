@@ -129,6 +129,10 @@
       field(actionsPage, `due_${index + 1}`, data.copy.pdf_due, 390, top + 106, width - margin - 390);
       rule(actionsPage, top + 174);
     }
+    if (data.plan.actions.length < 3) {
+      const notesTop = 164 + data.plan.actions.length * 194;
+      field(actionsPage, "execution_notes", data.copy.pdf_execution_notes, margin, notesTop, span, 715 - notesTop, true);
+    }
     text(actionsPage, data.copy.pdf_fields_note, 759, { size: 8, color: muted, leading: 11 });
     footer(actionsPage, 2);
 
@@ -151,7 +155,8 @@
       progress.setFontSize(9);
       progress.setText("");
     }
-    field(review, "review_notes", data.copy.pdf_notes, margin, 460, span, 69, true);
+    const reviewNotesTop = 250 + data.plan.actions.length * 70;
+    field(review, "review_notes", data.copy.pdf_notes, margin, reviewNotesTop, span, 529 - reviewNotesTop, true);
     field(review, "review_date", data.copy.pdf_review_date, margin, 563, 180);
     text(review, data.copy.pdf_next, 633, { size: 12, face: bold });
     text(review, data.relatedTitle, 659, { size: 14, face: bold, leading: 18 });
