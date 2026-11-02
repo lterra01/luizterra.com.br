@@ -38,7 +38,7 @@
 - [Why Strategic Partnerships Matter More Than Traditional Reseller Agreements](https://www.luizterra.com.br/insights/strategic-partnerships-vs-reseller-agreements/): How co-selling, technical enablement, market knowledge, customer success, recurring revenue and GTM alignment create stronger telecom and CX partnerships.
 - [AI Evaluation in Contact Centers: From Demo to Production](https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/): A practical framework for testing contact center AI across quality, latency, risk, languages, integrations and real operating consequences.
 - [Customer Effort Is an Architecture Problem in Contact Centers](https://www.luizterra.com.br/insights/customer-effort-architecture-contact-centers/): Why reducing customer effort requires connected data, workflows, permissions, knowledge and agent tools, not only better service scripts.
-- [Global CX Requires Local Operating Intelligence](https://www.luizterra.com.br/insights/global-cx-local-operating-intelligence/): How international CX leaders balance global governance with local language, regulation, telecom, partners and customer expectations.
+- [Global CX Must Be Locally Intelligent](https://www.luizterra.com.br/insights/global-cx-local-operating-intelligence/): A global-local CX operating loop: common governance, controlled local execution, market-level evidence and a shared roadmap for international customer service.
 
 ## eBook
 
