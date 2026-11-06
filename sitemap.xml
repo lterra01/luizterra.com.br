@@ -4,7 +4,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.luizterra.com.br/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/" />
@@ -17,7 +17,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/" />
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/" />
@@ -106,7 +106,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/insights/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/" />
@@ -276,6 +276,15 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.luizterra.com.br/insights/context-contact-center-infrastructure/</loc>
+    <lastmod>2026-11-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/context-contact-center-infrastructure/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/context-contact-center-infrastructure/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/context-contact-center-infrastructure/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/insights/context-contact-center-infrastructure/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.luizterra.com.br/topics/sbc-contact-centers/</loc>
     <lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/topics/sbc-contact-centers/" />
@@ -286,7 +295,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/topics/ai-contact-centers/</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/topics/ai-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/topics/ai-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/topics/ai-contact-centers/" />
@@ -394,7 +403,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/insights/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/" />
@@ -564,6 +573,15 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.luizterra.com.br/pt/insights/context-contact-center-infrastructure/</loc>
+    <lastmod>2026-11-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/context-contact-center-infrastructure/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/context-contact-center-infrastructure/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/context-contact-center-infrastructure/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/insights/context-contact-center-infrastructure/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.luizterra.com.br/pt/topics/sbc-contact-centers/</loc>
     <lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/topics/sbc-contact-centers/" />
@@ -574,7 +592,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/pt/topics/ai-contact-centers/</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/topics/ai-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/topics/ai-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/topics/ai-contact-centers/" />
@@ -682,7 +700,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/insights/</loc>
-    <lastmod>2026-11-02</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/" />
@@ -852,6 +870,15 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.luizterra.com.br/es/insights/context-contact-center-infrastructure/</loc>
+    <lastmod>2026-11-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/context-contact-center-infrastructure/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/context-contact-center-infrastructure/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/context-contact-center-infrastructure/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/insights/context-contact-center-infrastructure/" />
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.luizterra.com.br/es/topics/sbc-contact-centers/</loc>
     <lastmod>2026-11-01</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/topics/sbc-contact-centers/" />
@@ -862,7 +889,7 @@
   </url>
   <url>
     <loc>https://www.luizterra.com.br/es/topics/ai-contact-centers/</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/topics/ai-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/topics/ai-contact-centers/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/topics/ai-contact-centers/" />

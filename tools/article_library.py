@@ -264,6 +264,11 @@ SEO_UPDATE_DATES = dict.fromkeys((
 ), "2026-10-31")
 
 ARTICLE_LEADS = {
+    "context-contact-center-infrastructure": {
+        "en": "Based on the newsletter edition published on LinkedIn on November 6, 2026. A contact center needs more than connected channels: identity, conversation, promises and approved policies must remain usable when the next authorized participant takes over.",
+        "pt": "Versão editorial da edição da newsletter publicada no LinkedIn em 6 de novembro de 2026. Um contact center precisa de mais do que canais conectados: identidade, conversa, promessas e políticas aprovadas devem continuar disponíveis quando o próximo participante autorizado assume o atendimento.",
+        "es": "Versión editorial de la edición de la newsletter publicada en LinkedIn el 6 de noviembre de 2026. Un contact center necesita más que canales conectados: la identidad, la conversación, las promesas y las políticas aprobadas deben seguir siendo útiles cuando interviene el siguiente participante autorizado.",
+    },
     "global-cx-local-operating-intelligence": {
         "en": "Updated with the newsletter edition published on LinkedIn on October 30, 2026. Global CX needs common principles and local operating intelligence: a disciplined loop that connects governance, controlled adaptation, market-level evaluation and shared learning.",
         "pt": "Artigo atualizado a partir da edição da newsletter publicada no LinkedIn em 30 de outubro de 2026. CX global exige princípios comuns e inteligência operacional local: um ciclo que conecta governança, adaptação controlada, avaliação por mercado e aprendizado compartilhado.",
@@ -788,5 +793,142 @@ NEW_ARTICLES = [
         reading={"en": "5 min read", "pt": "5 min de leitura", "es": "5 min de lectura"},
         featured=True,
         source_url="https://www.linkedin.com/pulse/global-cx-must-locally-intelligent-luiz-terra-npkye/",
+    ),
+    article(
+        slug="context-contact-center-infrastructure",
+        title={
+            "en": "Context Is the New Contact Center Infrastructure",
+            "pt": "O contexto é a nova infraestrutura do contact center",
+            "es": "El contexto es la nueva infraestructura del contact center",
+        },
+        seo_title={
+            "en": "Context as Contact Center Infrastructure | Luiz Terra",
+            "pt": "Contexto como Infraestrutura do Contact Center | Luiz Terra",
+            "es": "Contexto e Infraestructura del Contact Center | Luiz Terra",
+        },
+        summary={
+            "en": "How identity, conversation, promises, policies and channels form governed operational context for reliable AI and human handoffs in contact centers.",
+            "pt": "Como identidade, conversa, promessas, políticas e canais formam um contexto operacional confiável para a continuidade entre IA e pessoas no atendimento.",
+            "es": "Cómo identidad, conversación, promesas, políticas y canales forman un contexto operativo fiable para la continuidad entre IA y personas en la atención.",
+        },
+        category={"en": "CX & BPO", "pt": "CX e BPO", "es": "CX y BPO"},
+        cluster="ai-contact-centers",
+        tags=["contact center context", "operational memory", "customer identity", "AI governance", "human handoffs"],
+        sections={
+            "en": [
+                ("The problem is fragmented context, not a lack of data", [
+                    "Every customer interaction produces context: identity, intent, history, promises, decisions, sentiment, permissions and unresolved work. Most organizations already store fragments of that information. The problem is not the absence of data. The problem is that context is fragmented across channels, applications, teams and time.",
+                    "A customer can explain the same situation to a chatbot, an agent and a back-office specialist. Each interaction may be recorded, but the meaning of the journey is lost between systems. A complete archive is not the same as a usable explanation of what has already happened and what remains unresolved.",
+                    "That makes context a new form of infrastructure. Infrastructure is not only networks, applications and databases. It is the capability that allows every authorized participant, human or automated, to understand what has happened, what is allowed and what must happen next.",
+                ]),
+                ("Five forms of continuity matter", [
+                    "A modern contact center needs at least five forms of continuity. They describe what should survive a transition, not a requirement to expose every record to every participant.",
+                    "Identity continuity means knowing who is interacting, with the right level of verification for the action requested. Verification should support the next permitted action; an earlier interaction does not automatically authorize a different or more sensitive action.",
+                    "Conversation continuity preserves the customer objective, the evidence already collected and the explanations already given. The next participant should be able to distinguish an established fact from an interpretation or an unanswered question.",
+                    "Promise continuity records commitments, owners, deadlines and the conditions attached to them. A transfer should not make a commitment disappear or leave its operational owner unclear.",
+                    "Policy continuity ensures that an AI or a person acts according to the same approved rules, consent and risk controls. Changing the participant must not silently change the boundaries of the service.",
+                    "Channel continuity allows movement between messaging, web, voice and human assistance without forcing the customer to restart. Channel coverage alone does not establish that the objective, evidence and commitments have survived the move.",
+                ]),
+                ("Governance defines which context may travel", [
+                    "This is more than a technology integration problem. It is a governance problem. Connecting applications can move information, but it does not by itself decide whether that information is relevant, current or appropriate for the recipient.",
+                    "Not every piece of information should follow every interaction. Context must be relevant, permissioned, time-bounded and explainable. Excessive context can be as dangerous as missing context when it exposes sensitive data or encourages an automated system to make an unsupported assumption.",
+                ]),
+                ("Ask four operating questions before automating actions", [
+                    "What context is required to complete the customer objective? Define the information needed for the next decision instead of treating access to the full history as the default.",
+                    "Who is authorized to create, change and consume it? Make the responsibility for a record or commitment explicit, including who can correct a contradiction.",
+                    "How long should it remain valid? Identity evidence, permissions and operational facts can have different lifetimes. An old record should not be treated as a current authorization merely because it is still available.",
+                    "How will the organization detect that it is incomplete, contradictory or outdated? The next participant needs a way to recognize uncertainty and request verification rather than filling the gap with an assumption.",
+                    "These questions become especially important as AI agents move from answering questions to performing actions. An agent that can change an address, negotiate a payment or schedule a visit needs reliable identity, policy and operational memory. The ability to generate a fluent response does not establish permission to execute the action.",
+                ]),
+                ("Measure whether the next participant can continue", [
+                    "The most useful metric is not how much data is available. It is how often the next participant can continue the journey correctly without asking the customer to reconstruct it. Review the transition itself: what was available, what was missing and whether the next action respected the customer objective and approved boundaries.",
+                    "Repeated explanations, lost commitments and transfers that restart the case are useful investigation signals. They are not, by themselves, proof of a single technical cause. Follow the journey across systems and owners before deciding whether the gap belongs to integration, policy, record quality or operating responsibility.",
+                    "When context becomes durable and governed, the contact center stops being a sequence of isolated contacts. It becomes an operating system for customer commitments. Continuity means preserving the right operational meaning, not accumulating the largest possible history.",
+                ]),
+            ],
+            "pt": [
+                ("O problema é a fragmentação do contexto, não a falta de dados", [
+                    "Toda interação com um cliente produz contexto: identidade, intenção, histórico, promessas, decisões, sentimento, permissões e trabalho pendente. A maioria das organizações já armazena fragmentos dessas informações. O problema não é a ausência de dados. É a fragmentação do contexto entre canais, aplicativos, equipes e momentos.",
+                    "O cliente pode explicar a mesma situação a um chatbot, a um agente e a um especialista de retaguarda. Cada interação pode ficar registrada, enquanto o sentido da jornada se perde entre os sistemas. Um arquivo completo não equivale a uma explicação utilizável do que já aconteceu e do que ainda precisa ser resolvido.",
+                    "Isso transforma o contexto em uma nova forma de infraestrutura. Infraestrutura não se resume a redes, aplicativos e bancos de dados. Ela também é a capacidade de permitir que cada participante autorizado, humano ou automatizado, compreenda o que aconteceu, o que está permitido e qual deve ser o próximo passo.",
+                ]),
+                ("Cinco formas de continuidade importam", [
+                    "Um contact center moderno precisa de pelo menos cinco formas de continuidade. Elas descrevem o que deve ser preservado em uma transição, não uma obrigação de expor todos os registros a todos os participantes.",
+                    "Continuidade de identidade significa saber quem está interagindo, com o nível de verificação adequado à ação solicitada. A verificação deve sustentar a próxima ação permitida; uma interação anterior não autoriza automaticamente uma ação diferente ou mais sensível.",
+                    "Continuidade da conversa preserva o objetivo do cliente, as evidências já reunidas e as explicações já oferecidas. O próximo participante deve conseguir distinguir um fato confirmado de uma interpretação ou de uma pergunta ainda sem resposta.",
+                    "Continuidade das promessas registra compromissos, responsáveis, prazos e condições associadas. Uma transferência não deve fazer um compromisso desaparecer nem deixar indefinido quem responde por sua execução.",
+                    "Continuidade das políticas garante que uma IA ou uma pessoa atue segundo as mesmas regras aprovadas, o mesmo consentimento e os mesmos controles de risco. A troca de participante não pode alterar silenciosamente os limites do atendimento.",
+                    "Continuidade dos canais permite transitar entre mensagens, web, voz e assistência humana sem obrigar o cliente a recomeçar. Oferecer vários canais, por si só, não comprova que o objetivo, as evidências e os compromissos foram preservados na mudança.",
+                ]),
+                ("A governança define qual contexto pode acompanhar a jornada", [
+                    "Isso vai além de um problema de integração tecnológica. É uma questão de governança. Conectar aplicativos permite movimentar informações, mas não define, por si só, se elas são relevantes, atuais ou apropriadas para quem as recebe.",
+                    "Nem toda informação deve acompanhar toda interação. O contexto precisa ser relevante, autorizado, limitado no tempo e explicável. O excesso pode ser tão perigoso quanto a ausência quando expõe dados sensíveis ou leva um sistema automatizado a formular uma suposição sem fundamento.",
+                ]),
+                ("Responda a quatro perguntas antes de automatizar ações", [
+                    "Qual contexto é necessário para concluir o objetivo do cliente? Defina as informações exigidas para a próxima decisão, em vez de adotar o acesso ao histórico completo como padrão.",
+                    "Quem está autorizado a criar, alterar e utilizar esse contexto? Deixe explícita a responsabilidade por cada registro ou compromisso, inclusive quem pode corrigir uma contradição.",
+                    "Por quanto tempo ele deve continuar válido? Evidências de identidade, permissões e fatos operacionais podem ter prazos diferentes. Um registro antigo não deve ser tratado como autorização atual apenas porque continua disponível.",
+                    "Como a organização identificará um contexto incompleto, contraditório ou desatualizado? O próximo participante precisa reconhecer a incerteza e solicitar verificação, em vez de preencher a lacuna com uma suposição.",
+                    "Essas perguntas se tornam especialmente importantes quando agentes de IA deixam de apenas responder a perguntas e passam a executar ações. Um agente capaz de alterar um endereço, negociar um pagamento ou agendar uma visita precisa de identidade, políticas e memória operacional confiáveis. Produzir uma resposta fluente não comprova autorização para executar a ação.",
+                ]),
+                ("Meça se o próximo participante consegue continuar", [
+                    "A métrica mais útil não é a quantidade de dados disponíveis. É a frequência com que o próximo participante consegue continuar corretamente a jornada sem pedir ao cliente que a reconstrua. Analise a própria transição: o que estava disponível, o que faltou e se a próxima ação respeitou o objetivo do cliente e os limites aprovados.",
+                    "Explicações repetidas, compromissos perdidos e transferências que reiniciam o caso são sinais úteis para investigação. Isoladamente, não comprovam uma única causa técnica. Acompanhe a jornada entre sistemas e responsáveis antes de concluir se a lacuna está na integração, na política, na qualidade do registro ou na responsabilidade operacional.",
+                    "Quando o contexto se torna duradouro e governado, o contact center deixa de ser uma sequência de contatos isolados. Ele passa a funcionar como um sistema operacional para os compromissos com o cliente. Continuidade significa preservar o sentido operacional adequado, não acumular o maior histórico possível.",
+                ]),
+            ],
+            "es": [
+                ("El problema es el contexto fragmentado, no la falta de datos", [
+                    "Cada interacción con un cliente produce contexto: identidad, intención, historial, promesas, decisiones, sentimiento, permisos y trabajo pendiente. La mayoría de las organizaciones ya almacena fragmentos de esa información. El problema no es la ausencia de datos. Es que el contexto está fragmentado entre canales, aplicaciones, equipos y momentos.",
+                    "Un cliente puede explicar la misma situación a un chatbot, a un agente y a un especialista de back office. Cada interacción puede quedar registrada, pero el significado del recorrido se pierde entre sistemas. Un archivo completo no equivale a una explicación utilizable de lo que ya ocurrió y lo que sigue pendiente.",
+                    "Eso convierte el contexto en una nueva forma de infraestructura. La infraestructura no son solamente redes, aplicaciones y bases de datos. Es también la capacidad que permite a cada participante autorizado, humano o automatizado, comprender qué ha ocurrido, qué está permitido y qué debe suceder después.",
+                ]),
+                ("Importan cinco formas de continuidad", [
+                    "Un contact center moderno necesita al menos cinco formas de continuidad. Describen lo que debe preservarse en una transición, no una obligación de exponer todos los registros a todos los participantes.",
+                    "La continuidad de identidad significa saber quién interactúa, con el nivel de verificación adecuado para la acción solicitada. La verificación debe respaldar la siguiente acción permitida; una interacción anterior no autoriza automáticamente una acción distinta o más sensible.",
+                    "La continuidad de conversación preserva el objetivo del cliente, la evidencia ya recopilada y las explicaciones ya ofrecidas. El siguiente participante debe distinguir un hecho confirmado de una interpretación o de una pregunta todavía sin respuesta.",
+                    "La continuidad de promesas registra compromisos, responsables, plazos y condiciones asociadas. Una transferencia no debe hacer desaparecer un compromiso ni dejar sin definir quién responde por su ejecución.",
+                    "La continuidad de políticas garantiza que una IA o una persona actúe según las mismas reglas aprobadas, el mismo consentimiento y los mismos controles de riesgo. El cambio de participante no puede modificar silenciosamente los límites de la atención.",
+                    "La continuidad de canales permite pasar entre mensajería, web, voz y asistencia humana sin obligar al cliente a comenzar de nuevo. La cobertura de canales, por sí sola, no demuestra que el objetivo, la evidencia y los compromisos se hayan conservado durante el cambio.",
+                ]),
+                ("La gobernanza define qué contexto puede acompañar el recorrido", [
+                    "Esto es más que un problema de integración tecnológica. Es un problema de gobernanza. Conectar aplicaciones permite mover información, pero no determina por sí mismo si es relevante, actual o apropiada para quien la recibe.",
+                    "No toda la información debe acompañar cada interacción. El contexto debe ser relevante, autorizado, limitado en el tiempo y explicable. Un exceso puede ser tan peligroso como su ausencia cuando expone datos sensibles o lleva a un sistema automatizado a formular una suposición sin fundamento.",
+                ]),
+                ("Responda cuatro preguntas antes de automatizar acciones", [
+                    "¿Qué contexto es necesario para completar el objetivo del cliente? Defina la información necesaria para la siguiente decisión, en lugar de adoptar el acceso al historial completo como opción predeterminada.",
+                    "¿Quién está autorizado a crearlo, modificarlo y utilizarlo? Haga explícita la responsabilidad por cada registro o compromiso, incluido quién puede corregir una contradicción.",
+                    "¿Cuánto tiempo debe seguir siendo válido? Las evidencias de identidad, los permisos y los hechos operativos pueden tener vigencias distintas. Un registro antiguo no debe tratarse como una autorización actual solo porque sigue disponible.",
+                    "¿Cómo detectará la organización que está incompleto, es contradictorio o está desactualizado? El siguiente participante necesita reconocer la incertidumbre y solicitar una verificación, en lugar de llenar el vacío con una suposición.",
+                    "Estas preguntas son especialmente importantes cuando los agentes de IA pasan de responder preguntas a ejecutar acciones. Un agente que puede cambiar una dirección, negociar un pago o programar una visita necesita identidad, políticas y memoria operativa fiables. Producir una respuesta fluida no demuestra autorización para ejecutar la acción.",
+                ]),
+                ("Mida si el siguiente participante puede continuar", [
+                    "La métrica más útil no es cuántos datos están disponibles. Es la frecuencia con la que el siguiente participante puede continuar correctamente el recorrido sin pedir al cliente que lo reconstruya. Revise la propia transición: qué estaba disponible, qué faltaba y si la siguiente acción respetó el objetivo del cliente y los límites aprobados.",
+                    "Las explicaciones repetidas, los compromisos perdidos y las transferencias que reinician el caso son señales útiles para investigar. Por sí solas, no demuestran una única causa técnica. Siga el recorrido entre sistemas y responsables antes de decidir si la brecha corresponde a la integración, la política, la calidad del registro o la responsabilidad operativa.",
+                    "Cuando el contexto se vuelve duradero y gobernado, el contact center deja de ser una secuencia de contactos aislados. Se convierte en un sistema operativo para los compromisos con el cliente. La continuidad significa preservar el significado operativo adecuado, no acumular el mayor historial posible.",
+                ]),
+            ],
+        },
+        checklist={
+            "en": ["Identify the context required for the next permitted action", "Preserve verified identity, customer objective and collected evidence", "Record each promise with its owner, deadline and conditions", "Apply the same approved policies across AI and human handoffs", "Define access rights, validity periods and correction responsibility", "Investigate missing, contradictory or outdated context before acting"],
+            "pt": ["Identificar o contexto exigido para a próxima ação permitida", "Preservar identidade verificada, objetivo do cliente e evidências reunidas", "Registrar cada promessa com responsável, prazo e condições", "Aplicar as mesmas políticas aprovadas nas transições entre IA e pessoas", "Definir direitos de acesso, prazos de validade e responsabilidade pela correção", "Investigar contexto ausente, contraditório ou desatualizado antes de agir"],
+            "es": ["Identificar el contexto necesario para la siguiente acción permitida", "Preservar la identidad verificada, el objetivo del cliente y la evidencia recopilada", "Registrar cada promesa con responsable, plazo y condiciones", "Aplicar las mismas políticas aprobadas en las transiciones entre IA y personas", "Definir derechos de acceso, vigencias y responsabilidad de corrección", "Investigar el contexto ausente, contradictorio o desactualizado antes de actuar"],
+        },
+        closing={
+            "en": "Choose one journey that crosses AI, a human agent and a back-office team. Check whether each authorized participant receives the objective, evidence, commitments and permissions needed for the next step. Improve the continuity of that journey before treating a larger data archive as an improvement in customer experience.",
+            "pt": "Escolha uma jornada que passe por IA, um agente humano e uma equipe de retaguarda. Verifique se cada participante autorizado recebe o objetivo, as evidências, os compromissos e as permissões necessários ao próximo passo. Melhore a continuidade dessa jornada antes de tratar um arquivo maior de dados como melhoria da experiência do cliente.",
+            "es": "Elija un recorrido que pase por IA, un agente humano y un equipo de back office. Compruebe si cada participante autorizado recibe el objetivo, la evidencia, los compromisos y los permisos necesarios para el siguiente paso. Mejore la continuidad de ese recorrido antes de tratar un archivo de datos mayor como una mejora de la experiencia del cliente.",
+        },
+        faq={
+            "en": [("What are the five forms of contact center continuity?", "Identity, conversation, promises, policies and channels. Together they preserve what the next authorized participant needs to continue the customer journey correctly."), ("Should all customer data follow every interaction?", "No. Share only relevant, authorized, current and explainable context. Excessive information can expose sensitive data or encourage unsupported assumptions."), ("How should operational context be measured?", "Review how often the next participant continues correctly without asking the customer to reconstruct the journey. Investigate lost commitments, repeated explanations and incomplete handoffs rather than measuring data volume alone.")],
+            "pt": [("Quais são as cinco formas de continuidade no contact center?", "Identidade, conversa, promessas, políticas e canais. Juntas, preservam o que o próximo participante autorizado precisa para continuar corretamente a jornada do cliente."), ("Todos os dados do cliente devem acompanhar toda interação?", "Não. Compartilhe apenas contexto relevante, autorizado, atual e explicável. O excesso pode expor dados sensíveis ou incentivar suposições sem fundamento."), ("Como medir o contexto operacional?", "Avalie com que frequência o próximo participante continua corretamente sem pedir ao cliente que reconstrua a jornada. Investigue compromissos perdidos, explicações repetidas e transferências incompletas, em vez de medir apenas o volume de dados.")],
+            "es": [("¿Cuáles son las cinco formas de continuidad en el contact center?", "Identidad, conversación, promesas, políticas y canales. Juntas preservan lo que el siguiente participante autorizado necesita para continuar correctamente el recorrido del cliente."), ("¿Todos los datos del cliente deben acompañar cada interacción?", "No. Comparta solo contexto relevante, autorizado, actual y explicable. El exceso puede exponer datos sensibles o fomentar suposiciones sin fundamento."), ("¿Cómo medir el contexto operativo?", "Revise con qué frecuencia el siguiente participante continúa correctamente sin pedir al cliente que reconstruya el recorrido. Investigue compromisos perdidos, explicaciones repetidas y transferencias incompletas, en lugar de medir solo el volumen de datos.")],
+        },
+        related=["new-cx-stack-telecom-contact-centers", "voice-ai-telecom-discipline", "customer-effort-architecture-contact-centers", "ai-evaluation-production-contact-centers"],
+        published="2026-11-06",
+        modified="2026-11-06",
+        reading={"en": "5 min read", "pt": "5 min de leitura", "es": "5 min de lectura"},
+        featured=True,
+        source_url="https://www.linkedin.com/pulse/context-new-contact-center-infrastructure-luiz-terra-kbbze/",
     ),
 ]

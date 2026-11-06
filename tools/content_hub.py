@@ -110,6 +110,10 @@ UI = {
 
 
 ARTICLE_TAG_LABELS = {
+    "contact center context": {"pt": "Contexto no contact center", "es": "Contexto en el contact center"},
+    "operational memory": {"pt": "Memória operacional", "es": "Memoria operativa"},
+    "customer identity": {"pt": "Identidade do cliente", "es": "Identidad del cliente"},
+    "human handoffs": {"pt": "Transição para atendimento humano", "es": "Transferencia a atención humana"},
     "ai amd": {"pt": "AMD com IA", "es": "AMD con IA"},
     "ai answering machine detection": {"pt": "Detecção de secretárias eletrônicas com IA", "es": "Detección de contestadores automáticos con IA"},
     "ai evaluation": {"pt": "Avaliação de IA", "es": "Evaluación de IA"},
@@ -324,7 +328,7 @@ TOPICS = [
             "pt": ["Retorno sobre investimento em IA", "Automação em contact centers", "AMD com IA", "Produtividade dos agentes", "Análise de dados", "Qualidade e governança"],
             "es": ["Retorno de la inversión en IA", "Automatización en contact centers", "AMD con IA", "Productividad de los agentes", "Análisis de datos", "Calidad y gobernanza"],
         },
-        "articles": ["voice-ai-telecom-discipline", "new-cx-stack-telecom-contact-centers", "ai-contact-centers-roi", "call-center-automation-roi", "ai-powered-amd-outbound-operations"],
+        "articles": ["context-contact-center-infrastructure", "voice-ai-telecom-discipline", "new-cx-stack-telecom-contact-centers", "ai-contact-centers-roi", "call-center-automation-roi", "ai-powered-amd-outbound-operations"],
     },
     {
         "slug": "latam-nearshore-cx",

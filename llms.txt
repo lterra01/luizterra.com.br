@@ -39,6 +39,7 @@
 - [AI Evaluation in Contact Centers: From Demo to Production](https://www.luizterra.com.br/insights/ai-evaluation-production-contact-centers/): A practical framework for testing contact center AI across quality, latency, risk, languages, integrations and real operating consequences.
 - [Customer Effort Is an Architecture Problem in Contact Centers](https://www.luizterra.com.br/insights/customer-effort-architecture-contact-centers/): Why reducing customer effort requires connected data, workflows, permissions, knowledge and agent tools, not only better service scripts.
 - [Global CX Must Be Locally Intelligent](https://www.luizterra.com.br/insights/global-cx-local-operating-intelligence/): A global-local CX operating loop: common governance, controlled local execution, market-level evidence and a shared roadmap for international customer service.
+- [Context Is the New Contact Center Infrastructure](https://www.luizterra.com.br/insights/context-contact-center-infrastructure/): How identity, conversation, promises, policies and channels form governed operational context for reliable AI and human handoffs in contact centers.
 
 ## eBook
 

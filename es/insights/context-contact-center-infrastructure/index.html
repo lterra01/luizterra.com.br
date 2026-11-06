@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contexto e Infraestructura del Contact Center | Luiz Terra</title>
+    <meta name="description" content="Cómo identidad, conversación, promesas, políticas y canales forman un contexto operativo fiable para la continuidad entre IA y personas en la atención." />
+    <meta name="author" content="Luiz Terra" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="msvalidate.01" content="D32D665088441B4D7E0274D9B3AEC1A1" />
+    <link rel="canonical" href="https://www.luizterra.com.br/es/insights/context-contact-center-infrastructure/" />
+    <link rel="alternate" hreflang="en" href="https://www.luizterra.com.br/insights/context-contact-center-infrastructure/" />
+    <link rel="alternate" hreflang="pt-BR" href="https://www.luizterra.com.br/pt/insights/context-contact-center-infrastructure/" />
+    <link rel="alternate" hreflang="es" href="https://www.luizterra.com.br/es/insights/context-contact-center-infrastructure/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.luizterra.com.br/insights/context-contact-center-infrastructure/" />
+    <meta property="og:title" content="Contexto e Infraestructura del Contact Center | Luiz Terra" />
+    <meta property="og:description" content="Cómo identidad, conversación, promesas, políticas y canales forman un contexto operativo fiable para la continuidad entre IA y personas en la atención." />
+    <meta property="og:url" content="https://www.luizterra.com.br/es/insights/context-contact-center-infrastructure/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Luiz Terra" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:image" content="https://www.luizterra.com.br/public/og/context-contact-center-infrastructure.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Luiz Terra, Ejecutivo Internacional de Ventas en Telecom, CX, BPO e IA" />
+
+    <meta property="article:published_time" content="2026-11-06" />
+    <meta property="article:modified_time" content="2026-11-06" />
+    <meta property="article:author" content="https://linkedin.com/in/lterra" />
+    <meta property="article:section" content="CX y BPO" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Contexto e Infraestructura del Contact Center | Luiz Terra" />
+    <meta name="twitter:description" content="Cómo identidad, conversación, promesas, políticas y canales forman un contexto operativo fiable para la continuidad entre IA y personas en la atención." />
+    <meta name="twitter:image" content="https://www.luizterra.com.br/public/og/context-contact-center-infrastructure.png" />
+    <link rel="icon" href="/public/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="Luiz Terra Insights" href="https://www.luizterra.com.br/feed.xml" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-68E95X4DZT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      if (['www.luizterra.com.br', 'luizterra.com.br'].includes(window.location.hostname)) {
+        gtag('config', 'G-68E95X4DZT');
+        gtag('config', 'AW-18474840846');
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=optional" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=optional" rel="stylesheet" /></noscript>
+    <link rel="stylesheet" href="/styles.css?v=1fceec1aff34" />
+    <link rel="stylesheet" href="/growth.css?v=91cfe8a45522" />
+    <script src="/growth.js?v=8a7986b65bc8" defer></script>
+    <script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@graph": [
+            {
+                  "@type": "WebSite",
+                  "@id": "https://www.luizterra.com.br/#website",
+                  "url": "https://www.luizterra.com.br/",
+                  "name": "Luiz Terra",
+                  "inLanguage": [
+                        "en",
+                        "pt-BR",
+                        "es"
+                  ],
+                  "publisher": {
+                        "@id": "https://www.luizterra.com.br/#luiz-terra"
+                  }
+            },
+            {
+                  "@type": "Person",
+                  "@id": "https://www.luizterra.com.br/#luiz-terra",
+                  "name": "Luiz Terra",
+                  "description": "Luiz Terra es ejecutivo internacional de ventas con más de 28 años en Telecom, CX, BPO, CCaaS, SBC e IA en Latinoamérica, Norteamérica, Europa y África.",
+                  "image": {
+                        "@type": "ImageObject",
+                        "url": "https://www.luizterra.com.br/public/images/luiz-terra-executive.jpg",
+                        "width": 900,
+                        "height": 900
+                  },
+                  "jobTitle": "Head of International Sales",
+                  "worksFor": {
+                        "@type": "Organization",
+                        "name": "Khomp"
+                  },
+                  "email": "mailto:contact@luizterra.com.br",
+                  "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "São Paulo",
+                        "addressCountry": "Brazil"
+                  },
+                  "url": "https://www.luizterra.com.br",
+                  "sameAs": [
+                        "https://linkedin.com/in/lterra"
+                  ],
+                  "knowsLanguage": [
+                        "Portuguese",
+                        "English",
+                        "Spanish"
+                  ],
+                  "knowsAbout": [
+                        "Telecom",
+                        "Telecommunications",
+                        "Customer Experience",
+                        "Contact Center",
+                        "BPO",
+                        "Business Process Outsourcing",
+                        "CCaaS",
+                        "Contact Center as a Service",
+                        "Session Border Controller",
+                        "SBC",
+                        "SIP",
+                        "VoIP",
+                        "Cloud Communications",
+                        "Artificial Intelligence",
+                        "Answering Machine Detection",
+                        "AI-powered Answering Machine Detection",
+                        "Enterprise Sales",
+                        "Strategic Partnerships",
+                        "Go-to-Market",
+                        "Market Entry",
+                        "International Market Entry",
+                        "LATAM",
+                        "Nearshore CX"
+                  ]
+            },
+            {
+                  "@type": "BlogPosting",
+                  "@id": "https://www.luizterra.com.br/es/insights/context-contact-center-infrastructure/#article",
+                  "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": "https://www.luizterra.com.br/es/insights/context-contact-center-infrastructure/"
+                  },
+                  "headline": "El contexto es la nueva infraestructura del contact center",
+                  "description": "Cómo identidad, conversación, promesas, políticas y canales forman un contexto operativo fiable para la continuidad entre IA y personas en la atención.",
+                  "image": "https://www.luizterra.com.br/public/og/context-contact-center-infrastructure.png",
+                  "datePublished": "2026-11-06",
+                  "dateModified": "2026-11-06",
+                  "inLanguage": "es",
+                  "author": {
+                        "@id": "https://www.luizterra.com.br/#luiz-terra"
+                  },
+                  "publisher": {
+                        "@id": "https://www.luizterra.com.br/#luiz-terra"
+                  },
+                  "articleSection": "CX y BPO",
+                  "keywords": [
+                        "Contexto en el contact center",
+                        "Memoria operativa",
+                        "Identidad del cliente",
+                        "Gobernanza de IA",
+                        "Transferencia a atención humana"
+                  ],
+                  "isBasedOn": "https://www.linkedin.com/pulse/context-new-contact-center-infrastructure-luiz-terra-kbbze/"
+            },
+            {
+                  "@type": "BreadcrumbList",
+                  "@id": "https://www.luizterra.com.br/es/insights/context-contact-center-infrastructure/#breadcrumb",
+                  "itemListElement": [
+                        {
+                              "@type": "ListItem",
+                              "position": 1,
+                              "name": "Luiz Terra",
+                              "item": "https://www.luizterra.com.br/es/"
+                        },
+                        {
+                              "@type": "ListItem",
+                              "position": 2,
+                              "name": "Insights",
+                              "item": "https://www.luizterra.com.br/es/insights/"
+                        },
+                        {
+                              "@type": "ListItem",
+                              "position": 3,
+                              "name": "El contexto es la nueva infraestructura del contact center",
+                              "item": "https://www.luizterra.com.br/es/insights/context-contact-center-infrastructure/"
+                        }
+                  ]
+            },
+            {
+                  "@type": "FAQPage",
+                  "@id": "https://www.luizterra.com.br/es/insights/context-contact-center-infrastructure/#faq",
+                  "mainEntity": [
+                        {
+                              "@type": "Question",
+                              "name": "¿Cuáles son las cinco formas de continuidad en el contact center?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Identidad, conversación, promesas, políticas y canales. Juntas preservan lo que el siguiente participante autorizado necesita para continuar correctamente el recorrido del cliente."
+                              }
+                        },
+                        {
+                              "@type": "Question",
+                              "name": "¿Todos los datos del cliente deben acompañar cada interacción?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "No. Comparta solo contexto relevante, autorizado, actual y explicable. El exceso puede exponer datos sensibles o fomentar suposiciones sin fundamento."
+                              }
+                        },
+                        {
+                              "@type": "Question",
+                              "name": "¿Cómo medir el contexto operativo?",
+                              "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Revise con qué frecuencia el siguiente participante continúa correctamente sin pedir al cliente que reconstruya el recorrido. Investigue compromisos perdidos, explicaciones repetidas y transferencias incompletas, en lugar de medir solo el volumen de datos."
+                              }
+                        }
+                  ]
+            }
+      ]
+}</script>
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a class="brand" href="/es/" aria-label="LT - Página de inicio de Luiz Terra">LT</a>
+      <button class="nav-toggle" type="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="nav-links">
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="/es/#impact">Impacto</a>
+        <a href="/es/#expertise">Especialidades</a>
+        <a href="/es/insights/">Análisis</a>
+        <a href="/es/executive-bio/">Biografía Ejecutiva</a>
+        <a href="/es/#speaking">Conferencias</a>
+        <a href="/es/#contact">Contacto</a>
+        <a href="/es/ebooks/">eBooks y servicios</a>
+        <div class="language-switcher" aria-label="Versiones de idioma">
+          <a href="/insights/context-contact-center-infrastructure/" class="" aria-current="false">EN</a>
+          <a href="/pt/insights/context-contact-center-infrastructure/" class="" aria-current="false">PT</a>
+          <a href="/es/insights/context-contact-center-infrastructure/" class="is-active" aria-current="page">ES</a>
+        </div>
+        <a class="nav-cta" href="mailto:contact@luizterra.com.br?subject=Conversaci%C3%B3n%20estrat%C3%A9gica">Iniciar una conversación estratégica</a>
+      </div>
+    </nav>
+    <main class="subpage-main article-main">
+      <article class="article-page section-reveal is-visible">
+        <nav class="article-breadcrumb" aria-label="Ruta de navegación">
+          <a href="/es/">Luiz Terra</a>
+          <span aria-hidden="true">/</span>
+          <a href="/es/insights/">Análisis</a>
+        </nav>
+        <p class="eyebrow">CX y BPO</p>
+        <h1 class="subpage-title">El contexto es la nueva infraestructura del contact center</h1>
+        <p class="article-summary">Cómo identidad, conversación, promesas, políticas y canales forman un contexto operativo fiable para la continuidad entre IA y personas en la atención.</p>
+        <div class="article-meta">
+          <span>Escrito por <a href="/es/executive-bio/">Luiz Terra</a></span>
+          <span>Publicado <time datetime="2026-11-06">06/11/2026</time></span>
+          <span>Actualizado <time datetime="2026-11-06">06/11/2026</time></span>
+          <span>5 min de lectura</span>
+        </div>
+        <div class="chips article-tags"><span>Contexto en el contact center</span><span>Memoria operativa</span><span>Identidad del cliente</span><span>Gobernanza de IA</span><span>Transferencia a atención humana</span></div>
+        <p class="topic-link"><a href="https://www.linkedin.com/pulse/context-new-contact-center-infrastructure-luiz-terra-kbbze/" target="_blank" rel="noopener">Edición original en LinkedIn</a></p>
+          <div class="article-content">
+          <p class="topic-link"><a href="/es/topics/ai-contact-centers/">Explorar tema: IA para Contact Centers: ROI y Gobernanza</a></p>
+          <p class="article-lead">Versión editorial de la edición de la newsletter publicada en LinkedIn el 6 de noviembre de 2026. Un contact center necesita más que canales conectados: la identidad, la conversación, las promesas y las políticas aprobadas deben seguir siendo útiles cuando interviene el siguiente participante autorizado.</p>
+<h2>Por qué este tema importa</h2><p>La IA crea valor cuando modifica un flujo operativo medible. La pregunta relevante no es si un modelo impresiona, sino si mejora productividad, tasas de contacto, calidad, contención, resultados para el cliente o velocidad de decisión sin crear riesgos inaceptables.</p><p>Una decisión útil de IA conecta cuatro capas: recorrido del cliente o agente, decisión operativa modificada, capacidad del modelo o automatización y mecanismo financiero. Si falta una capa, el proyecto puede generar una demostración impresionante sin resultado durable. Operaciones, tecnología, finanzas, compliance y workforce deben compartir la misma definición de éxito.</p><p>La validación debe comparar grupos representativos e incluir el manejo de excepciones. Revise quién usa el resultado, cuándo llega, qué ocurre cuando la confianza de la clasificación es baja y si la calidad o la experiencia empeoran. Amplíe la operación después de que el equipo pueda sostener el proceso y el registro de beneficios muestre cómo generar capacidad adicional, ahorro o ingresos.</p>
+          <h2>El problema es el contexto fragmentado, no la falta de datos</h2>
+          <p>Cada interacción con un cliente produce contexto: identidad, intención, historial, promesas, decisiones, sentimiento, permisos y trabajo pendiente. La mayoría de las organizaciones ya almacena fragmentos de esa información. El problema no es la ausencia de datos. Es que el contexto está fragmentado entre canales, aplicaciones, equipos y momentos.</p>
+          <p>Un cliente puede explicar la misma situación a un chatbot, a un agente y a un especialista de back office. Cada interacción puede quedar registrada, pero el significado del recorrido se pierde entre sistemas. Un archivo completo no equivale a una explicación utilizable de lo que ya ocurrió y lo que sigue pendiente.</p>
+          <p>Eso convierte el contexto en una nueva forma de infraestructura. La infraestructura no son solamente redes, aplicaciones y bases de datos. Es también la capacidad que permite a cada participante autorizado, humano o automatizado, comprender qué ha ocurrido, qué está permitido y qué debe suceder después.</p>
+          <h2>Importan cinco formas de continuidad</h2>
+          <p>Un contact center moderno necesita al menos cinco formas de continuidad. Describen lo que debe preservarse en una transición, no una obligación de exponer todos los registros a todos los participantes.</p>
+          <p>La continuidad de identidad significa saber quién interactúa, con el nivel de verificación adecuado para la acción solicitada. La verificación debe respaldar la siguiente acción permitida; una interacción anterior no autoriza automáticamente una acción distinta o más sensible.</p>
+          <p>La continuidad de conversación preserva el objetivo del cliente, la evidencia ya recopilada y las explicaciones ya ofrecidas. El siguiente participante debe distinguir un hecho confirmado de una interpretación o de una pregunta todavía sin respuesta.</p>
+          <p>La continuidad de promesas registra compromisos, responsables, plazos y condiciones asociadas. Una transferencia no debe hacer desaparecer un compromiso ni dejar sin definir quién responde por su ejecución.</p>
+          <p>La continuidad de políticas garantiza que una IA o una persona actúe según las mismas reglas aprobadas, el mismo consentimiento y los mismos controles de riesgo. El cambio de participante no puede modificar silenciosamente los límites de la atención.</p>
+          <p>La continuidad de canales permite pasar entre mensajería, web, voz y asistencia humana sin obligar al cliente a comenzar de nuevo. La cobertura de canales, por sí sola, no demuestra que el objetivo, la evidencia y los compromisos se hayan conservado durante el cambio.</p>
+          <h2>La gobernanza define qué contexto puede acompañar el recorrido</h2>
+          <p>Esto es más que un problema de integración tecnológica. Es un problema de gobernanza. Conectar aplicaciones permite mover información, pero no determina por sí mismo si es relevante, actual o apropiada para quien la recibe.</p>
+          <p>No toda la información debe acompañar cada interacción. El contexto debe ser relevante, autorizado, limitado en el tiempo y explicable. Un exceso puede ser tan peligroso como su ausencia cuando expone datos sensibles o lleva a un sistema automatizado a formular una suposición sin fundamento.</p>
+          <h2>Responda cuatro preguntas antes de automatizar acciones</h2>
+          <p>¿Qué contexto es necesario para completar el objetivo del cliente? Defina la información necesaria para la siguiente decisión, en lugar de adoptar el acceso al historial completo como opción predeterminada.</p>
+          <p>¿Quién está autorizado a crearlo, modificarlo y utilizarlo? Haga explícita la responsabilidad por cada registro o compromiso, incluido quién puede corregir una contradicción.</p>
+          <p>¿Cuánto tiempo debe seguir siendo válido? Las evidencias de identidad, los permisos y los hechos operativos pueden tener vigencias distintas. Un registro antiguo no debe tratarse como una autorización actual solo porque sigue disponible.</p>
+          <p>¿Cómo detectará la organización que está incompleto, es contradictorio o está desactualizado? El siguiente participante necesita reconocer la incertidumbre y solicitar una verificación, en lugar de llenar el vacío con una suposición.</p>
+          <p>Estas preguntas son especialmente importantes cuando los agentes de IA pasan de responder preguntas a ejecutar acciones. Un agente que puede cambiar una dirección, negociar un pago o programar una visita necesita identidad, políticas y memoria operativa fiables. Producir una respuesta fluida no demuestra autorización para ejecutar la acción.</p>
+          <h2>Mida si el siguiente participante puede continuar</h2>
+          <p>La métrica más útil no es cuántos datos están disponibles. Es la frecuencia con la que el siguiente participante puede continuar correctamente el recorrido sin pedir al cliente que lo reconstruya. Revise la propia transición: qué estaba disponible, qué faltaba y si la siguiente acción respetó el objetivo del cliente y los límites aprobados.</p>
+          <p>Las explicaciones repetidas, los compromisos perdidos y las transferencias que reinician el caso son señales útiles para investigar. Por sí solas, no demuestran una única causa técnica. Siga el recorrido entre sistemas y responsables antes de decidir si la brecha corresponde a la integración, la política, la calidad del registro o la responsabilidad operativa.</p>
+          <p>Cuando el contexto se vuelve duradero y gobernado, el contact center deja de ser una secuencia de contactos aislados. Se convierte en un sistema operativo para los compromisos con el cliente. La continuidad significa preservar el significado operativo adecuado, no acumular el mayor historial posible.</p>
+          <h2>Checklist de evaluación ejecutiva</h2>
+          <ul class="article-checklist">
+            <li>Identificar el contexto necesario para la siguiente acción permitida</li>
+            <li>Preservar la identidad verificada, el objetivo del cliente y la evidencia recopilada</li>
+            <li>Registrar cada promesa con responsable, plazo y condiciones</li>
+            <li>Aplicar las mismas políticas aprobadas en las transiciones entre IA y personas</li>
+            <li>Definir derechos de acceso, vigencias y responsabilidad de corrección</li>
+            <li>Investigar el contexto ausente, contradictorio o desactualizado antes de actuar</li>
+          </ul>
+          <section class="cx-context" aria-labelledby="cx-context-title">
+            <p class="eyebrow">RECURSO GRATUITO · CX EN LA PRÁCTICA</p><h2 id="cx-context-title">De la lectura a la próxima acción</h2><p>Utilice este tema para organizar una prioridad concreta de su operación.</p>
+            <a class="button primary" href="/es/resources/cx-action-plan/?topic=ai" data-cx-resource-link="article">Crear mi plan gratuito <span aria-hidden="true">&#8594;</span></a>
+            <div class="cx-context-book" data-ebook-product data-product-placement="article" data-ebook-id="ia-no-atendimento-do-piloto-a-operacao" data-ebook-title="IA no Atendimento: do Piloto à Operação" data-hotmart-product-id="8836219">
+              <img src="/public/ebooks/ia-no-atendimento-do-piloto-a-operacao-640.webp" srcset="/public/ebooks/ia-no-atendimento-do-piloto-a-operacao-320.webp 320w, /public/ebooks/ia-no-atendimento-do-piloto-a-operacao-640.webp 640w, /public/ebooks/ia-no-atendimento-do-piloto-a-operacao-960.webp 960w, /public/ebooks/ia-no-atendimento-do-piloto-a-operacao.webp 1254w" sizes="104px" width="1254" height="1254" alt="IA en la Atención: del Piloto a la Operación - Luiz Terra" loading="lazy" />
+              <div><h3>IA en la Atención: del Piloto a la Operación</h3><p>Defina alcance, fuentes y permisos; evalúe respuestas y organice la derivación humana antes de ampliar un piloto de IA.</p><strong>R$ 9,99</strong><br />
+                <a class="button secondary" href="https://pay.hotmart.com/P108249096W?sck=luizterra-site-article" target="_blank" rel="noopener" data-ebook-checkout="article">Comprar este eBook <span aria-hidden="true">&#8599;</span></a>
+                <p class="cx-result-note">Pago único · PDFs ES / EN / PT · acceso por Hotmart</p></div>
+            </div>
+          </section>
+          <h2>Un camino práctico</h2>
+          <p>Elija un recorrido que pase por IA, un agente humano y un equipo de back office. Compruebe si cada participante autorizado recibe el objetivo, la evidencia, los compromisos y los permisos necesarios para el siguiente paso. Mejore la continuidad de ese recorrido antes de tratar un archivo de datos mayor como una mejora de la experiencia del cliente.</p>
+          <p class="article-cta"><a class="button primary" href="mailto:contact@luizterra.com.br?subject=Conversaci%C3%B3n%20estrat%C3%A9gica">Iniciar una conversación estratégica</a></p>
+          <h2>Preguntas frecuentes</h2>
+          <div class="faq-list article-faq">
+          <details>
+            <summary>¿Cuáles son las cinco formas de continuidad en el contact center?</summary>
+            <p>Identidad, conversación, promesas, políticas y canales. Juntas preservan lo que el siguiente participante autorizado necesita para continuar correctamente el recorrido del cliente.</p>
+          </details>
+          <details>
+            <summary>¿Todos los datos del cliente deben acompañar cada interacción?</summary>
+            <p>No. Comparta solo contexto relevante, autorizado, actual y explicable. El exceso puede exponer datos sensibles o fomentar suposiciones sin fundamento.</p>
+          </details>
+          <details>
+            <summary>¿Cómo medir el contexto operativo?</summary>
+            <p>Revise con qué frecuencia el siguiente participante continúa correctamente sin pedir al cliente que reconstruya el recorrido. Investigue compromisos perdidos, explicaciones repetidas y transferencias incompletas, en lugar de medir solo el volumen de datos.</p>
+          </details>
+          </div>
+        </div>
+        <section class="related-insights" aria-labelledby="related-title">
+          <h2 id="related-title">Artículos relacionados</h2>
+          <div class="related-grid">
+          <article>
+            <span>Telecom</span>
+            <h3><a href="/es/insights/new-cx-stack-telecom-contact-centers/">La nueva arquitectura de CX: experiencia, telecom y contact centers convergen</a></h3>
+          </article>
+          <article>
+            <span>IA y Automatización</span>
+            <h3><a href="/es/insights/voice-ai-telecom-discipline/">La IA de voz necesita disciplina de telecom</a></h3>
+          </article>
+          <article>
+            <span>CX y BPO</span>
+            <h3><a href="/es/insights/customer-effort-architecture-contact-centers/">El esfuerzo del cliente es un problema de arquitectura en el contact center</a></h3>
+          </article>
+          <article>
+            <span>IA y Automatización</span>
+            <h3><a href="/es/insights/ai-evaluation-production-contact-centers/">Evaluación de IA en Contact Centers: de la demo a producción</a></h3>
+          </article>
+          </div>
+        </section>
+        <div class="article-actions">
+          <a class="article-back" href="/es/insights/">Volver a los análisis</a>
+          <div class="share-actions" aria-label="Compartir artículo">
+            <a class="button secondary share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https://www.luizterra.com.br/es/insights/context-contact-center-infrastructure/" target="_blank" rel="noopener">in&nbsp; Compartir en LinkedIn</a>
+            <button class="button tertiary copy-link" type="button" data-copy-url="https://www.luizterra.com.br/es/insights/context-contact-center-infrastructure/" data-copy-label="Enlace copiado">↗&nbsp; Copiar enlace</button>
+          </div>
+        </div>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <div>
+        <p>© 2026 Luiz Terra. Todos los derechos reservados.</p>
+        <small>Telecom | CX | BPO | IA | Ventas Internacionales · São Paulo, Brasil</small>
+      </div>
+      <div class="footer-links" aria-label="Enlaces del pie de página">
+        <a href="mailto:contact@luizterra.com.br">contact@luizterra.com.br</a>
+        <a href="https://linkedin.com/in/lterra" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/es/ebooks/">eBooks: CX en la Práctica</a>
+        <a href="/es/resources/cx-action-plan/" data-cx-resource-link="footer">Plan de acción de CX</a>
+        <a href="/es/mini-expert/indicadores-de-atendimento/" data-mini-expert-link="footer" data-mini-expert-id="mini-expert-indicadores-de-atendimento" data-mini-expert-title="Mini Expert de Indicadores de Atendimento" data-hotmart-product-id="8822826">Mini Expert</a>
+        <a href="/es/consultoria/indicadores-de-atendimento/" data-fiverr-link="footer">Conocer la consultoría</a>
+        <a href="/es/bonus/" data-bonus-link="footer">Elegir mis 2 eBooks</a>
+      </div>
+    </footer>
+    <aside class="ebook-announcement" aria-label="EBOOKS · AI AGENT · CONSULTORÍA" data-ebook-collection-id="cx-na-pratica">
+      <a href="/es/ebooks/" data-ebook-placement="announcement">
+        <span class="ebook-announcement-copy"><small>EBOOKS · AI AGENT · CONSULTORÍA</small><strong>CX en la Práctica · 6 eBooks de Luiz Terra</strong></span>
+        <span class="ebook-announcement-price">R$ 9,99 <small>cada uno · pago único</small></span>
+        <span class="ebook-announcement-action">Conocer la colección<span aria-hidden="true"> &#8594;</span></span>
+      </a>
+    </aside>
+    <dialog class="ebook-modal ebook-collection-modal" id="ebook-introduction" aria-labelledby="ebook-introduction-title" aria-describedby="ebook-introduction-description" data-ebook-collection-id="cx-na-pratica" data-ebook-ad-id="cx_na_pratica_collection_3d9bee8617d7" data-ebook-session-key="luiz-terra-ebook-collection-3d9bee8617d7-introduced">
+      <button type="button" class="ebook-modal-close" data-ebook-close="close_icon" aria-label="Cerrar presentación de los eBooks" title="Cerrar presentación de los eBooks" autofocus>&times;</button>
+      <p class="eyebrow">EBOOKS · AI AGENT · CONSULTORÍA</p>
+      <h2 id="ebook-introduction-title">CX en la Práctica</h2>
+      <p id="ebook-introduction-description">eBooks en tres idiomas, AI Agent y consultoría. Contrate cualquiera de los servicios y elija dos eBooks de regalo.</p>
+      <div class="ebook-modal-books"><a href="/es/ebooks/#cx-na-operacao" data-ebook-placement="introduction" data-ebook-id="cx-na-operacao" data-ebook-title="CX na Operação" data-hotmart-product-id="8811187"><img src="/public/ebooks/cx-na-operacao-640.webp" srcset="/public/ebooks/cx-na-operacao-320.webp 320w, /public/ebooks/cx-na-operacao-640.webp 640w, /public/ebooks/cx-na-operacao-960.webp 960w, /public/ebooks/cx-na-operacao.webp 1254w" sizes="(max-width: 640px) 42vw, 220px" width="1254" height="1254" loading="lazy" alt="CX en la Operación - Luiz Terra" /><span>CX en la Operación</span></a><a href="/es/ebooks/#indicadores-de-atendimento-na-pratica" data-ebook-placement="introduction" data-ebook-id="indicadores-de-atendimento-na-pratica" data-ebook-title="Indicadores de Atendimento na Prática" data-hotmart-product-id="8811999"><img src="/public/ebooks/indicadores-de-atendimento-na-pratica-640.webp" srcset="/public/ebooks/indicadores-de-atendimento-na-pratica-320.webp 320w, /public/ebooks/indicadores-de-atendimento-na-pratica-640.webp 640w, /public/ebooks/indicadores-de-atendimento-na-pratica-960.webp 960w, /public/ebooks/indicadores-de-atendimento-na-pratica.webp 1254w" sizes="(max-width: 640px) 42vw, 220px" width="1254" height="1254" loading="lazy" alt="Indicadores de Atención al Cliente en la Práctica - Luiz Terra" /><span>Indicadores de Atención al Cliente en la Práctica</span></a><a href="/es/ebooks/#qualidade-e-feedback-no-atendimento" data-ebook-placement="introduction" data-ebook-id="qualidade-e-feedback-no-atendimento" data-ebook-title="Qualidade e Feedback no Atendimento" data-hotmart-product-id="8812046"><img src="/public/ebooks/qualidade-e-feedback-no-atendimento-640.webp" srcset="/public/ebooks/qualidade-e-feedback-no-atendimento-320.webp 320w, /public/ebooks/qualidade-e-feedback-no-atendimento-640.webp 640w, /public/ebooks/qualidade-e-feedback-no-atendimento-960.webp 960w, /public/ebooks/qualidade-e-feedback-no-atendimento.webp 1254w" sizes="(max-width: 640px) 42vw, 220px" width="1254" height="1254" loading="lazy" alt="Calidad y Feedback en la Atención al Cliente - Luiz Terra" /><span>Calidad y Feedback en la Atención al Cliente</span></a><a href="/es/ebooks/#ia-no-atendimento-do-piloto-a-operacao" data-ebook-placement="introduction" data-ebook-id="ia-no-atendimento-do-piloto-a-operacao" data-ebook-title="IA no Atendimento: do Piloto à Operação" data-hotmart-product-id="8836219"><img src="/public/ebooks/ia-no-atendimento-do-piloto-a-operacao-640.webp" srcset="/public/ebooks/ia-no-atendimento-do-piloto-a-operacao-320.webp 320w, /public/ebooks/ia-no-atendimento-do-piloto-a-operacao-640.webp 640w, /public/ebooks/ia-no-atendimento-do-piloto-a-operacao-960.webp 960w, /public/ebooks/ia-no-atendimento-do-piloto-a-operacao.webp 1254w" sizes="(max-width: 640px) 42vw, 220px" width="1254" height="1254" loading="lazy" alt="IA en la Atención: del Piloto a la Operación - Luiz Terra" /><span>IA en la Atención: del Piloto a la Operación</span></a><a href="/es/ebooks/#voz-e-telecom-para-cx" data-ebook-placement="introduction" data-ebook-id="voz-e-telecom-para-cx" data-ebook-title="Voz e Telecom para CX" data-hotmart-product-id="8836306"><img src="/public/ebooks/voz-e-telecom-para-cx-640.webp" srcset="/public/ebooks/voz-e-telecom-para-cx-320.webp 320w, /public/ebooks/voz-e-telecom-para-cx-640.webp 640w, /public/ebooks/voz-e-telecom-para-cx-960.webp 960w, /public/ebooks/voz-e-telecom-para-cx.webp 1254w" sizes="(max-width: 640px) 42vw, 220px" width="1254" height="1254" loading="lazy" alt="Voz y Telecom para CX - Luiz Terra" /><span>Voz y Telecom para CX</span></a><a href="/es/ebooks/#vendas-consultivas-em-telecom-e-cx" data-ebook-placement="introduction" data-ebook-id="vendas-consultivas-em-telecom-e-cx" data-ebook-title="Vendas Consultivas em Telecom e CX" data-hotmart-product-id="8836331"><img src="/public/ebooks/vendas-consultivas-em-telecom-e-cx-640.webp" srcset="/public/ebooks/vendas-consultivas-em-telecom-e-cx-320.webp 320w, /public/ebooks/vendas-consultivas-em-telecom-e-cx-640.webp 640w, /public/ebooks/vendas-consultivas-em-telecom-e-cx-960.webp 960w, /public/ebooks/vendas-consultivas-em-telecom-e-cx.webp 1254w" sizes="(max-width: 640px) 42vw, 220px" width="1254" height="1254" loading="lazy" alt="Ventas Consultivas en Telecom y CX - Luiz Terra" /><span>Ventas Consultivas en Telecom y CX</span></a></div>
+      <p class="ebook-modal-price">R$ 9,99 <small>cada uno · pago único</small></p>
+      <a class="button primary" href="/es/ebooks/" data-ebook-placement="introduction">Conocer la colección</a>
+      <button class="ebook-continue" type="button" data-ebook-close="continue_button">Continuar al sitio</button>
+    </dialog>
+    <script src="/script.js?v=64cadef495b9"></script>
+  </body>
+</html>
